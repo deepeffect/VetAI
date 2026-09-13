@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* Tailwind v4 CSS-first tema: proje renkleri ve animasyonlari burada tanimlanir. */
+@theme {
+  --color-surface: #0b1120;
+  --color-surface-raised: #111a2e;
+  --color-surface-hover: #17223c;
+  --color-line: #1f2b45;
+
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+
+  --animate-rise: rise 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade: fade 0.5s ease-out;
+  --animate-grow: grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-pulse-ring: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes grow {
+  from { width: 0; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgb(239 68 68 / 0.45); }
+  70%  { box-shadow: 0 0 0 12px rgb(239 68 68 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(239 68 68 / 0); }
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-surface);
+  color: #e2e8f0;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ince, koyu temaya uygun kaydirma cubugu */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid var(--color-surface);
+}
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+textarea { field-sizing: content; }

@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Ortam degiskenleri (API anahtarlari)
+.env
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# Veritabani
+*.db
+*.sqlite
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
