@@ -97,6 +97,14 @@ Arayüzdeki yan panel hangi modda olduğunuzu gösterir.
 
 ---
 
+## Arayüz
+
+Arayüz adaçayı yeşili odaklı, açık/koyu temalı ve minimalist bir tasarım
+sistemine sahiptir. Renk paleti (HEX), tema mimarisi ve bileşen kuralları için
+[`Frontend.md`](Frontend.md) dosyasına bakın.
+
+---
+
 ## Backend modülleri
 
 | Dosya | Sorumluluk |
@@ -107,6 +115,7 @@ Arayüzdeki yan panel hangi modda olduğunuzu gösterir.
 | `ml_model.py` | TF-IDF + Logistic Regression, `predict_proba`, çapraz doğrulama, yorumlanabilirlik |
 | `gemini_api.py` | google-genai SDK ile Gemini 2.5 Flash entegrasyonu |
 | `main.py` | FastAPI uygulaması, guardrail'ler, `/api/analyze` |
+| `migrate_turkce.py` | Eski veritabanındaki hastalık adı ve öneri metinlerini düzgün Türkçe yazıma taşır (tek seferlik bakım aracı) |
 
 ### Uç noktalar
 

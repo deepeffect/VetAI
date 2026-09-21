@@ -1,5 +1,5 @@
 import type { IstatistikYaniti, SaglikYaniti } from "../api";
-import { ChartIcon, DatabaseIcon, SparkIcon } from "./Icons";
+import { AlertIcon, ChartIcon, DatabaseIcon, SparkIcon } from "./Icons";
 
 interface Props {
   saglik: SaglikYaniti | null;
@@ -7,138 +7,158 @@ interface Props {
   baglantiHatasi: boolean;
 }
 
-function Satir({ etiket, deger, renk = "text-slate-200" }: {
+/** Panel içindeki tek bir "etiket — değer" satırı. */
+function Satir({
+  etiket,
+  deger,
+  renk = "text-ink",
+}: {
   etiket: string;
   deger: string;
   renk?: string;
 }) {
   return (
-    <div className="flex items-baseline justify-between gap-2 py-1">
-      <span className="text-[11.5px] text-slate-500">{etiket}</span>
-      <span className={`font-mono text-[12px] font-medium tabular-nums ${renk}`}>{deger}</span>
+    <div className="flex items-baseline justify-between gap-3 border-b border-line-soft py-2 last:border-0 last:pb-0">
+      <span className="text-[12.5px] text-ink-muted">{etiket}</span>
+      <span className={`tnum text-[13px] font-semibold ${renk}`}>{deger}</span>
     </div>
   );
 }
 
-function Bolum({ baslik, ikon, children }: {
+/** Yan paneldeki kart kabuğu: başlık + içerik. */
+function Kart({
+  baslik,
+  ikon,
+  children,
+}: {
   baslik: string;
   ikon: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-line bg-surface-raised/50 p-3.5">
-      <div className="mb-2 flex items-center gap-2">
+    <section className="rounded-2xl border border-line bg-card p-4 shadow-soft">
+      <header className="mb-2 flex items-center gap-2 text-ink-muted">
         {ikon}
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-          {baslik}
-        </h3>
-      </div>
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em]">{baslik}</h3>
+      </header>
       {children}
-    </div>
+    </section>
   );
+}
+
+function Yukleniyor() {
+  return <p className="py-2 text-[12.5px] text-ink-muted">Yükleniyor…</p>;
 }
 
 export default function StatusPanel({ saglik, istatistik, baglantiHatasi }: Props) {
   if (baglantiHatasi) {
     return (
-      <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-3.5">
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-red-400">
-          Backend kapali
-        </h3>
-        <p className="mt-2 text-[12px] leading-relaxed text-red-200/80">
-          FastAPI sunucusuna ulasilamiyor. Terminalde{" "}
-          <code className="rounded bg-slate-800 px-1 py-0.5 text-[11px]">backend</code> klasorunde
-          sunu calistirin:
+      <section className="rounded-2xl border border-danger-line bg-danger-soft p-4">
+        <header className="mb-2 flex items-center gap-2 text-danger-ink">
+          <AlertIcon className="h-4 w-4" />
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em]">
+            Backend kapalı
+          </h3>
+        </header>
+        <p className="text-[12.5px] leading-relaxed text-danger-ink/90">
+          FastAPI sunucusuna ulaşılamıyor. Terminalde{" "}
+          <code className="rounded bg-card/60 px-1 py-0.5 font-mono text-[11.5px]">
+            backend
+          </code>{" "}
+          klasöründe şu komutu çalıştırın:
         </p>
-        <code className="mt-2 block rounded-lg bg-slate-900/80 px-2.5 py-2 font-mono text-[11px] text-emerald-300">
+        <code className="mt-2.5 block rounded-lg border border-danger-line bg-card/60 px-2.5 py-2 font-mono text-[11.5px] text-ink">
           uvicorn main:app --reload
         </code>
-      </div>
+      </section>
     );
   }
 
   const model = saglik?.model;
+  const enBuyuk = istatistik?.hastaliklar[0]?.kayit || 1;
 
   return (
-    <div className="space-y-3">
-      <Bolum baslik="Model" ikon={<ChartIcon className="h-4 w-4 text-emerald-500" />}>
+    <div className="space-y-4">
+      {/* ------------------------------------------------------------ Model */}
+      <Kart baslik="Model" ikon={<ChartIcon className="h-4 w-4" />}>
         {model ? (
           <>
             <Satir
               etiket="Durum"
-              deger={model.egitildi ? "Egitildi" : "Egitilmedi"}
-              renk={model.egitildi ? "text-emerald-400" : "text-red-400"}
+              deger={model.egitildi ? "Eğitildi" : "Eğitilmedi"}
+              renk={model.egitildi ? "text-accent-ink" : "text-danger-ink"}
             />
-            <Satir etiket="Egitim ornegi" deger={String(model.ornek_sayisi)} />
-            <Satir etiket="Hastalik sinifi" deger={String(model.sinif_sayisi)} />
-            <Satir etiket="TF-IDF ozelligi" deger={String(model.ozellik_sayisi)} />
+            <Satir etiket="Eğitim örneği" deger={String(model.ornek_sayisi)} />
+            <Satir etiket="Hastalık sınıfı" deger={String(model.sinif_sayisi)} />
+            <Satir etiket="TF-IDF özelliği" deger={String(model.ozellik_sayisi)} />
             <Satir
-              etiket="Capraz dogrulama"
-              deger={model.dogruluk !== null ? `%${(model.dogruluk * 100).toFixed(1)}` : "-"}
-              renk="text-amber-300"
+              etiket="Çapraz doğrulama"
+              deger={
+                model.dogruluk !== null ? `%${(model.dogruluk * 100).toFixed(1)}` : "—"
+              }
             />
           </>
         ) : (
-          <p className="text-[12px] text-slate-500">Yukleniyor...</p>
+          <Yukleniyor />
         )}
-      </Bolum>
+      </Kart>
 
-      <Bolum baslik="Yapay zeka" ikon={<SparkIcon className="h-4 w-4 text-violet-400" />}>
+      {/* ------------------------------------------------------- Yapay zekâ */}
+      <Kart baslik="Yapay zekâ" ikon={<SparkIcon className="h-4 w-4" />}>
         <Satir
           etiket="Gemini"
-          deger={saglik?.gemini_aktif ? "Aktif" : "Devre disi"}
-          renk={saglik?.gemini_aktif ? "text-emerald-400" : "text-slate-500"}
+          deger={saglik?.gemini_aktif ? "Aktif" : "Devre dışı"}
+          renk={saglik?.gemini_aktif ? "text-accent-ink" : "text-ink-muted"}
         />
-        <Satir etiket="Model" deger={saglik?.gemini_model ?? "-"} />
+        <Satir etiket="Model" deger={saglik?.gemini_model ?? "—"} />
         {saglik && !saglik.gemini_aktif && (
-          <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
-            backend/.env dosyasina GEMINI_API_KEY ekleyip sunucuyu yeniden baslatin.
-            Anahtarsiz da calisir; yorumlar veritabanindan uretilir.
+          <p className="mt-2.5 text-[12px] leading-relaxed text-ink-muted">
+            backend/.env dosyasına GEMINI_API_KEY ekleyip sunucuyu yeniden başlatın.
+            Anahtar olmadan da çalışır; yorumlar veritabanından üretilir.
           </p>
         )}
-      </Bolum>
+      </Kart>
 
-      <Bolum baslik="Veritabani" ikon={<DatabaseIcon className="h-4 w-4 text-sky-400" />}>
+      {/* -------------------------------------------------------- Veritabanı */}
+      <Kart baslik="Veritabanı" ikon={<DatabaseIcon className="h-4 w-4" />}>
         {istatistik ? (
           <>
-            <Satir etiket="Toplam kayit" deger={String(istatistik.toplam_kayit)} />
-            <Satir etiket="Baslangic verisi" deger={String(istatistik.seed_kayit)} />
+            <Satir etiket="Toplam kayıt" deger={String(istatistik.toplam_kayit)} />
+            <Satir etiket="Başlangıç verisi" deger={String(istatistik.seed_kayit)} />
             <Satir
-              etiket="Otomatik ogrenilen"
+              etiket="Otomatik öğrenilen"
               deger={String(istatistik.auto_kayit)}
-              renk="text-emerald-400"
+              renk={istatistik.auto_kayit > 0 ? "text-accent-ink" : "text-ink"}
             />
             <Satir etiket="Onay bekleyen" deger={String(istatistik.bekleyen_kayit)} />
           </>
         ) : (
-          <p className="text-[12px] text-slate-500">Yukleniyor...</p>
+          <Yukleniyor />
         )}
-      </Bolum>
+      </Kart>
 
+      {/* ------------------------------------------------------ Veri dağılımı */}
       {istatistik && istatistik.hastaliklar.length > 0 && (
-        <Bolum baslik="Veri dagilimi" ikon={<DatabaseIcon className="h-4 w-4 text-slate-500" />}>
-          <div className="max-h-52 space-y-1.5 overflow-y-auto pr-1">
-            {istatistik.hastaliklar.map((h) => {
-              const enBuyuk = istatistik.hastaliklar[0]?.kayit || 1;
-              return (
-                <div key={h.hastalik}>
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className="truncate text-[11px] text-slate-400" title={h.hastalik}>
-                      {h.hastalik}
-                    </span>
-                    <span className="font-mono text-[11px] text-slate-500">{h.kayit}</span>
-                  </div>
-                  <div className="mt-0.5 h-1 overflow-hidden rounded-full bg-slate-800">
-                    <div
-                      className="h-full rounded-full bg-slate-600"
-                      style={{ width: `${(h.kayit / enBuyuk) * 100}%` }}
-                    />
-                  </div>
+        <Kart baslik="Veri dağılımı" ikon={<DatabaseIcon className="h-4 w-4" />}>
+          <div className="max-h-64 space-y-2.5 overflow-y-auto pr-1 pt-1">
+            {istatistik.hastaliklar.map((h) => (
+              <div key={h.hastalik}>
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="truncate text-[12px] text-ink-soft" title={h.hastalik}>
+                    {h.hastalik}
+                  </span>
+                  <span className="tnum text-[12px] text-ink-muted">{h.kayit}</span>
                 </div>
-              );
-            })}
+                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-line-soft">
+                  <div
+                    className="h-full rounded-full bg-sage-300"
+                    style={{ width: `${(h.kayit / enBuyuk) * 100}%` }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-        </Bolum>
+        </Kart>
       )}
     </div>
   );

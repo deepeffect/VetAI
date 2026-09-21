@@ -46,6 +46,7 @@ from nlp_engine import (
     normalize,
     tokenize,
     token_overlap,
+    turkish_lower,
 )
 
 load_dotenv()
@@ -62,20 +63,20 @@ logger = logging.getLogger("vetai")
 
 # --- 1) Acil durum: bu ifadelerden biri gecerse yanit acil olarak isaretlenir.
 ACIL_KALIPLAR: dict[str, str] = {
-    r"nefes alam|nefes alamiyor|soluk alam": "Solunum sikintisi",
-    r"nefes darligi|zor nefes|hizli nefes": "Solunum sikintisi",
-    r"bilincini kaybet|bayildi|tepki vermiyor|kendine gelmiyor": "Bilinc kaybi",
-    r"nobet|havale|kasilma|konvulsiyon": "Nobet gecirme",
-    r"kanli ishal|kanli diski|kanli kusma|kan kusuyor": "Kanli sindirim bulgusu",
-    r"durmayan kanama|kanama durmuyor|siddetli kanama": "Kontrolsuz kanama",
-    r"zehir|fare zehiri|deterjan|antifiriz|cikolata yedi|ilac yedi": "Zehirlenme suphesi",
-    r"idrar yapam|cis yapam|isiyemiyor": "Idrar tikanikligi (ozellikle erkek kedide oldurucu)",
+    r"nefes alam|nefes alamiyor|soluk alam": "Solunum sıkıntısı",
+    r"nefes darligi|zor nefes|hizli nefes": "Solunum sıkıntısı",
+    r"bilincini kaybet|bayildi|tepki vermiyor|kendine gelmiyor": "Bilinç kaybı",
+    r"nobet|havale|kasilma|konvulsiyon": "Nöbet geçirme",
+    r"kanli ishal|kanli diski|kanli kusma|kan kusuyor": "Kanlı sindirim bulgusu",
+    r"durmayan kanama|kanama durmuyor|siddetli kanama": "Kontrolsüz kanama",
+    r"zehir|fare zehiri|deterjan|antifiriz|cikolata yedi|ilac yedi": "Zehirlenme şüphesi",
+    r"idrar yapam|cis yapam|isiyemiyor": "İdrar tıkanıklığı (özellikle erkek kedide öldürücü)",
     r"araba carpti|yuksekten dustu|ezildi|darbe aldi": "Travma",
-    r"dogum|doguramiyor|sanci": "Dogum komplikasyonu",
-    r"karni sisti ve|sert sismis karin": "Mide burulmasi suphesi",
-    r"dili mor|diseti beyaz|solgun diseti": "Dolasim bozuklugu",
-    r"sicakta kaldi|arabada kaldi|sicak carpmasi": "Sicak carpmasi",
-    r"kemik cikti|kirik|kemigi kirildi": "Kirik suphesi",
+    r"dogum|doguramiyor|sanci": "Doğum komplikasyonu",
+    r"karni sisti ve|sert sismis karin": "Mide burulması şüphesi",
+    r"dili mor|diseti beyaz|solgun diseti": "Dolaşım bozukluğu",
+    r"sicakta kaldi|arabada kaldi|sicak carpmasi": "Sıcak çarpması",
+    r"kemik cikti|kirik|kemigi kirildi": "Kırık şüphesi",
 }
 _ACIL_REGEX = [(re.compile(k), v) for k, v in ACIL_KALIPLAR.items()]
 
@@ -128,9 +129,9 @@ TEKRAR_ESIGI = 0.85
 # ==========================================================================
 
 class AnalizIstegi(BaseModel):
-    metin: str = Field(..., min_length=1, max_length=2000, description="Sahibin sikayeti")
+    metin: str = Field(..., min_length=1, max_length=2000, description="Sahibin şikâyeti")
     tur: Optional[Literal["kedi", "kopek", "genel"]] = Field(
-        None, description="Bos birakilirsa metinden otomatik tespit edilir"
+        None, description="Boş bırakılırsa metinden otomatik tespit edilir"
     )
 
 
@@ -280,20 +281,20 @@ def _sablon_yorum(tahminler, acil: bool, acil_gerekce: str) -> str:
     parcalar: List[str] = []
     if acil:
         parcalar.append(
-            f"ACIL UYARI: Anlattiklariniz {acil_gerekce.lower()} isareti tasiyor. "
-            "Lutfen vakit kaybetmeden en yakin veteriner klinigine basvurun."
+            f"ACİL UYARI: Anlattıklarınız {turkish_lower(acil_gerekce)} işareti "
+            "taşıyor. Lütfen vakit kaybetmeden en yakın veteriner kliniğine başvurun."
         )
     if tahminler:
         ilk = tahminler[0]
         parcalar.append(
-            f"Belirttiginiz bulgular, veritabanindaki kayitlarla en cok "
-            f"\"{ilk.hastalik}\" tablosuna benziyor (model olasiligi %{ilk.olasilik * 100:.0f}). "
-            "Bu kesin bir teshis degil, yalnizca istatistiksel bir on-degerlendirmedir."
+            f"Belirttiğiniz bulgular, veritabanındaki kayıtlarla en çok "
+            f"\"{ilk.hastalik}\" tablosuna benziyor (model olasılığı %{ilk.olasilik * 100:.0f}). "
+            "Bu kesin bir teşhis değil, yalnızca istatistiksel bir ön değerlendirmedir."
         )
         if ilk.oneri:
             parcalar.append(ilk.oneri)
     parcalar.append(
-        "Kesin tani ve tedavi icin mutlaka bir veteriner hekime muayene ettirin."
+        "Kesin tanı ve tedavi için mutlaka bir veteriner hekime muayene ettirin."
     )
     return "\n\n".join(parcalar)
 
@@ -389,10 +390,10 @@ def analiz_et(
         logger.warning("Prompt injection denemesi engellendi: %r", ham[:80])
         return AnalizYaniti(
             durum="reddedildi",
-            mesaj="Bu istegi isleyemiyorum.",
+            mesaj="Bu isteği işleyemiyorum.",
             tur="genel",
-            ai_yorum="Sistem talimatlarini degistirmeye yonelik istekleri isleyemem. "
-                     "Evcil hayvaninizin saglik sikayetini yazarsaniz yardimci olabilirim.",
+            ai_yorum="Sistem talimatlarını değiştirmeye yönelik istekleri işleyemem. "
+                     "Evcil hayvanınızın sağlık şikâyetini yazarsanız yardımcı olabilirim.",
             model_bilgi=_model_bilgisi(),
         )
 
@@ -400,12 +401,12 @@ def analiz_et(
     if len(normalized) < MIN_KARAKTER:
         return AnalizYaniti(
             durum="belirsiz",
-            mesaj="Sikayet cok kisa.",
+            mesaj="Şikâyet çok kısa.",
             tur="genel",
-            ai_yorum="Degerlendirme yapabilmem icin biraz daha ayrinti gerekiyor. "
-                     "Hayvaninizin turunu, sikayetin ne zaman basladigini ve "
-                     "gozlemlediginiz belirtileri yazar misiniz? "
-                     "Ornek: \"Kedim iki gundur kusuyor ve mama yemiyor.\"",
+            ai_yorum="Değerlendirme yapabilmem için biraz daha ayrıntı gerekiyor. "
+                     "Hayvanınızın türünü, şikâyetin ne zaman başladığını ve "
+                     "gözlemlediğiniz belirtileri yazar mısınız? "
+                     "Örnek: \"Kedim iki gündür kusuyor ve mama yemiyor.\"",
             model_bilgi=_model_bilgisi(),
         )
 
@@ -418,11 +419,11 @@ def analiz_et(
     if INSAN_KALIPLARI.search(normalized) and not alan_icinde:
         return AnalizYaniti(
             durum="kapsam_disi",
-            mesaj="Insan sagligi kapsam disinda.",
+            mesaj="İnsan sağlığı kapsam dışında.",
             tur="genel",
-            ai_yorum="Ben yalnizca kedi ve kopeklerin saglik sikayetlerinde yardimci "
-                     "olabilen bir veteriner on-degerlendirme asistaniyim. Insan sagligiyla "
-                     "ilgili sorular icin lutfen bir hekime basvurun.",
+            ai_yorum="Ben yalnızca kedi ve köpeklerin sağlık şikâyetlerinde yardımcı "
+                     "olabilen bir veteriner ön değerlendirme asistanıyım. İnsan sağlığıyla "
+                     "ilgili sorular için lütfen bir hekime başvurun.",
             model_bilgi=_model_bilgisi(),
         )
 
@@ -432,12 +433,12 @@ def analiz_et(
         gemini_yanit = gemini_api.kapsam_disi_yanit(ham)
         return AnalizYaniti(
             durum="kapsam_disi",
-            mesaj="Bu soru evcil hayvan sagligi kapsaminda degil.",
+            mesaj="Bu soru evcil hayvan sağlığı kapsamında değil.",
             tur="genel",
             ai_yorum=gemini_yanit.metin
-            or ("Ben bir veteriner on-degerlendirme asistaniyim ve yalnizca kedi/kopek "
-                "saglik sikayetlerini degerlendirebiliyorum. Ornek: "
-                "\"Kopegim dun aksamdan beri kusuyor ve halsiz.\""),
+            or ("Ben bir veteriner ön değerlendirme asistanıyım ve yalnızca kedi/köpek "
+                "sağlık şikâyetlerini değerlendirebiliyorum. Örnek: "
+                "\"Köpeğim dün akşamdan beri kusuyor ve halsiz.\""),
             ai_aktif=gemini_yanit.basarili,
             ai_model=gemini_api.MODEL_ADI if gemini_yanit.basarili else "",
             model_bilgi=_model_bilgisi(),
@@ -446,8 +447,8 @@ def analiz_et(
     # ---------------- GUARDRAIL 5: ilac/doz talebi ---------------------
     if DOZ_KALIPLARI.search(normalized):
         uyarilar.append(
-            "Ilac adi ve dozu veremem. Insan ilaclari (parasetamol, ibuprofen, aspirin) "
-            "kedi ve kopeklerde oldurucudur; veteriner recetesi olmadan kesinlikle vermeyin."
+            "İlaç adı ve dozu veremem. İnsan ilaçları (parasetamol, ibuprofen, aspirin) "
+            "kedi ve köpeklerde öldürücüdür; veteriner reçetesi olmadan kesinlikle vermeyin."
         )
 
     # ---------------- GUARDRAIL 6: acil durum --------------------------
@@ -455,24 +456,24 @@ def analiz_et(
     if acil:
         uyarilar.insert(
             0,
-            f"ACIL DURUM SUPHESI ({acil_gerekce}). Bu analiz veteriner muayenesinin "
-            "yerine gecmez; vakit kaybetmeden bir klinige basvurun.",
+            f"Acil durum şüphesi ({acil_gerekce}). Bu analiz veteriner muayenesinin "
+            "yerine geçmez; vakit kaybetmeden bir kliniğe başvurun.",
         )
 
     # ---------------- 7: hayvan var ama semptom yok --------------------
     if not semptom_var:
         return AnalizYaniti(
             durum="belirsiz",
-            mesaj="Belirti bulunamadi.",
+            mesaj="Belirti bulunamadı.",
             tur=tur,
             bulgular=bulgular,
             acil=acil,
             acil_gerekce=acil_gerekce,
             uyarilar=uyarilar,
-            ai_yorum="Hayvaninizdan bahsettiginizi anliyorum ama net bir belirti "
-                     "yakalayamadim. Kusma, ishal, istahsizlik, kasinti, topallama, "
-                     "oksuruk gibi gozlemlediginiz durumlari ve ne kadar suredir "
-                     "devam ettigini yazarsaniz daha iyi degerlendirebilirim.",
+            ai_yorum="Hayvanınızdan bahsettiğinizi anlıyorum ama net bir belirti "
+                     "yakalayamadım. Kusma, ishal, iştahsızlık, kaşıntı, topallama, "
+                     "öksürük gibi gözlemlediğiniz durumları ve ne kadar süredir "
+                     "devam ettiğini yazarsanız daha iyi değerlendirebilirim.",
             model_bilgi=_model_bilgisi(),
         )
 
@@ -485,23 +486,23 @@ def analiz_et(
     if not tahminler:
         return AnalizYaniti(
             durum="belirsiz",
-            mesaj="Model anlamli bir eslesme bulamadi.",
+            mesaj="Model anlamlı bir eşleşme bulamadı.",
             tur=tur,
             bulgular=bulgular,
             acil=acil,
             acil_gerekce=acil_gerekce,
             uyarilar=uyarilar,
-            ai_yorum="Yazdiklarinizi veritabanimdaki hastalik tablolariyla "
-                     "eslestiremedim. Belirtileri biraz daha ayrintili anlatabilir "
-                     "misiniz? Her durumda bir veteriner hekime danismanizi oneririm.",
+            ai_yorum="Yazdıklarınızı veritabanımdaki hastalık tablolarıyla "
+                     "eşleştiremedim. Belirtileri biraz daha ayrıntılı anlatabilir "
+                     "misiniz? Her durumda bir veteriner hekime danışmanızı öneririm.",
             model_bilgi=_model_bilgisi(),
         )
 
     en_iyi = tahminler[0]
     if en_iyi.olasilik < ml_model.GUVEN_ESIGI:
         uyarilar.append(
-            f"Model bu sikayette kararsiz (en yuksek olasilik %{en_iyi.olasilik * 100:.0f}). "
-            "Asagidaki tahminleri zayif bir ipucu olarak degerlendirin."
+            f"Model bu şikâyette kararsız (en yüksek olasılık %{en_iyi.olasilik * 100:.0f}). "
+            "Aşağıdaki tahminleri zayıf bir ipucu olarak değerlendirin."
         )
 
     # ---------------- 9: GEMINI YORUMU ---------------------------------
@@ -511,8 +512,8 @@ def analiz_et(
     ai_yorum = gemini_yanit.metin or _sablon_yorum(tahminler, acil, acil_gerekce)
     if not gemini_yanit.basarili:
         uyarilar.append(
-            "Gemini katmani su anda devre disi; asagidaki metin veritabanindaki "
-            "kayitlardan uretilmistir."
+            "Gemini katmanı şu anda devre dışı; aşağıdaki metin veritabanındaki "
+            "kayıtlardan üretilmiştir."
         )
 
     # ---------------- 10: CANLI OGRENME --------------------------------
@@ -523,7 +524,7 @@ def analiz_et(
 
     return AnalizYaniti(
         durum="acil" if acil else "ok",
-        mesaj="Analiz tamamlandi.",
+        mesaj="Analiz tamamlandı.",
         tur=tur,
         bulgular=bulgular,
         tahminler=[

@@ -29,29 +29,31 @@ _API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 if _API_KEY in {"buraya_kendi_anahtarini_yapistir", "your_api_key_here"}:
     _API_KEY = ""
 
-SISTEM_TALIMATI = """Sen VetAI adli bir veteriner on-degerlendirme asistanisin.
-Turkiye'deki evcil hayvan sahipleriyle Turkce konusuyorsun.
+SISTEM_TALIMATI = """Sen VetAI adlı bir veteriner ön değerlendirme asistanısın.
+Türkiye'deki evcil hayvan sahipleriyle Türkçe konuşuyorsun.
 
-GOREVIN:
-Sana verilen makine ogrenmesi tahminlerini ve kullanicinin sikayetini
-kullanarak sakin, anlasilir ve sorumlu bir on-degerlendirme metni yazmak.
+GÖREVİN:
+Sana verilen makine öğrenmesi tahminlerini ve kullanıcının şikâyetini
+kullanarak sakin, anlaşılır ve sorumlu bir ön değerlendirme metni yazmak.
 
 KURALLAR:
-1. ASLA kesin teshis koyma. "olabilir", "dusundurur", "isaret edebilir" gibi
-   olasilik bildiren ifadeler kullan.
-2. Sana verilen tahmin listesinin disina cikip yeni hastalik adi UYDURMA.
-3. Ilac adi, doz veya recete ONERME. Insan ilaclari (parasetamol, ibuprofen)
-   hayvanlarda oldurucudur; konu acilirsa bunu uyar.
-4. Her yanitin sonunda mutlaka veteriner hekime basvurulmasi gerektigini belirt.
-5. Acil durum isareti verilmisse metne EN BASTAN, net bir sekilde "vakit
-   kaybetmeden klinige gidin" uyarisi koy.
-6. Sahibin evde yapabilecegi guvenli destekleyici bakim varsa kisaca soyle.
-7. Tibbi terim kullanirsan parantez icinde gunluk karsiligini ver.
+1. ASLA kesin teşhis koyma. "olabilir", "düşündürür", "işaret edebilir" gibi
+   olasılık bildiren ifadeler kullan.
+2. Sana verilen tahmin listesinin dışına çıkıp yeni hastalık adı UYDURMA.
+3. İlaç adı, doz veya reçete ÖNERME. İnsan ilaçları (parasetamol, ibuprofen)
+   hayvanlarda öldürücüdür; konu açılırsa bunu uyar.
+4. Her yanıtın sonunda mutlaka veteriner hekime başvurulması gerektiğini belirt.
+5. Acil durum işareti verilmişse metne EN BAŞTAN, net bir şekilde "vakit
+   kaybetmeden kliniğe gidin" uyarısı koy.
+6. Sahibin evde yapabileceği güvenli destekleyici bakım varsa kısaca söyle.
+7. Tıbbi terim kullanırsan parantez içinde günlük karşılığını ver.
 
-BICIM:
-- Toplam 90-140 kelime, 2-3 kisa paragraf.
-- Baslik, madde isareti, yildiz veya markdown bicimlendirmesi KULLANMA; duz metin yaz.
-- Sicak ama abartisiz bir ton kullan; sahibi paniklertme, kucumseme.
+BİÇİM:
+- Toplam 90-140 kelime, 2-3 kısa paragraf.
+- Başlık, madde işareti, yıldız veya markdown biçimlendirmesi KULLANMA; düz metin yaz.
+- Sıcak ama abartısız bir ton kullan; sahibi panikletme, küçümseme.
+- Türkçe karakterleri (ç, ğ, ı, İ, ö, ş, ü, â) eksiksiz ve doğru kullan;
+  ASCII karşılıklarıyla ("sikayet", "ates" gibi) yazma.
 """
 
 
@@ -75,7 +77,7 @@ def _get_client():
     _client_denendi = True
 
     if not _API_KEY:
-        logger.warning("GEMINI_API_KEY tanimli degil - Gemini katmani devre disi.")
+        logger.warning("GEMINI_API_KEY tanımlı değil - Gemini katmanı devre dışı.")
         return None
     try:
         from google import genai
@@ -83,7 +85,7 @@ def _get_client():
         _client = genai.Client(api_key=_API_KEY)
         logger.info("Gemini istemcisi hazir (model=%s).", MODEL_ADI)
     except Exception as exc:  # pragma: no cover
-        logger.error("Gemini istemcisi olusturulamadi: %s", exc)
+        logger.error("Gemini istemcisi oluşturulamadı: %s", exc)
         _client = None
     return _client
 
@@ -95,10 +97,10 @@ def kullanilabilir_mi() -> bool:
 
 def _tahmin_metni(tahminler: Sequence) -> str:
     if not tahminler:
-        return "Model, veritabanindaki hicbir hastalikla anlamli eslesme bulamadi."
+        return "Model, veritabanındaki hiçbir hastalıkla anlamlı eşleşme bulamadı."
     satirlar = []
     for i, t in enumerate(tahminler, start=1):
-        satirlar.append(f"{i}. {t.hastalik} - olasilik %{t.olasilik * 100:.0f}")
+        satirlar.append(f"{i}. {t.hastalik} - olasılık %{t.olasilik * 100:.0f}")
     return "\n".join(satirlar)
 
 
@@ -118,25 +120,25 @@ def yorumla(
             metin="",
             model=MODEL_ADI,
             basarili=False,
-            hata="Gemini API anahtari tanimli degil.",
+            hata="Gemini API anahtarı tanımlı değil.",
         )
 
-    tur_etiketi = {"kedi": "Kedi", "kopek": "Kopek"}.get(tur, "Belirtilmemis (kedi/kopek)")
+    tur_etiketi = {"kedi": "Kedi", "kopek": "Köpek"}.get(tur, "Belirtilmemiş (kedi/köpek)")
     acil_blok = (
-        f"ACIL DURUM ISARETI: EVET. Gerekce: {acil_gerekce}"
+        f"ACİL DURUM İŞARETİ: EVET. Gerekçe: {acil_gerekce}"
         if acil
-        else "ACIL DURUM ISARETI: Hayir."
+        else "ACİL DURUM İŞARETİ: Hayır."
     )
 
-    istem = f"""Hayvan turu: {tur_etiketi}
-Sahibin yazdigi sikayet: "{kullanici_metni}"
-NLP ile ayiklanan bulgular: {', '.join(bulgular or []) or 'yok'}
+    istem = f"""Hayvan türü: {tur_etiketi}
+Sahibin yazdığı şikâyet: "{kullanici_metni}"
+NLP ile ayıklanan bulgular: {', '.join(bulgular or []) or 'yok'}
 {acil_blok}
 
-Makine ogrenmesi modelinin (TF-IDF + Logistic Regression) tahminleri:
+Makine öğrenmesi modelinin (TF-IDF + Logistic Regression) tahminleri:
 {_tahmin_metni(tahminler)}
 
-Yukaridaki tahminlere dayanarak sahibe yonelik on-degerlendirme metnini yaz."""
+Yukarıdaki tahminlere dayanarak sahibe yönelik ön değerlendirme metnini yaz."""
 
     try:
         from google.genai import types
@@ -157,11 +159,11 @@ Yukaridaki tahminlere dayanarak sahibe yonelik on-degerlendirme metnini yaz."""
         )
         metin = (yanit.text or "").strip()
         if not metin:
-            return GeminiYanit("", MODEL_ADI, False, "Model bos yanit dondurdu.")
+            return GeminiYanit("", MODEL_ADI, False, "Model boş yanıt döndürdü.")
         return GeminiYanit(metin, MODEL_ADI, True)
 
     except Exception as exc:
-        logger.error("Gemini cagrisi basarisiz: %s", exc)
+        logger.error("Gemini çağrısı başarısız: %s", exc)
         return GeminiYanit("", MODEL_ADI, False, str(exc))
 
 
@@ -173,18 +175,18 @@ def kapsam_disi_yanit(kullanici_metni: str) -> GeminiYanit:
     """
     client = _get_client()
     if client is None:
-        return GeminiYanit("", MODEL_ADI, False, "Gemini devre disi.")
+        return GeminiYanit("", MODEL_ADI, False, "Gemini devre dışı.")
     try:
         from google.genai import types
 
         yanit = client.models.generate_content(
             model=MODEL_ADI,
             contents=(
-                f'Kullanici sunu yazdi: "{kullanici_metni}"\n'
-                "Bu bir evcil hayvan sagligi sikayeti degil. Tek paragrafta, en fazla "
-                "35 kelimeyle, kibarca sadece kedi ve kopek saglik sikayetlerinde "
-                "yardimci olabildigini soyle ve ornek bir sikayet yazimi oner. "
-                "Markdown kullanma."
+                f'Kullanıcı şunu yazdı: "{kullanici_metni}"\n'
+                "Bu bir evcil hayvan sağlığı şikâyeti değil. Tek paragrafta, en fazla "
+                "35 kelimeyle, kibarca sadece kedi ve köpek sağlık şikâyetlerinde "
+                "yardımcı olabildiğini söyle ve örnek bir şikâyet yazımı öner. "
+                "Türkçe karakterleri eksiksiz kullan, markdown kullanma."
             ),
             config=types.GenerateContentConfig(
                 temperature=0.3,
@@ -195,7 +197,7 @@ def kapsam_disi_yanit(kullanici_metni: str) -> GeminiYanit:
         )
         return GeminiYanit((yanit.text or "").strip(), MODEL_ADI, True)
     except Exception as exc:
-        logger.error("Gemini kapsam disi yanit hatasi: %s", exc)
+        logger.error("Gemini kapsam dışı yanıt hatası: %s", exc)
         return GeminiYanit("", MODEL_ADI, False, str(exc))
 
 
@@ -207,17 +209,17 @@ if __name__ == "__main__":  # python gemini_api.py
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     logging.basicConfig(level=logging.INFO)
-    print("Gemini kullanilabilir:", kullanilabilir_mi())
+    print("Gemini kullanılabilir:", kullanilabilir_mi())
     if kullanilabilir_mi():
         class _T:
             def __init__(self, h, o):
                 self.hastalik, self.olasilik = h, o
 
         r = yorumla(
-            "Kedim iki gundur kusuyor ve mama yemiyor",
+            "Kedim iki gündür kusuyor ve mama yemiyor",
             "kedi",
-            [_T("Gastroenterit", 0.35), _T("Kronik Bobrek Yetmezligi", 0.08)],
+            [_T("Gastroenterit", 0.35), _T("Kronik Böbrek Yetmezliği", 0.08)],
             bulgular=["kusma", "istahsizlik"],
         )
-        print("\nBasarili:", r.basarili, "\n")
+        print("\nBaşarılı:", r.basarili, "\n")
         print(r.metin or r.hata)

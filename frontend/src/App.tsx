@@ -13,7 +13,8 @@ import AnalysisResult from "./components/AnalysisResult";
 import ChatBubble from "./components/ChatBubble";
 import Composer from "./components/Composer";
 import StatusPanel from "./components/StatusPanel";
-import { PawIcon, SparkIcon } from "./components/Icons";
+import { MoonIcon, PawIcon, ShieldIcon, SparkIcon, SunIcon } from "./components/Icons";
+import { useTema } from "./lib/tema";
 
 type Mesaj =
   | { id: string; rol: "kullanici"; metin: string }
@@ -21,10 +22,10 @@ type Mesaj =
   | { id: string; rol: "asistan"; hata: string };
 
 const ORNEKLER = [
-  "Kedim iki gundur kusuyor ve hic mama yemiyor, cok halsiz",
-  "Kopegim kulagini kasiyor ve surekli kafasini salliyor",
-  "Erkek kedim kum kabinda zorluyor ama idrar yapamiyor",
-  "Kopegim mama degistirdikten sonra surekli kasiniyor, derisi kizardi",
+  "Kedim iki gündür kusuyor ve hiç mama yemiyor, çok halsiz.",
+  "Köpeğim kulağını kaşıyor ve sürekli kafasını sallıyor.",
+  "Erkek kedim kum kabında zorluyor ama idrar yapamıyor.",
+  "Köpeğim mama değiştirdikten sonra sürekli kaşınıyor, derisi kızardı.",
 ];
 
 let sayac = 0;
@@ -37,6 +38,7 @@ export default function App() {
   const [istatistik, setIstatistik] = useState<IstatistikYaniti | null>(null);
   const [baglantiHatasi, setBaglantiHatasi] = useState(false);
   const sonRef = useRef<HTMLDivElement>(null);
+  const { tema, temayiDegistir } = useTema();
 
   /** Backend durumunu ve veri istatistiklerini tazeler. */
   const durumuYenile = useCallback(async () => {
@@ -54,7 +56,7 @@ export default function App() {
     void durumuYenile();
   }, [durumuYenile]);
 
-  // Yeni mesaj geldiginde en alta kaydir
+  // Yeni mesaj geldiğinde en alta kaydır
   useEffect(() => {
     sonRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [mesajlar, bekliyor]);
@@ -66,7 +68,7 @@ export default function App() {
       const sonuc = await analizEt(metin, tur);
       setMesajlar((m) => [...m, { id: yeniId(), rol: "asistan", sonuc }]);
       setBaglantiHatasi(false);
-      // Canli ogrenme veritabanini degistirdiyse yan paneli tazele
+      // Canlı öğrenme veritabanını değiştirdiyse yan paneli tazele
       if (sonuc.ogrenildi) void durumuYenile();
     } catch (err) {
       setMesajlar((m) => [...m, { id: yeniId(), rol: "asistan", hata: hataMesaji(err) }]);
@@ -76,89 +78,114 @@ export default function App() {
     }
   }
 
-  return (
-    <div className="min-h-screen bg-surface">
-      {/* Arka plan parlamasi */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 bg-[radial-gradient(60rem_40rem_at_50%_-10%,rgba(16,185,129,0.10),transparent)]"
-      />
+  const bosEkran = mesajlar.length === 0;
 
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-5 sm:px-6">
-        {/* ------------------------------------------------------- Baslik */}
-        <header className="mb-5 flex items-center justify-between gap-4">
+  return (
+    <div className="min-h-svh bg-canvas text-ink">
+      {/* ==================================================== Üst çubuk */}
+      <header className="sticky top-0 z-20 border-b border-line bg-canvas/85 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-900/40">
-              <PawIcon className="h-6 w-6 text-white" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent-line bg-accent-soft text-accent-ink">
+              <PawIcon className="h-5 w-5" />
             </div>
-            <div>
-              <h1 className="text-xl font-bold leading-none tracking-tight text-slate-50">
-                VetAI
-              </h1>
-              <p className="mt-1 text-[12px] text-slate-500">
-                Evcil hayvan semptom on-degerlendirme asistani
+            <div className="min-w-0">
+              <h1 className="text-[17px] font-semibold leading-none">VetAI</h1>
+              <p className="mt-1 truncate text-[12px] text-ink-muted">
+                Evcil hayvan semptom ön değerlendirme asistanı
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
+            {/* Bağlantı durumu */}
             <span
-              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${
+              className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[11.5px] font-medium ${
                 baglantiHatasi
-                  ? "border-red-500/30 bg-red-500/10 text-red-400"
-                  : "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                  ? "border-danger-line bg-danger-soft text-danger-ink"
+                  : "border-accent-line bg-accent-soft text-accent-ink"
               }`}
             >
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
-                  baglantiHatasi ? "bg-red-500" : "animate-pulse bg-emerald-500"
+                  baglantiHatasi ? "bg-danger" : "animate-soft-pulse bg-sage-500"
                 }`}
+                aria-hidden="true"
               />
-              {baglantiHatasi ? "Baglanti yok" : "Cevrimici"}
+              {baglantiHatasi ? "Bağlantı yok" : "Çevrim içi"}
             </span>
+
+            {/* Gemini katmanı açıksa sessiz bir rozet */}
             {saglik?.gemini_aktif && (
-              <span className="hidden items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 px-2.5 py-1 text-[11px] font-medium text-violet-300 sm:inline-flex">
-                <SparkIcon className="h-3 w-3" />
+              <span className="hidden items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1 text-[11.5px] font-medium text-ink-soft sm:inline-flex">
+                <SparkIcon className="h-3 w-3 text-accent-ink" />
                 Gemini
               </span>
             )}
-          </div>
-        </header>
 
-        <div className="grid flex-1 gap-5 lg:grid-cols-[1fr_280px]">
-          {/* --------------------------------------------------- Sohbet */}
-          <main className="flex min-h-[60vh] flex-col">
-            <div className="flex-1 space-y-4 overflow-y-auto pb-4">
-              {mesajlar.length === 0 && (
-                <div className="animate-fade flex h-full flex-col items-center justify-center py-12 text-center">
-                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-line bg-surface-raised/60">
-                    <PawIcon className="h-8 w-8 text-emerald-500/70" />
+            {/* Tema değiştirici */}
+            <button
+              type="button"
+              onClick={temayiDegistir}
+              aria-label={tema === "koyu" ? "Açık temaya geç" : "Koyu temaya geç"}
+              title={tema === "koyu" ? "Açık tema" : "Koyu tema"}
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-card text-ink-soft transition-colors hover:text-ink"
+            >
+              {tema === "koyu" ? (
+                <SunIcon className="h-[18px] w-[18px]" />
+              ) : (
+                <MoonIcon className="h-[18px] w-[18px]" />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ==================================================== Gövde */}
+      <div className="mx-auto max-w-[1180px] px-4 pb-6 pt-6 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8">
+          {/* ------------------------------------------------- Sohbet */}
+          <main className="flex min-h-[68svh] flex-col">
+            <div
+              className={`flex-1 space-y-5 ${
+                bosEkran ? "flex flex-col justify-center" : ""
+              }`}
+            >
+              {bosEkran && (
+                <div className="animate-fade flex flex-col items-center px-2 py-8 text-center sm:py-14">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-accent-line bg-accent-soft text-accent-ink">
+                    <PawIcon className="h-8 w-8" />
                   </div>
-                  <h2 className="text-lg font-semibold text-slate-200">
-                    Hayvaninizin sikayetini anlatin
+
+                  <h2 className="mt-6 text-[26px] font-semibold leading-tight sm:text-[30px]">
+                    Hayvanınızın şikâyetini anlatın
                   </h2>
-                  <p className="mt-1.5 max-w-md text-[13px] leading-relaxed text-slate-500">
-                    Belirtileri kendi cumlelerinizle yazin. Sistem once metni Turkce NLP
-                    ile ayikliyor, ardindan Logistic Regression modeliyle olasilik
-                    hesapliyor ve sonucu sizin icin yorumluyor.
+
+                  <p className="mt-3 max-w-xl text-[14.5px] leading-7 text-ink-soft">
+                    Belirtileri kendi cümlelerinizle yazmanız yeterli. Sistem önce metni
+                    Türkçe NLP katmanıyla ayıklar, ardından Logistic Regression modeliyle
+                    olasılıkları hesaplar ve sonucu sizin için sade bir dille yorumlar.
                   </p>
 
-                  <div className="mt-6 grid w-full max-w-2xl gap-2 sm:grid-cols-2">
+                  <div className="mt-8 grid w-full max-w-2xl gap-2.5 text-left sm:grid-cols-2">
                     {ORNEKLER.map((ornek) => (
                       <button
                         key={ornek}
                         onClick={() => void gonder(ornek, "genel")}
                         disabled={bekliyor}
-                        className="rounded-xl border border-line bg-surface-raised/50 px-3.5 py-3 text-left text-[12.5px] leading-relaxed text-slate-400 transition-colors hover:border-emerald-500/40 hover:bg-emerald-500/5 hover:text-slate-200 disabled:opacity-50"
+                        className="rounded-xl border border-line bg-card px-4 py-3.5 text-left text-[13.5px] leading-relaxed text-ink-soft shadow-soft transition-colors hover:border-accent-line hover:bg-accent-soft hover:text-ink disabled:opacity-50"
                       >
                         {ornek}
                       </button>
                     ))}
                   </div>
 
-                  <p className="mt-6 max-w-md text-[11px] leading-relaxed text-slate-600">
-                    VetAI teshis koymaz. Urettigi sonuclar istatistiksel bir on
-                    degerlendirmedir ve veteriner hekim muayenesinin yerine gecmez.
+                  <p className="mt-9 flex max-w-lg items-start gap-2 text-left text-[12px] leading-relaxed text-ink-muted">
+                    <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0" />
+                    <span>
+                      VetAI teşhis koymaz. Ürettiği sonuçlar istatistiksel bir ön
+                      değerlendirmedir ve veteriner hekim muayenesinin yerine geçmez.
+                    </span>
                   </p>
                 </div>
               )}
@@ -182,17 +209,17 @@ export default function App() {
               {bekliyor && (
                 <ChatBubble rol="asistan">
                   <div className="flex items-center gap-2.5 py-0.5">
-                    <span className="flex gap-1">
-                      {[0, 150, 300].map((gecikme) => (
+                    <span className="flex gap-1" aria-hidden="true">
+                      {[0, 240, 480].map((gecikme) => (
                         <span
                           key={gecikme}
-                          className="h-1.5 w-1.5 animate-bounce rounded-full bg-emerald-500"
+                          className="animate-soft-pulse h-1.5 w-1.5 rounded-full bg-sage-500"
                           style={{ animationDelay: `${gecikme}ms` }}
                         />
                       ))}
                     </span>
-                    <span className="text-[12.5px] text-slate-500">
-                      NLP temizligi, ML tahmini ve yapay zeka yorumu yapiliyor...
+                    <span className="text-[13px] text-ink-muted">
+                      Metin ayıklanıyor, model çalışıyor ve yorum hazırlanıyor…
                     </span>
                   </div>
                 </ChatBubble>
@@ -201,23 +228,35 @@ export default function App() {
               <div ref={sonRef} />
             </div>
 
-            {/* ------------------------------------------------ Giris alani */}
-            <div className="sticky bottom-0 bg-gradient-to-t from-surface via-surface to-transparent pt-3">
-              <Composer onGonder={(m, t) => void gonder(m, t)} bekliyor={bekliyor} />
+            {/* ---------------------------------------------- Giriş alanı */}
+            <div className="sticky bottom-0 -mx-1 px-1">
+              {/* Altından kayan içerik sert bir kenarla kesilmesin diye kısa bir geçiş */}
+              <div
+                className="pointer-events-none h-6 bg-gradient-to-t from-canvas to-transparent"
+                aria-hidden="true"
+              />
+              <div className="bg-canvas pb-4">
+                <Composer onGonder={(m, t) => void gonder(m, t)} bekliyor={bekliyor} />
+                {!bosEkran && (
+                  <p className="mt-2.5 px-1 text-center text-[11px] text-ink-muted">
+                    VetAI teşhis koymaz; sonuçlar veteriner hekim muayenesinin yerine geçmez.
+                  </p>
+                )}
+              </div>
             </div>
           </main>
 
-          {/* --------------------------------------------------- Yan panel */}
+          {/* ------------------------------------------------- Yan panel */}
           <aside className="hidden lg:block">
-            <div className="sticky top-5">
+            <div className="sticky top-[88px] max-h-[calc(100svh-6.5rem)] space-y-3 overflow-y-auto pb-2">
               <StatusPanel
                 saglik={saglik}
                 istatistik={istatistik}
                 baglantiHatasi={baglantiHatasi}
               />
-              <p className="mt-3 px-1 text-[10.5px] leading-relaxed text-slate-600">
-                Sistem her analizde yeni ifadeyi SQLite veritabanina yazar ve modeli
-                arka planda yeniden egitir.
+              <p className="px-1 text-[11.5px] leading-relaxed text-ink-muted">
+                Sistem her analizde yeni ifadeyi SQLite veritabanına yazar ve modeli arka
+                planda yeniden eğitir.
               </p>
             </div>
           </aside>

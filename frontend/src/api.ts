@@ -1,17 +1,17 @@
 /**
  * VetAI backend istemcisi.
  *
- * Buradaki tipler backend/main.py icindeki Pydantic semalariyla birebir eslesir.
- * Sema degisirse iki tarafi birlikte guncelleyin.
+ * Buradaki tipler backend/main.py içindeki Pydantic şemalarıyla birebir eşleşir.
+ * Şema değişirse iki tarafı birlikte güncelleyin.
  */
 import axios from "axios";
 
-/** Bos birakilirsa Vite proxy'si (/api -> 127.0.0.1:8000) devreye girer. */
+/** Boş bırakılırsa Vite proxy'si (/api -> 127.0.0.1:8000) devreye girer. */
 const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 export const http = axios.create({
   baseURL: BASE_URL,
-  timeout: 45_000, // Gemini cagrisi yavas olabilir
+  timeout: 45_000, // Gemini çağrısı yavaş olabilir
   headers: { "Content-Type": "application/json" },
 });
 
@@ -77,7 +77,7 @@ export interface IstatistikYaniti {
 
 /* --------------------------------------------------------------- istekler */
 
-/** Ana analiz cagrisi: sikayet metnini backend'e gonderir. */
+/** Ana analiz çağrısı: şikâyet metnini backend'e gönderir. */
 export async function analizEt(metin: string, tur?: Tur): Promise<AnalizYaniti> {
   const { data } = await http.post<AnalizYaniti>("/api/analyze", {
     metin,
@@ -86,31 +86,31 @@ export async function analizEt(metin: string, tur?: Tur): Promise<AnalizYaniti> 
   return data;
 }
 
-/** Sunucu, veritabani, model ve Gemini durumunu dondurur. */
+/** Sunucu, veritabanı, model ve Gemini durumunu döndürür. */
 export async function saglikKontrol(): Promise<SaglikYaniti> {
   const { data } = await http.get<SaglikYaniti>("/api/health");
   return data;
 }
 
-/** Veri seti istatistikleri (yan panel icin). */
+/** Veri seti istatistikleri (yan panel için). */
 export async function istatistikAl(): Promise<IstatistikYaniti> {
   const { data } = await http.get<IstatistikYaniti>("/api/stats");
   return data;
 }
 
-/** Axios hatasini kullaniciya gosterilebilir Turkce metne cevirir. */
+/** Axios hatasını kullanıcıya gösterilebilir Türkçe metne çevirir. */
 export function hataMesaji(error: unknown): string {
   if (axios.isAxiosError(error)) {
     if (error.code === "ECONNABORTED") {
-      return "Sunucu yanit vermedi (zaman asimi). Backend calisiyor mu?";
+      return "Sunucu yanıt vermedi (zaman aşımı). Backend'in çalıştığından emin misiniz?";
     }
     if (!error.response) {
-      return "Backend'e ulasilamadi. 'uvicorn main:app --reload' komutunun calistigindan emin olun.";
+      return "Backend'e ulaşılamadı. Terminalde 'uvicorn main:app --reload' komutunun çalıştığından emin olun.";
     }
     if (error.response.status === 422) {
-      return "Gonderilen metin gecersiz. Lutfen 1-2000 karakter arasinda bir sikayet yazin.";
+      return "Gönderilen metin geçersiz. Lütfen 1-2000 karakter arasında bir şikâyet yazın.";
     }
-    return `Sunucu hatasi (${error.response.status}). Terminaldeki backend kaydina bakin.`;
+    return `Sunucu hatası (${error.response.status}). Terminaldeki backend kaydına bakın.`;
   }
-  return "Beklenmeyen bir hata olustu.";
+  return "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.";
 }

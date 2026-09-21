@@ -1,60 +1,291 @@
 @import "tailwindcss";
 
-/* Tailwind v4 CSS-first tema: proje renkleri ve animasyonlari burada tanimlanir. */
+/*
+  VetAI tasarım sistemi — "Adaçayı" (sage) teması
+  ------------------------------------------------------------------
+  Tailwind v4 CSS-first yapılandırması. Tüm renkler burada tanımlanır,
+  bileşenler yalnızca anlamsal (semantic) token'ları kullanır:
+  bg-canvas, bg-card, text-ink, border-line, bg-accent ...
+
+  Böylece açık/koyu mod geçişi tek noktadan yönetilir; bileşenlerde
+  onlarca "dark:" sınıfı taşımak gerekmez.
+*/
+
+/* Koyu mod, işletim sistemi tercihine değil <html class="dark"> sınıfına bağlı.
+   Böylece kullanıcı arayüzden de tema değiştirebiliyor. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==================================================================
+   1) SABİT PALET  (temadan bağımsız ham renk skalası)
+   ================================================================== */
 @theme {
-  --color-surface: #0b1120;
-  --color-surface-raised: #111a2e;
-  --color-surface-hover: #17223c;
-  --color-line: #1f2b45;
+  /* Adaçayı yeşili — ne fosforlu ne boğucu, orta tonlu ve dinlendirici */
+  --color-sage-50: #f1f6f2;
+  --color-sage-100: #e0ede4;
+  --color-sage-200: #c4dccc;
+  --color-sage-300: #9fc4ad;
+  --color-sage-400: #78a88b;
+  --color-sage-500: #5a8d71;
+  --color-sage-600: #47755c;
+  --color-sage-700: #3a5f4b;
+  --color-sage-800: #304c3d;
+  --color-sage-900: #283e33;
 
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
+  /* Yeşile çalan nötr gri skalası (saf gri yerine; arayüz daha sıcak durur) */
+  --color-stone-50: #f7faf8;
+  --color-stone-100: #eef3f0;
+  --color-stone-200: #e2ebe5;
+  --color-stone-300: #c9d5cd;
+  --color-stone-400: #9aa9a0;
+  --color-stone-500: #6e8077;
+  --color-stone-600: #55665c;
+  --color-stone-700: #3f4f46;
+  --color-stone-800: #2a362f;
+  --color-stone-900: #1e2b24;
 
-  --animate-rise: rise 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  --animate-fade: fade 0.5s ease-out;
-  --animate-grow: grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --animate-pulse-ring: pulse-ring 2s ease-out infinite;
+  /* Tipografi */
+  --font-sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas,
+    "Liberation Mono", monospace;
+
+  /* Hareket — kısa, yumuşak, dikkat dağıtmayan */
+  --animate-rise: rise 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade: fade 0.4s ease-out;
+  --animate-grow: grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-soft-pulse: soft-pulse 2.4s ease-in-out infinite;
 }
 
+/* ==================================================================
+   2) ANLAMSAL TOKEN'LAR  (tema ile değişen değerler)
+   ================================================================== */
+:root {
+  color-scheme: light;
+
+  --vt-canvas: #f4f8f5; /* sayfa zemini  */
+  --vt-canvas-soft: #edf3ef; /* ikincil zemin */
+  --vt-card: #ffffff; /* kart yüzeyi   */
+  --vt-raised: #f7faf8; /* kart içi kutu */
+
+  --vt-line: #e2ebe5;
+  --vt-line-soft: #eef3f0;
+
+  --vt-ink: #1e2b24; /* başlık / ana metin */
+  --vt-ink-soft: #55665c; /* açıklama metni     */
+  --vt-ink-muted: #6e8077; /* etiket / yardımcı  */
+
+  --vt-accent: #47755c; /* dolgu butonlar     */
+  --vt-accent-hover: #3a5f4b;
+  --vt-accent-ink: #47755c; /* yeşil metin/ikon   */
+  --vt-accent-soft: #e7f1ea; /* yeşil rozet zemini */
+  --vt-accent-line: #cfe3d6;
+
+  --vt-danger: #c0503f;
+  --vt-danger-ink: #b04437;
+  --vt-danger-soft: #fdf2f0;
+  --vt-danger-line: #f2dad5;
+
+  --vt-warn: #c0892f;
+  --vt-warn-ink: #9a6516;
+  --vt-warn-soft: #fbf4e7;
+  --vt-warn-line: #efe0c4;
+
+  --vt-shadow-soft: 0 1px 2px rgb(30 43 36 / 0.04),
+    0 10px 30px -18px rgb(30 43 36 / 0.25);
+  --vt-shadow-lift: 0 2px 4px rgb(30 43 36 / 0.05),
+    0 18px 40px -24px rgb(30 43 36 / 0.35);
+}
+
+/* Yumuşak koyu mod: simsiyah değil, yeşile çalan koyu bir zemin */
+.dark {
+  color-scheme: dark;
+
+  --vt-canvas: #171f1b; /* simsiyah değil, yeşile çalan yumuşak koyu */
+  --vt-canvas-soft: #1c2521;
+  --vt-card: #1f2823;
+  --vt-raised: #25302a;
+
+  --vt-line: #303b34;
+  --vt-line-soft: #28332c;
+
+  --vt-ink: #e8efe9;
+  --vt-ink-soft: #a9b8ae;
+  --vt-ink-muted: #8a9a90;
+
+  --vt-accent: #4e8067;
+  --vt-accent-hover: #5a9076;
+  --vt-accent-ink: #9fc4ad;
+  --vt-accent-soft: #26362e;
+  --vt-accent-line: #364c3f;
+
+  --vt-danger: #b8503f;
+  --vt-danger-ink: #e5a79c;
+  --vt-danger-soft: #2a1e1c;
+  --vt-danger-line: #452924;
+
+  --vt-warn: #b8892f;
+  --vt-warn-ink: #e0bd84;
+  --vt-warn-soft: #2a2419;
+  --vt-warn-line: #453a26;
+
+  --vt-shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -18px rgb(0 0 0 / 0.6);
+  --vt-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.35), 0 18px 40px -24px rgb(0 0 0 / 0.7);
+}
+
+/* Token'ları Tailwind yardımcı sınıflarına bağlar (bg-canvas, text-ink ...).
+   "inline" sayesinde değer sabitlenmez, var() olarak kalır; tema anında döner. */
+@theme inline {
+  --color-canvas: var(--vt-canvas);
+  --color-canvas-soft: var(--vt-canvas-soft);
+  --color-card: var(--vt-card);
+  --color-raised: var(--vt-raised);
+
+  --color-line: var(--vt-line);
+  --color-line-soft: var(--vt-line-soft);
+
+  --color-ink: var(--vt-ink);
+  --color-ink-soft: var(--vt-ink-soft);
+  --color-ink-muted: var(--vt-ink-muted);
+
+  --color-accent: var(--vt-accent);
+  --color-accent-hover: var(--vt-accent-hover);
+  --color-accent-ink: var(--vt-accent-ink);
+  --color-accent-soft: var(--vt-accent-soft);
+  --color-accent-line: var(--vt-accent-line);
+
+  --color-danger: var(--vt-danger);
+  --color-danger-ink: var(--vt-danger-ink);
+  --color-danger-soft: var(--vt-danger-soft);
+  --color-danger-line: var(--vt-danger-line);
+
+  --color-warn: var(--vt-warn);
+  --color-warn-ink: var(--vt-warn-ink);
+  --color-warn-soft: var(--vt-warn-soft);
+  --color-warn-line: var(--vt-warn-line);
+
+  --shadow-soft: var(--vt-shadow-soft);
+  --shadow-lift: var(--vt-shadow-lift);
+}
+
+/* ==================================================================
+   3) ANİMASYONLAR
+   ================================================================== */
 @keyframes rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes grow {
-  from { width: 0; }
+  from {
+    width: 0;
+  }
 }
-@keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgb(239 68 68 / 0.45); }
-  70%  { box-shadow: 0 0 0 12px rgb(239 68 68 / 0); }
-  100% { box-shadow: 0 0 0 0 rgb(239 68 68 / 0); }
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
 }
 
+/* ==================================================================
+   4) TEMEL STİLLER
+   ================================================================== */
 html {
-  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
-  background: var(--color-surface);
-  color: #e2e8f0;
-  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100svh;
+  background-color: var(--vt-canvas);
+  color: var(--vt-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ince, koyu temaya uygun kaydirma cubugu */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
+/* Sayısal tablolarda rakamlar kaymasın */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.014em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--vt-accent-soft);
+  color: var(--vt-ink);
+}
+
+/* Klavye ile gezinenler için tek tip odak halkası */
+:focus-visible {
+  outline: 2px solid var(--vt-accent-ink);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+textarea {
+  field-sizing: content;
+}
+
+/* İnce, temaya uyumlu kaydırma çubuğu */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--vt-line) transparent;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--vt-line);
   border-radius: 9999px;
-  border: 2px solid var(--color-surface);
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
-::-webkit-scrollbar-thumb:hover { background: #334155; }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vt-ink-muted);
+  background-clip: content-box;
+}
 
-textarea { field-sizing: content; }
+/* "Hareketi azalt" tercihine saygı */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

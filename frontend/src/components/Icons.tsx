@@ -1,8 +1,24 @@
-/** Harici ikon paketi kullanmamak icin projeye gomulu SVG ikonlar. */
+/**
+ * Harici ikon paketi kullanmamak için projeye gömülü SVG ikonlar.
+ *
+ * Hepsi 24x24 kutuda, 1.8px çizgi kalınlığında ve `currentColor` ile çizilir;
+ * böylece tema değiştiğinde ikonlar da metinle birlikte renk değiştirir.
+ */
 
 type Props = { className?: string };
 
 const base = "h-5 w-5";
+
+/** Çizgi ikonlar için ortak SVG nitelikleri. */
+const cizgi = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true,
+} as const;
 
 export function PawIcon({ className = base }: Props) {
   return (
@@ -18,8 +34,7 @@ export function PawIcon({ className = base }: Props) {
 
 export function SendIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg {...cizgi} strokeWidth={2} className={className}>
       <path d="M22 2 11 13" />
       <path d="M22 2 15 22l-4-9-9-4 20-7Z" />
     </svg>
@@ -28,8 +43,7 @@ export function SendIcon({ className = base }: Props) {
 
 export function AlertIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg {...cizgi} className={className}>
       <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
       <path d="M12 9v4" />
       <path d="M12 17h.01" />
@@ -39,19 +53,17 @@ export function AlertIcon({ className = base }: Props) {
 
 export function InfoIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4" />
-      <path d="M12 8h.01" />
+    <svg {...cizgi} className={className}>
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M12 16.2v-4.6" />
+      <path d="M12 8.2h.01" />
     </svg>
   );
 }
 
 export function ChevronIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg {...cizgi} className={className}>
       <path d="m6 9 6 6 6-6" />
     </svg>
   );
@@ -61,27 +73,25 @@ export function SparkIcon({ className = base }: Props) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
       <path d="M12 2.5 13.9 9l6.6 1.9-6.6 1.9L12 19.4 10.1 12.8 3.5 10.9 10.1 9 12 2.5Z" />
-      <path d="M19 15.5l.8 2.7 2.7.8-2.7.8-.8 2.7-.8-2.7-2.7-.8 2.7-.8.8-2.7Z" opacity=".7" />
+      <path d="M19 15.5l.8 2.7 2.7.8-2.7.8-.8 2.7-.8-2.7-2.7-.8 2.7-.8.8-2.7Z" opacity=".65" />
     </svg>
   );
 }
 
 export function ChartIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <path d="M3 3v16a2 2 0 0 0 2 2h16" />
-      <rect x="7" y="12" width="3" height="6" rx="1" fill="currentColor" stroke="none" />
-      <rect x="12.5" y="8" width="3" height="10" rx="1" fill="currentColor" stroke="none" />
-      <rect x="18" y="4.5" width="3" height="13.5" rx="1" fill="currentColor" stroke="none" />
+    <svg {...cizgi} className={className}>
+      <path d="M3.5 3.5v15a2 2 0 0 0 2 2h15" />
+      <path d="M8 16.5v-3.5" />
+      <path d="M12.5 16.5v-7" />
+      <path d="M17 16.5v-5" />
     </svg>
   );
 }
 
 export function CatIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg {...cizgi} className={className}>
       <path d="M4 4.5 7 8.8a7.6 7.6 0 0 1 10 0L20 4.5V15a7 7 0 0 1-16 0V4.5Z" />
       <path d="M9 12.5h.01M15 12.5h.01" />
       <path d="M12 15.5v1.2M10.4 17.6h3.2" />
@@ -91,8 +101,7 @@ export function CatIcon({ className = base }: Props) {
 
 export function DogIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg {...cizgi} className={className}>
       <path d="M5.5 4.2c1.8-.6 3 .6 3.4 2.2a7.4 7.4 0 0 1 6.2 0c.4-1.6 1.6-2.8 3.4-2.2 1.4.5 1.6 2.4 1.2 4.3A7.3 7.3 0 0 1 20 11a8 8 0 0 1-16 0c0-.9.2-1.7.5-2.5-.4-1.9-.2-3.8 1-4.3Z" />
       <path d="M9.5 11h.01M14.5 11h.01" />
       <path d="M12 13.6v1.1M10.4 15.8h3.2" />
@@ -102,11 +111,36 @@ export function DogIcon({ className = base }: Props) {
 
 export function DatabaseIcon({ className = base }: Props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <ellipse cx="12" cy="5.5" rx="8" ry="3.2" />
-      <path d="M4 5.5v13c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2v-13" />
-      <path d="M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2" />
+    <svg {...cizgi} className={className}>
+      <ellipse cx="12" cy="5.5" rx="7.5" ry="3" />
+      <path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13" />
+      <path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3" />
+    </svg>
+  );
+}
+
+export function ShieldIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <path d="M12 2.8 4.8 5.6v6c0 4.2 3 7.6 7.2 9.6 4.2-2 7.2-5.4 7.2-9.6v-6L12 2.8Z" />
+      <path d="m9.3 12 1.9 1.9 3.5-3.6" />
+    </svg>
+  );
+}
+
+export function SunIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.6v2.1M12 19.3v2.1M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2.6 12h2.1M19.3 12h2.1M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5" />
+    </svg>
+  );
+}
+
+export function MoonIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z" />
     </svg>
   );
 }
