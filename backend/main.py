@@ -33,6 +33,8 @@ from sqlalchemy.orm import Session
 import chat_service
 import gemini_api
 import ml_model
+from bilgi import acil_kaliplar, kokler
+from bilgi.esanlam_sozlugu import KOD_KANONIK
 from chat_service import ChatMessage
 from database import (
     KAYNAK_AUTO,
@@ -43,10 +45,7 @@ from database import (
     init_database,
 )
 from nlp_engine import (
-    PHRASE_SYNONYMS,
-    WORD_SYNONYMS,
     detect_tur,
-    extract_keywords,
     normalize,
     tokenize,
     token_overlap,
@@ -65,24 +64,13 @@ logger = logging.getLogger("vetai")
 # GUARDRAIL SABITLERI
 # ==========================================================================
 
-# --- 1) Acil durum: bu ifadelerden biri gecerse yanit acil olarak isaretlenir.
-ACIL_KALIPLAR: dict[str, str] = {
-    r"nefes alam|nefes alamiyor|soluk alam": "Solunum sıkıntısı",
-    r"nefes darligi|zor nefes|hizli nefes": "Solunum sıkıntısı",
-    r"bilincini kaybet|bayildi|tepki vermiyor|kendine gelmiyor": "Bilinç kaybı",
-    r"nobet|havale|kasilma|konvulsiyon": "Nöbet geçirme",
-    r"kanli ishal|kanli diski|kanli kusma|kan kusuyor": "Kanlı sindirim bulgusu",
-    r"durmayan kanama|kanama durmuyor|siddetli kanama": "Kontrolsüz kanama",
-    r"zehir|fare zehiri|deterjan|antifiriz|cikolata yedi|ilac yedi": "Zehirlenme şüphesi",
-    r"idrar yapam|cis yapam|isiyemiyor": "İdrar tıkanıklığı (özellikle erkek kedide öldürücü)",
-    r"araba carpti|yuksekten dustu|ezildi|darbe aldi": "Travma",
-    r"dogum|doguramiyor|sanci": "Doğum komplikasyonu",
-    r"karni sisti ve|sert sismis karin": "Mide burulması şüphesi",
-    r"dili mor|diseti beyaz|solgun diseti": "Dolaşım bozukluğu",
-    r"sicakta kaldi|arabada kaldi|sicak carpmasi": "Sıcak çarpması",
-    r"kemik cikti|kirik|kemigi kirildi": "Kırık şüphesi",
+# --- 1) Aciliyet: bilgi/acil_kaliplar.py (15 kirmizi + 42 turuncu belirti regex'i)
+#        + tahmin edilen hastaligin temel aciliyeti (ml_model.Tahmin.aciliyet).
+ACILIYET_METNI = {
+    "kirmizi": "Bu belirtiler acil olabilir. Lütfen beklemeden en yakın veteriner kliniğine gidin.",
+    "turuncu": "Bugün içinde bir veteriner hekime görünmeniz gerekir.",
+    "yesil": "Birkaç gün içinde planlı bir veteriner muayenesi önerilir; belirtiler artarsa beklemeyin.",
 }
-_ACIL_REGEX = [(re.compile(k), v) for k, v in ACIL_KALIPLAR.items()]
 
 # --- 2) Prompt injection / talimat ele gecirme denemeleri
 INJECTION_KALIPLARI = re.compile(
@@ -107,14 +95,8 @@ DOZ_KALIPLARI = re.compile(
     r"\bnovalgin|\bapranax|\bmajezik"
 )
 
-# --- 5) Kapsam kontrolu: alan sozlugundeki tum kanonik terimler
-ALAN_TERIMLERI: set[str] = (
-    set(PHRASE_SYNONYMS.values())
-    | set(WORD_SYNONYMS.values())
-    | {"kedi", "kopek", "hayvan", "yavru", "veteriner", "asi", "mama", "pati", "kuyruk"}
-)
-
-# Alan icinde olup semptom bildirmeyen, tek basina yetersiz kelimeler
+# --- 5) Kapsam kontrolu: bilgi/kokler.py (153 belirti kodu, kok tabanli).
+#        Asagidaki kelimeler "hayvandan bahsediyor ama belirti yok" ayrimi icin.
 HAYVAN_TERIMLERI = {"kedi", "kopek", "hayvan", "yavru", "pati", "kuyruk"}
 
 # Bu uzunlugun altindaki metinler anlamli siniflandirilamaz.
@@ -167,6 +149,9 @@ class AnalizYaniti(BaseModel):
     ai_model: str = ""
     acil: bool = False
     acil_gerekce: str = ""
+    aciliyet: Literal["kirmizi", "turuncu", "yesil", ""] = ""
+    aciliyet_bayraklari: List[str] = []
+    kararsiz: bool = False
     uyarilar: List[str] = []
     ogrenildi: bool = False
     model_bilgi: Optional[ModelBilgisi] = None
@@ -242,7 +227,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="VetAI API",
     description="Evcil hayvan semptom on-degerlendirme servisi "
-                "(TF-IDF + Logistic Regression + Gemini)",
+                "(TF-IDF + Logistic Regression + Gemini, 55 hastalikli sentetik veri seti v1)",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -270,18 +255,20 @@ app.add_middleware(
 # GUARDRAIL YARDIMCILARI
 # ==========================================================================
 
-def acil_mi(normalized: str) -> tuple[bool, str]:
-    """Metinde acil mudahale gerektiren bir ifade var mi?"""
-    gerekceler = [aciklama for kalip, aciklama in _ACIL_REGEX if kalip.search(normalized)]
-    return bool(gerekceler), "; ".join(dict.fromkeys(gerekceler))
+def aciliyet_belirle(ham: str, hastalik_temel: Optional[str]) -> tuple[str, List[str]]:
+    """Nihai aciliyet = max(metindeki bayraklar, tahmin edilen hastaligin temel aciliyeti).
+
+    Doner: (seviye, [kanonik bayrak adlari]). seviye: kirmizi | turuncu | yesil.
+    Regex negasyonu anlamaz; bu yuzden bayraklar kullaniciya acikca gosterilir.
+    """
+    seviye, bayraklar = acil_kaliplar.aciliyet_tespit(ham, hastalik_temel or None)
+    return seviye or "yesil", [ad for _, ad in bayraklar]
 
 
-def alan_ici_mi(tokens: List[str]) -> tuple[bool, bool]:
-    """(alan_icinde_mi, semptom_var_mi) doner."""
-    kanonik = {t.replace("yok_", "") for t in tokens}
-    eslesen = kanonik & ALAN_TERIMLERI
-    semptom_var = bool(eslesen - HAYVAN_TERIMLERI)
-    return bool(eslesen), semptom_var
+def hayvan_var_mi(tokens: List[str], tur_secimi: Optional[str]) -> bool:
+    return tur_secimi in ("kedi", "kopek") or bool(
+        {t.replace("yok_", "") for t in tokens} & HAYVAN_TERIMLERI
+    )
 
 
 def _model_bilgisi() -> ModelBilgisi:
@@ -347,6 +334,8 @@ def _ogren(
             tur=tur,
             semptom=metin.strip(),
             hastalik=tahmin.hastalik,
+            hastalik_id=tahmin.hastalik_id or None,
+            aciliyet=tahmin.aciliyet or None,
             oneri=tahmin.oneri or "",
             kaynak=KAYNAK_AUTO if tahmin.olasilik >= OGRENME_ESIGI else KAYNAK_PENDING,
             guven=float(tahmin.olasilik),
@@ -437,12 +426,15 @@ def _analizi_calistir(
         )
 
     tokens = tokenize(ham)
-    bulgular = extract_keywords(ham)
     tur = (tur_secimi if tur_secimi in ("kedi", "kopek") else None) or detect_tur(ham)
-    alan_icinde, semptom_var = alan_ici_mi(tokens)
+    karar, belirti_kodlari, baglam_kodlari = kokler.guardrail(ham)
+    bulgular = [KOD_KANONIK.get(k, k) for k in belirti_kodlari]
+    hayvan_var = hayvan_var_mi(tokens, tur_secimi)
 
     # ---------------- GUARDRAIL 3: insan sagligi -----------------------
-    if INSAN_KALIPLARI.search(normalized) and not alan_icinde:
+    # Hayvandan hic soz edilmiyorsa ve insan kalibi eslesiyorsa, belirti bulunsa
+    # bile ("basim agriyor") LLM/ML'e gitmez.
+    if INSAN_KALIPLARI.search(normalized) and not hayvan_var:
         return AnalizYaniti(
             durum="kapsam_disi",
             mesaj="İnsan sağlığı kapsam dışında.",
@@ -454,7 +446,7 @@ def _analizi_calistir(
         )
 
     # ---------------- GUARDRAIL 4: kapsam disi (2+2 vb.) ---------------
-    if not alan_icinde:
+    if karar == "kapsam_disi" and not hayvan_var:
         logger.info("Kapsam disi istek: %r", ham[:80])
         gemini_yanit = (
             gemini_api.kapsam_disi_yanit(ham)
@@ -481,8 +473,12 @@ def _analizi_calistir(
             "kedi ve köpeklerde öldürücüdür; veteriner reçetesi olmadan kesinlikle vermeyin."
         )
 
-    # ---------------- GUARDRAIL 6: acil durum --------------------------
-    acil, acil_gerekce = acil_mi(normalized)
+    # ---------------- GUARDRAIL 6: acil durum (metin bayraklari) -------
+    # Bu asamada yalnizca metindeki kirmizi/turuncu belirtiler; hastaligin
+    # temel aciliyeti ML tahmininden sonra birlestirilir.
+    aciliyet, bayraklar = aciliyet_belirle(ham, None)
+    acil = aciliyet == "kirmizi"
+    acil_gerekce = ", ".join(bayraklar)
     if acil:
         uyarilar.insert(
             0,
@@ -490,15 +486,17 @@ def _analizi_calistir(
             "yerine geçmez; vakit kaybetmeden bir kliniğe başvurun.",
         )
 
-    # ---------------- 7: hayvan var ama semptom yok --------------------
-    if not semptom_var:
+    # ---------------- 7: hayvan var ama belirti yok --------------------
+    if karar != "devam":
         return AnalizYaniti(
-            durum="belirsiz",
+            durum="acil" if acil else "belirsiz",
             mesaj="Belirti bulunamadı.",
             tur=tur,
             bulgular=bulgular,
             acil=acil,
             acil_gerekce=acil_gerekce,
+            aciliyet=aciliyet,
+            aciliyet_bayraklari=bayraklar,
             uyarilar=uyarilar,
             ai_yorum="Hayvanınızdan bahsettiğinizi anlıyorum ama net bir belirti "
                      "yakalayamadım. Kusma, ishal, iştahsızlık, kaşıntı, topallama, "
@@ -511,16 +509,18 @@ def _analizi_calistir(
     if not ml_model.siniflandirici.egitildi_mi():
         ml_model.egit()
 
-    tahminler = ml_model.tahmin_et(ham, top_k=3)
+    tahminler = ml_model.tahmin_et(ham, top_k=3, tur=tur if tur in ("kedi", "kopek") else None)
 
     if not tahminler:
         return AnalizYaniti(
-            durum="belirsiz",
+            durum="acil" if acil else "belirsiz",
             mesaj="Model anlamlı bir eşleşme bulamadı.",
             tur=tur,
             bulgular=bulgular,
             acil=acil,
             acil_gerekce=acil_gerekce,
+            aciliyet=aciliyet,
+            aciliyet_bayraklari=bayraklar,
             uyarilar=uyarilar,
             ai_yorum="Yazdıklarınızı veritabanımdaki hastalık tablolarıyla "
                      "eşleştiremedim. Belirtileri biraz daha ayrıntılı anlatabilir "
@@ -529,11 +529,27 @@ def _analizi_calistir(
         )
 
     en_iyi = tahminler[0]
-    if en_iyi.olasilik < ml_model.GUVEN_ESIGI:
+    kararsiz = ml_model.kararsiz_mi(tahminler)
+    if kararsiz:
         uyarilar.append(
-            f"Model bu şikâyette kararsız (en yüksek olasılık %{en_iyi.olasilik * 100:.0f}). "
-            "Aşağıdaki tahminleri zayıf bir ipucu olarak değerlendirin."
+            f"Model bu şikâyette kararsız (en yüksek olasılık %{en_iyi.olasilik * 100:.0f}); "
+            "aşağıdaki tabloların herhangi biri söz konusu olabilir. Tahminleri zayıf bir "
+            "ipucu olarak değerlendirin."
         )
+
+    # ---------------- 8b: ACILIYET (bayraklar + hastalik temel duzeyi) --
+    onceki_acil = acil
+    aciliyet, bayraklar = aciliyet_belirle(ham, en_iyi.aciliyet)
+    acil = aciliyet == "kirmizi"
+    if acil and not onceki_acil:
+        acil_gerekce = ", ".join(bayraklar) or f"{en_iyi.hastalik} tablosu acil kabul edilir"
+        uyarilar.insert(
+            0,
+            f"Acil durum şüphesi ({acil_gerekce}). Bu analiz veteriner muayenesinin "
+            "yerine geçmez; vakit kaybetmeden bir kliniğe başvurun.",
+        )
+    elif aciliyet == "turuncu":
+        uyarilar.append(ACILIYET_METNI["turuncu"])
 
     # ---------------- 9: GEMINI YORUMU ---------------------------------
     if gemini_yorumu:
@@ -576,6 +592,9 @@ def _analizi_calistir(
         ai_model=gemini_api.MODEL_ADI if gemini_yanit.basarili else "",
         acil=acil,
         acil_gerekce=acil_gerekce,
+        aciliyet=aciliyet,
+        aciliyet_bayraklari=bayraklar,
+        kararsiz=kararsiz,
         uyarilar=uyarilar,
         ogrenildi=ogrenildi,
         model_bilgi=_model_bilgisi(),

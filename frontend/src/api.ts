@@ -48,6 +48,12 @@ export interface AnalizYaniti {
   ai_model: string;
   acil: boolean;
   acil_gerekce: string;
+  /** kirmizi (hemen) | turuncu (24 saat içinde) | yesil (planlı) | "" (belirlenemedi) */
+  aciliyet: "kirmizi" | "turuncu" | "yesil" | "";
+  /** Aciliyeti yükselten belirtilerin Türkçe adları (şeffaflık için gösterilir). */
+  aciliyet_bayraklari: string[];
+  /** Model ilk iki tahmin arasında kararsızsa true; arayüz "şu tablolardan biri" dili kullanır. */
+  kararsiz: boolean;
   uyarilar: string[];
   ogrenildi: boolean;
   model_bilgi: ModelBilgisi | null;
