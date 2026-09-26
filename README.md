@@ -1,7 +1,7 @@
 # 🐾 VetAI
 
 Evcil hayvan semptom ön-değerlendirme asistanı. Klasik makine öğrenmesini
-(TF-IDF + Logistic Regression) Google Gemini 2.5 Flash ile birleştiren,
+(TF-IDF + Logistic Regression) Google Gemini (varsayılan: 3.8 Flash) ile birleştiren,
 gerçek bir istemci–sunucu mimarisi üzerine kurulu AI Engineering projesi.
 
 > VetAI teşhis koymaz. Ürettiği sonuçlar istatistiksel bir ön değerlendirmedir
@@ -93,7 +93,37 @@ Arayüz hazır: <http://localhost:5173>
 
 **Anahtar olmadan da çalışır:** Gemini katmanı devre dışı kalır, ML tahminleri ve
 veritabanındaki öneri metinleri kullanılarak şablon tabanlı bir yanıt üretilir.
-Arayüzdeki yan panel hangi modda olduğunuzu gösterir.
+Arayüzdeki yan panel hangi modda olduğunuzu gösterir. Şikâyet içermeyen serbest
+sohbet mesajları ("Merhaba", takip soruları) ise anahtar olmadan yanıtlanamaz;
+arayüz bunu açıklayıcı bir hata balonu ve "Tekrar dene" düğmesiyle gösterir.
+
+Model `GEMINI_MODEL` ile seçilir (varsayılan `gemini-3.8-flash`; Gemini 2.5
+serisi yeni projelere kapalı). `GEMINI_TIMEOUT_MS` çağrı başına zaman aşımını,
+`CHAT_HISTORY_LIMIT` sohbette Gemini'ye gönderilen azami geçmiş mesaj sayısını
+belirler; tümü `backend/.env.example` içinde açıklanmıştır.
+
+> **Windows + antivirüs notu:** Norton gibi TLS tarayan programlar Google'ın
+> sertifikasını kendi kök sertifikalarıyla değiştirir. Python bunu varsayılan
+> olarak tanımaz ve Gemini çağrıları `CERTIFICATE_VERIFY_FAILED` ile düşer.
+> `requirements.txt` içindeki `truststore` paketi işletim sisteminin sertifika
+> deposunu kullanarak bu sorunu çözer; `pip install -r requirements.txt`
+> sonrasında ek ayar gerekmez.
+
+### Sohbet akışı
+
+```
+Kullanıcı mesajı (Composer)
+  → App.gonder()  — geçmiş + yeni mesaj, tek istek kilidi
+  → POST /api/chat  { messages: ChatMessage[], tur }
+  → main.sohbet()   — guardrail + ML (Gemini'siz)
+  → chat_service.baglam_olustur()  — sistem talimatı + son N mesaj + analiz bağlamı
+  → gemini_api.sohbet()            — generate_content (rol: user/model)
+  → { message, analiz? }  → asistan balonu (+ analiz kartı)
+```
+
+Ortak mesaj biçimi `{ id, role: "user" | "assistant" | "system", content, createdAt? }`
+hem `frontend/src/api.ts` hem `backend/chat_service.py` içinde tanımlıdır;
+istemciden gelen `system` rolü sunucuda yok sayılır.
 
 ---
 
@@ -113,15 +143,17 @@ sistemine sahiptir. Renk paleti (HEX), tema mimarisi ve bileşen kuralları içi
 | `init_db.py` | 20 hastalık sınıfı, 101 etiketli eğitim örneği |
 | `nlp_engine.py` | Türkçe normalizasyon, eş anlamlı haritalama, stop-words, kural tabanlı stemmer, olumsuzluk işaretleme |
 | `ml_model.py` | TF-IDF + Logistic Regression, `predict_proba`, çapraz doğrulama, yorumlanabilirlik |
-| `gemini_api.py` | google-genai SDK ile Gemini 2.5 Flash entegrasyonu |
-| `main.py` | FastAPI uygulaması, guardrail'ler, `/api/analyze` |
+| `gemini_api.py` | google-genai SDK ile Gemini entegrasyonu (tek atımlık yorum + çok turlu sohbet); model adı `GEMINI_MODEL` ile seçilir |
+| `chat_service.py` | Sohbet servisi ve context builder: sistem talimatı + son N mesaj + o tura ait ML analiz bağlamı |
+| `main.py` | FastAPI uygulaması, guardrail'ler, `/api/analyze`, `/api/chat` |
 | `migrate_turkce.py` | Eski veritabanındaki hastalık adı ve öneri metinlerini düzgün Türkçe yazıma taşır (tek seferlik bakım aracı) |
 
 ### Uç noktalar
 
 | Metot | Yol | Açıklama |
 |---|---|---|
-| `POST` | `/api/analyze` | Ana analiz (NLP → guardrail → ML → Gemini → öğrenme) |
+| `POST` | `/api/chat` | Sohbet (arayüzün kullandığı uç): konuşma geçmişi → guardrail → ML → context builder → Gemini → öğrenme |
+| `POST` | `/api/analyze` | Tek atımlık analiz (NLP → guardrail → ML → Gemini → öğrenme) |
 | `GET` | `/api/health` | Sunucu, veritabanı, model ve Gemini durumu |
 | `GET` | `/api/stats` | Veri seti istatistikleri ve sınıf dağılımı |
 | `GET` | `/api/symptoms` | Son eklenen kayıtlar (canlı öğrenmeyi izlemek için) |

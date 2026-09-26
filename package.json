@@ -2,7 +2,7 @@
   "name": "vetai",
   "version": "1.0.0",
   "private": true,
-  "description": "Evcil hayvan semptom on-degerlendirme asistani. TF-IDF + Logistic Regression ve Gemini 2.5 Flash tabanli, FastAPI + React istemci-sunucu projesi.",
+  "description": "Evcil hayvan semptom on-degerlendirme asistani. TF-IDF + Logistic Regression ve Gemini (varsayilan: 3.8 Flash) tabanli, FastAPI + React istemci-sunucu projesi.",
   "scripts": {
     "dev": "npm --prefix frontend run dev",
     "build": "npm --prefix frontend run build",
