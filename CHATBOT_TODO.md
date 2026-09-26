@@ -1,102 +1,87 @@
-# Chatbot / LLM — Sonraki Adımlar
+# Chatbot / LLM + Veri Seti — Açık İşler
 
-Branch: `feature/chatbot-llm`
-Son güncelleme: 2026-09-26
+Branch'ler: `feature/chatbot-llm` (sohbet), `feature/dataset-v1` (veri seti, sohbetin üzerine)
+Son güncelleme: 2026-09-27
 
-Bu belge, chatbot entegrasyonu tamamlandıktan sonra **henüz yapılmamış** ya da
-**doğrulanmamış** işleri listeler. Yapılanların özeti için `README.md` içindeki
-"Sohbet akışı" bölümüne bakın.
+Tamamlananlar aşağıda işaretli; yapılamayanların nedeni yanında yazıyor.
 
 ---
 
-## 1. Canlı Gemini testleri (ZORUNLU, anahtar gerekiyor)
+## 1. Canlı Gemini testleri (anahtar gerekiyor)
 
-Kod tarafı hazır; makinede API anahtarı olmadığı için gerçek model
-request-response testleri **çalıştırılamadı**.
-
-### Hazırlık
+Kod tarafı hazır; makinede `backend/.env` ve API anahtarı olmadığı için gerçek
+model request-response testleri **hâlâ çalıştırılamadı**.
 
 ```powershell
 cd backend
-copy .env.example .env          # zaten varsa atla
-# .env içine GEMINI_API_KEY=<anahtar> yaz (https://aistudio.google.com/apikey)
+copy .env.example .env          # GEMINI_API_KEY=<anahtar> yaz
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt  # google-genai 2.25.0 + truststore
-python init_db.py                # veritabanı boşsa
-python gemini_api.py             # tek atımlık hızlı duman testi
+pip install -r requirements.txt
+python init_db.py --reset
+python gemini_api.py            # tek atımlık duman testi
 uvicorn main:app --reload
 ```
 
-Ayrı terminalde: `cd frontend; npm run dev`
-
-### Kontrol listesi
-
-- [ ] **TEST 1** — "Merhaba" → anlamlı Türkçe yanıt geliyor mu?
-- [ ] **TEST 2** — "Bana bu sistemin nasıl çalıştığını açıkla." → Gemini yanıt veriyor mu?
+- [ ] **TEST 1** — "Merhaba" → anlamlı Türkçe yanıt
+- [ ] **TEST 2** — "Bana bu sistemin nasıl çalıştığını açıkla." → Gemini yanıtı
 - [ ] **TEST 3** — "TEKNOFEST kriterlerini üç madde halinde açıkla." ardından
-      "İkinci maddeyi detaylandır." → ikinci yanıt önceki listeye atıf yapıyor mu?
-- [ ] **TEST 8** — `.env` içinde `GEMINI_MODEL=olmayan-model` ile başlat →
-      arayüzde "Gemini modeli bulunamadı: '…'" hata balonu çıkmalı, crash olmamalı.
-      (Google 404 yerine 400 dönerse `gemini_api._hata_siniflandir` içindeki
-      400 dalını mesaja göre güncelle.)
-- [ ] **TEST 9** — Arka arkaya iki mesaj: ikinci mesaj birinci yanıt gelmeden
-      gönderilemiyor olmalı (buton pasif); sıra user/assistant/user/assistant.
-- [ ] **TEST 12** — Şikâyet mesajı ("Kedim iki gündür kusuyor…") → analiz
-      kartındaki metin Gemini'den geliyor (`ai_aktif: true`, model rozeti görünür).
-- [ ] Şikâyet sonrası takip sorusu ("Evde ne yapabilirim?") → önceki tahminlere
-      göre yanıt veriyor mu, yeni hastalık adı uydurmuyor mu?
-- [ ] Gemini Markdown/liste döndürdüğünde arayüzde düzgün görünüyor mu?
-- [ ] Yanıt süresi: `thinking_level=MINIMAL` ile ortalama gecikmeyi not et.
-      Yavaşsa `GEMINI_MODEL=gemini-3.5-flash-lite` dene.
-
----
+      "İkinci maddeyi detaylandır." → ikinci yanıt önceki listeye atıf yapmalı
+      (guardrail artık takip sorusunu "kapsam dışı" sayıp Gemini'ye bırakıyor; doğrulandı)
+- [ ] **TEST 8** — `GEMINI_MODEL=olmayan-model` → "Gemini modeli bulunamadı" balonu, crash yok.
+      Google 404 yerine 400 dönerse `gemini_api._hata_siniflandir` 400 dalını güncelle.
+- [ ] **TEST 9** — Arka arkaya iki mesaj: ikinci mesaj yanıt gelmeden gönderilemez
+- [ ] **TEST 12** — Şikâyet mesajı → analiz kartındaki metin Gemini'den (`ai_aktif: true`)
+- [ ] Şikâyet sonrası takip sorusu ("Evde ne yapabilirim?") → önceki tahminlere göre
+      yanıt, yeni hastalık adı uydurmuyor
+- [ ] Gemini Markdown/liste döndürdüğünde arayüz düzgün
+- [ ] Yanıt süresi notu; yavaşsa `GEMINI_MODEL=gemini-3.5-flash-lite`
 
 ## 2. Sistem promptu ince ayarı (canlı testten sonra)
 
 Dosya: `backend/chat_service.py` → `SOHBET_TALIMATI`
 
-- [ ] Yanıtlar çok uzunsa "60-180 kelime" sınırını düşür ya da
-      `gemini_api.sohbet(max_output_tokens=…)` değerini azalt.
-- [ ] Model alan dışı sorularda çok kolay dağılıyorsa 4. kuralı sıkılaştır.
+- [ ] Yanıtlar uzunsa kelime sınırını ya da `max_output_tokens` değerini düşür
+- [ ] Alan dışı sorularda çok dağılıyorsa 4. kuralı sıkılaştır
 - [ ] Analiz bağlamı verildiğinde model listeyi tekrar etmek yerine yorumluyor mu?
-      Gerekirse `baglam_olustur` içindeki son cümleyi düzenle.
+- [ ] Bağlama `aciliyet` düzeyi ve `aciliyet_bayraklari` da eklenebilir
+      (`gemini_api.analiz_baglami` şu an yalnızca kırmızı/değil bilgisini taşıyor)
 
----
+## 3. Veri seti — yapıldı / kaldı
 
-## 3. Bilinen / önceden var olan sorunlar
+- [x] Veri seti v1 `backend/data/` altına alındı, `init_db.py` CSV'den yüklüyor
+- [x] Kök tabanlı guardrail (`bilgi/kokler.py`), kapsama %43 → %99,5
+- [x] Kısa kök kelime-başı kuralı ve basit olumsuzlama eklendi
+      ("İkinci maddeyi detaylandır" artık kapsam dışı, "ateşi yok" düşürülüyor)
+- [x] Aciliyet: 57 regex + hastalık temel aciliyeti, kırmızı yakalama %20 → %95
+- [x] Tür token'ı + tür filtresi, marj tabanlı kararsızlık
+- [x] İnsan sağlığı guardrail'i hayvan sözcüğü yoksa belirtiden önce çalışıyor
+      ("benim başım ağrıyor ateşim var" → kapsam dışı)
+- [x] `olcum.py` ile val (550) ve dış test (110) ölçümleri; sonuçlar README'de
+- [ ] **Veteriner hekim incelemesi**: 55 hastalıklı bilgi tabanı, özellikle
+      `evde` / `kacin` metinleri ve aciliyet düzeyleri (`data/oneriler.json`,
+      `data/hastalik_aciliyet.json`)
+- [ ] **Gerçek cümle toplama**: çevreden 150–200 gerçek şikâyet; `olcum.py`'ye
+      üçüncü küme olarak eklenip ölçülmeli (beklenen top-1 ~%70)
+- [ ] `frontend/src/lib/turkce.ts` içindeki elle yazılmış `BULGU_ETIKETLERI`
+      artık gerekmiyor (backend kanonik ad döndürüyor); sadeleştirilebilir
+- [ ] `migrate_turkce.py` eski şemaya ait; silinebilir
+- [ ] Negasyon aciliyet regex'lerinde ele alınmıyor; kullanıcıya bayraklar gösteriliyor,
+      ileride `nlp_engine` `yok_` token'larıyla bayrak düşürme eklenebilir
 
-- [ ] **İnsan sağlığı guardrail'i**: "benim başım ağrıyor ateşim var" gibi
-      cümlelerde "ateş" alan terimi olduğu için `INSAN_KALIPLARI` devreye
-      girmiyor, ML analizi çalışıyor. `main.py` GUARDRAIL 3 mantığı gözden
-      geçirilmeli (ör. insan kalıbı eşleşiyorsa alan kontrolünü atla).
-- [ ] **Model kararsızlığı**: 101 örnekle çapraz doğrulama ~%53. Bu chatbot
-      işi değil, veri seti işi; `init_db.py` seed verisi genişletilmeli.
-- [ ] **Norton / TLS**: `truststore` ile çözüldü ama farklı bir makinede
-      `CERTIFICATE_VERIFY_FAILED` görülürse önce `pip install truststore`
-      yapıldığından emin ol.
+## 4. İsteğe bağlı iyileştirmeler
 
----
-
-## 4. İsteğe bağlı iyileştirmeler (kapsam dışı bırakıldı)
-
-- [ ] **Streaming yanıt**: `client.models.generate_content_stream` + SSE.
-      Şu an tek parça yanıt; UX için "yazıyor" efekti yeterli görüldü.
-- [ ] **Sohbet kalıcılığı**: Sayfa yenilenince sohbet sıfırlanıyor.
-      İstenirse `localStorage` (tema ile aynı yöntem) ya da backend oturumu.
-- [ ] **RAG / dataset**: Hazır veri seti yok. Eklenecekse yalnızca
-      `chat_service.baglam_olustur()` içine bir retriever bloğu koymak yeterli;
-      UI ve API katmanı değişmez.
-- [ ] **Hız sınırı**: `/api/chat` için istemci başına rate limit yok
-      (ör. `slowapi`). Herkese açık dağıtımda gerekli.
-- [ ] **Lint**: Projede ESLint/ruff yapılandırması yok; `tsc -b` tek kontrol.
-- [ ] **Güvenlik taraması**: HawkScan `HAWK_API_KEY` olmadığı için çalıştırılmadı.
-
----
+- [ ] Streaming yanıt (`generate_content_stream` + SSE)
+- [ ] Sohbet kalıcılığı (`localStorage` ya da backend oturumu)
+- [ ] RAG: `vetai_bilgi_tabani.json` → retriever → `chat_service.baglam_olustur()`
+- [ ] `/api/chat` için istemci başına rate limit (herkese açık dağıtımda şart)
+- [ ] Lint yapılandırması (ESLint / ruff); şu an tek kontrol `tsc -b`
+- [ ] HawkScan güvenlik taraması (`HAWK_API_KEY` yoktu)
 
 ## 5. Merge öncesi
 
-- [ ] Yukarıdaki canlı testler geçti.
-- [ ] `npm run build` ve `python -c "import main"` (backend klasöründe) hatasız.
-- [ ] `git push -u origin feature/chatbot-llm` → PR hedefi **`Frontend`**
-      (branch `main`'den değil `Frontend`'den açıldı; güncel tema orada).
-- [ ] `backend/.env` ve `vetai.db` commit'e girmedi (gitignore'da) — kontrol et.
+- [ ] Canlı Gemini testleri geçti
+- [ ] `npm run build` ve `python olcum.py` hatasız (2026-09-27 itibarıyla geçiyor)
+- [ ] PR sırası: `feature/chatbot-llm` → `Frontend`, ardından `feature/dataset-v1` → `Frontend`
+      (branch'ler `main`'den değil `Frontend`'den açıldı; güncel tema orada)
+- [ ] `backend/.env` ve `vetai.db` commit'e girmedi (gitignore'da)
+- [ ] Eski `vetai.db` olan makinelerde `python init_db.py --reset` çalıştırılmalı
