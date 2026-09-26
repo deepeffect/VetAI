@@ -39,9 +39,10 @@ export default function Composer({ onGonder, bekliyor }: Props) {
     alanRef.current?.focus();
   }
 
-  // Enter gönderir, Shift+Enter alt satıra geçer.
+  // Enter gönderir, Shift+Enter alt satıra geçer. IME ile harf birleştirme
+  // sürerken (ör. bazı klavye düzenleri) Enter gönderim sayılmaz.
   function tusaBasildi(e: KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
       gonder();
     }
@@ -85,17 +86,16 @@ export default function Composer({ onGonder, bekliyor }: Props) {
             onChange={(e) => setMetin(e.target.value.slice(0, MAX))}
             onKeyDown={tusaBasildi}
             rows={2}
-            disabled={bekliyor}
-            aria-label="Şikâyet metni"
-            placeholder="Şikâyeti yazın. Örnek: Kedim iki gündür kusuyor, mama yemiyor ve çok halsiz."
-            className="max-h-48 min-h-[72px] w-full resize-none bg-transparent px-4 py-3.5 pr-16 text-[14.5px] leading-relaxed text-ink outline-none placeholder:text-ink-muted disabled:opacity-60"
+            aria-label="Mesaj metni"
+            placeholder="Şikâyeti yazın ya da soru sorun. Örnek: Kedim iki gündür kusuyor, mama yemiyor ve çok halsiz."
+            className="max-h-48 min-h-[72px] w-full resize-none bg-transparent px-4 py-3.5 pr-16 text-[14.5px] leading-relaxed text-ink outline-none placeholder:text-ink-muted"
           />
 
           <button
             type="submit"
             disabled={!metin.trim() || bekliyor}
-            aria-label="Analiz et"
-            title="Analiz et (Enter)"
+            aria-label={bekliyor ? "Yanıt bekleniyor" : "Gönder"}
+            title="Gönder (Enter)"
             className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-line disabled:text-ink-muted"
           >
             {bekliyor ? (

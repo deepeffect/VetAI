@@ -6,6 +6,8 @@ interface Props {
   children: ReactNode;
   /** Hata balonları kırmızımsı bir kartla gösterilir. */
   hata?: boolean;
+  /** Kartın altına eklenen küçük eylemler (kopyala, tekrar dene). */
+  araclar?: ReactNode;
 }
 
 /**
@@ -15,11 +17,11 @@ interface Props {
  * beyaz (koyu temada yumuşak koyu) bir karttır. Asistan kartı, içine analiz
  * sonucu gibi zengin içerik alabildiği için bol iç boşlukla tasarlandı.
  */
-export default function ChatBubble({ rol, children, hata = false }: Props) {
+export default function ChatBubble({ rol, children, hata = false, araclar }: Props) {
   if (rol === "kullanici") {
     return (
       <div className="animate-rise flex justify-end">
-        <div className="max-w-[85%] rounded-2xl rounded-br-md bg-accent px-4 py-3 text-[14.5px] leading-relaxed text-white shadow-soft sm:max-w-[72%]">
+        <div className="min-w-0 max-w-[85%] whitespace-pre-wrap break-words rounded-2xl rounded-br-md bg-accent px-4 py-3 text-[14.5px] leading-relaxed text-white shadow-soft sm:max-w-[72%]">
           {children}
         </div>
       </div>
@@ -39,14 +41,19 @@ export default function ChatBubble({ rol, children, hata = false }: Props) {
         <PawIcon className="h-[18px] w-[18px]" />
       </div>
 
-      <div
-        className={`min-w-0 flex-1 rounded-2xl rounded-tl-md border px-5 py-4 ${
-          hata
-            ? "border-danger-line bg-danger-soft text-danger-ink"
-            : "border-line bg-card text-ink shadow-soft"
-        }`}
-      >
-        {children}
+      <div className="min-w-0 flex-1">
+        <div
+          className={`min-w-0 break-words rounded-2xl rounded-tl-md border px-5 py-4 ${
+            hata
+              ? "border-danger-line bg-danger-soft text-danger-ink"
+              : "border-line bg-card text-ink shadow-soft"
+          }`}
+        >
+          {children}
+        </div>
+        {araclar && (
+          <div className="mt-1.5 flex items-center gap-1 px-1 text-ink-muted">{araclar}</div>
+        )}
       </div>
     </div>
   );

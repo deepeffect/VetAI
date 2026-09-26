@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import axios from "axios";
 import {
-  analizEt,
   hataMesaji,
   istatistikAl,
   saglikKontrol,
+  sohbetEt,
   type AnalizYaniti,
+  type ChatMessage,
   type IstatistikYaniti,
   type SaglikYaniti,
   type Tur,
@@ -13,13 +15,30 @@ import AnalysisResult from "./components/AnalysisResult";
 import ChatBubble from "./components/ChatBubble";
 import Composer from "./components/Composer";
 import StatusPanel from "./components/StatusPanel";
-import { MoonIcon, PawIcon, ShieldIcon, SparkIcon, SunIcon } from "./components/Icons";
+import {
+  CheckIcon,
+  CopyIcon,
+  MoonIcon,
+  PawIcon,
+  RefreshIcon,
+  ShieldIcon,
+  SparkIcon,
+  SunIcon,
+  TrashIcon,
+} from "./components/Icons";
+import Markdown from "./lib/markdown";
 import { useTema } from "./lib/tema";
 
+/**
+ * Sohbet satırı. Üç biçim vardır:
+ *  - kullanıcı mesajı
+ *  - asistan yanıtı (Gemini metni + o tura ait ML analizi varsa kartı)
+ *  - hata balonu (yeniden denemek için gönderilen bağlam saklanır)
+ */
 type Mesaj =
-  | { id: string; rol: "kullanici"; metin: string }
-  | { id: string; rol: "asistan"; sonuc: AnalizYaniti }
-  | { id: string; rol: "asistan"; hata: string };
+  | { id: string; rol: "kullanici"; metin: string; tur: Tur }
+  | { id: string; rol: "asistan"; metin: string; analiz: AnalizYaniti | null; model: string }
+  | { id: string; rol: "asistan"; hata: string; tekrar: { gecmis: ChatMessage[]; tur: Tur } };
 
 const ORNEKLER = [
   "Kedim iki gündür kusuyor ve hiç mama yemiyor, çok halsiz.",
@@ -29,7 +48,69 @@ const ORNEKLER = [
 ];
 
 let sayac = 0;
-const yeniId = () => `m${++sayac}`;
+const yeniId = (onek: string) => `${onek}-${Date.now().toString(36)}-${++sayac}`;
+
+/** Backend'e gidecek konuşma geçmişi: yalnızca metin taşıyan mesajlar. */
+function gecmiseCevir(mesajlar: Mesaj[]): ChatMessage[] {
+  const sonuc: ChatMessage[] = [];
+  for (const m of mesajlar) {
+    if (m.rol === "kullanici") {
+      sonuc.push({ id: m.id, role: "user", content: m.metin });
+    } else if ("metin" in m) {
+      sonuc.push({ id: m.id, role: "assistant", content: m.metin });
+    }
+    // hata balonları geçmişe girmez
+  }
+  return sonuc;
+}
+
+/** Asistan kartının altındaki küçük ikon düğmesi. */
+function AracDugmesi({
+  onClick,
+  etiket,
+  children,
+}: {
+  onClick: () => void;
+  etiket: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={etiket}
+      title={etiket}
+      className="inline-flex h-7 items-center gap-1.5 rounded-lg px-2 text-[11.5px] font-medium text-ink-muted transition-colors hover:bg-canvas-soft hover:text-ink"
+    >
+      {children}
+    </button>
+  );
+}
+
+function KopyalaDugmesi({ metin }: { metin: string }) {
+  const [kopyalandi, setKopyalandi] = useState(false);
+
+  async function kopyala() {
+    try {
+      await navigator.clipboard.writeText(metin);
+      setKopyalandi(true);
+      window.setTimeout(() => setKopyalandi(false), 1600);
+    } catch {
+      /* pano erişimi yoksa sessizce geç */
+    }
+  }
+
+  return (
+    <AracDugmesi onClick={() => void kopyala()} etiket="Yanıtı kopyala">
+      {kopyalandi ? (
+        <CheckIcon className="h-3.5 w-3.5 text-accent-ink" />
+      ) : (
+        <CopyIcon className="h-3.5 w-3.5" />
+      )}
+      {kopyalandi ? "Kopyalandı" : "Kopyala"}
+    </AracDugmesi>
+  );
+}
 
 export default function App() {
   const [mesajlar, setMesajlar] = useState<Mesaj[]>([]);
@@ -39,6 +120,16 @@ export default function App() {
   const [baglantiHatasi, setBaglantiHatasi] = useState(false);
   const sonRef = useRef<HTMLDivElement>(null);
   const { tema, temayiDegistir } = useTema();
+
+  // Stale state'e düşmemek için geçmişin güncel kopyası ve gönderim kilidi
+  const mesajlarRef = useRef<Mesaj[]>([]);
+  const gonderiliyorRef = useRef(false);
+  const iptalRef = useRef<AbortController | null>(null);
+  const altaYakinRef = useRef(true);
+
+  useEffect(() => {
+    mesajlarRef.current = mesajlar;
+  }, [mesajlar]);
 
   /** Backend durumunu ve veri istatistiklerini tazeler. */
   const durumuYenile = useCallback(async () => {
@@ -56,26 +147,95 @@ export default function App() {
     void durumuYenile();
   }, [durumuYenile]);
 
-  // Yeni mesaj geldiğinde en alta kaydır
+  // Kullanıcı yukarı kaydırıp eski mesajları okuyorsa yeni yanıt geldiğinde
+  // onu zorla aşağı çekmiyoruz; yalnızca zaten en alttaysa takip ediyoruz.
   useEffect(() => {
-    sonRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    function kaydirmaTakibi() {
+      const kalan =
+        document.documentElement.scrollHeight - (window.innerHeight + window.scrollY);
+      altaYakinRef.current = kalan < 160;
+    }
+    kaydirmaTakibi();
+    window.addEventListener("scroll", kaydirmaTakibi, { passive: true });
+    return () => window.removeEventListener("scroll", kaydirmaTakibi);
+  }, []);
+
+  useEffect(() => {
+    const son = mesajlar[mesajlar.length - 1];
+    const kullaniciGonderdi = son?.rol === "kullanici";
+    if (kullaniciGonderdi || altaYakinRef.current) {
+      sonRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
   }, [mesajlar, bekliyor]);
 
-  async function gonder(metin: string, tur: Tur) {
-    setMesajlar((m) => [...m, { id: yeniId(), rol: "kullanici", metin }]);
-    setBekliyor(true);
-    try {
-      const sonuc = await analizEt(metin, tur);
-      setMesajlar((m) => [...m, { id: yeniId(), rol: "asistan", sonuc }]);
-      setBaglantiHatasi(false);
-      // Canlı öğrenme veritabanını değiştirdiyse yan paneli tazele
-      if (sonuc.ogrenildi) void durumuYenile();
-    } catch (err) {
-      setMesajlar((m) => [...m, { id: yeniId(), rol: "asistan", hata: hataMesaji(err) }]);
-      setBaglantiHatasi(true);
-    } finally {
-      setBekliyor(false);
-    }
+  /**
+   * Verilen geçmişle (son eleman kullanıcı mesajı) backend'den yanıt ister.
+   * `kaldirilacakId` verilirse (tekrar dene) o hata balonu önce silinir.
+   */
+  const yanitIste = useCallback(
+    async (gecmis: ChatMessage[], tur: Tur, kaldirilacakId?: string) => {
+      if (gonderiliyorRef.current) return;
+      gonderiliyorRef.current = true;
+      setBekliyor(true);
+      if (kaldirilacakId) {
+        setMesajlar((m) => m.filter((x) => x.id !== kaldirilacakId));
+      }
+
+      const iptal = new AbortController();
+      iptalRef.current = iptal;
+
+      try {
+        const sonuc = await sohbetEt(gecmis, tur, iptal.signal);
+        const metin = (sonuc.message?.content ?? "").trim();
+        setMesajlar((m) => [
+          ...m,
+          {
+            id: sonuc.message?.id || yeniId("a"),
+            rol: "asistan",
+            metin: metin || "Yanıt boş döndü. Lütfen tekrar deneyin.",
+            analiz: sonuc.analiz ?? null,
+            model: sonuc.ai_model ?? "",
+          },
+        ]);
+        setBaglantiHatasi(false);
+        // Canlı öğrenme veritabanını değiştirdiyse yan paneli tazele
+        if (sonuc.analiz?.ogrenildi) void durumuYenile();
+      } catch (err) {
+        if (axios.isCancel(err)) return; // sohbet temizlendi
+        setMesajlar((m) => [
+          ...m,
+          { id: yeniId("e"), rol: "asistan", hata: hataMesaji(err), tekrar: { gecmis, tur } },
+        ]);
+        // Sunucuya hiç ulaşılamadıysa bağlantı rozetini kırmızıya çevir
+        if (axios.isAxiosError(err) && !err.response) setBaglantiHatasi(true);
+      } finally {
+        if (iptalRef.current === iptal) iptalRef.current = null;
+        gonderiliyorRef.current = false;
+        setBekliyor(false);
+      }
+    },
+    [durumuYenile]
+  );
+
+  function gonder(metin: string, tur: Tur) {
+    const temiz = metin.trim();
+    if (!temiz || gonderiliyorRef.current) return;
+    const kullanici: Mesaj = { id: yeniId("u"), rol: "kullanici", metin: temiz, tur };
+    const gecmis = [
+      ...gecmiseCevir(mesajlarRef.current),
+      { id: kullanici.id, role: "user" as const, content: temiz },
+    ];
+    setMesajlar((m) => [...m, kullanici]);
+    void yanitIste(gecmis, tur);
+  }
+
+  function sohbetiTemizle() {
+    iptalRef.current?.abort();
+    iptalRef.current = null;
+    gonderiliyorRef.current = false;
+    setBekliyor(false);
+    setMesajlar([]);
+    window.scrollTo({ top: 0 });
   }
 
   const bosEkran = mesajlar.length === 0;
@@ -123,6 +283,19 @@ export default function App() {
               </span>
             )}
 
+            {/* Sohbeti temizle (yalnızca mesaj varken) */}
+            {!bosEkran && (
+              <button
+                type="button"
+                onClick={sohbetiTemizle}
+                aria-label="Sohbeti temizle"
+                title="Sohbeti temizle"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-card text-ink-soft transition-colors hover:border-danger-line hover:text-danger-ink"
+              >
+                <TrashIcon className="h-[18px] w-[18px]" />
+              </button>
+            )}
+
             {/* Tema değiştirici */}
             <button
               type="button"
@@ -145,7 +318,7 @@ export default function App() {
       <div className="mx-auto max-w-[1180px] px-4 pb-6 pt-6 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8">
           {/* ------------------------------------------------- Sohbet */}
-          <main className="flex min-h-[68svh] flex-col">
+          <main className="flex min-h-[68svh] min-w-0 flex-col">
             <div
               className={`flex-1 space-y-5 ${
                 bosEkran ? "flex flex-col justify-center" : ""
@@ -165,13 +338,14 @@ export default function App() {
                     Belirtileri kendi cümlelerinizle yazmanız yeterli. Sistem önce metni
                     Türkçe NLP katmanıyla ayıklar, ardından Logistic Regression modeliyle
                     olasılıkları hesaplar ve sonucu sizin için sade bir dille yorumlar.
+                    Sonrasında takip sorularınızı da aynı sohbette sorabilirsiniz.
                   </p>
 
                   <div className="mt-8 grid w-full max-w-2xl gap-2.5 text-left sm:grid-cols-2">
                     {ORNEKLER.map((ornek) => (
                       <button
                         key={ornek}
-                        onClick={() => void gonder(ornek, "genel")}
+                        onClick={() => gonder(ornek, "genel")}
                         disabled={bekliyor}
                         className="rounded-xl border border-line bg-card px-4 py-3.5 text-left text-[13.5px] leading-relaxed text-ink-soft shadow-soft transition-colors hover:border-accent-line hover:bg-accent-soft hover:text-ink disabled:opacity-50"
                       >
@@ -190,25 +364,55 @@ export default function App() {
                 </div>
               )}
 
-              {mesajlar.map((m) =>
-                m.rol === "kullanici" ? (
-                  <ChatBubble key={m.id} rol="kullanici">
-                    {m.metin}
+              {mesajlar.map((m) => {
+                if (m.rol === "kullanici") {
+                  return (
+                    <ChatBubble key={m.id} rol="kullanici">
+                      {m.metin}
+                    </ChatBubble>
+                  );
+                }
+                if ("hata" in m) {
+                  return (
+                    <ChatBubble
+                      key={m.id}
+                      rol="asistan"
+                      hata
+                      araclar={
+                        <AracDugmesi
+                          onClick={() => void yanitIste(m.tekrar.gecmis, m.tekrar.tur, m.id)}
+                          etiket="Tekrar dene"
+                        >
+                          <RefreshIcon className="h-3.5 w-3.5" />
+                          Tekrar dene
+                        </AracDugmesi>
+                      }
+                    >
+                      <p className="text-[13.5px] leading-relaxed">{m.hata}</p>
+                    </ChatBubble>
+                  );
+                }
+                return (
+                  <ChatBubble
+                    key={m.id}
+                    rol="asistan"
+                    araclar={
+                      <>
+                        <KopyalaDugmesi metin={m.metin} />
+                        {m.model && (
+                          <span className="ml-auto text-[11px] text-ink-muted">{m.model}</span>
+                        )}
+                      </>
+                    }
+                  >
+                    {m.analiz ? <AnalysisResult sonuc={m.analiz} /> : <Markdown metin={m.metin} />}
                   </ChatBubble>
-                ) : "hata" in m ? (
-                  <ChatBubble key={m.id} rol="asistan" hata>
-                    <p className="text-[13.5px] leading-relaxed">{m.hata}</p>
-                  </ChatBubble>
-                ) : (
-                  <ChatBubble key={m.id} rol="asistan">
-                    <AnalysisResult sonuc={m.sonuc} />
-                  </ChatBubble>
-                )
-              )}
+                );
+              })}
 
               {bekliyor && (
                 <ChatBubble rol="asistan">
-                  <div className="flex items-center gap-2.5 py-0.5">
+                  <div className="flex items-center gap-2.5 py-0.5" role="status" aria-live="polite">
                     <span className="flex gap-1" aria-hidden="true">
                       {[0, 240, 480].map((gecikme) => (
                         <span
@@ -218,9 +422,7 @@ export default function App() {
                         />
                       ))}
                     </span>
-                    <span className="text-[13px] text-ink-muted">
-                      Metin ayıklanıyor, model çalışıyor ve yorum hazırlanıyor…
-                    </span>
+                    <span className="text-[13px] text-ink-muted">Yanıt hazırlanıyor…</span>
                   </div>
                 </ChatBubble>
               )}
@@ -236,7 +438,7 @@ export default function App() {
                 aria-hidden="true"
               />
               <div className="bg-canvas pb-4">
-                <Composer onGonder={(m, t) => void gonder(m, t)} bekliyor={bekliyor} />
+                <Composer onGonder={gonder} bekliyor={bekliyor} />
                 {!bosEkran && (
                   <p className="mt-2.5 px-1 text-center text-[11px] text-ink-muted">
                     VetAI teşhis koymaz; sonuçlar veteriner hekim muayenesinin yerine geçmez.

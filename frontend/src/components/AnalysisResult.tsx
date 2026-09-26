@@ -1,6 +1,7 @@
 import type { AnalizYaniti } from "../api";
 import DiseaseCard from "./DiseaseCard";
 import { AlertIcon, CatIcon, DogIcon, InfoIcon, PawIcon, SparkIcon } from "./Icons";
+import Markdown from "../lib/markdown";
 import { bulguyuCoz, turEtiketi } from "../lib/turkce";
 
 interface Props {
@@ -93,9 +94,7 @@ export default function AnalysisResult({ sonuc }: Props) {
               {sonuc.ai_aktif ? "Yapay zekâ yorumu" : "Ön değerlendirme"}
             </span>
           </BolumBasligi>
-          <p className="whitespace-pre-line text-[14.5px] leading-7 text-ink">
-            {sonuc.ai_yorum}
-          </p>
+          <Markdown metin={sonuc.ai_yorum} />
         </div>
       )}
 
