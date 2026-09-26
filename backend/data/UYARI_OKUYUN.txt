@@ -1,0 +1,43 @@
+VetAI VERİ SETİ v1 — ÖNCE BUNU OKUYUN (27 Eylül 2026)
+
+BU VERİ GERÇEK KULLANICI VERİSİ DEĞİLDİR.
+
+Ne var elimizde?
+- 3.025 etiketli Türkçe şikâyet cümlesi (vetai_sentetik_sikayetler_v1.csv)
+- 110 cümlelik ayrı test seti (vetai_dis_test_seti_v1.csv)
+- 55 hastalıklı bilgi tabanı (vetai_bilgi_tabani.json / .csv)
+
+Bu cümleler nasıl oluştu?
+Hazır bir Türkçe veri seti dünyada bulunmadığı için veri sıfırdan üretildi:
+1) 55 hastalık için bir bilgi tablosu yazıldı (belirtiler, aciliyet, yaş/ırk yatkınlığı).
+2) Hayvan sahiplerinin belirtileri günlük dilde nasıl söylediği listelendi (639 ifade).
+3) Bir program bu ikisini birleştirip 2.695 cümle üretti ("3 yaşındaki kedim iki gündür kusuyor
+   ve mama yemiyor, ne yapmalıyım?" gibi).
+4) 330 + 110 = 440 cümle elle, gerçek bir sahip gibi yazıldı.
+Cümlelerin HİÇBİRİ gerçek bir insandan gelmemektedir; hepsi Claude (yapay zekâ) tarafından
+26 Eylül 2026'da tek oturumda üretildi.
+
+Güvenilir mi?
+KISMEN.
+Güvenebileceğiniz yerler:
+- Etiketler kendi içinde tutarlıdır (her cümle o hastalığın bilinen belirtilerinden kuruldu).
+- Format temizdir, sınıflar dengelidir (hastalık başına 55 örnek).
+- İlk prototip modeli eğitmek, uygulamayı/arayüzü çalıştırmak ve uçtan uca akışı göstermek için yeterlidir.
+Güvenemeyeceğiniz yerler:
+- Gerçek insanların nasıl yazdığını temsil etmez; cümleler kalıp taşır.
+- Hastalıkların gerçek görülme sıklığını yansıtmaz (her hastalık eşit sayıda).
+- Tıbbi içerik bir VETERİNER HEKİM tarafından kontrol edilmemiştir; hata içerebilir.
+- Aciliyet etiketleri bilerek "abartan" (fazla ihtiyatlı) tarafta tutulmuştur.
+- Bu veriyle eğitilen model bu verinin üstünde iyi görünür (%88 doğruluk) ama gerçek kullanıcı
+  mesajlarında belirgin biçimde daha düşük çalışması beklenir (elle yazılan cümlelerde %76).
+
+Nasıl adlandırılmalı?
+Projede, tezde ve sunumlarda "SENTETİK (YAPAY) BAŞLANGIÇ VERİ SETİ" olarak belirtilmelidir.
+Gerçek veri gibi sunulmamalı, tıbbi iddia için dayanak yapılmamalıdır.
+
+Güvenilir hâle getirmek için yapılacaklar (öncelik sırasıyla):
+1) Bir veteriner hekim vetai_bilgi_tabani.csv dosyasını (55 satır) gözden geçirsin — en kritik ve en ucuz adım.
+2) Çevreden 150–200 GERÇEK şikâyet cümlesi toplanıp model onlarla test edilsin.
+3) Mümkünse VetRehberi.com'dan (10.674 veteriner yanıtlı gerçek soru) veri kullanım izni istensin.
+
+Ayrıntılar: README_VetAI_veri_seti.md
