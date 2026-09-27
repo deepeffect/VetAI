@@ -44,13 +44,15 @@ class Base(DeclarativeBase):
 
 
 # --- Kayit kaynaklari -------------------------------------------------------
-KAYNAK_SEED = "seed"        # init_db.py ile yuklenen, elle dogrulanmis veri
-KAYNAK_AUTO = "auto"        # yuksek guvenle siniflandirilip otomatik ogrenilen veri
-KAYNAK_PENDING = "pending"  # dusuk guvenli, egitime girmez, insan onayi bekler
+KAYNAK_SEED = "seed"          # init_db.py: veri setindeki elle yazilmis ornekler
+KAYNAK_SENTETIK = "sentetik"  # init_db.py: uret.py ile kurallı üretilmiş cümleler
+KAYNAK_AUTO = "auto"          # yuksek guvenle siniflandirilip otomatik ogrenilen veri
+KAYNAK_PENDING = "pending"    # dusuk guvenli, egitime girmez, insan onayi bekler
 
 # Egitimde kaynaga gore ornek agirligi (pseudo-labeling'in modeli bozmamasi icin)
 KAYNAK_AGIRLIK = {
     KAYNAK_SEED: 1.0,
+    KAYNAK_SENTETIK: 0.7,
     KAYNAK_AUTO: 0.35,
     KAYNAK_PENDING: 0.0,
 }
@@ -64,8 +66,10 @@ class Symptom(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     tur = Column(String(32), nullable=False, index=True)       # kedi / kopek / genel
     semptom = Column(Text, nullable=False)                     # ham serbest metin
-    hastalik = Column(String(128), nullable=False, index=True)  # ML etiketi
+    hastalik = Column(String(128), nullable=False, index=True)  # ML etiketi (Turkce ad)
+    hastalik_id = Column(String(64), nullable=True, index=True) # bilgi tabani anahtari (ör. "parvovirus")
     oneri = Column(Text, nullable=False, default="")           # kullaniciya gosterilecek tavsiye
+    aciliyet = Column(String(16), nullable=True)               # kirmizi / turuncu / yesil (veri setinden)
 
     # --- ek meta alanlar (canli ogrenme icin) ---
     kaynak = Column(String(16), nullable=False, default=KAYNAK_SEED, index=True)

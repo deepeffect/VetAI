@@ -17,6 +17,8 @@ Canli ogrenme guvenligi:
 
 from __future__ import annotations
 
+import dataclasses
+import logging
 import threading
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -31,8 +33,21 @@ from sklearn.pipeline import Pipeline
 from database import KAYNAK_AGIRLIK, KAYNAK_PENDING, Symptom, get_session
 from nlp_engine import tokenize
 
-# Model bir tahmini "guvenilir" saymak icin gereken minimum olasilik.
-GUVEN_ESIGI = 0.28
+# Kararsizlik olcutu (55 sinif icin). Eski mutlak esik (0.28) 55 sinifta dogru
+# tahminlerin yarisini bile "kararsiz" isaretliyordu; marj tabanli olcut
+# (1. ve 2. tahmin arasindaki fark) daha ayirt edici (bkz. data/UYARI_OKUYUN.txt).
+MARJ_ESIGI = 0.05      # top1 - top2 bu degerin altindaysa kararsiz
+GUVEN_ESIGI = 0.15     # top1 bu mutlak degerin altindaysa kararsiz
+
+# Tur bilgisi modele girdi olarak verilir: metnin basina tokenizer'dan
+# govdelenmeden gecen bir tur token'i eklenir ("kedix"/"kopekx").
+TUR_TOKEN = {"kedi": "kedix", "kopek": "kopekx"}
+
+
+def metin_hazirla(metin: str, tur: Optional[str]) -> str:
+    """Egitim ve tahminde AYNI bicimde uygulanir: tur token'i + ham metin."""
+    token = TUR_TOKEN.get(tur or "")
+    return f"{token} {metin}" if token else metin
 
 
 @dataclass
@@ -41,6 +56,8 @@ class Tahmin:
     olasilik: float
     oneri: str = ""
     aciklayici_kelimeler: List[str] = field(default_factory=list)
+    hastalik_id: str = ""            # bilgi tabani anahtari (aciliyet/tur filtresi icin)
+    aciliyet: str = ""               # hastaligin temel aciliyeti: kirmizi/turuncu/yesil
 
 
 @dataclass
@@ -60,6 +77,9 @@ class SemptomSiniflandirici:
     def __init__(self) -> None:
         self._pipeline: Optional[Pipeline] = None
         self._oneri_haritasi: dict[str, str] = {}
+        self._id_haritasi: dict[str, str] = {}        # hastalik adi -> hastalik_id
+        self._tur_haritasi: dict[str, str] = {}       # hastalik adi -> kedi/kopek/genel
+        self._aciliyet_haritasi: dict[str, str] = {}  # hastalik adi -> temel aciliyet
         self._lock = threading.Lock()
         self.durum = ModelDurumu()
 
@@ -72,21 +92,43 @@ class SemptomSiniflandirici:
                 .filter(Symptom.kaynak != KAYNAK_PENDING)
                 .all()
             )
-            metinler = [k.semptom for k in kayitlar]
+            metinler = [metin_hazirla(k.semptom, k.tur) for k in kayitlar]
             etiketler = [k.hastalik for k in kayitlar]
             agirliklar = [KAYNAK_AGIRLIK.get(k.kaynak, 0.5) for k in kayitlar]
 
             # Her hastalik icin tavsiye metni (ilk dolu olan gecerli sayilir)
             oneriler: dict[str, str] = {}
+            idler: dict[str, str] = {}
+            turler: dict[str, set] = {}
+            aciliyetler: dict[str, str] = {}
             for k in kayitlar:
                 if k.oneri and k.hastalik not in oneriler:
                     oneriler[k.hastalik] = k.oneri
+                if k.hastalik_id and k.hastalik not in idler:
+                    idler[k.hastalik] = k.hastalik_id
+                if k.tur in ("kedi", "kopek"):
+                    turler.setdefault(k.hastalik, set()).add(k.tur)
+                if k.aciliyet and k.hastalik not in aciliyetler:
+                    aciliyetler[k.hastalik] = k.aciliyet
+            self._id_haritasi = idler
+            # Egitim verisinde yalnizca tek turde gorulen hastalik o ture ozgudur.
+            self._tur_haritasi = {
+                h: next(iter(t)) if len(t) == 1 else "genel" for h, t in turler.items()
+            }
+            self._aciliyet_haritasi = _temel_aciliyetler(idler) or aciliyetler
             return metinler, etiketler, agirliklar, oneriler
         finally:
             session.close()
 
-    def egit(self) -> ModelDurumu:
-        """Veritabanindaki guncel veriyle modeli bastan egitir."""
+    def egit(self, cv_arka_planda: bool = True) -> ModelDurumu:
+        """Veritabanindaki guncel veriyle modeli bastan egitir.
+
+        Capraz dogrulama 55 sinif / ~2.500 ornekte egitimin kendisinden iki kat
+        uzun surer (~11 sn). Sunucu acilisini ve canli ogrenme sonrasi yeniden
+        egitimi bekletmemek icin varsayilan olarak arka planda hesaplanir;
+        sonuc gelene kadar `durum.dogruluk` None kalir. Olcum betigi gibi
+        sonucu hemen isteyen cagiranlar `cv_arka_planda=False` verir.
+        """
         metinler, etiketler, agirliklar, oneriler = self._veriyi_yukle()
 
         if len(set(etiketler)) < 2:
@@ -129,7 +171,7 @@ class SemptomSiniflandirici:
 
         pipeline.fit(metinler, etiketler, clf__sample_weight=np.asarray(agirliklar))
 
-        dogruluk = self._capraz_dogrula(pipeline, metinler, etiketler)
+        dogruluk = None if cv_arka_planda else self._capraz_dogrula(pipeline, metinler, etiketler)
         vectorizer: TfidfVectorizer = pipeline.named_steps["tfidf"]
 
         with self._lock:
@@ -144,7 +186,24 @@ class SemptomSiniflandirici:
                 egitim_zamani=datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 siniflar=sorted(pipeline.named_steps["clf"].classes_.tolist()),
             )
-        return self.durum
+            durum = self.durum
+
+        if cv_arka_planda:
+            threading.Thread(
+                target=self._cv_arka_plan,
+                args=(pipeline, metinler, etiketler),
+                name="vetai-cv",
+                daemon=True,
+            ).start()
+        return durum
+
+    def _cv_arka_plan(self, pipeline, metinler, etiketler) -> None:
+        """Capraz dogrulamayi hesaplar; bu arada daha yeni bir egitim olduysa sonucu atar."""
+        dogruluk = self._capraz_dogrula(pipeline, metinler, etiketler)
+        with self._lock:
+            if self._pipeline is pipeline:
+                self.durum = dataclasses.replace(self.durum, dogruluk=dogruluk)
+        logging.getLogger("vetai.ml").info("Capraz dogrulama tamamlandi: %s", dogruluk)
 
     @staticmethod
     def _capraz_dogrula(pipeline: Pipeline, metinler: list[str], etiketler: list[str]) -> Optional[float]:
@@ -169,22 +228,39 @@ class SemptomSiniflandirici:
         return self._pipeline is not None
 
     # --------------------------------------------------------------- tahmin
-    def tahmin_et(self, metin: str, top_k: int = 3) -> List[Tahmin]:
-        """Metin icin en olasi `top_k` hastaligi olasiliklariyla dondurur."""
+    def tahmin_et(self, metin: str, top_k: int = 3, tur: Optional[str] = None) -> List[Tahmin]:
+        """Metin icin en olasi `top_k` hastaligi olasiliklariyla dondurur.
+
+        `tur` verilirse (kedi/kopek) metne tur token'i eklenir ve o turde
+        gorulmeyen hastaliklarin olasiligi sifirlanip dagilim yeniden
+        normalize edilir (tur filtresi).
+        """
         with self._lock:
             pipeline = self._pipeline
             oneriler = dict(self._oneri_haritasi)
+            idler = dict(self._id_haritasi)
+            turler = dict(self._tur_haritasi)
+            aciliyetler = dict(self._aciliyet_haritasi)
 
         if pipeline is None:
             return []
 
-        olasiliklar = pipeline.predict_proba([metin])[0]
-        siniflar = pipeline.named_steps["clf"].classes_
-
+        hazir = metin_hazirla(metin, tur)
         # Hicbir token sozluge dusmediyse model sadece sinif onceligini yansitir;
-        # bu durumda tahmin uretmek yaniltici olur.
+        # bu durumda tahmin uretmek yaniltici olur. (Tur token'i sayilmaz.)
         if not pipeline.named_steps["tfidf"].transform([metin]).nnz:
             return []
+
+        olasiliklar = np.asarray(pipeline.predict_proba([hazir])[0], dtype=float)
+        siniflar = pipeline.named_steps["clf"].classes_
+
+        if tur in ("kedi", "kopek"):
+            for j, sinif in enumerate(siniflar):
+                if turler.get(str(sinif), "genel") not in ("genel", tur):
+                    olasiliklar[j] = 0.0
+            toplam = olasiliklar.sum()
+            if toplam > 0:
+                olasiliklar = olasiliklar / toplam
 
         en_iyi = np.argsort(olasiliklar)[::-1][:top_k]
         return [
@@ -193,8 +269,11 @@ class SemptomSiniflandirici:
                 olasilik=float(round(olasiliklar[i], 4)),
                 oneri=oneriler.get(str(siniflar[i]), ""),
                 aciklayici_kelimeler=self.aciklayici_kelimeler(metin, str(siniflar[i])),
+                hastalik_id=idler.get(str(siniflar[i]), ""),
+                aciliyet=aciliyetler.get(str(siniflar[i]), ""),
             )
             for i in en_iyi
+            if olasiliklar[i] > 0
         ]
 
     def aciklayici_kelimeler(self, metin: str, hastalik: str, limit: int = 4) -> List[str]:
@@ -232,16 +311,39 @@ class SemptomSiniflandirici:
         return [ad.replace("_", " ") for ad, _ in katkilar[:limit]]
 
 
+def _temel_aciliyetler(idler: dict[str, str]) -> dict[str, str]:
+    """hastalik adi -> temel aciliyet; data/hastalik_aciliyet.json'dan (varsa)."""
+    import json
+    import os
+
+    yol = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "hastalik_aciliyet.json")
+    try:
+        with open(yol, encoding="utf-8") as f:
+            id_aciliyet = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    return {ad: id_aciliyet[hid] for ad, hid in idler.items() if hid in id_aciliyet}
+
+
 # Uygulama genelinde tek siniflandirici ornegi
 siniflandirici = SemptomSiniflandirici()
 
 
-def egit() -> ModelDurumu:
-    return siniflandirici.egit()
+def egit(cv_arka_planda: bool = True) -> ModelDurumu:
+    return siniflandirici.egit(cv_arka_planda=cv_arka_planda)
 
 
-def tahmin_et(metin: str, top_k: int = 3) -> List[Tahmin]:
-    return siniflandirici.tahmin_et(metin, top_k=top_k)
+def tahmin_et(metin: str, top_k: int = 3, tur: Optional[str] = None) -> List[Tahmin]:
+    return siniflandirici.tahmin_et(metin, top_k=top_k, tur=tur)
+
+
+def kararsiz_mi(tahminler: List[Tahmin]) -> bool:
+    """Arayuz tek hastalik yerine 'su tablolardan biri olabilir' dili kullanmali mi?"""
+    if not tahminler:
+        return True
+    ilk = tahminler[0].olasilik
+    ikinci = tahminler[1].olasilik if len(tahminler) > 1 else 0.0
+    return ilk < GUVEN_ESIGI or (ilk - ikinci) < MARJ_ESIGI
 
 
 def durum() -> ModelDurumu:

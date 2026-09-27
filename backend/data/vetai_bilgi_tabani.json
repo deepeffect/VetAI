@@ -1,0 +1,5251 @@
+{
+ "hastaliklar": [
+  {
+   "id": "akut_gastroenterit",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.6,
+    "kedi": 0.4
+   },
+   "ad_tr": "Akut gastroenterit (mide-bağırsak iltihabı)",
+   "ad_en": "Acute gastroenteritis",
+   "sistem": "Sindirim",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.25,
+    "genc": 0.35,
+    "eriskin": 0.3,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KUSMA": 3,
+    "ISHAL": 3,
+    "ISTAHSIZLIK": 2,
+    "HALSIZLIK": 2,
+    "KARIN_AGRISI": 1,
+    "GAZ": 1,
+    "ISHAL_MUKUS": 1,
+    "SU_ICMEME": 1
+   },
+   "baglam": {
+    "COP_YEDI": 0.5
+   },
+   "ayirici": [
+    "bagirsak_parazitleri",
+    "yabanci_cisim",
+    "pankreatit",
+    "zehirlenme",
+    "parvovirus",
+    "panlokopeni"
+   ],
+   "aciklama": "Bozuk ya da alışılmadık bir gıda, ani mama değişikliği veya hafif bir enfeksiyon sonrası mide ve bağırsakların geçici iltihabı. Çoğu vaka birkaç günde düzelir; ama yavrularda, yaşlılarda ve kanlı ishalde tablo hızla ağırlaşabilir.",
+   "evde": "Taze su sürekli ulaşılabilir olsun; 8–12 saat yemek vermeden bekleyip sonra az ve sık, haşlanmış tavuk-pirinç gibi hafif gıda verilebilir.",
+   "kacin": "İnsan ilaçları (özellikle parasetamol, ibuprofen) kesinlikle verilmez; kusma sürüyorsa zorla yedirilmez.",
+   "ornekler": [
+    "Köpeğim dün akşam çöpü karıştırmış, gece iki kez kustu bu sabah da ishal oldu. Su içiyor ama mamaya bakmıyor bile.",
+    "Kedimin mamasını geçen hafta değiştirdik, o günden beri kakası cıvık ve günde bir iki kez kusuyor, başka bir şikâyeti yok gibi.",
+    "hocam köpek sabahtan beri 4 kere kustu ishal de var halsiz yatıyor ne yapmalıyım",
+    "3 yaşındaki kedim gece sarı köpüklü kustu, sabah da sulu kaka yaptı. Biraz keyifsiz ama su içiyor. Aç mı bırakmalıyım?",
+    "Bayramda misafirler sofradan et vermiş, köpeğim akşamdan beri sürekli ishal, karnı guruldiyor ve gaz çıkarıyor.",
+    "Yavru köpeğimiz iki gündür yumuşak kaka yapıyor, bir kere de kustu. Oyun oynuyor ama iştahı biraz azaldı."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0), genel veteriner iç hastalıkları bilgisi; veteriner kontrolü gerekir"
+  },
+  {
+   "id": "yabanci_cisim",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.7,
+    "kedi": 0.3
+   },
+   "ad_tr": "Yabancı cisim yutma / bağırsak tıkanıklığı",
+   "ad_en": "Gastrointestinal foreign body / obstruction",
+   "sistem": "Sindirim",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.4,
+    "genc": 0.4,
+    "eriskin": 0.15,
+    "yasli": 0.05
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Labrador",
+     "Golden Retriever",
+     "Beagle",
+     "Bulldog"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KUSMA": 3,
+    "YABANCI_CISIM": 3,
+    "ISTAHSIZLIK": 2,
+    "HALSIZLIK": 2,
+    "KARIN_AGRISI": 2,
+    "KABIZLIK": 1,
+    "OGURME_BOS": 1,
+    "YUTMA_ZOR": 1,
+    "DEHIDRASYON": 1,
+    "SU_ICMEME": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "akut_gastroenterit",
+    "pankreatit",
+    "gdv",
+    "kabizlik_megakolon",
+    "zehirlenme"
+   ],
+   "aciklama": "Oyuncak parçası, ip, çorap, kemik, iğne-iplik gibi bir cismin mide ya da bağırsakta takılması. Tekrarlayan kusma, hiçbir şey yiyememe ve karın ağrısı tipiktir; tıkanıklık bağırsağı saatler içinde kalıcı zedeleyebilir.",
+   "evde": "Yiyecek ve su verilmeden en kısa sürede kliniğe gidilir; yuttuğu cismin benzeri ya da kalan parçası yanınıza alınır.",
+   "kacin": "Ağızdan ya da anüsten sarkan ipi kesinlikle çekmeyin, kesmeyin; kusturmaya çalışmayın.",
+   "ornekler": [
+    "Köpeğim iki gün önce oyuncağının bir parçasını yuttu, o günden beri ne yese kusuyor, bugün su bile tutmadı ve çok halsiz.",
+    "Kedim iple oynuyordu, ipin ucu kayboldu. Bugün üç kez kustu, mama yemiyor, karnına dokununca kaçıyor.",
+    "Yavru köpeğimiz çorap yemeye bayılıyor, dün akşamdan beri sürekli öğürüyor ve hiçbir şey yiyemiyor, bir şey yuttuğundan korkuyoruz.",
+    "Hocam köpeğim kemik yedi ondan sonra kabız oldu 2 gündür kaka yapmıyor kusuyor da",
+    "Kedimin ağzından ip sarkıyordu, çektim biraz geldi sonra durdu. Şimdi sürekli yutkunuyor ve kusmaya çalışıyor, ne yapmalıyım?",
+    "Golden'ımız mısır koçanını bütün yutmuş olabilir, bugün yediği her şeyi çıkardı, karnı gergin ve sürekli yatıyor."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "pankreatit",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.65,
+    "kedi": 0.35
+   },
+   "ad_tr": "Pankreatit (pankreas iltihabı)",
+   "ad_en": "Pancreatitis",
+   "sistem": "Sindirim",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.15,
+    "eriskin": 0.45,
+    "yasli": 0.35
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Minyatür Schnauzer",
+     "Yorkshire Terrier",
+     "Cocker Spaniel",
+     "Cavalier King Charles"
+    ],
+    "kedi": [
+     "Siyam"
+    ]
+   },
+   "belirtiler": {
+    "KUSMA": 3,
+    "ISTAHSIZLIK": 3,
+    "KARIN_AGRISI": 3,
+    "HALSIZLIK": 2,
+    "ISHAL": 1,
+    "ATES": 1,
+    "DEHIDRASYON": 1,
+    "SAKLANMA": 1,
+    "SARILIK": 1
+   },
+   "baglam": {
+    "COP_YEDI": 0.5,
+    "KILO_FAZLA": 0.3
+   },
+   "ayirici": [
+    "akut_gastroenterit",
+    "yabanci_cisim",
+    "kronik_bobrek",
+    "zehirlenme",
+    "kronik_enteropati"
+   ],
+   "aciklama": "Pankreasın, sıklıkla yağlı bir öğün ya da bilinmeyen bir nedenle aniden iltihaplanması. Tekrarlayan kusma, şiddetli karın ağrısı (kambur duruş, 'namaz pozisyonu') ve iştahsızlık tipiktir; kedilerde belirtiler daha silik olur, çoğu zaman yalnızca iştahsızlık ve halsizlik görülür.",
+   "evde": "Su ulaşılabilir olsun; yağlı ve insan yemeği kesinlikle verilmez. Tanı ve serum tedavisi için gecikmeden kliniğe gidilir.",
+   "kacin": "Ağrı kesici olarak insan ilaçları verilmez; 'kendi geçer' diye beklenmez.",
+   "ornekler": [
+    "Köpeğime kurban bayramında yağlı et verdiler, akşamdan beri kusuyor, karnına dokununca bağırıyor ve ön bacaklarını uzatıp kalçasını kaldırarak duruyor.",
+    "Schnauzer'ım 7 yaşında, iki gündür hiçbir şey yemiyor, kustu ve sürekli kambur duruyor, karnı çok hassas.",
+    "Kedim 10 yaşında, üç gündür mama yemiyor, bir köşede yatıyor ve dün bir kez kustu. Gözleri de biraz sarımsı geldi bana.",
+    "Kilolu bir köpeğimiz var, misafirler masadan yağlı yemek vermiş, o gece başlayan kusma iki gündür geçmedi, çok halsiz.",
+    "hocam kopegim karnı agrıyor gibi ikide bir kamburunu çıkarıyor kusuyor yemiyor ates de var galiba",
+    "Yaşlı kedimiz yemeği koklayıp bırakıyor, bir haftadır kilo verdi, ara ara kusuyor ve kucağa alınca karnını sakınıyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "bagirsak_parazitleri",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.5,
+    "kedi": 0.5
+   },
+   "ad_tr": "Bağırsak parazitleri (kurtlar, Giardia, Coccidia)",
+   "ad_en": "Intestinal parasites",
+   "sistem": "Sindirim / Paraziter",
+   "yayginlik": 3,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.6,
+    "genc": 0.25,
+    "eriskin": 0.1,
+    "yasli": 0.05
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "ISHAL": 3,
+    "KURT_GORUNTU": 3,
+    "KARIN_SIS_YAVRU": 2,
+    "KILO_KAYBI": 2,
+    "KUSMA": 1,
+    "POPO_SURTME": 1,
+    "TUY_KOTU": 1,
+    "ISHAL_MUKUS": 1,
+    "ISTAH_ARTISI": 1,
+    "KANLI_ISHAL": 1
+   },
+   "baglam": {
+    "KENE_ILACI_YOK": 0.5,
+    "YENI_ALINDI": 0.35,
+    "DISARI_CIKAN": 0.3
+   },
+   "ayirici": [
+    "akut_gastroenterit",
+    "kronik_enteropati",
+    "parvovirus",
+    "panlokopeni"
+   ],
+   "aciklama": "Yuvarlak kurtlar, şerit kurtlar ve Giardia gibi tek hücreliler özellikle yavrularda ishal, şiş karın, kilo alamama ve mat tüylere yol açar. Dışkıda pirinç tanesi gibi parçalar ya da spagetti benzeri kurtlar görülebilir. Bir kısmı insanlara da bulaşabilir.",
+   "evde": "Dışkı örneğini temiz bir kapta kliniğe götürün; kumu/dışkı alanını sık temizleyin, ellerinizi yıkayın. Parazit ilacı veteriner hekimin kiloya göre verdiği dozla yapılır.",
+   "kacin": "Marketten rastgele parazit hapı verip 'ilaçladık' diye bırakmayın; yavru sulu ishalliyse ve halsizse beklemeyin.",
+   "ornekler": [
+    "Sokaktan aldığımız yavru kedinin kakasında pirinç tanesi gibi beyaz şeyler var, karnı da balon gibi ama kendisi zayıf.",
+    "Köpeğim kustu ve kusmuğunda spagetti gibi bir kurt vardı, iki haftadır da kakası yumuşak.",
+    "2 aylık yavru köpeğimiz çok yiyor ama kilo almıyor, karnı şiş, kakası sümüklü ve ara ara ishal.",
+    "Kedim dışarı çıkıyor, parazit ilacını en son bir yıl önce yaptık. Son günlerde poposunu yere sürtüyor ve tüyleri matlaştı.",
+    "yavru kedinin poposunda pirinc gibi seyler yapısık ishali de var ne yapmam lazım",
+    "Barınaktan aldığımız köpek iki haftadır ishal, mama değiştirdik geçmedi, kakasında bazen kan gibi çizgiler oluyor."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kronik_enteropati",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.5,
+    "kedi": 0.5
+   },
+   "ad_tr": "Kronik enteropati / İnflamatuar bağırsak hastalığı",
+   "ad_en": "Chronic enteropathy / IBD",
+   "sistem": "Sindirim",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.2,
+    "eriskin": 0.45,
+    "yasli": 0.3
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Alman Çoban Köpeği",
+     "Boxer",
+     "Fransız Bulldog"
+    ],
+    "kedi": [
+     "Siyam"
+    ]
+   },
+   "belirtiler": {
+    "ISHAL_KRONIK": 3,
+    "KUSMA_KRONIK": 2,
+    "KILO_KAYBI": 2,
+    "ISHAL_MUKUS": 2,
+    "GAZ": 1,
+    "ISTAHSIZLIK": 1,
+    "ISTAH_ARTISI": 1,
+    "HALSIZLIK": 1,
+    "IYILESMIYOR": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "bagirsak_parazitleri",
+    "atopik_alerjik_dermatit",
+    "pankreatit",
+    "hipertiroidi",
+    "kronik_bobrek"
+   ],
+   "aciklama": "Haftalarca süren ya da tekrarlayan ishal ve/veya kusma ile kilo kaybı; altında gıda duyarlılığı, bağırsak florası bozukluğu ya da bağışıklık kaynaklı iltihap olabilir. Tanı için basamaklı yaklaşım (parazit dışlama, diyet denemesi, gerekirse biyopsi) gerekir.",
+   "evde": "Belirtileri, mama değişikliklerini ve dışkı kıvamını günlük not edin; veteriner hekimin önerdiği tek protein/hidrolize diyeti en az 6–8 hafta kesintisiz uygulayın.",
+   "kacin": "Sık sık mama değiştirmeyin; sofradan yiyecek vermeyin.",
+   "ornekler": [
+    "Köpeğimin ishali iki aydır bir geçiyor bir geliyor, kakasında jöle gibi sümük oluyor, iştahı iyi ama zayıfladı.",
+    "Kedim aylardır haftada birkaç kez kusuyor, mama değiştirdik parazit ilacı yaptık düzelmedi, son tahlilde bir şey çıkmadı.",
+    "Alman çobanımız 4 yaşında, sürekli yumuşak kaka yapıyor ve çok gaz çıkarıyor, iki kez antibiyotik verildi geçici düzeldi.",
+    "Hocam kedim 9 yaşında iyi yiyor ama kilo veriyor, dışkısı hiç düzgün olmadı son üç aydır, ne olabilir?",
+    "kopegimin ishali haftalardır gecmiyor 3 farklı mama denedik parazit ilacı da yaptık",
+    "Boxer'ımız çok yiyor ama zayıflıyor, dışkısı cıvık ve kötü kokuyor, bazen de sabah sarı su kusuyor; aylardır böyle."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kabizlik_megakolon",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.3,
+    "kedi": 0.7
+   },
+   "ad_tr": "Kabızlık / megakolon",
+   "ad_en": "Constipation / megacolon",
+   "sistem": "Sindirim",
+   "yayginlik": 2,
+   "seyir": "subakut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.15,
+    "eriskin": 0.35,
+    "yasli": 0.45
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "Manx"
+    ]
+   },
+   "belirtiler": {
+    "KABIZLIK": 3,
+    "IKINMA_KUM": 3,
+    "KUSMA": 1,
+    "ISTAHSIZLIK": 1,
+    "HALSIZLIK": 1,
+    "KARIN_AGRISI": 1,
+    "SESLENME": 1,
+    "DISKI_AGRILI": 1
+   },
+   "baglam": {
+    "KURU_MAMA": 0.3,
+    "KILO_FAZLA": 0.3,
+    "YASLI": 0.3
+   },
+   "ayirici": [
+    "uretral_tikaniklik",
+    "yabanci_cisim",
+    "kronik_bobrek",
+    "anal_kese"
+   ],
+   "aciklama": "Dışkının bağırsakta sertleşip birikmesi; kedilerde yetersiz su alımı, tüy yutma, böbrek hastalığı ya da kalın bağırsağın gevşemesi (megakolon) zemin hazırlar. Kum kabında uzun süre ıkınan bir erkek kedide asıl tehlike idrar yolu tıkanıklığıdır; bu ayrımı yalnızca veteriner hekim yapabilir.",
+   "evde": "Yaş mama ve su alımını artırın; kilolu hayvanlarda kilo kontrolü. Ikınıyor ve hiç idrar da yapmıyorsa bu bir acildir.",
+   "kacin": "İnsan laksatifleri, lavman ya da zeytinyağı gibi ev çözümlerini veteriner hekime danışmadan uygulamayın.",
+   "ornekler": [
+    "Kedim 3 gündür kaka yapmadı, kum kabına giriyor ıkınıyor ama bir şey çıkmıyor, biraz da iştahsız.",
+    "Yaşlı kedimizin kakası taş gibi sert ve az geliyor, kumda bağırıyor, dün bir kez de kustu.",
+    "Köpeğim kaka yapmak için çok zorlanıyor, iki gündür çok az ve çok sert kaka yaptı, kaka yaparken bağırıyor.",
+    "hocam kedim kuma girip cıkıyor ıkınıyor kaka yapamıyor 2 gün oldu normal mi",
+    "Sadece kuru mama yiyen 8 yaşındaki kedim uzun süredir kabız, her seferinde saatlerce ıkınıyor ve sonunda çok sert küçük parçalar çıkıyor.",
+    "Kedim kum kabında uzun süre kalıp ıkınıyor, sonra bir şey yapmadan çıkıyor; çiş yaptı mı emin değilim, karnı da gergin gibi."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "zehirlenme",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.6,
+    "kedi": 0.4
+   },
+   "ad_tr": "Zehirlenme (ilaç, gıda, bitki, kimyasal)",
+   "ad_en": "Toxicosis / poisoning",
+   "sistem": "Acil / Toksikoloji",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.35,
+    "genc": 0.35,
+    "eriskin": 0.2,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "ZEHIR_TEMAS": 3,
+    "ZEHIR_TEMAS_KEDI": 2,
+    "KUSMA": 3,
+    "SALYA": 2,
+    "TITREME": 2,
+    "HALSIZLIK": 2,
+    "DENGE": 2,
+    "NOBET": 1,
+    "ISHAL": 1,
+    "SOLUK_DISETI": 1,
+    "BURUN_KANAMA": 1,
+    "KAN_KUSMA": 1,
+    "DISKI_SIYAH": 1,
+    "HUZURSUZ": 1,
+    "NEFES_DARLIGI": 1,
+    "KANLI_IDRAR": 1
+   },
+   "baglam": {
+    "DISARI_CIKAN": 0.3
+   },
+   "ayirici": [
+    "akut_gastroenterit",
+    "epilepsi",
+    "pankreatit",
+    "yabanci_cisim",
+    "kene_hastaliklari"
+   ],
+   "aciklama": "Çikolata, üzüm/kuru üzüm, ksilitol (şekersiz sakız), soğan, insan ağrı kesicileri, fare zehri, antifriz, böcek ilaçları ve kedilerde zambak gibi maddeler ölümcül olabilir. Belirtiler maddeye göre değişir: kusma, salya, titreme, nöbet, kanama ya da halsizlik. Erken müdahale (ilk 1–2 saat) sonucu belirler.",
+   "evde": "Hemen kliniğe gidin; şüphelenilen maddenin kutusunu/etiketini ve yaklaşık miktarı yanınıza alın. Maddeyi ne zaman aldığını not edin.",
+   "kacin": "Tuzlu su, süt veya oksijenli suyla kendi başınıza kusturmaya çalışmayın; kedilere asla parasetamol vermeyin.",
+   "ornekler": [
+    "Köpeğim bir paket bitter çikolatayı yemiş, bir saattir çok huzursuz, titriyor ve iki kez kustu.",
+    "Kedim vazodaki zambağın yapraklarını kemirmiş, akşam kustu ve şimdi çok halsiz, su içmiyor.",
+    "Bahçede fare zehri vardı, köpeğim yemiş olabilir; bugün burnundan kan geldi ve dişetleri bembeyaz.",
+    "hocam kedime pire ilacı surdum kopek ilacıymış meger simdi titriyor salyası akıyor cok korkuyorum",
+    "Köpeğim ağrı kesici hapımı yutmuş, birkaç saat sonra kusmaya başladı ve sarhoş gibi yürüyor.",
+    "Kedimin dişi ağrıyor diye parasetamol verdim, birkaç saat sonra yüzü şişti, zor nefes alıyor ve dişetleri morardı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "sicak_carpmasi",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.85,
+    "kedi": 0.15
+   },
+   "ad_tr": "Sıcak çarpması",
+   "ad_en": "Heat stroke",
+   "sistem": "Acil",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.1,
+    "genc": 0.3,
+    "eriskin": 0.35,
+    "yasli": 0.25
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Bulldog",
+     "Fransız Bulldog",
+     "Pug",
+     "Boxer",
+     "Golden Retriever",
+     "Sibirya Kurdu"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "Exotic Shorthair"
+    ]
+   },
+   "belirtiler": {
+    "SICAK_TEMAS": 3,
+    "SOLUK_HIZLI_PANTING": 3,
+    "NEFES_DARLIGI": 2,
+    "SALYA": 2,
+    "DENGE": 2,
+    "HALSIZLIK": 2,
+    "ATES": 2,
+    "KUSMA": 1,
+    "ISHAL": 1,
+    "BILINC": 1,
+    "KANLI_ISHAL": 1,
+    "DIL_MOR": 1
+   },
+   "baglam": {
+    "KILO_FAZLA": 0.3
+   },
+   "ayirici": [
+    "kalp_yetmezligi",
+    "trakeal_kollaps",
+    "zehirlenme",
+    "epilepsi"
+   ],
+   "aciklama": "Sıcak ve nemli havada egzersiz, arabada ya da güneşte kalma sonucu vücut ısısının tehlikeli düzeye çıkması. Kısa burunlu ırklar, kilolu ve yaşlı hayvanlar çok daha duyarlıdır. Organ hasarı saatler içinde gelişebilir; bu bir acildir.",
+   "evde": "Hemen serin bir yere alın, vücudunu (özellikle karın ve patiler) ılık-serin suyla ıslatın, vantilatörle hava akımı sağlayın ve soğutmaya devam ederek en yakın kliniğe gidin.",
+   "kacin": "Buzlu su veya buz uygulamayın (damarları daraltır); zorla su içirmeyin; 'dinlensin geçer' diye beklemeyin.",
+   "ornekler": [
+    "Öğle sıcağında köpeğimle uzun yürüyüş yaptık, döndüğümüzden beri dili dışarıda hızlı hızlı soluyor, salyası akıyor ve ayakta duramıyor.",
+    "Bulldog'umuz arabada 20 dakika kaldı, çıkardığımızda çok kötüydü, dili mosmor, kustu ve sendeliyor.",
+    "hocam kopek gunesin altinda top oynadi simdi yatiyor kalkamiyor nefes nefese ates gibi yaniyor",
+    "Kedim balkonda güneşin altında kalmış, ağzı açık nefes alıyor ve çok halsiz, bu normal değil.",
+    "Yaşlı Golden'ımız plajda koştu, eve gelince ishal oldu, kusuyor ve dinlenirken bile soluk soluğa, vücudu çok sıcak.",
+    "Pug'ım sıcakta yürüyüşten sonra bir anda yığıldı, kendine geldi ama hâlâ çok hızlı nefes alıyor ve dişetleri kıpkırmızı."
+   ],
+   "kaynak": "VetCompass sıcak çarpması çalışmaları (Hall ve ark.), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kronik_bobrek",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.35,
+    "kedi": 0.65
+   },
+   "ad_tr": "Kronik böbrek hastalığı",
+   "ad_en": "Chronic kidney disease",
+   "sistem": "Üriner",
+   "yayginlik": 3,
+   "seyir": "kronik",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.08,
+    "eriskin": 0.25,
+    "yasli": 0.65
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Cocker Spaniel",
+     "Shih Tzu"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "Abyssinian",
+     "Siyam",
+     "Maine Coon"
+    ]
+   },
+   "belirtiler": {
+    "COK_SU_ICME": 3,
+    "COK_ISEME": 3,
+    "KILO_KAYBI": 3,
+    "ISTAHSIZLIK": 2,
+    "KUSMA": 2,
+    "HALSIZLIK": 2,
+    "AGIZ_KOKUSU": 2,
+    "TUY_KOTU": 1,
+    "DEHIDRASYON": 1,
+    "KABIZLIK": 1,
+    "AGIZ_YARA": 1,
+    "SOLUK_DISETI": 1
+   },
+   "baglam": {
+    "YASLI": 0.6
+   },
+   "ayirici": [
+    "diyabet",
+    "hipertiroidi",
+    "kronik_enteropati",
+    "dis_hastaligi",
+    "cushing"
+   ],
+   "aciklama": "Böbreklerin süzme yeteneğinin aylar-yıllar içinde azalması; özellikle yaşlı kedilerde çok yaygındır. Çok su içip çok idrar yapma, kilo kaybı, iştahsızlık, kusma ve ağız kokusu tipiktir. Erken tanı ve diyetle hastalığın ilerlemesi yavaşlatılabilir.",
+   "evde": "Her yerde taze su bulundurun, yaş mamaya geçişi teşvik edin; kilo ve su tüketimini takip edin. Kan ve idrar tahlili için randevu alın; kusma ve tam iştahsızlık varsa bugün gidin.",
+   "kacin": "Böbreğe zararlı insan ilaçları (ibuprofen, parasetamol) asla verilmez; tuzlu ve fosforu yüksek gıdalardan kaçının.",
+   "ornekler": [
+    "13 yaşındaki kedim son aylarda çok su içiyor, kumu çok çabuk ıslanıyor ve iyice zayıfladı, ağzı da kokuyor.",
+    "Yaşlı kedimiz mama yemiyor, ara ara kusuyor, sürekli su kabının başında oturuyor ve tüyleri keçeleşti.",
+    "Köpeğim 11 yaşında, gece işemek için kalkıyor, sürekli su içiyor ve kilo veriyor, iştahı da azaldı.",
+    "hocam kedim 12 yasında cok su içiyor cok işiyor zayıfladı bir de kusuyor son 1 aydır",
+    "Persian kedimizin nefesi çok kötü kokuyor, dişleri temiz ama; eskisine göre çok su içiyor ve sırtı kemik gibi oldu.",
+    "Yaşlı köpeğimiz keyifsiz, mamaya karşı isteksiz, sabahları sarı su kusuyor ve son haftalarda gözle görülür zayıfladı; su tüketimi de arttı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), VetCompass kedi çalışmaları, Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "diyabet",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.5,
+    "kedi": 0.5
+   },
+   "ad_tr": "Şeker hastalığı (diabetes mellitus)",
+   "ad_en": "Diabetes mellitus",
+   "sistem": "Endokrin",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.01,
+    "genc": 0.09,
+    "eriskin": 0.4,
+    "yasli": 0.5
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Poodle",
+     "Dachshund",
+     "Minyatür Schnauzer",
+     "Beagle",
+     "Samoyed"
+    ],
+    "kedi": [
+     "Burma Kedisi"
+    ]
+   },
+   "belirtiler": {
+    "COK_SU_ICME": 3,
+    "COK_ISEME": 3,
+    "KILO_KAYBI": 2,
+    "ISTAH_ARTISI": 2,
+    "HALSIZLIK": 1,
+    "ARKA_BACAK_GUCSUZ": 1,
+    "TUY_KOTU": 1,
+    "KUSMA": 1,
+    "GOZ_BULANIK": 1,
+    "TEKRARLAYAN_ENF": 1
+   },
+   "baglam": {
+    "KILO_FAZLA": 0.5,
+    "ERKEK": 0.3
+   },
+   "ayirici": [
+    "kronik_bobrek",
+    "hipertiroidi",
+    "cushing",
+    "idrar_yolu_enf_kopek",
+    "piyometra"
+   ],
+   "aciklama": "Vücudun insülini yeterince üretememesi ya da kullanamaması. Çok su içme, çok idrar, iştah artışına rağmen kilo kaybı tipiktir; kedilerde arka bacaklarda topuk üzerine basma, köpeklerde gözlerde hızla gelişen katarakt eşlik edebilir. Tedavi edilmezse ketoasidoz denen ağır bir tabloya dönüşür.",
+   "evde": "Kan ve idrar şekeri ölçümü için en kısa sürede randevu alın; kusma, iştahsızlık ve halsizlik eklendiyse bugün gidin. Kilolu kedilerde kilo kontrolü ve düşük karbonhidratlı yaş mama koruyucudur.",
+   "kacin": "Şekerli, karbonhidratı yüksek atıştırmalıklar vermeyin; tanı sonrası insülini kesinlikle kendi başınıza değiştirmeyin.",
+   "ornekler": [
+    "Kilolu erkek kedim son bir ayda çok su içmeye başladı, kumu sürekli ıslak, çok yiyor ama zayıflıyor.",
+    "Köpeğim 9 yaşında, sürekli aç ve su içiyor, evin içine işemeye başladı, gözleri de bulanıklaştı sanki.",
+    "Kedim arka ayaklarının üstüne basarak tavuk gibi yürüyor, çok su içiyor ve kilo verdi.",
+    "hocam kopegim cok su içiyor cok işiyor iştahı da artmış ama zayıflıyor seker olabilir mi",
+    "Yaşlı Poodle'ımızın iştahı fena değil ama gözle görülür kilo verdi, gece işemek için kalkıyor ve halsiz.",
+    "Kedim son zamanlarda hem çok yiyor hem çok su içiyor, tüyleri yağlı ve bakımsız, iki kez de idrar yolu enfeksiyonu geçirdi."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), VetCompass kedi diyabet çalışması (Waite ve ark. 2025); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "otitis_eksterna",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.75,
+    "kedi": 0.25
+   },
+   "ad_tr": "Dış kulak yolu iltihabı (otitis eksterna)",
+   "ad_en": "Otitis externa",
+   "sistem": "Kulak",
+   "yayginlik": 3,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.1,
+    "genc": 0.35,
+    "eriskin": 0.4,
+    "yasli": 0.15
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Cocker Spaniel",
+     "Basset Hound",
+     "Golden Retriever",
+     "Labrador",
+     "Poodle",
+     "Shar Pei"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KULAK_KASINMA": 3,
+    "KULAK_AKINTI": 3,
+    "KULAK_AGRI": 2,
+    "BAS_EGIK": 1,
+    "HUZURSUZ": 1,
+    "KIZARIKLIK_DERI": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "kulak_uyuzu",
+    "atopik_alerjik_dermatit",
+    "vestibuler_sendrom",
+    "yabanci_cisim"
+   ],
+   "aciklama": "Kulak kanalının bakteri ve/veya maya ile iltihaplanması; sarkık kulaklı ırklar, alerjik hayvanlar ve sık yıkanan köpeklerde çok yaygındır. Kaşıntı, baş sallama, kötü kokulu akıntı ve ağrı tipiktir. Tekrarlayan olgularda çoğu zaman altta alerji vardır.",
+   "evde": "Kulağı kurcalamayın; kliniğe gidene kadar temiz ve kuru tutun. Kulak temizleme solüsyonları ancak muayene sonrası, zar sağlamsa kullanılır.",
+   "kacin": "Pamuklu çubukla derin temizlik ve insan kulak damlaları kullanmayın.",
+   "ornekler": [
+    "Cocker'ım bir haftadır kulağını kaşıyor ve başını sallıyor, kulağından kahverengi kötü kokulu bir akıntı geliyor.",
+    "Köpeğimin kulağının içi kıpkırmızı ve sıcak, dokununca bağırıyor, sürekli kafasını yana eğiyor.",
+    "Kedim kulağını sürekli kaşıyor, kulağının içi sarı akıntılı ve kokuyor.",
+    "hocam kopegin kulagı kokuyor kasınıyor kafasını sallıyor bir de kulagını yere surtuyor",
+    "Golden'ımız denize girdikten sonra kulağı koktu, kaşınıyor, gece huzursuz.",
+    "Labrador'um yıl içinde üçüncü kez kulak iltihabı oluyor, yine akıntı ve kaşıntı başladı, derisi de sık sık kızarıyor."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kulak_uyuzu",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.25,
+    "kedi": 0.75
+   },
+   "ad_tr": "Kulak uyuzu (Otodectes)",
+   "ad_en": "Ear mites (Otodectes cynotis)",
+   "sistem": "Kulak / Paraziter",
+   "yayginlik": 3,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.55,
+    "genc": 0.3,
+    "eriskin": 0.1,
+    "yasli": 0.05
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KULAK_SIYAH_KIR": 3,
+    "KULAK_KASINMA": 3,
+    "KULAK_AGRI": 1,
+    "KABUK_YARA": 1,
+    "BAS_EGIK": 1
+   },
+   "baglam": {
+    "YENI_ALINDI": 0.45,
+    "DISARI_CIKAN": 0.3,
+    "KENE_ILACI_YOK": 0.3
+   },
+   "ayirici": [
+    "otitis_eksterna",
+    "pire",
+    "uyuz"
+   ],
+   "aciklama": "Kulak kanalında yaşayan ve şiddetli kaşıntıya yol açan küçük bir akar; yavru kedilerde ve sokaktan alınan hayvanlarda çok yaygındır. Kulakta kahve telvesi gibi kuru siyah kir tipiktir. Evdeki diğer kedi ve köpeklere bulaşır.",
+   "evde": "Evdeki tüm kedi ve köpekler birlikte tedavi edilir; veteriner hekimin vereceği damla/spot-on ilaç kullanılır. Kulak kaşımadan kanamış yaralar varsa muayeneyi öne alın.",
+   "kacin": "Kulağa zeytinyağı, alkol ya da insan ilacı damlatmayın; yalnızca bir hayvanı tedavi edip diğerlerini bırakmayın.",
+   "ornekler": [
+    "Sokaktan aldığımız yavru kedinin kulaklarının içi kahve telvesi gibi siyah kirle dolu, deli gibi kaşınıyor.",
+    "Kedim iki haftadır kulağını kaşıyıp başını sallıyor, kulağından siyah kırıntılar çıkıyor.",
+    "yavru kedinin kulakları simsiyah kir dolu kasınıyor kanattı bile ne yapabilirim",
+    "Köpeğimin kulağının içinde kuru siyah bir kir var ve sürekli kulağını kaşıyor, evdeki kedide de aynısı başladı.",
+    "Petshoptan yeni aldığımız kedi kulaklarını durmadan kaşıyor, kulaklarının arkasında kaşımaktan yaralar oluştu.",
+    "Kedimin kulakları çok kirli görünüyor, siyah kuru bir kir, temizliyorum iki gün sonra yine doluyor ve kaşınıyor."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "pire",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.45,
+    "kedi": 0.55
+   },
+   "ad_tr": "Pire istilası / pire alerjisi dermatiti",
+   "ad_en": "Flea infestation / flea allergy dermatitis",
+   "sistem": "Deri / Paraziter",
+   "yayginlik": 3,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.3,
+    "genc": 0.3,
+    "eriskin": 0.3,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "PIRE_GORUNTU": 3,
+    "KASINMA": 3,
+    "KUYRUK_DIBI": 2,
+    "TUY_DOKULMESI": 2,
+    "KABUK_YARA": 1,
+    "SIVILCE_DERI": 1,
+    "HUZURSUZ": 1,
+    "SOLUK_DISETI": 1
+   },
+   "baglam": {
+    "KENE_ILACI_YOK": 0.5,
+    "DISARI_CIKAN": 0.4
+   },
+   "ayirici": [
+    "uyuz",
+    "atopik_alerjik_dermatit",
+    "dermatofitoz",
+    "piyoderma_hot_spot"
+   ],
+   "aciklama": "Pireler kaşıntı ve huzursuzluk yapar; alerjik hayvanlarda tek bir ısırık bile sırt-kuyruk dibinde şiddetli kaşıntı, tüy dökülmesi ve kabuklu küçük kabarcıklara yol açar. Tüylerde 'siyah nokta' şeklinde pire dışkısı görülebilir. Küçük yavrularda yoğun pire kansızlık yapabilir.",
+   "evde": "Evdeki tüm hayvanlara veteriner hekimin önerdiği pire ilacını düzenli uygulayın; yatak, halı ve koltukları yıkayıp süpürün (ortamdaki yumurta ve larvalar). Ürün etiketindeki türe ve kiloya mutlaka uyun.",
+   "kacin": "Köpek pire ilaçlarını kediye uygulamayın (zehirlenme); sadece tasma ya da şampuanla yeterli koruma beklemeyin.",
+   "ornekler": [
+    "Kedimin sırtında ve kuyruk dibinde tüyler döküldü, sürekli kaşınıyor, tarağa küçük siyah noktalar geliyor.",
+    "Köpeğimin üstünde pire gördüm, deli gibi kaşınıyor, kuyruğunun üstünü kemiriyor ve orada kabuklar oluştu.",
+    "Bahçeye çıkan kedimiz kaşınmaktan uyuyamıyor, karnında küçük kabuklu sivilcikler var, pire ilacı bir yıldır yapılmadı.",
+    "hocam yavru kedide cok pire var halsiz de disetleri soluk gibi geldi acil mi",
+    "Köpeğim sürekli kendini ısırıyor, özellikle sırtının arkası, tüyleri seyreldi, pire olabilir mi?",
+    "Kedimin kuyruk dibinde ve boynunda küçük kabuklar var, çok kaşınıyor, üstünde pire de gördük."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "uyuz",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.6,
+    "kedi": 0.4
+   },
+   "ad_tr": "Uyuz (Sarcoptes / Notoedres / Demodex)",
+   "ad_en": "Mange (sarcoptic, notoedric, demodectic)",
+   "sistem": "Deri / Paraziter",
+   "yayginlik": 2,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.4,
+    "genc": 0.3,
+    "eriskin": 0.2,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Shar Pei",
+     "Bulldog",
+     "Pitbull",
+     "Boxer"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KASINMA": 3,
+    "TUY_DOKULMESI": 2,
+    "KALIN_DERI": 2,
+    "KABUK_YARA": 2,
+    "KIZARIKLIK_DERI": 1,
+    "KEPEK": 1,
+    "KEL_YUVARLAK": 1
+   },
+   "baglam": {
+    "YENI_ALINDI": 0.35,
+    "DISARI_CIKAN": 0.3,
+    "KENE_ILACI_YOK": 0.3
+   },
+   "ayirici": [
+    "pire",
+    "atopik_alerjik_dermatit",
+    "dermatofitoz",
+    "piyoderma_hot_spot",
+    "hipotiroidi"
+   ],
+   "aciklama": "Deride yaşayan akarların yol açtığı hastalık. Sarcoptes/Notoedres çok şiddetli kaşıntı, kulak kenarı-dirsek-yüzde kabuklu kalınlaşmış deri yapar ve insana geçici olarak bulaşabilir; Demodex ise özellikle yavrularda yüz ve patilerde az kaşıntılı tüysüz alanlarla seyreder.",
+   "evde": "Yatak ve örtüleri yıkayın; hayvana dokunduktan sonra ellerinizi yıkayın. Veteriner hekim deri kazıntısı ile tanı koyup uygun akarisid ilacı verir; evdeki diğer hayvanlar da tedavi edilir.",
+   "kacin": "Kükürt, mazot gibi halk ilaçları uygulamayın; kortizonlu kremlerle kaşıntıyı baskılamayın.",
+   "ornekler": [
+    "Sokaktan aldığımız köpek çıldırmış gibi kaşınıyor, kulak kenarları ve dirsekleri kabuklu ve kalınlaşmış, biz de evde kaşınmaya başladık.",
+    "Kedimin yüzünde ve kulaklarında kalın gri kabuklar oluştu, sürekli kaşınıyor ve kaşımaktan yara oldu.",
+    "4 aylık yavru köpeğimizin gözünün etrafında ve patilerinde tüysüz alanlar var, çok kaşınmıyor ama alanlar büyüyor.",
+    "hocam kopek kasınıyor tuyleri dokuluyor derisi kepekli ve kalınlasmıs uyuz olabilir mi",
+    "Bahçeye çıkan köpeğimin karnı kıpkırmızı, kaşınmaktan yara bere içinde, kulak uçları kabuk bağladı.",
+    "Yavru kedinin başında ve boynunda kepekli, kabuklu, tüysüz alanlar var; sürekli kaşınıyor, evdeki diğer kedi de kaşınmaya başladı."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), MSD Vet Manual (okuma), Erciyes Üniv. Vet. Fak. deri hastalıkları ders notu; veteriner kontrolü gerekir"
+  },
+  {
+   "id": "dermatofitoz",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.3,
+    "kedi": 0.7
+   },
+   "ad_tr": "Mantar (dermatofitoz / ringworm)",
+   "ad_en": "Dermatophytosis (ringworm)",
+   "sistem": "Deri / Enfeksiyöz",
+   "yayginlik": 2,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.55,
+    "genc": 0.25,
+    "eriskin": 0.15,
+    "yasli": 0.05
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Yorkshire Terrier"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)"
+    ]
+   },
+   "belirtiler": {
+    "KEL_YUVARLAK": 3,
+    "TUY_DOKULMESI": 2,
+    "KEPEK": 2,
+    "KABUK_YARA": 1,
+    "KASINMA": 1
+   },
+   "baglam": {
+    "YENI_ALINDI": 0.45,
+    "DISARI_CIKAN": 0.25
+   },
+   "ayirici": [
+    "uyuz",
+    "pire",
+    "atopik_alerjik_dermatit",
+    "piyoderma_hot_spot"
+   ],
+   "aciklama": "Deri ve tüyleri tutan bir mantar enfeksiyonu; özellikle yavru kedilerde ve kalabalık ortamdan gelen hayvanlarda görülür. Yuvarlak, kenarları hafif kızarık, kepekli tüysüz alanlar tipiktir; kaşıntı genelde azdır. İnsanlara, özellikle çocuklara bulaşabilir.",
+   "evde": "Hayvana dokunduktan sonra el yıkayın; yatak ve tarakları sıcak suyla yıkayın, ortamı sık süpürün. Tanı (lamba, kültür) ve tedavi (haftalarca sürebilir) veteriner hekimle planlanır.",
+   "kacin": "Kendi kendine kesilen tedavi ve insan mantar kremleriyle idare etmeyin; tedaviyi erken bırakmayın.",
+   "ornekler": [
+    "Petshoptan aldığımız yavru kedinin kulağının üstünde ve yüzünde para büyüklüğünde yuvarlak tüysüz, kepekli bir alan var.",
+    "Kedimin sırtında kenarları kızarık yuvarlak kel lekeler çıktı, pek kaşınmıyor; oğlumun kolunda da kırmızı halka gibi bir şey çıktı.",
+    "Köpeğimin bacağında yuvarlak, pullu, tüysüz bir yer oluştu ve yavaş yavaş büyüyor.",
+    "hocam yavru kedide yuvarlak kel yerler var mantar mı bize bulaşır mı",
+    "Persian kedimizin tüyleri yer yer dökülüyor, derisi kepekli, dökülen yerler yuvarlak ve gittikçe çoğalıyor.",
+    "Barınaktan aldığımız kedinin kuyruğunda ve patisinde kel, kabuklu alanlar var, kaşıntısı az ama yayılıyor."
+   ],
+   "kaynak": "Vikipedi (CC BY-SA), MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "atopik_alerjik_dermatit",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.75,
+    "kedi": 0.25
+   },
+   "ad_tr": "Alerjik (atopik / gıda) dermatit",
+   "ad_en": "Atopic / food-allergic dermatitis",
+   "sistem": "Deri / Alerji",
+   "yayginlik": 3,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.1,
+    "genc": 0.45,
+    "eriskin": 0.35,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "West Highland White Terrier",
+     "Fransız Bulldog",
+     "Golden Retriever",
+     "Labrador",
+     "Shar Pei",
+     "Boxer"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KASINMA": 3,
+    "PATI_YALAMA": 3,
+    "KOLTUK_ALTI_KIZARIK": 2,
+    "KIZARIKLIK_DERI": 2,
+    "KULAK_KASINMA": 1,
+    "TUY_DOKULMESI": 1,
+    "KOYU_DERI": 1,
+    "YAG_DERI": 1,
+    "GOZ_AKINTISI": 1,
+    "ISHAL_KRONIK": 1,
+    "KABUK_YARA": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "pire",
+    "uyuz",
+    "otitis_eksterna",
+    "piyoderma_hot_spot",
+    "dermatofitoz"
+   ],
+   "aciklama": "Çevresel alerjenlere (polen, ev tozu akarı, küf) ya da gıdadaki bir proteine karşı aşırı duyarlılık. Kaşıntı, pati yalama, koltuk altı-kasık-yüz kızarıklığı ve tekrarlayan kulak iltihabı tipiktir; mevsimsel olabilir ya da yıl boyu sürer. Sık kaşınan deride ikincil bakteri/maya enfeksiyonu gelişir.",
+   "evde": "Pire kontrolünü eksiksiz yapın (alerjiyi tetikler); haftalık nemlendirici şampuanla yıkama ve veteriner hekimin önereceği diyet denemesi (8 hafta, tek protein) yardımcı olur.",
+   "kacin": "İnsan antihistaminiklerini ve kortizonlu kremleri danışmadan kullanmayın; mamayı sık sık değiştirmeyin.",
+   "ornekler": [
+    "Fransız Bulldog'um 2 yaşında, sürekli patilerini yalıyor ve ısırıyor, koltuk altları ve kasıkları kıpkırmızı, her bahar aynı şey oluyor.",
+    "Golden'ımız durmadan kaşınıyor, kulakları da yıl içinde birkaç kez iltihaplandı, karnının derisi koyulaşıp kalınlaştı.",
+    "Kedimin boynunda ve yüzünde kaşımaktan yaralar var, pire ilacı düzenli yapılıyor ama kaşıntı geçmiyor.",
+    "hocam kopegim ayaklarını yalıyor kızarık patilerinin arası kokuyor kasınıyor mevsimsel mi",
+    "Westie'miz bir yıldır kaşınıyor, derisi yağlı ve kokuyor, mama değiştirdik biraz düzeldi sonra yine başladı.",
+    "Labrador'umun gözleri sulanıyor, sürekli yüzünü halıya sürtüyor ve patilerini yalıyor, dışkısı da ara ara yumuşak."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Erciyes Üniv. Vet. Fak. deri hastalıkları ders notu; veteriner kontrolü gerekir"
+  },
+  {
+   "id": "dis_hastaligi",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.5,
+    "kedi": 0.5
+   },
+   "ad_tr": "Diş ve dişeti hastalığı (periodontal hastalık, diş taşı)",
+   "ad_en": "Periodontal disease / dental disease",
+   "sistem": "Ağız / Diş",
+   "yayginlik": 3,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.13,
+    "eriskin": 0.4,
+    "yasli": 0.45
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Yorkshire Terrier",
+     "Chihuahua",
+     "Poodle",
+     "Maltese",
+     "Dachshund",
+     "Cavalier King Charles"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "Siyam"
+    ]
+   },
+   "belirtiler": {
+    "AGIZ_KOKUSU": 3,
+    "DIS_ETI": 3,
+    "YEME_ZORLUGU": 2,
+    "SALYA": 1,
+    "AGIZ_PENCELEME": 1,
+    "ISTAHSIZLIK": 1,
+    "KILO_KAYBI": 1,
+    "DAVRANIS_DEGISIM": 1
+   },
+   "baglam": {
+    "YASLI": 0.4,
+    "KUCUK_IRK": 0.3
+   },
+   "ayirici": [
+    "kronik_bobrek",
+    "felv_fiv",
+    "kedi_nezlesi",
+    "kitle_meme_tumoru"
+   ],
+   "aciklama": "Diş taşı ve dişeti iltihabı; küçük ırk köpeklerde ve yaşlı hayvanlarda çok yaygındır. Ağız kokusu, kızarık-kanayan dişetleri, tek taraflı çiğneme, yemeği ağzından düşürme ve sallanan dişler görülür. İleri dönemde ağrı nedeniyle iştahsızlık ve kilo kaybı olur; bakteriler kalp ve böbreği de etkileyebilir.",
+   "evde": "Diş fırçalama alışkanlığı ve diş sağlığı için özel mamalar/ödüller koruyucudur. Ağrı belirtileri varsa (yemeği düşürme, salya) muayene için randevu alın; diş taşı temizliği anestezi altında yapılır.",
+   "kacin": "Kemik ve çok sert çiğneme oyuncakları kırık dişe yol açabilir; insan diş macunu kullanmayın.",
+   "ornekler": [
+    "Yorkshire'ımın ağzı çok kötü kokuyor, dişleri kahverengi taş dolu ve diş etleri kanıyor.",
+    "12 yaşındaki kedim yemeği ağzına alıp bırakıyor, tek taraflı çiğniyor ve salyası akıyor, ağzı da kokuyor.",
+    "Köpeğimin bir dişi sallanıyor, sert mamayı yiyemez oldu, yumuşak mamayı yiyor.",
+    "hocam kedinin agzı cok kokuyor dis etleri kırmızı yemek yerken bagırıyor",
+    "Yaşlı Poodle'ımızın nefesi leş gibi kokuyor, iştahı azaldı ve kilo verdi, dişleri iyice sarardı.",
+    "Kedim ağzını patisiyle ovuşturuyor, yemek isterken vazgeçiyor, dişetleri şiş ve bir dişi düştü."
+   ],
+   "kaynak": "VetCompass (en sık tanılar arasında), MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "konjunktivit",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.45,
+    "kedi": 0.55
+   },
+   "ad_tr": "Konjunktivit (göz iltihabı)",
+   "ad_en": "Conjunctivitis",
+   "sistem": "Göz",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.35,
+    "genc": 0.3,
+    "eriskin": 0.25,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Bulldog",
+     "Cocker Spaniel",
+     "Pug"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)"
+    ]
+   },
+   "belirtiler": {
+    "GOZ_AKINTISI": 3,
+    "GOZ_KIZARIKLIK": 3,
+    "GOZ_KISMA": 1,
+    "HAPSIRMA": 1,
+    "KASINMA": 1
+   },
+   "baglam": {
+    "YENI_ALINDI": 0.2,
+    "DISARI_CIKAN": 0.2
+   },
+   "ayirici": [
+    "kornea_ulseri",
+    "kedi_nezlesi",
+    "atopik_alerjik_dermatit",
+    "distemper"
+   ],
+   "aciklama": "Göz kapaklarının iç yüzünü ve göz akını örten zarın iltihabı; kedilerde çoğunlukla üst solunum yolu virüsleri ve Chlamydia, köpeklerde alerji, toz, kuru göz veya enfeksiyon nedeniyle olur. Kızarık, sulanan ya da çapaklı göz tipiktir. Gözünü kısıyor veya ışıktan kaçıyorsa kornea zedelenmesi olabilir; bu daha acildir.",
+   "evde": "Çapakları kaynatılıp soğutulmuş su veya serum fizyolojikle ıslatılmış temiz pamukla dıştan silin; gözünü kaşımasını engelleyin. Düzelmiyorsa ya da gözünü kısıyorsa muayene gerekir.",
+   "kacin": "Evde bulunan kortizonlu insan göz damlalarını kesinlikle kullanmayın (ülser varsa gözü kaybettirebilir).",
+   "ornekler": [
+    "Yavru kedimin gözleri çapaklı, sabahları gözleri çapaktan açılmıyor, biraz da hapşırıyor.",
+    "Köpeğimin bir gözü kızarmış ve sulanıyor, sürekli gözünü patisiyle ovuşturmaya çalışıyor.",
+    "Kedimin gözünden yeşil akıntı geliyor, gözünün beyazı kırmızı, iştahı normal.",
+    "hocam kopegin gozleri kıpkırmızı ve akıyor kasınıyor sanırım alerji mi",
+    "Kedimin iki gözü de kızarık ve sulu, göz kapakları hafif şiş, dışarı çıkan bir kedi.",
+    "Bulldog'umun gözleri sürekli çapaklanıyor, gözünün içi kırmızı, ama gözünü kapatmıyor ve rahat görünüyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kornea_ulseri",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.55,
+    "kedi": 0.45
+   },
+   "ad_tr": "Kornea ülseri / göz yaralanması",
+   "ad_en": "Corneal ulcer / ocular injury",
+   "sistem": "Göz",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.2,
+    "genc": 0.35,
+    "eriskin": 0.3,
+    "yasli": 0.15
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Pug",
+     "Shih Tzu",
+     "Bulldog",
+     "Boxer",
+     "Pekinez"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "Exotic Shorthair"
+    ]
+   },
+   "belirtiler": {
+    "GOZ_KISMA": 3,
+    "GOZ_AKINTISI": 2,
+    "GOZ_KIZARIKLIK": 2,
+    "GOZ_BULANIK": 2,
+    "AGRI": 1,
+    "GOZ_UCUNCU_KAPAK": 1
+   },
+   "baglam": {
+    "ISIRIK_YARASI": 0.3,
+    "DISARI_CIKAN": 0.2
+   },
+   "ayirici": [
+    "konjunktivit",
+    "kedi_nezlesi",
+    "travma"
+   ],
+   "aciklama": "Gözün saydam ön tabakasının (kornea) çizilmesi veya ülserleşmesi; tırmık, yabancı cisim, içe dönük kirpik, kuru göz ya da kedilerde herpes virüsü neden olur. Gözü kısmak, sulanma, ışıktan kaçma ve korneada bulanıklık tipiktir. Derinleşen ülser günler içinde gözün delinmesine yol açabilir; aynı gün muayene gerekir.",
+   "evde": "Gözünü kaşımasını engelleyin (yakalık), gözü ovmayın, mümkün olan en kısa sürede kliniğe gidin.",
+   "kacin": "Kortizonlu damlalar ülseri derinleştirir, kesinlikle kullanmayın; muayenesiz göz damlası uygulamayın.",
+   "ornekler": [
+    "Kedim dışarıda kavga etmiş, bir gözünü açamıyor, sulanıyor ve ışıktan kaçıyor.",
+    "Pug'ımın bir gözü sabahtan beri kapalı, akıntı var ve gözünün üstünde mavi beyaz bir tabaka oluştu.",
+    "Köpeğim çalılıkta oynadı, o gün akşam gözünü kısmaya başladı, gözü kızarık ve sürekli sulanıyor.",
+    "hocam kedinin gozu bulanık beyaz gibi oldu gozunu kapatıyor ağlıyor sanki acıyor",
+    "Persian kedimizin gözü kıpkırmızı, üçüncü göz kapağı çıktı ve gözünü sürekli patisiyle ovuşturuyor.",
+    "Yavru köpeğimizin gözünde bir çizik var gibi, gözünü kapalı tutuyor ve dokundurtmuyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "epilepsi",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.75,
+    "kedi": 0.25
+   },
+   "ad_tr": "Epilepsi / nöbet",
+   "ad_en": "Epilepsy / seizures",
+   "sistem": "Nöroloji",
+   "yayginlik": 2,
+   "seyir": "karisik",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.1,
+    "genc": 0.5,
+    "eriskin": 0.3,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Beagle",
+     "Golden Retriever",
+     "Labrador",
+     "Border Collie",
+     "Alman Çoban Köpeği",
+     "Belçika Çoban Köpeği"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "NOBET": 3,
+    "SALYA": 1,
+    "BILINC": 1,
+    "IDRAR_KACIRMA": 1,
+    "DENGE": 1,
+    "DAVRANIS_DEGISIM": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "zehirlenme",
+    "vestibuler_sendrom",
+    "hcm_kedi",
+    "kalp_yetmezligi",
+    "distemper"
+   ],
+   "aciklama": "Beyindeki anormal elektriksel aktivite nedeniyle kasılma, bilinç kaybı, salya ve idrar kaçırma ile seyreden nöbetler. Köpeklerde 1–5 yaş arasında başlayan idiyopatik epilepsi en sık nedendir; zehirlenme, düşük şeker, karaciğer-böbrek hastalığı veya beyin tümörü de nöbet yapabilir. 5 dakikadan uzun süren ya da arka arkaya gelen nöbetler hayati tehlikedir.",
+   "evde": "Nöbet sırasında çevreden sert eşyaları uzaklaştırın, ışığı kısın, dokunmayın ve süreyi tutun; mümkünse video çekin. Nöbet bitince veteriner hekimi arayın; 5 dakikayı geçen veya tekrar eden nöbette hemen kliniğe.",
+   "kacin": "Ağzına elinizi sokmayın, dilini tutmaya çalışmayın; nöbet sırasında su/ilaç vermeyin.",
+   "ornekler": [
+    "Köpeğim gece uyurken bir anda titreyerek yere düştü, kasıldı, ağzından köpük geldi ve altına kaçırdı; iki dakika sonra kendine geldi ama sarhoş gibiydi.",
+    "Kedim yerde yatıp bacaklarını pedal çevirir gibi oynattı ve bilinci kapalıydı, bir dakika sürdü, sonra saatlerce şaşkın dolaştı.",
+    "Beagle'ımız 3 yaşında, bu ay üçüncü kez nöbet geçirdi, aralarında normal.",
+    "hocam kopek sara nobeti gibi bir sey gecirdi 3 dk surdu kasıldı simdi iyi ama korktum",
+    "Golden'ım bugün iki kez arka arkaya kasılıp bilincini kaybetti, hâlâ dengesiz yürüyor.",
+    "Yavru köpeğimiz oynarken bir anda yığıldı, kasıldı, salyası aktı; iki gün önce de benzer bir şey olmuştu."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "osteoartrit",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.6,
+    "kedi": 0.4
+   },
+   "ad_tr": "Osteoartrit (yaşa bağlı eklem kireçlenmesi)",
+   "ad_en": "Osteoarthritis",
+   "sistem": "Kas-iskelet",
+   "yayginlik": 3,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.05,
+    "eriskin": 0.25,
+    "yasli": 0.7
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Labrador",
+     "Golden Retriever",
+     "Alman Çoban Köpeği",
+     "Rottweiler",
+     "Kangal"
+    ],
+    "kedi": [
+     "Maine Coon",
+     "Scottish Fold"
+    ]
+   },
+   "belirtiler": {
+    "ZOR_KALKMA": 3,
+    "TOPALLIK": 2,
+    "AGRI": 1,
+    "HALSIZLIK": 1,
+    "DAVRANIS_DEGISIM": 1,
+    "KILO_ALMA": 1,
+    "TUY_KOTU": 1,
+    "ARKA_BACAK_GUCSUZ": 1
+   },
+   "baglam": {
+    "YASLI": 0.7,
+    "KILO_FAZLA": 0.4
+   },
+   "ayirici": [
+    "kalca_displazisi",
+    "capraz_bag",
+    "ivdd",
+    "kene_hastaliklari"
+   ],
+   "aciklama": "Eklem kıkırdağının yaşla ve aşırı yükle aşınması. Sabah tutukluğu, yerden zor kalkma, merdiven ve zıplamadan kaçınma, kedilerde ise kendine bakmayı bırakma (keçeleşmiş tüyler) ve yüksek yerlere çıkmama tipiktir. Ağrı sürekli olduğundan huy değişikliği görülebilir; kilo kontrolü ve ağrı tedavisi yaşam kalitesini belirgin artırır.",
+   "evde": "Kilo kontrolü, kaymayan zemin, yumuşak yatak, düzenli kısa yürüyüşler ve eklem destekleri yardımcı olur. Ağrı kesici planı veteriner hekimle yapılır.",
+   "kacin": "İnsan ağrı kesicileri (ibuprofen, parasetamol) kedi ve köpekte zehirlidir, asla vermeyin.",
+   "ornekler": [
+    "11 yaşındaki Labrador'um sabahları yerden zor kalkıyor, merdiven çıkmak istemiyor ve yürüyüşten çabuk yoruluyor.",
+    "Kedim 14 yaşında, artık koltuğa zıplayamıyor, tüyleri keçeleşti ve daha huysuz oldu.",
+    "Yaşlı köpeğimiz özellikle soğuk havalarda topallıyor, yattığı yerden kalkarken inliyor.",
+    "hocam kopegim 10 yasında arka bacakları zorlanıyor kalkarken zor kalkıyor ağrı kesici verebilir miyim",
+    "Maine Coon'umuz eskisi gibi oynamıyor, yüksek yerlere çıkmıyor ve sırtını taradığımızda kızıyor.",
+    "Kangal'ımız 9 yaşında, arka tarafı sallanıyor, uzun süre yattıktan sonra tutuk yürüyor, biraz açılınca düzeliyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kitle_meme_tumoru",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.55,
+    "kedi": 0.45
+   },
+   "ad_tr": "Deri altı kitle / meme tümörü",
+   "ad_en": "Cutaneous mass / mammary tumour",
+   "sistem": "Onkoloji",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.05,
+    "eriskin": 0.3,
+    "yasli": 0.65
+   },
+   "cinsiyet": {
+    "disi": 0.75,
+    "erkek": 0.25
+   },
+   "irk": {
+    "kopek": [
+     "Boxer",
+     "Golden Retriever",
+     "Cocker Spaniel",
+     "Poodle"
+    ],
+    "kedi": [
+     "Siyam"
+    ]
+   },
+   "belirtiler": {
+    "KITLE": 3,
+    "KILO_KAYBI": 1,
+    "HALSIZLIK": 1,
+    "YARA_KANAMA": 1,
+    "ISTAHSIZLIK": 1
+   },
+   "baglam": {
+    "KISIR_DEGIL_DISI": 0.5,
+    "YASLI": 0.5
+   },
+   "ayirici": [
+    "apse",
+    "piyoderma_hot_spot",
+    "felv_fiv",
+    "kene_hastaliklari"
+   ],
+   "aciklama": "Deri altında ele gelen yumrular yağ bezesi gibi iyi huylu olabilir; ama kısırlaştırılmamış dişilerde meme kitlelerinin kedilerde çoğu, köpeklerde yaklaşık yarısı kötü huyludur. Hızla büyüyen, sert, deriye yapışık ya da ülserleşen kitleler daha endişe vericidir. Erken alınan kitleler çoğu zaman tam tedavi edilir.",
+   "evde": "Kitlenin yerini, boyutunu ve tarihini not edin (fotoğraf/çizim); büyüyorsa ya da kanıyorsa muayeneyi öne alın. İnce iğne örneklemesi çoğu zaman kliniğe ilk gidişte yapılabilir.",
+   "kacin": "'Yaşlı, ameliyat olmasın' diye bekletmeyin; kitleyi sıkmayın, patlatmaya çalışmayın.",
+   "ornekler": [
+    "Kısırlaştırılmamış 10 yaşındaki köpeğimin memesinde ceviz büyüklüğünde sert bir kitle ele geliyor, son bir ayda büyüdü.",
+    "Kedimin karnının altında, memesinin yanında sert bir yumru var, dokununca rahatsız oluyor.",
+    "Boxer'ımızın sırtında derinin altında yumuşak bir şişlik var, üç aydır aynı boyutta.",
+    "hocam kopegin memesinde şişlik var büyüyor bir de üstü yara oldu kanıyor",
+    "Yaşlı kedimin boynunda deri altında fındık gibi bir kitle fark ettim, kendisi zayıfladı ve iştahı azaldı.",
+    "Golden'ımın bacağında bir yumru çıktı, hızlı büyüyor gibi, ağrısı yok ama endişelendim."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "travma",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.5,
+    "kedi": 0.5
+   },
+   "ad_tr": "Travma (araç çarpması, yüksekten düşme, ısırık)",
+   "ad_en": "Trauma",
+   "sistem": "Acil",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.25,
+    "genc": 0.4,
+    "eriskin": 0.25,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "TRAVMA": 3,
+    "TOPALLIK": 2,
+    "AGRI": 2,
+    "YARA_KANAMA": 2,
+    "NEFES_DARLIGI": 1,
+    "BILINC": 1,
+    "SOLUK_DISETI": 1,
+    "HALSIZLIK": 1,
+    "KARIN_AGRISI": 1,
+    "IDRAR_YAPAMAMA": 1,
+    "SALYA": 1,
+    "BURUN_KANAMA": 1
+   },
+   "baglam": {
+    "DISARI_CIKAN": 0.4
+   },
+   "ayirici": [
+    "capraz_bag",
+    "ivdd",
+    "apse",
+    "kornea_ulseri"
+   ],
+   "aciklama": "Araç çarpması, balkondan düşme (kedilerde çok sık), köpek ısırığı ve ezilmeler dıştan hafif görünse bile iç kanama, akciğer hasarı, mesane yırtığı ya da kırıklara yol açabilir. Kaza sonrası 'iyi görünen' hayvan bile saatler içinde ağırlaşabilir; mutlaka aynı gün muayene edilmelidir.",
+   "evde": "Sakin ve sıcak tutun, hareketini kısıtlayın (sert bir zeminde/kutuda taşıyın), kanayan yere temiz bezle baskı uygulayın ve hemen kliniğe gidin.",
+   "kacin": "Ağrı kesici vermeyin, yemek-su vermeyin (anestezi gerekebilir), kırık olabilecek uzuvları düzeltmeye çalışmayın.",
+   "ornekler": [
+    "Kedim 4. kattan balkondan düştü, yürüyor ama çok hızlı nefes alıyor ve dişetleri soluk.",
+    "Köpeğime az önce araba çarptı, arka bacağına basmıyor, bağırıyor ve ağzından salya akıyor.",
+    "Kedimi sokakta bir köpek ısırdı, boynunda kanayan yara var ve çok halsiz.",
+    "hocam kediye kapı sıkıştı kuyruğu sarkık ve ciş yapamıyor sabahtan beri",
+    "Köpeğim yüksekten atladı, o günden beri topallıyor ve karnına dokununca bağırıyor.",
+    "Kedim balkondan düştü, şu an bilinci kapalı gibi, tepki vermiyor, burnundan kan geliyor."
+   ],
+   "kaynak": "Bio-Vet triyaj (CC BY 4.0), MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "akut_alerjik_reaksiyon",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.75,
+    "kedi": 0.25
+   },
+   "ad_tr": "Akut alerjik reaksiyon (arı sokması, ürtiker, anjiyoödem)",
+   "ad_en": "Acute allergic reaction / angioedema",
+   "sistem": "Acil / Alerji",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.3,
+    "genc": 0.4,
+    "eriskin": 0.2,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Boxer",
+     "Labrador",
+     "Pitbull",
+     "Bulldog"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "YUZ_SIS": 3,
+    "KIZARIKLIK_DERI": 2,
+    "KASINMA": 2,
+    "ARI_SOKMA": 2,
+    "KUSMA": 1,
+    "NEFES_DARLIGI": 1,
+    "SALYA": 1,
+    "HUZURSUZ": 1,
+    "ISHAL": 1
+   },
+   "baglam": {
+    "DISARI_CIKAN": 0.4
+   },
+   "ayirici": [
+    "apse",
+    "zehirlenme",
+    "dis_hastaligi",
+    "atopik_alerjik_dermatit"
+   ],
+   "aciklama": "Böcek sokması, aşı, ilaç ya da yeni bir gıdaya karşı dakikalar-saatler içinde gelişen alerjik yanıt: yüz-göz-dudak şişmesi, vücutta kabartılar ve kaşıntı. Genellikle ilaçla hızla geriler; ancak nefes darlığı, kusma, halsizlik ya da soluk dişetleri gelişirse anafilaksi söz konusudur ve dakikalar önemlidir.",
+   "evde": "Sokan iğne görünüyorsa kart kenarıyla kazıyarak çıkarın, soğuk kompres uygulayın ve hemen veteriner hekimi arayın; nefes darlığı ya da kusma varsa en yakın kliniğe gidin.",
+   "kacin": "Kendi antihistaminiğinizi dozunu bilmeden vermeyin; şişlik geçiyor diye yalnız bırakmayın (ikinci dalga olabilir).",
+   "ornekler": [
+    "Köpeğim bahçede oynadı, yarım saat sonra yüzü ve gözleri bir anda şişti, sürekli kaşınıyor.",
+    "Boxer'ımı aşıya götürdük, eve gelince ağzı ve dudakları şişti, vücudunda kabartılar çıktı.",
+    "Kedim balkonda bir şey yedi ya da arı soktu, yüzü şişti ve kusuyor, nefesi hızlı.",
+    "hocam kopegin kafası balon gibi şişti gözleri kapanacak gibi bir de vücudu kızarık",
+    "Labrador'um yeni bir mama yedi, birkaç saat sonra tüm vücudunda kabarcıklar çıktı ve kaşınıyor.",
+    "Köpeğim arı sokmasından sonra yüzü şişti, şimdi de zor nefes alıyor ve salyası akıyor, çok korkuyoruz."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "piyometra",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.7,
+    "kedi": 0.3
+   },
+   "ad_tr": "Piyometra (rahim iltihabı)",
+   "ad_en": "Pyometra",
+   "sistem": "Üreme",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.15,
+    "eriskin": 0.4,
+    "yasli": 0.45
+   },
+   "cinsiyet": {
+    "disi": 1.0,
+    "erkek": 0.0
+   },
+   "irk": {
+    "kopek": [
+     "Golden Retriever",
+     "Rottweiler",
+     "Bernese",
+     "Cavalier King Charles",
+     "Collie"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "AKINTI_VAJINAL": 3,
+    "KIZGINLIK_SONRASI": 3,
+    "COK_SU_ICME": 2,
+    "ISTAHSIZLIK": 2,
+    "HALSIZLIK": 2,
+    "KUSMA": 1,
+    "KARIN_SIS": 1,
+    "ATES": 1,
+    "GENITAL_YALAMA": 1,
+    "COK_ISEME": 1
+   },
+   "baglam": {
+    "KISIR_DEGIL_DISI": 0.85,
+    "YASLI": 0.4
+   },
+   "ayirici": [
+    "idrar_yolu_enf_kopek",
+    "diyabet",
+    "kronik_bobrek",
+    "distosi"
+   ],
+   "aciklama": "Kısırlaştırılmamış dişilerde, genellikle kızgınlıktan 1–2 ay sonra rahmin irinle dolması. Kötü kokulu akıntı, çok su içme, iştahsızlık ve halsizlik tipiktir; 'kapalı' tipte akıntı olmaz ve karın şişer. Rahim yırtılır ya da sepsis gelişirse ölümcüldür; tedavi çoğunlukla acil ameliyattır.",
+   "evde": "Beklemeyin; aynı gün, mümkünse hemen kliniğe gidin. Akıntının rengini/kokusunu ve son kızgınlık tarihini not edin.",
+   "kacin": "Evde antibiyotikle geçiştirmeyi denemeyin; 'kızgınlık akıntısı' diye izlemeyin.",
+   "ornekler": [
+    "Kısırlaştırılmamış 8 yaşındaki köpeğimin kızgınlığı bir ay önce bitti, şimdi arkasından kötü kokulu sarı-kahverengi akıntı geliyor, çok su içiyor ve yemiyor.",
+    "Dişi köpeğim üç gündür halsiz, sürekli arka tarafını yalıyor ve yattığı yerde kokulu leke bırakıyor.",
+    "Kedim kısır değil, birkaç hafta önce kızgınlıktaydı, şimdi mama yemiyor, karnı şişti ve kusuyor.",
+    "hocam dişi kopegim kızgınlıktan sonra hastalandı akıntısı var kokuyor ates var galiba",
+    "Golden'ımız 7 yaşında kısırlaştırılmadı, iki gündür yemiyor, çok su içiyor, çok işiyor ve arkasından irinli bir akıntı fark ettim.",
+    "Yaşlı dişi kedimin karnı büyüdü, keyifsiz ve kusuyor, akıntı görmedim ama son kızgınlığı 6 hafta önceydi."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "distosi",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.6,
+    "kedi": 0.4
+   },
+   "ad_tr": "Güç doğum (distosi)",
+   "ad_en": "Dystocia",
+   "sistem": "Üreme / Acil",
+   "yayginlik": 1,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.5,
+    "eriskin": 0.45,
+    "yasli": 0.05
+   },
+   "cinsiyet": {
+    "disi": 1.0,
+    "erkek": 0.0
+   },
+   "irk": {
+    "kopek": [
+     "Bulldog",
+     "Fransız Bulldog",
+     "Chihuahua",
+     "Pug",
+     "Boston Terrier"
+    ],
+    "kedi": [
+     "İran Kedisi (Persian)"
+    ]
+   },
+   "belirtiler": {
+    "DOGUM_UZUN": 3,
+    "HAMILE": 3,
+    "HALSIZLIK": 1,
+    "AKINTI_VAJINAL": 1,
+    "AGRI": 1,
+    "SESLENME": 1,
+    "TITREME": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "piyometra",
+    "kabizlik_megakolon"
+   ],
+   "aciklama": "Doğumun ilerlememesi: 20–30 dakikadır şiddetli ıkınma olmasına rağmen yavru gelmemesi, yavrular arasında 2 saatten uzun ara, yeşil-siyah akıntının yavru doğmadan gelmesi, ya da annenin bitkin düşmesi. Kısa burunlu ırklarda ve ilk doğumlarda sıktır; anne ve yavruların hayatı için acil müdahale (çoğu kez sezaryen) gerekir.",
+   "evde": "Zaman çizelgesini not edin (ıkınma başlangıcı, doğan yavru sayısı ve saatleri) ve hemen kliniği arayarak yola çıkın.",
+   "kacin": "Yavruyu çekmeye çalışmayın; doğumu hızlandırmak için ilaç vermeyin.",
+   "ornekler": [
+    "Fransız Bulldog'um doğuma girdi, bir saatten fazladır şiddetli ıkınıyor ama yavru gelmiyor.",
+    "Kedim iki yavru doğurdu, üzerinden üç saat geçti, karnı hâlâ büyük ve ara ara ıkınıyor ama bir şey çıkmıyor.",
+    "Hamile köpeğimizin 64. günü, yeşilimsi siyah bir akıntı geldi ama henüz yavru yok, çok huzursuz ve titriyor.",
+    "hocam kedi dogum yapıyor yavrunun bir kısmı gorundu ama ilerlemiyor ne yapmalıyım",
+    "Chihuahua'm sabahtan beri sancılı, ıkınıyor, bağırıyor, hiçbir yavru doğmadı ve şimdi bitkin yatıyor.",
+    "Kedim doğum yaparken bir yavru öldü doğdu, iki saattir başka yavru gelmedi ama karnında hâlâ hareket var gibi."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "apse",
+   "tur": "her_ikisi",
+   "tur_agirlik": {
+    "kopek": 0.3,
+    "kedi": 0.7
+   },
+   "ad_tr": "Apse (ısırık / kavga apsesi)",
+   "ad_en": "Abscess (cat bite abscess)",
+   "sistem": "Deri / Enfeksiyöz",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.1,
+    "genc": 0.45,
+    "eriskin": 0.35,
+    "yasli": 0.1
+   },
+   "cinsiyet": {
+    "disi": 0.3,
+    "erkek": 0.7
+   },
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "APSE": 3,
+    "ISIRIK_YARASI": 2,
+    "ATES": 2,
+    "HALSIZLIK": 2,
+    "ISTAHSIZLIK": 1,
+    "TOPALLIK": 1,
+    "AGRI": 1,
+    "SAKLANMA": 1
+   },
+   "baglam": {
+    "DISARI_CIKAN": 0.65
+   },
+   "ayirici": [
+    "kitle_meme_tumoru",
+    "akut_alerjik_reaksiyon",
+    "travma",
+    "felv_fiv"
+   ],
+   "aciklama": "Isırık ya da tırmık sonrası derinin altında irin birikmesi; dışarı çıkan erkek kedilerde çok sıktır. Kavgadan 2–4 gün sonra sıcak, ağrılı bir şişlik, ateş ve halsizlik gelişir; şişlik patlayıp kokulu irin akabilir. Isırık yaraları FIV/FeLV gibi virüsleri de bulaştırabilir.",
+   "evde": "Bölgeyi ılık suyla nazikçe temizleyin, hayvanı içeride tutun ve aynı gün kliniğe gidin (drenaj ve antibiyotik gerekir).",
+   "kacin": "Apseyi sıkıp patlatmaya çalışmayın; insan antibiyotiği vermeyin.",
+   "ornekler": [
+    "Dışarı çıkan erkek kedim üç gün önce kavga etmiş, şimdi yanağında sıcak yumuşak bir şişlik var, ateşi var ve yemiyor.",
+    "Kedimin kuyruk dibinde şiş bir yer vardı, bugün patladı ve içinden kötü kokulu irin aktı.",
+    "Köpeğimi başka bir köpek ısırdı, boynundaki delik kapandı ama şimdi orası şişti ve dokununca bağırıyor.",
+    "hocam kedinin bacagı şiş topallıyor sıcak ve acıyor kavga etmiş olabilir",
+    "Kedimin boynunda ceviz gibi bir şişlik belirdi, üstünde küçük bir delik var ve oradan sıvı geliyor, halsiz ve saklanıyor.",
+    "Bahçeli evde yaşayan kedimizin sırtında sıcak, ağrılı bir şişlik var, iki gündür mama yemiyor ve bir köşede yatıyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "parvovirus",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Parvovirüs enfeksiyonu",
+   "ad_en": "Canine parvovirus",
+   "sistem": "Sindirim / Enfeksiyöz",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.8,
+    "genc": 0.15,
+    "eriskin": 0.04,
+    "yasli": 0.01
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Rottweiler",
+     "Dobermann",
+     "Pitbull",
+     "Alman Çoban Köpeği",
+     "Labrador"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KUSMA": 3,
+    "KANLI_ISHAL": 3,
+    "ISTAHSIZLIK": 3,
+    "HALSIZLIK": 3,
+    "ISHAL": 2,
+    "DEHIDRASYON": 2,
+    "ATES": 1,
+    "KARIN_AGRISI": 1,
+    "SU_ICMEME": 1
+   },
+   "baglam": {
+    "ASISIZ": 0.7,
+    "YENI_ALINDI": 0.5
+   },
+   "ayirici": [
+    "akut_gastroenterit",
+    "bagirsak_parazitleri",
+    "yabanci_cisim",
+    "distemper",
+    "zehirlenme"
+   ],
+   "aciklama": "Aşısız yavru köpeklerde çok bulaşıcı ve sık ölümcül bir virüs. Şiddetli kusma, kötü kokulu kanlı ishal, tam iştahsızlık ve hızlı susuz kalma tipiktir. Belirtiler başladıktan sonraki ilk 24–48 saat içinde serum ve yoğun destek tedavisine başlanması hayatta kalma şansını belirler.",
+   "evde": "Hemen kliniğe gidin; yavruyu diğer köpeklerden ayırın, temas ettiği yüzeyleri çamaşır suyuyla temizleyin (virüs aylarca dayanır).",
+   "kacin": "Evde antibiyotik/ishal ilacıyla beklemeyin; yavruyu diğer köpeklerle ya da parka çıkarmayın.",
+   "ornekler": [
+    "2 aylık yavru köpeğimizin sadece ilk aşısı yapıldı, dünden beri sürekli kusuyor, bugün kanlı ve çok kötü kokan ishal başladı, hiç yemiyor ve halsiz.",
+    "Petshoptan bir hafta önce aldığımız Rottweiler yavrusu iki gündür kusuyor, kakası kan gibi kırmızı, su bile içmiyor.",
+    "hocam yavru kopek aşısız ishali kanlı kusuyor yatıyor kalkmıyor parvo mu acil mi",
+    "3 aylık Labrador'umuz dün akşam kustu, bugün sulu ishal oldu ve ishal giderek kanlı bir hal aldı, gözleri çukura kaçtı.",
+    "Sokaktan aldığımız yavru köpek aşısız, sabahtan beri kusuyor, kakası kötü kokuyor ve kırmızı, çok halsiz, ateşi de var.",
+    "Yavru köpeğim iki gündür hiçbir şey yemiyor, sürekli kusuyor, ishali kanlı ve dişetleri kuru, ne yapmalıyım?"
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "distemper",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Gençlik hastalığı (distemper)",
+   "ad_en": "Canine distemper",
+   "sistem": "Enfeksiyöz / Solunum / Nöroloji",
+   "yayginlik": 2,
+   "seyir": "subakut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.65,
+    "genc": 0.25,
+    "eriskin": 0.08,
+    "yasli": 0.02
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "BURUN_AKINTISI": 3,
+    "GOZ_AKINTISI": 3,
+    "OKSURUK": 2,
+    "ATES": 2,
+    "ISTAHSIZLIK": 2,
+    "HALSIZLIK": 2,
+    "ISHAL": 1,
+    "KUSMA": 1,
+    "NOBET": 1,
+    "TITREME": 1,
+    "KALIN_DERI": 1,
+    "DENGE": 1,
+    "HAPSIRMA": 1
+   },
+   "baglam": {
+    "ASISIZ": 0.7,
+    "YENI_ALINDI": 0.4
+   },
+   "ayirici": [
+    "kulube_oksurugu",
+    "parvovirus",
+    "epilepsi",
+    "konjunktivit",
+    "zehirlenme"
+   ],
+   "aciklama": "Aşısız yavru ve genç köpeklerde görülen, solunum, sindirim ve sinir sistemini tutan ağır bir viral hastalık. Yeşil-sarı burun ve göz akıntısı, ateş, öksürük ve ishalle başlar; haftalar sonra kas seğirmeleri, nöbetler ve pati tabanlarında sertleşme gelişebilir. Sinir belirtileri kalıcı olabilir.",
+   "evde": "Hemen kliniğe gidin; köpeği diğer köpeklerden ayırın. Aşılı köpeklerde çok nadirdir; koruma yalnızca aşıyla mümkündür.",
+   "kacin": "'Nezle' diye evde bekletmeyin; aşısız yavruları parka ve sokağa çıkarmayın.",
+   "ornekler": [
+    "4 aylık aşısız yavru köpeğimizin bir haftadır burnundan ve gözünden yeşil akıntı geliyor, öksürüyor, ateşi var ve iştahı yok.",
+    "Sokaktan aldığımız genç köpek önce nezle gibi başladı, şimdi bacakları seğiriyor ve dün küçük bir nöbet geçirdi.",
+    "hocam yavru kopek gozleri burnu akıyor sarı yeşil oksuruyor ishal de var aşısı yok",
+    "Köpeğimizin burun ve göz akıntısı 10 gündür geçmedi, antibiyotik verildi, şimdi çenesinde sürekli çiğneme gibi bir titreme başladı.",
+    "Barınaktan aldığımız 5 aylık köpek ateşli, hapşırıyor, gözleri çapaklı, dengesiz yürümeye başladı ve pati tabanları sertleşti.",
+    "Yavru köpeğim iki haftadır hasta: burnu akıyor, öksürüyor, yemiyor, bu sabah da titreyerek kasıldı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kulube_oksurugu",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Kulübe öksürüğü (bulaşıcı solunum yolu enfeksiyonu)",
+   "ad_en": "Kennel cough (CIRDC)",
+   "sistem": "Solunum / Enfeksiyöz",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.3,
+    "genc": 0.35,
+    "eriskin": 0.25,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "OKSURUK": 3,
+    "BURUN_AKINTISI": 1,
+    "HAPSIRMA": 1,
+    "HALSIZLIK": 1,
+    "ATES": 1,
+    "ISTAHSIZLIK": 1
+   },
+   "baglam": {
+    "TEMAS_KOPEK": 0.6
+   },
+   "ayirici": [
+    "trakeal_kollaps",
+    "kalp_yetmezligi",
+    "distemper",
+    "yabanci_cisim"
+   ],
+   "aciklama": "Pansiyon, park, kuaför gibi kalabalık ortamlarda hızla bulaşan bakteri-virüs karışımı bir üst solunum yolu enfeksiyonu. 'Boğazına bir şey takılmış gibi' kuru, sert öksürük nöbetleri ve sonunda öğürerek beyaz köpük çıkarma tipiktir; iştah ve genel durum genelde iyidir. Çoğu köpekte 1–3 haftada kendiliğinden geçer; ancak yavru, yaşlı ve iştahsız hayvanlarda zatürreye ilerleyebilir.",
+   "evde": "Dinlendirin, tasma yerine göğüs tasması kullanın, ortamı nemli tutun, diğer köpeklerle teması kesin. Yemiyorsa, ateşi varsa ya da nefes hızlandıysa muayene gerekir.",
+   "kacin": "İnsan öksürük şurubu vermeyin; 'geçer' diye parka çıkarmaya devam etmeyin (bulaşır).",
+   "ornekler": [
+    "Köpeğimi geçen hafta pansiyona bıraktık, döndüğünden beri boğazında bir şey takılmış gibi öksürüyor ve öksürük sonunda öğürüyor.",
+    "Golden'ım üç gündür kuru kuru öksürüyor, özellikle tasmayı takınca ve heyecanlanınca, ama iştahı çok iyi.",
+    "hocam kopek oksuruyor sanki bir sey yutmus gibi oguruyor sonunda beyaz kopuk cıkarıyor parkta oynamıstı",
+    "Yavru köpeğimiz kuaförden geldikten iki gün sonra öksürmeye başladı, biraz hapşırıyor da, oyun oynuyor.",
+    "Köpeğim gece boyunca öksürdü, kaz gibi değil daha çok boğazını temizler gibi; burnu da hafif akıyor.",
+    "Eve yeni bir yavru köpek geldi, birkaç gün sonra bizim köpek de öksürmeye başladı, ateşi yok gibi ama halsiz."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kene_hastaliklari",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Kene kaynaklı hastalıklar (Ehrlichia, Babesia, Anaplasma)",
+   "ad_en": "Tick-borne diseases (ehrlichiosis, babesiosis, anaplasmosis)",
+   "sistem": "Enfeksiyöz / Kan",
+   "yayginlik": 2,
+   "seyir": "subakut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.15,
+    "genc": 0.35,
+    "eriskin": 0.35,
+    "yasli": 0.15
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Alman Çoban Köpeği",
+     "Kangal",
+     "Sibirya Kurdu",
+     "Golden Retriever"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KENE_GORUNTU": 3,
+    "ATES": 3,
+    "HALSIZLIK": 3,
+    "ISTAHSIZLIK": 2,
+    "SOLUK_DISETI": 2,
+    "BURUN_KANAMA": 1,
+    "DERI_KANAMA_NOKTA": 1,
+    "LENF": 1,
+    "TOPALLIK": 1,
+    "KILO_KAYBI": 1,
+    "KANLI_IDRAR": 1,
+    "SARILIK": 1,
+    "SIMETRIK_EKLEM": 1
+   },
+   "baglam": {
+    "KENE_ILACI_YOK": 0.5,
+    "KURSAL_SEYAHAT": 0.4,
+    "DISARI_CIKAN": 0.3
+   },
+   "ayirici": [
+    "leishmaniasis",
+    "zehirlenme",
+    "osteoartrit",
+    "kronik_bobrek",
+    "kitle_meme_tumoru"
+   ],
+   "aciklama": "Kenelerle bulaşan kan parazitleri ve bakterileri: ateş, halsizlik, iştahsızlık, soluk dişetleri (kansızlık), burun kanaması, deride kanama noktaları, eklem ağrısı ve koyu renkli idrar görülebilir. Türkiye'de özellikle ilkbahar-sonbaharda ve kırsala giden köpeklerde sıktır; tedavi edilmezse kronikleşip kemik iliğini tutabilir.",
+   "evde": "Üstündeki keneleri cımbızla deriye yakın tutarak döndürmeden çekin; kan sayımı ve test için aynı gün randevu alın. Düzenli kene koruması şarttır.",
+   "kacin": "Keneyi elle ezmeyin, üzerine alkol/yağ dökmeyin; soluk dişeti ve kanama varsa beklemeyin.",
+   "ornekler": [
+    "Köpeğimizden geçen hafta birkaç kene çıkardık, iki gündür ateşi var, halsiz ve yemiyor.",
+    "Alman çobanım Ege'de köyde yazı geçirdi, döndüğünde burnundan kan geldi, dişetleri soluk ve kilo verdi.",
+    "hocam kopekte kene vardı simdi ates var yatıyor kalkmıyor idrarı da koyu kırmızı gibi",
+    "Kangal'ımız bir gün bir bacağını bir gün öbürünü sakınıyor, ateşi var ve çenesinin altındaki bezeler şişti; kene ilacı hiç kullanmadık.",
+    "Köpeğim birkaç haftadır halsiz, iştahsız, karnında küçük kırmızı noktalar fark ettim ve iki kez burnu kanadı.",
+    "Bahçeli evde yaşayan Golden'ımızın dişetleri bembeyaz, çok halsiz, gözlerinin akı sarımsı; üstünde kene bulmuştuk."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "leishmaniasis",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Leishmaniasis (kum sineği ile bulaşan parazit hastalığı)",
+   "ad_en": "Canine leishmaniosis",
+   "sistem": "Enfeksiyöz / Deri / Böbrek",
+   "yayginlik": 1,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.3,
+    "eriskin": 0.45,
+    "yasli": 0.2
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Boxer",
+     "Rottweiler",
+     "Alman Çoban Köpeği",
+     "Cocker Spaniel"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KILO_KAYBI": 3,
+    "BURUN_KABUK": 3,
+    "GOZ_CEVRE_TUYSUZ": 2,
+    "TIRNAK_UZAMA": 2,
+    "KEPEK": 2,
+    "LENF": 1,
+    "BURUN_KANAMA": 1,
+    "HALSIZLIK": 1,
+    "COK_SU_ICME": 1,
+    "ISTAHSIZLIK": 1,
+    "TUY_KOTU": 1
+   },
+   "baglam": {
+    "KURSAL_SEYAHAT": 0.7,
+    "DISARI_CIKAN": 0.3,
+    "KENE_ILACI_YOK": 0.3
+   },
+   "ayirici": [
+    "kene_hastaliklari",
+    "uyuz",
+    "atopik_alerjik_dermatit",
+    "kronik_bobrek",
+    "hipotiroidi"
+   ],
+   "aciklama": "Ege ve Akdeniz kıyılarında yaygın kum sinekleriyle bulaşan, aylar-yıllar içinde ilerleyen bir parazit hastalığı. Zayıflama, burun ve kulak kenarlarında kepekli yaralar, göz çevresinde 'gözlük' şeklinde tüy kaybı, anormal uzayan tırnaklar, lenf bezi büyümesi ve burun kanaması görülür; ileri dönemde böbrekleri tutar. Tedavi uzun süreli, kontrol mümkündür.",
+   "evde": "Kan testi için randevu alın; sinek kovucu tasma/damla ile koruma sağlayın, akşam-gece dışarıda bırakmayın. Belirtiler yavaş ilerler ama tedavi ne kadar erken başlarsa böbrekler o kadar korunur.",
+   "kacin": "Deri yaralarını mantar/alerji diye kremle geçiştirmeyin; endemik bölgede yaşayan köpekleri yıllık taramadan geçirmeyi ihmal etmeyin.",
+   "ornekler": [
+    "Antalya'da bahçeli evde yaşayan köpeğimiz son aylarda çok zayıfladı, burnunun üstü ve kulak kenarları kepekli yaralarla kaplandı.",
+    "Boxer'ımın gözlerinin etrafında gözlük gibi tüysüz alanlar oluştu, tırnakları anormal hızlı uzuyor ve iştahına rağmen kilo veriyor.",
+    "hocam kopek yazı bodrumda gecirdi simdi derisi kepekli burnunda yaralar var zayıfladı bezeleri şiş",
+    "Köpeğimizin derisi bir yıldır kepekli ve mat, iki kez burnu kanadı, boynundaki bezeler büyüdü ve gittikçe zayıflıyor.",
+    "Alman çobanımız kırsalda yaşıyor, kulak kenarları ve burnu kabuk bağladı, tırnakları kıvrılıp uzuyor, halsiz.",
+    "Cocker'ımızın tüyleri döküldü, derisi kepekli, kilo kaybediyor ve son zamanlarda çok su içmeye başladı; Ege'de yazlıkta çok kaldı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), VetCompass leishmaniosis çalışması (Kent ve ark. 2026); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "gdv",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Mide genişlemesi ve dönmesi (GDV / mide torsiyonu)",
+   "ad_en": "Gastric dilatation-volvulus",
+   "sistem": "Acil / Sindirim",
+   "yayginlik": 1,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.13,
+    "eriskin": 0.45,
+    "yasli": 0.4
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Alman Çoban Köpeği",
+     "Great Dane",
+     "Kangal",
+     "Dobermann",
+     "Weimaraner",
+     "Standart Poodle",
+     "Setter"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KARIN_SIS": 3,
+    "OGURME_BOS": 3,
+    "HUZURSUZ": 2,
+    "SALYA": 2,
+    "KARIN_AGRISI": 1,
+    "NEFES_DARLIGI": 1,
+    "BILINC": 1,
+    "SOLUK_DISETI": 1
+   },
+   "baglam": {
+    "BUYUK_IRK": 0.7,
+    "YEMEK_SONRASI": 0.6
+   },
+   "ayirici": [
+    "yabanci_cisim",
+    "akut_gastroenterit",
+    "pankreatit",
+    "zehirlenme"
+   ],
+   "aciklama": "Büyük ve derin göğüslü ırklarda midenin gazla şişip kendi etrafında dönmesi. Yemekten ya da egzersizden sonra aniden başlayan huzursuzluk, boş boş öğürme, salya ve hızla şişen davul gibi karın tipiktir. Saatler içinde şok ve ölüm gelişir; tek tedavi acil ameliyattır.",
+   "evde": "Hiçbir şey vermeyin, hemen en yakın 7/24 kliniğe gidin ve yoldayken arayıp haber verin.",
+   "kacin": "Kusturmaya çalışmayın, gaz ilacı vermeyin, 'sabahı bekleyelim' demeyin.",
+   "ornekler": [
+    "Alman çobanımız akşam yemeğinden bir saat sonra huzursuzlandı, sürekli öğürüyor ama bir şey çıkmıyor ve karnı davul gibi şişti.",
+    "Great Dane'imiz 6 yaşında, bir anda karnı şişti, ağzından salya akıyor, yatıp kalkıyor, rahat edemiyor.",
+    "hocam buyuk ırk kopek karnı sisti oguruyor kusamıyor cok huzursuz acil mi",
+    "Kangal'ımız yemek yedikten sonra koşup oynadı, şimdi karnı gergin ve büyük, sürekli boş öğürüyor, dişetleri soluk.",
+    "Dobermann'ımızın karnı bir saat içinde balon gibi oldu, kusmaya çalışıyor ama sadece salya geliyor, ayakta zor duruyor.",
+    "Köpeğim 40 kilo, akşamdan beri karnı şiş ve sert, çok huzursuz, gezinip duruyor ve nefesi hızlandı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kalca_displazisi",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Kalça displazisi",
+   "ad_en": "Hip dysplasia",
+   "sistem": "Kas-iskelet",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.3,
+    "genc": 0.3,
+    "eriskin": 0.2,
+    "yasli": 0.2
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Golden Retriever",
+     "Labrador",
+     "Alman Çoban Köpeği",
+     "Rottweiler",
+     "Kangal",
+     "Bernese",
+     "Saint Bernard"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "ZOR_KALKMA": 3,
+    "ARKA_BACAK_GUCSUZ": 2,
+    "TOPALLIK": 2,
+    "TAVSAN_KOSU": 2,
+    "AGRI": 1,
+    "EGZERSIZ_INTOLERANS": 1
+   },
+   "baglam": {
+    "BUYUK_IRK": 0.6,
+    "KILO_FAZLA": 0.3
+   },
+   "ayirici": [
+    "osteoartrit",
+    "capraz_bag",
+    "ivdd",
+    "kene_hastaliklari"
+   ],
+   "aciklama": "Kalça ekleminin kalıtsal olarak gevşek ve uyumsuz gelişmesi; büyük ırklarda sıktır. 5–12 aylık yavrularda tavşan gibi zıplayarak koşma, yerden zor kalkma, arka bacaklarda sallantılı yürüyüş ve egzersizden kaçınma; ileri yaşta kireçlenmeye bağlı ağrı ve topallık görülür. Kilo kontrolü ve erken tanı ile ilerleme yavaşlatılır, ağır olgularda ameliyat seçenekleri vardır.",
+   "evde": "Kilo kontrolü, kaymayan zemin, kontrollü egzersiz (yüzme iyidir, zıplama ve ani koşu kötüdür) ve eklem destekleri. Röntgenle tanı için randevu alın.",
+   "kacin": "Yavruyu aşırı beslemeyip hızlı büyütmeyin; merdiven ve zıplama alışkanlığından kaçının; insan ağrı kesicisi vermeyin.",
+   "ornekler": [
+    "8 aylık Golden'ımız koşarken iki arka bacağını birden atarak tavşan gibi zıplıyor ve yerden kalkarken zorlanıyor.",
+    "Alman çobanımız 1 yaşında, arka bacakları sallanarak yürüyor, merdiven çıkmak istemiyor ve oyunda çabuk yoruluyor.",
+    "hocam yavru labrador arka bacakları güçsüz yürürken sallanıyor oturup kalkarken zorlanıyor kalça mı",
+    "Rottweiler'ımız 6 yaşında, arka bacaklarında topallık var, yürüyüşten sonra ağrısı artıyor ve zor kalkıyor.",
+    "Kangal yavrumuz 7 aylık, uzun yürüyüşte oturup kalıyor, arka tarafı iki yana sallanıyor, koşarken arka bacaklarını aynı anda kullanıyor.",
+    "Köpeğim 10 yaşında, arka bacakları giderek zayıfladı, yatıp kalkarken inliyor, yürüyüşte arka ayakları kayıyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "capraz_bag",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Ön çapraz bağ kopması",
+   "ad_en": "Cranial cruciate ligament rupture",
+   "sistem": "Kas-iskelet",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.18,
+    "eriskin": 0.5,
+    "yasli": 0.3
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Labrador",
+     "Rottweiler",
+     "Golden Retriever",
+     "Boxer",
+     "Newfoundland",
+     "Kangal"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "TOPALLIK": 3,
+    "EKLEM_SIS": 2,
+    "ANI_HAREKET": 2,
+    "ZOR_KALKMA": 1,
+    "AGRI": 1
+   },
+   "baglam": {
+    "KILO_FAZLA": 0.4,
+    "BUYUK_IRK": 0.4
+   },
+   "ayirici": [
+    "kalca_displazisi",
+    "osteoartrit",
+    "patella_luksasyonu",
+    "travma",
+    "ivdd"
+   ],
+   "aciklama": "Diz eklemini stabilize eden ön çapraz bağın koşma, zıplama ya da dönme sırasında kopması (ya da yavaş yıpranıp kopması). Aniden arka bacağa basmama, oturunca bacağı dışa uzatma ve dizde şişlik tipiktir; kilolu ve büyük ırk köpeklerde çok sıktır. Çoğu olguda ameliyat gerekir; erken tedavi menisküs hasarını ve kireçlenmeyi azaltır.",
+   "evde": "Hareketi kısıtlayın (tasmalı kısa tuvalet yürüyüşü dışında dinlenme), zıplamayı engelleyin ve ortopedik muayene için 24 saat içinde randevu alın.",
+   "kacin": "Dinlenince düzelir diye haftalarca beklemeyin; insan ağrı kesicisi vermeyin.",
+   "ornekler": [
+    "Labrador'um parkta top oynarken bir anda çığlık attı, o andan beri arka bacağına hiç basmıyor.",
+    "Rottweiler'ımız iki haftadır sağ arka bacağını sakınıyor, otururken bacağını yana uzatıyor ve dizi şiş.",
+    "hocam kopek kosarken aniden topallamaya basladı arka bacagına basmıyor dizi sıcak ve sis gibi",
+    "Kilolu Golden'ımız koltuktan atladıktan sonra arka bacağını kaldırıp üç ayak üstünde yürüyor.",
+    "Köpeğim 7 yaşında, aylardır arka bacağında hafif topallık vardı, dün bahçede oynarken tamamen basmaz oldu.",
+    "Boxer'ımızın arka bacağı iki gündür yerden kesik, dokununca dizinden acıyor, yürüyüşe çıkmak istemiyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), VetCompass çapraz bağ çalışması (Pegram ve ark. 2024); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "ivdd",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Bel fıtığı (intervertebral disk hastalığı)",
+   "ad_en": "Intervertebral disc disease",
+   "sistem": "Nöroloji / Kas-iskelet",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.18,
+    "eriskin": 0.55,
+    "yasli": 0.25
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Dachshund",
+     "Fransız Bulldog",
+     "Pekinez",
+     "Shih Tzu",
+     "Beagle",
+     "Cocker Spaniel",
+     "Basset Hound"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "SIRT_AGRISI": 3,
+    "ARKA_BACAK_GUCSUZ": 3,
+    "DENGE": 2,
+    "AGRI": 2,
+    "FELC": 1,
+    "ZOR_KALKMA": 1,
+    "IDRAR_KACIRMA": 1,
+    "TITREME": 1,
+    "ANI_HAREKET": 1
+   },
+   "baglam": {
+    "KUCUK_IRK": 0.4,
+    "KILO_FAZLA": 0.3
+   },
+   "ayirici": [
+    "capraz_bag",
+    "kalca_displazisi",
+    "osteoartrit",
+    "travma",
+    "vestibuler_sendrom"
+   ],
+   "aciklama": "Omurlar arasındaki diskin omuriliğe baskı yapması; Dachshund, Fransız Bulldog, Pekinez gibi uzun gövdeli ve kısa bacaklı ırklarda çok sıktır. Kambur duruş, sırta dokununca bağırma, boynu oynatmama, titreme, arka bacaklarda güçsüzlük ve dengesizlikle başlar; ilerlerse felç ve idrar kaçırma gelişir. Felç başladıktan sonraki ilk 24–48 saat ameliyat şansı açısından belirleyicidir.",
+   "evde": "Hareketi tamamen kısıtlayın (kafes istirahati), kucağa alırken gövdeyi düz tutun, 24 saat içinde muayene; arka bacaklar tutmuyorsa hemen kliniğe.",
+   "kacin": "Ağrı kesici verip yürütmeye devam etmeyin; zıplamasına, merdiven inip çıkmasına izin vermeyin.",
+   "ornekler": [
+    "Dachshund'um dün akşamdan beri kambur duruyor, sırtına dokununca bağırıyor ve titriyor, merdiven çıkmak istemiyor.",
+    "Fransız Bulldog'umuz bu sabah arka bacaklarını sürüyerek yürümeye başladı, dün her şey normaldi.",
+    "hocam kopegin arka bacakları tutmuyor aniden oldu sırtı agrıyor galiba dokunamıyorum",
+    "Pekinez'imiz koltuktan atladı, o andan beri boynunu oynatmıyor, başı aşağıda, kucağa alınca acıyla bağırıyor.",
+    "Beagle'ımız 6 yaşında, arka ayakları kayıyor, dengesiz yürüyor ve kambur duruyor; kilolu bir köpek.",
+    "Shih Tzu'muz iki gündür arka tarafını zor taşıyor, bugün altına kaçırmaya başladı ve arka bacakları hiç tutmuyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "patella_luksasyonu",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Patella (diz kapağı) çıkığı",
+   "ad_en": "Patellar luxation",
+   "sistem": "Kas-iskelet",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.3,
+    "genc": 0.4,
+    "eriskin": 0.2,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Pomeranian",
+     "Chihuahua",
+     "Yorkshire Terrier",
+     "Poodle",
+     "Maltese",
+     "Pekinez",
+     "Fransız Bulldog"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "TOPALLIK_ARALIKLI": 3,
+    "TOPALLIK": 1,
+    "ZOR_KALKMA": 1,
+    "AGRI": 1
+   },
+   "baglam": {
+    "KUCUK_IRK": 0.7
+   },
+   "ayirici": [
+    "capraz_bag",
+    "kalca_displazisi",
+    "osteoartrit",
+    "travma"
+   ],
+   "aciklama": "Diz kapağının yerinden kayması; küçük ırk köpeklerde çok yaygın, çoğu zaman kalıtsaldır. Yürürken birkaç adım arka bacağı havada tutup sekme, sonra bacağı sallayıp normal yürümeye devam etme tipiktir. Hafif dereceler yalnızca izlenir; sık çıkan ve ağrı yapan olgularda ameliyat gerekir.",
+   "evde": "Kilo kontrolü ve kaymayan zemin; sıklığı ve süresi artıyorsa ortopedik muayene için randevu alın.",
+   "kacin": "Sürekli havada tuttuğu bacağı zorla indirmeyin; bacağı 'yerine oturtmaya' çalışmayın.",
+   "ornekler": [
+    "Pomeranian'ımız yürürken arada bir arka bacağını kaldırıp birkaç adım sekiyor, sonra bacağını sallayıp normal yürüyor.",
+    "Chihuahua'm 2 yaşında, koşarken arka bacağı ara ara kilitleniyor gibi, bir iki adım zıplayıp düzeliyor.",
+    "hocam kucuk ırk kopek arka bacagını bazen havada tutuyor sonra normal yuruyor cıkık mı",
+    "Yorkshire'ımızın sol arka bacağı gittikçe daha sık takılıyor, artık bazen ağrıyor gibi bacağını yalıyor.",
+    "Poodle'ımız yürürken bir iki adım arka bacağını yerden kesiyor, veteriner geçen yıl 'hafif' demişti ama sıklaştı.",
+    "Maltese'imiz 8 aylık, oynarken bir anda arka bacağını kaldırıyor, birkaç saniye sonra hiçbir şey olmamış gibi koşuyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "hipotiroidi",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Hipotiroidi (tiroid yetmezliği)",
+   "ad_en": "Hypothyroidism",
+   "sistem": "Endokrin",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.1,
+    "eriskin": 0.55,
+    "yasli": 0.35
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Golden Retriever",
+     "Labrador",
+     "Dobermann",
+     "Cocker Spaniel",
+     "Boxer",
+     "Beagle"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "SIMETRIK_TUY_DOKULME": 3,
+    "KILO_ALMA": 3,
+    "HALSIZLIK": 2,
+    "USUME": 2,
+    "KOYU_DERI": 1,
+    "KEPEK": 1,
+    "TUY_KOTU": 1,
+    "YAG_DERI": 1,
+    "TEKRARLAYAN_ENF": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "cushing",
+    "atopik_alerjik_dermatit",
+    "uyuz",
+    "osteoartrit",
+    "leishmaniasis"
+   ],
+   "aciklama": "Tiroid bezinin yeterli hormon üretmemesi; orta yaşlı, orta-büyük ırk köpeklerde sıktır. Az yemesine rağmen kilo alma, halsizlik, üşüme, gövdenin iki yanında simetrik tüy dökülmesi, 'fare kuyruğu', kepekli-koyulaşmış deri ve tekrarlayan deri enfeksiyonları tipiktir. Kan testiyle tanı konur; günlük hapla tamamen kontrol altına alınır.",
+   "evde": "Tiroid hormon testleri için randevu alın; kilo ve deri değişimlerini fotoğrafla takip edin.",
+   "kacin": "Tüy dökülmesini yalnızca şampuanla tedavi etmeye çalışmayın; tanı sonrası ilacı aksatmayın.",
+   "ornekler": [
+    "Golden'ımız 6 yaşında, az yemesine rağmen çok kilo aldı, sürekli uyuyor, kaloriferin dibinden ayrılmıyor ve gövdesinin iki yanı simetrik olarak kelleşti.",
+    "Dobermann'ımızın kuyruğu fare kuyruğu gibi tüysüz kaldı, derisi koyulaştı ve kepekli, eskisine göre çok durgun.",
+    "hocam kopek şişmanladı tuyleri dokuluyor iki yanı aynı sekilde kel oldu halsiz usuyor gibi",
+    "Labrador'umuz yürüyüşte hemen yoruluyor, kilo aldı, tüyleri mat ve yağlı, sık sık deri enfeksiyonu geçiriyor.",
+    "Cocker'ımızın sırtı ve yanları kel oldu ama kaşınmıyor, derisi kalın ve koyu, kilo aldı ve keyifsiz.",
+    "Boxer'ımız 7 yaşında, hep sıcak yer arıyor, kilo alıyor, tüyleri simetrik döküldü; alerji sanmıştık ama kaşıntı yok."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), VetCompass hipotiroidi çalışması (O'Neill ve ark. 2022); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "cushing",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Cushing sendromu (hiperadrenokortisizm)",
+   "ad_en": "Hyperadrenocorticism (Cushing's)",
+   "sistem": "Endokrin",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.03,
+    "eriskin": 0.32,
+    "yasli": 0.65
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Poodle",
+     "Dachshund",
+     "Boston Terrier",
+     "Yorkshire Terrier",
+     "Boxer",
+     "Beagle"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "COK_SU_ICME": 3,
+    "COK_ISEME": 3,
+    "ISTAH_ARTISI": 3,
+    "GOBEK_SARKIK": 3,
+    "SOLUK_HIZLI_PANTING": 2,
+    "TUY_DOKULMESI": 2,
+    "KOYU_DERI": 1,
+    "HALSIZLIK": 1,
+    "INCE_DERI": 1,
+    "TEKRARLAYAN_ENF": 1
+   },
+   "baglam": {
+    "YASLI": 0.6
+   },
+   "ayirici": [
+    "diyabet",
+    "kronik_bobrek",
+    "hipotiroidi",
+    "piyometra",
+    "idrar_yolu_enf_kopek"
+   ],
+   "aciklama": "Böbrek üstü bezlerinin aşırı kortizol üretmesi; yaşlı küçük ırk köpeklerde sıktır. Çok su içme ve idrar, doymak bilmeyen iştah, sarkık göbek, ince bacaklar, gövdede simetrik tüy dökülmesi, incelmiş deri ve soğukta bile dil dışarıda soluma tipiktir. Kan testleriyle tanı konur, ilaçla kontrol altına alınır.",
+   "evde": "Su tüketimini ölçün (24 saatte kg başına 100 ml üstü anormaldir), belirtileri listeleyip iç hastalıkları muayenesi için randevu alın.",
+   "kacin": "Su kısıtlaması yapmayın; deri belirtilerini kortizonlu kremle tedavi etmeyin (tabloyu ağırlaştırır).",
+   "ornekler": [
+    "Poodle'ımız 11 yaşında, sürekli su içiyor, evin içine işemeye başladı, hep aç ve göbeği sarktı.",
+    "Dachshund'umuzun karnı yere değecek gibi sarktı ama bacakları incecik, sırtındaki tüyler döküldü ve derisi kağıt gibi inceldi.",
+    "hocam yaslı kopek cok su iciyor cok isiyor cok yiyor gobegi sarkık tuyleri dokuluyor",
+    "Yorkshire'ımız soğukta bile dilini çıkarıp soluyor, çok su içiyor, sürekli mama dileniyor ve karnı balon gibi.",
+    "Beagle'ımız 10 yaşında, iştahı çok arttı, gece işemek için uyandırıyor, gövdesindeki tüyler seyreldi ve derisi koyulaştı.",
+    "Boston Terrier'ımız iki yıldır sürekli deri enfeksiyonu geçiriyor, çok su içiyor ve göbeği sarktı; şeker testi normal çıkmıştı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "anal_kese",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Anal kese tıkanıklığı / apsesi",
+   "ad_en": "Anal sac impaction / abscess",
+   "sistem": "Deri / Sindirim",
+   "yayginlik": 3,
+   "seyir": "subakut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.3,
+    "eriskin": 0.45,
+    "yasli": 0.2
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Chihuahua",
+     "Poodle",
+     "Cocker Spaniel",
+     "Beagle",
+     "Bulldog"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "POPO_SURTME": 3,
+    "GENITAL_YALAMA": 1,
+    "AGRI": 1,
+    "APSE": 1,
+    "DISKI_AGRILI": 1,
+    "KABIZLIK": 1
+   },
+   "baglam": {
+    "KUCUK_IRK": 0.4,
+    "KILO_FAZLA": 0.3
+   },
+   "ayirici": [
+    "bagirsak_parazitleri",
+    "atopik_alerjik_dermatit",
+    "kabizlik_megakolon",
+    "kitle_meme_tumoru"
+   ],
+   "aciklama": "Anüsün iki yanındaki koku keselerinin boşalamayıp dolması; küçük ırklarda ve yumuşak dışkılı köpeklerde sıktır. Poposunu yere sürtme, kuyruk altını yalama, kötü koku ve dışkılarken ağrı görülür; kese iltihaplanırsa anüsün yanında sıcak bir şişlik oluşup patlayabilir. Kliniğe basit bir işlemle boşaltılır.",
+   "evde": "Lifli mama ile dışkı kıvamını artırın; şişlik, kanama ya da ağrı varsa aynı gün muayene.",
+   "kacin": "Keseleri evde sıkmaya çalışmayın (yırtılabilir); solucan sanıp yalnızca parazit ilacı vermeyin.",
+   "ornekler": [
+    "Chihuahua'm halıya poposunu sürtüp duruyor, kuyruk altını yalıyor ve oradan kötü bir koku geliyor.",
+    "Köpeğimin anüsünün yanında sıcak, şiş bir yer var, kaka yaparken bağırıyor.",
+    "hocam kopek poposunu yere surtuyor solucan mı yoksa baska bir sey mi",
+    "Cocker'ımızın popo kenarındaki şişlik dün patladı, kanlı irin geldi, yalamaya çalışıyor.",
+    "Beagle'ımız birkaç haftadır kuyruğunu kovalayıp poposunu ısırmaya çalışıyor, oturunca kayarak sürtüyor.",
+    "Poodle'ımız kaka yapmaya çekiniyor, poposunu yalıyor ve otururken huzursuz; balık gibi bir koku var."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), VetCompass (en sık tanılar arasında); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "trakeal_kollaps",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Trakeal kollaps (soluk borusu çökmesi)",
+   "ad_en": "Tracheal collapse",
+   "sistem": "Solunum",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.13,
+    "eriskin": 0.45,
+    "yasli": 0.4
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Yorkshire Terrier",
+     "Pomeranian",
+     "Chihuahua",
+     "Poodle",
+     "Maltese",
+     "Pug"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "OKSURUK_KAZ": 3,
+    "OKSURUK": 2,
+    "NEFES_DARLIGI": 1,
+    "EGZERSIZ_INTOLERANS": 1,
+    "HIRILTI": 1,
+    "DIL_MOR": 1
+   },
+   "baglam": {
+    "KUCUK_IRK": 0.7,
+    "KILO_FAZLA": 0.35
+   },
+   "ayirici": [
+    "kulube_oksurugu",
+    "kalp_yetmezligi",
+    "akut_alerjik_reaksiyon"
+   ],
+   "aciklama": "Küçük ırk köpeklerde soluk borusu kıkırdaklarının zayıflayıp nefes sırasında çökmesi. Heyecan, tasma çekilmesi, sıcak ve kilo alımıyla artan 'kaz sesi' gibi kuru öksürük tipiktir. Kilo kontrolü, göğüs tasması ve ilaçla çoğu köpek rahat yaşar; nadiren morarma ve nefes darlığı krizleri olur, bu durumda acildir.",
+   "evde": "Boyun tasması yerine göğüs tasması, kilo kontrolü, sigara dumanı ve sıcaktan uzak tutma; öksürük artıyorsa muayene.",
+   "kacin": "Tasmayı çekmeyin, heyecanlandırmayın; dil morarırsa beklemeyin.",
+   "ornekler": [
+    "Yorkshire'ımız heyecanlanınca kaz gibi ses çıkarıp öksürüyor, tasmayı çekince daha da kötü oluyor.",
+    "Pomeranian'ımız 8 yaşında, kilo aldıktan sonra korna gibi bir öksürüğü başladı, yürüyüşte hemen yoruluyor.",
+    "hocam kucuk kopek kaz sesi gibi oksuruyor ozellikle su icince ve heyecanlanınca",
+    "Chihuahua'mızın öksürüğü aylardır var, kaz sesi gibi, dün oynarken bir an dili morardı.",
+    "Maltese'imiz kalorifer açılınca ve sıcakta korna gibi öksürüyor, nefes alırken hırıltı var.",
+    "Poodle'ımızın kuru, sert bir öksürüğü var, özellikle tasmasını takıp yürüyüşe çıkınca, gece de ara ara."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kalp_yetmezligi",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Kalp kapak hastalığı / konjestif kalp yetmezliği",
+   "ad_en": "Mitral valve disease / congestive heart failure",
+   "sistem": "Kalp-dolaşım",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.03,
+    "eriskin": 0.27,
+    "yasli": 0.7
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Cavalier King Charles",
+     "Chihuahua",
+     "Poodle",
+     "Dachshund",
+     "Maltese",
+     "Dobermann",
+     "Boxer"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "OKSURUK": 3,
+    "EGZERSIZ_INTOLERANS": 3,
+    "SOLUNUM_HIZLI_DINLENIRKEN": 3,
+    "NEFES_DARLIGI": 2,
+    "HALSIZLIK": 2,
+    "BAYILMA": 1,
+    "KARIN_SIS": 1,
+    "ISTAHSIZLIK": 1,
+    "KILO_KAYBI": 1,
+    "HUZURSUZ": 1
+   },
+   "baglam": {
+    "YASLI": 0.6,
+    "KUCUK_IRK": 0.5
+   },
+   "ayirici": [
+    "trakeal_kollaps",
+    "kulube_oksurugu",
+    "sicak_carpmasi",
+    "epilepsi"
+   ],
+   "aciklama": "Yaşlı küçük ırk köpeklerde kalp kapaklarının, büyük ırklarda kalp kasının bozulması. Gece ve dinlenirken artan öksürük, yürüyüşte çabuk yorulma, dinlenirken hızlı nefes (dakikada 30'un üstü), bayılma nöbetleri ve karın şişliği görülür. Erken tanı ve ilaçla yıllarca kaliteli yaşam mümkündür; nefes darlığı krizi acildir.",
+   "evde": "Uyurken dakikadaki nefes sayısını sayın (30'un üstü uyarıdır), tuzu azaltın, yorucu egzersizden kaçının; kalp muayenesi için randevu alın. Ağzı açık zor nefes alıyorsa hemen kliniğe.",
+   "kacin": "Öksürük şurubu vermeyin; sıcakta yürütmeyin.",
+   "ornekler": [
+    "Cavalier'ımız 10 yaşında, gece yatınca öksürüyor, yürüyüşte oturup kalıyor ve uyurken bile göğsü hızlı inip kalkıyor.",
+    "Chihuahua'm heyecanlanınca düşüp bayılıyor, birkaç saniye sonra kalkıyor; bir de kuru öksürüğü var.",
+    "hocam yaslı kopek oksuruyor gece daha cok yuruyuse dayanamıyor nefesi hızlı kalp mi",
+    "Dobermann'ımız 7 yaşında, eskisi gibi koşamıyor, birkaç adımda nefes nefese kalıyor ve karnı büyümeye başladı.",
+    "Poodle'ımızın veteriner 'kalpte üfürüm var' demişti, şimdi dinlenirken hızlı nefes alıyor, öksürüyor ve iştahı azaldı.",
+    "Yaşlı Dachshund'umuz gece huzursuz, yatamıyor, oturarak uyumaya çalışıyor ve öksürük nöbetleri geliyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), VetCompass EPIC emülasyonu (Pegram ve ark. 2025); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "piyoderma_hot_spot",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Bakteriyel deri enfeksiyonu (piyoderma) / hot spot",
+   "ad_en": "Pyoderma / acute moist dermatitis",
+   "sistem": "Deri",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.15,
+    "genc": 0.35,
+    "eriskin": 0.35,
+    "yasli": 0.15
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [
+     "Golden Retriever",
+     "Labrador",
+     "Alman Çoban Köpeği",
+     "Bulldog",
+     "Saint Bernard",
+     "Newfoundland"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "HOT_SPOT": 3,
+    "SIVILCE_DERI": 3,
+    "KABUK_YARA": 2,
+    "KIZARIKLIK_DERI": 2,
+    "KASINMA": 2,
+    "YAG_DERI": 1,
+    "TUY_DOKULMESI": 1,
+    "AGRI": 1
+   },
+   "baglam": {
+    "DISARI_CIKAN": 0.3
+   },
+   "ayirici": [
+    "atopik_alerjik_dermatit",
+    "pire",
+    "uyuz",
+    "dermatofitoz",
+    "otitis_eksterna"
+   ],
+   "aciklama": "Derideki bakterilerin, çoğu zaman alerji, pire, nem ya da yüzeysel bir tahriş zemininde çoğalması. Karın ve kasıklarda irinli sivilcikler, kabuklar ve halka şeklinde soyulmalar (yüzeysel piyoderma) ya da saatler içinde büyüyen, sızıntılı, çok ağrılı kırmızı bir yara (hot spot) görülür. Tıraş, temizlik ve antibiyotik/antiseptik tedaviyle düzelir; tekrarlıyorsa altta yatan neden aranır.",
+   "evde": "Yaranın çevresindeki tüyleri kırpın, antiseptik solüsyonla temizleyin, yalamasını yakalıkla engelleyin ve muayene için randevu alın.",
+   "kacin": "Kortizonlu insan kremlerini ve alkolü sürmeyin; yarayı bandajla kapatıp nemli bırakmayın.",
+   "ornekler": [
+    "Golden'ımızın yanağında bir gecede kocaman, ıslak, kıpkırmızı bir yara çıktı, sürekli kaşıyor ve dokununca acıyor.",
+    "Köpeğimin karnında ve kasıklarında irinli sivilcikler ve kabuklar var, biraz da kaşınıyor.",
+    "hocam kopegin kalcasında tuylerin altında sızan kırmızı bir yara var bir gunde buyudu",
+    "Labrador'umuz denizden döndükten sonra sırtında yapışkan, kötü kokan bir yara oluştu ve hızla yayıldı.",
+    "Alman çobanımızın karnında halka şeklinde soyulan, ortası kızarık lekeler var, tüyleri döküldü.",
+    "Bulldog'umuzun deri kıvrımları kırmızı, kötü kokuyor ve içinde irinli kabarcıklar var."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Erciyes Üniv. Vet. Fak. deri hastalıkları ders notu; veteriner kontrolü gerekir"
+  },
+  {
+   "id": "idrar_yolu_enf_kopek",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "İdrar yolu enfeksiyonu / mesane taşı (köpek)",
+   "ad_en": "Urinary tract infection / urolithiasis (dog)",
+   "sistem": "Üriner",
+   "yayginlik": 3,
+   "seyir": "subakut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.1,
+    "genc": 0.25,
+    "eriskin": 0.4,
+    "yasli": 0.25
+   },
+   "cinsiyet": {
+    "disi": 0.65,
+    "erkek": 0.35
+   },
+   "irk": {
+    "kopek": [
+     "Dalmaçyalı",
+     "Minyatür Schnauzer",
+     "Shih Tzu",
+     "Bichon",
+     "Yorkshire Terrier"
+    ],
+    "kedi": []
+   },
+   "belirtiler": {
+    "ZOR_ISEME": 3,
+    "COK_ISEME": 3,
+    "KANLI_IDRAR": 2,
+    "IDRAR_KOKU": 2,
+    "GENITAL_YALAMA": 1,
+    "IDRAR_KACIRMA": 1,
+    "IDRAR_YAPAMAMA": 1,
+    "HALSIZLIK": 1,
+    "ATES": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "piyometra",
+    "diyabet",
+    "cushing",
+    "kronik_bobrek",
+    "kitle_meme_tumoru"
+   ],
+   "aciklama": "Mesanenin bakteriyel enfeksiyonu ya da mesane taşları; dişi köpeklerde daha sıktır. Sık sık az az işeme, işerken zorlanma, kanlı ya da kötü kokulu idrar ve evde kaçırma görülür. Erkek köpekte taş idrar yolunu tıkarsa hiç idrar yapamaz; bu bir acildir. Tekrarlayan enfeksiyonlarda şeker, Cushing ya da taş aranır.",
+   "evde": "Bol su içirin, sık tuvalete çıkarın; idrar örneğini (mümkünse sabah ilk idrar, temiz kapta) kliniğe götürün. Hiç idrar yapamıyorsa hemen gidin.",
+   "kacin": "Evde kalan antibiyotiklerle tedaviye başlamayın (kültürü bozar); kızılcık vb. takviyelerle acil durumu geçiştirmeyin.",
+   "ornekler": [
+    "Dişi köpeğim iki gündür sık sık az az işiyor, işerken zorlanıyor ve çişi pembe renkli.",
+    "Köpeğimiz yıllardır evde tuvaletini yapmazdı, bu hafta içeriye damla damla kaçırmaya başladı ve idrarı çok kokuyor.",
+    "hocam kopek cisini yaparken bagırıyor cok sık cıkıyor az geliyor kan da var",
+    "Schnauzer'ımız erkek, sabahtan beri işemeye çalışıyor ama hiçbir şey çıkmıyor, çok huzursuz.",
+    "Shih Tzu'muzun idrarı bulanık ve kötü kokuyor, sürekli cinsel organını yalıyor ve gece işemek için kalkıyor.",
+    "Dalmaçyalımız 5 yaşında, aylardır ara ara kanlı işiyor, antibiyotikle düzeliyor sonra yine başlıyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "vestibuler_sendrom",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Vestibüler sendrom (yaşlı köpek 'inme'si)",
+   "ad_en": "Idiopathic vestibular syndrome",
+   "sistem": "Nöroloji",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.02,
+    "eriskin": 0.18,
+    "yasli": 0.8
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "BAS_EGIK": 3,
+    "DENGE": 3,
+    "GOZ_TITREME": 3,
+    "KUSMA": 1,
+    "ISTAHSIZLIK": 1,
+    "HALSIZLIK": 1,
+    "SALYA": 1
+   },
+   "baglam": {
+    "YASLI": 0.8
+   },
+   "ayirici": [
+    "otitis_eksterna",
+    "epilepsi",
+    "zehirlenme",
+    "ivdd",
+    "kalp_yetmezligi"
+   ],
+   "aciklama": "Yaşlı köpeklerde denge organının aniden bozulması: başın bir yana eğilmesi, sarhoş gibi yürüme, yana düşme, gözlerin hızlı hızlı sağa-sola kayması ve bulantı. İnme sanılır ama çoğu olgu 'idiyopatik'tir ve 2–3 haftada büyük ölçüde düzelir. Yine de iç kulak iltihabı, tümör ya da gerçek inme dışlanmalı; aynı gün muayene gerekir.",
+   "evde": "Düşmesini engelleyin (yumuşak, sınırlı alan), su ve mamayı önüne getirin, ışığı kısın; kliniğe giderken taşıyıcı kullanın.",
+   "kacin": "Merdivene, balkona bırakmayın; 'inme, artık bitti' diye ötanazi kararını aceleye getirmeyin.",
+   "ornekler": [
+    "13 yaşındaki köpeğimiz bu sabah başı yana eğik kalktı, sarhoş gibi yürüyor ve gözleri sağa sola hızlı hızlı hareket ediyor.",
+    "Yaşlı köpeğim bir anda dengesini kaybetti, yürürken yana düşüyor, iki kez kustu ve hiçbir şey yemiyor.",
+    "hocam yaslı kopek kafası yan yatık dengesiz yuruyor gozleri titriyor inme mi gecirdi",
+    "Golden'ımız 12 yaşında, dün akşam aniden başladı: başı sağa eğik, dönerek yürüyor ve ayakta duramıyor.",
+    "Köpeğimiz 11 yaşında, sabah kalkamadı, kaldırınca yana devriliyor, gözleri sürekli kayıyor, salyası akıyor.",
+    "Yaşlı Cocker'ımızın kafası bir yana eğik, yürüyemiyor, mama kabını bulamıyor gibi; kulakları da geçen ay iltihaplıydı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "bilissel_islev_bozuklugu",
+   "tur": "kopek",
+   "tur_agirlik": null,
+   "ad_tr": "Bilişsel işlev bozukluğu (köpek bunaması)",
+   "ad_en": "Canine cognitive dysfunction",
+   "sistem": "Nöroloji / Davranış",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.0,
+    "eriskin": 0.05,
+    "yasli": 0.95
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "GECE_DOLANMA": 3,
+    "TUVALET_UNUTMA": 2,
+    "DAVRANIS_DEGISIM": 2,
+    "SESLENME": 1,
+    "HALSIZLIK": 1,
+    "HUZURSUZ": 1
+   },
+   "baglam": {
+    "YASLI": 0.95
+   },
+   "ayirici": [
+    "osteoartrit",
+    "kronik_bobrek",
+    "vestibuler_sendrom",
+    "idrar_yolu_enf_kopek",
+    "kitle_meme_tumoru"
+   ],
+   "aciklama": "Yaşlı köpeklerde beynin yaşlanmasına bağlı, insandaki bunamaya benzer tablo: gece uyumayıp dolanma, köşelere sıkışma, tanıdık kişileri tanımama, tuvalet alışkanlığını kaybetme, sebepsiz havlama ve gündüz uyuklama. Tanı, benzer belirti yapan ağrı, böbrek, idrar yolu ve beyin tümörü dışlanarak konur; diyet, ilaç ve zihinsel uyarı ile yavaşlatılabilir.",
+   "evde": "Gece ışığı, düzenli rutin, kısa gündüz yürüyüşleri ve zihin oyunları; belirti günlüğü tutup geriatrik muayene için randevu alın.",
+   "kacin": "Evde tuvaletini yaptı diye cezalandırmayın; yaşlılık deyip ağrı ya da başka hastalığı gözden kaçırmayın.",
+   "ornekler": [
+    "14 yaşındaki köpeğimiz geceleri uyumuyor, evin içinde amaçsızca dolanıyor ve köşelere sıkışıp kalıyor.",
+    "Yaşlı köpeğim yıllardır evde tuvaletini yapmazdı, son aylarda içeriye yapmaya başladı ve bazen bizi tanımıyor gibi bakıyor.",
+    "hocam kopek 15 yasında gece havlıyor duvara bakıp duruyor gunduz surekli uyuyor bunama mı",
+    "Golden'ımız 13 yaşında, kapının menteşe tarafından çıkmaya çalışıyor, mama kabını bulamıyor ve gece huzursuz.",
+    "Yaşlı Poodle'ımız eskiden sevilmeyi çok severdi, artık huysuz, gece saatlerce dolaşıyor ve sebepsiz uluyor.",
+    "Köpeğimiz 12 yaşında, evde kayboluyor gibi davranıyor, gece 3'te kalkıp dolanıyor, gündüz hep uyuyor; kan tahlilleri normal çıktı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "panlokopeni",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Panlökopeni (kedi tifosu, kedi parvovirüsü)",
+   "ad_en": "Feline panleukopenia",
+   "sistem": "Sindirim / Enfeksiyöz",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.75,
+    "genc": 0.2,
+    "eriskin": 0.04,
+    "yasli": 0.01
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KUSMA": 3,
+    "ISTAHSIZLIK": 3,
+    "HALSIZLIK": 3,
+    "ISHAL": 3,
+    "ATES": 2,
+    "DEHIDRASYON": 2,
+    "KANLI_ISHAL": 2,
+    "SAKLANMA": 1,
+    "SU_ICMEME": 1,
+    "GOZ_UCUNCU_KAPAK": 1
+   },
+   "baglam": {
+    "ASISIZ": 0.7,
+    "YENI_ALINDI": 0.5,
+    "DISARI_CIKAN": 0.3
+   },
+   "ayirici": [
+    "akut_gastroenterit",
+    "bagirsak_parazitleri",
+    "zehirlenme",
+    "yabanci_cisim",
+    "fip"
+   ],
+   "aciklama": "Aşısız yavru kedilerde çok bulaşıcı ve sık ölümcül bir virüs (köpek parvovirüsünün akrabası). Ani ateş, şiddetli halsizlik, kusma, sonra ishal (bazen kanlı), tam iştahsızlık ve 'su kabının başında oturup içememe' tipiktir. Bağışıklık hücrelerini yok ettiği için saatler içinde ağırlaşır; yoğun destek tedavisi hayat kurtarır.",
+   "evde": "Hemen kliniğe gidin; kediyi diğer kedilerden ayırın, kum kabı ve kapları çamaşır suyuyla dezenfekte edin (virüs ortamda aylarca kalır).",
+   "kacin": "Evde antibiyotik/ishal ilacıyla beklemeyin; yeni bir yavruyu aşı tamamlanmadan bu eve almayın.",
+   "ornekler": [
+    "3 aylık yavru kedimiz aşısız, dün akşam kusmaya başladı, bugün hiç yemiyor, su kabının başında oturuyor ama içmiyor ve çok halsiz.",
+    "Sokaktan iki hafta önce aldığımız yavru kedi ateşli, sürekli kusuyor, ishali var ve bir köşeye çekilip yatıyor.",
+    "hocam yavru kedi kusuyor ishal yemiyor icmiyor yatıyor asısı yok tifo mu olabilir",
+    "Kedimiz 4 aylık, sabah normaldi, öğleden sonra kustu, akşam sulu ishal başladı ve gözleri çukura kaçtı, ayakta duramıyor.",
+    "Yeni sahiplendiğimiz kedinin gözünün iç köşesinden beyaz bir perde çıktı, kusuyor, hiçbir şey yemiyor, ateşi 40.",
+    "Bahçeye çıkan genç kedimiz iki gündür yemiyor, sürekli kusuyor, dün kanlı ishal yaptı, saklanıyor ve çağırınca gelmiyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kedi_nezlesi",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Kedi nezlesi (üst solunum yolu enfeksiyonu: herpes/calicivirüs)",
+   "ad_en": "Feline upper respiratory infection (cat flu)",
+   "sistem": "Solunum / Enfeksiyöz",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.5,
+    "genc": 0.3,
+    "eriskin": 0.15,
+    "yasli": 0.05
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "Exotic Shorthair"
+    ]
+   },
+   "belirtiler": {
+    "HAPSIRMA": 3,
+    "BURUN_AKINTISI": 3,
+    "GOZ_AKINTISI": 3,
+    "GOZ_KIZARIKLIK": 2,
+    "ISTAHSIZLIK": 2,
+    "ATES": 1,
+    "SES_KISIKLIK": 1,
+    "AGIZ_YARA": 1,
+    "HALSIZLIK": 1,
+    "GOZ_KISMA": 1,
+    "SALYA": 1
+   },
+   "baglam": {
+    "YENI_ALINDI": 0.4,
+    "ASISIZ": 0.4,
+    "STRES": 0.3,
+    "DISARI_CIKAN": 0.2
+   },
+   "ayirici": [
+    "konjunktivit",
+    "kornea_ulseri",
+    "kedi_astimi",
+    "panlokopeni",
+    "dis_hastaligi"
+   ],
+   "aciklama": "Herpes ve calicivirüsün (bazen Chlamydia ve Bordetella ile birlikte) yol açtığı çok bulaşıcı üst solunum yolu enfeksiyonu. Hapşırık, burun ve göz akıntısı, kızarık gözler, ateş ve koku alamadığı için iştahsızlık görülür; calicivirüste dil ve ağızda yaralar, herpeste kornea ülseri gelişebilir. Çoğu 7–14 günde iyileşir; yavru ve iştahsız kedilerde destek gerekir. Herpes ömür boyu kalıp stresle tekrarlar.",
+   "evde": "Burun ve gözü ılık ıslak pamukla temizleyin, kokusu güçlü, ısıtılmış yaş mama sunun, buharlı banyoda 10 dakika tutun, sıcak ve stressiz ortam sağlayın. 24 saatten uzun yemiyorsa, gözünü kısıyorsa ya da zor nefes alıyorsa muayene.",
+   "kacin": "İnsan soğuk algınlığı ilaçları vermeyin (parasetamol kedide ölümcül); göz damlalarını muayenesiz kullanmayın.",
+   "ornekler": [
+    "Yavru kedim iki gündür sürekli hapşırıyor, burnu ve gözleri akıyor, mamayı kokluyor ama yemiyor.",
+    "Petshoptan yeni aldığımız kedinin gözleri çapaklı, burnu tıkalı olduğundan ağzından nefes alıyor ve sesi kısıldı.",
+    "hocam kedi hapsırıyor burnu akıyor gozleri kızarık ates var galiba yemiyor nezle mi",
+    "Kedimin dilinin ucunda yaralar çıktı, salyası akıyor, hapşırıyor ve ateşi var; aşıları eksik.",
+    "Tatile gittik komşu baktı, döndüğümüzde kedimizin gözü kısık, burnu akıyor ve sürekli hapşırıyor; daha önce de nezle olmuştu.",
+    "İki aylık kedimiz arka arkaya hapşırıyor, burnundan sarı sümük geliyor, gözleri sulanıyor ama oyun oynuyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "fip",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "FIP (kedi enfeksiyöz peritoniti)",
+   "ad_en": "Feline infectious peritonitis",
+   "sistem": "Enfeksiyöz / Sistemik",
+   "yayginlik": 2,
+   "seyir": "subakut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.45,
+    "genc": 0.4,
+    "eriskin": 0.1,
+    "yasli": 0.05
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "British Shorthair",
+     "Bengal",
+     "Ragdoll",
+     "Scottish Fold",
+     "Abyssinian"
+    ]
+   },
+   "belirtiler": {
+    "KARIN_SIS_ZAYIF": 3,
+    "ATES_DIRENCLI": 3,
+    "KILO_KAYBI": 2,
+    "ISTAHSIZLIK": 2,
+    "HALSIZLIK": 2,
+    "SARILIK": 1,
+    "NEFES_DARLIGI": 1,
+    "GOZ_BULANIK": 1,
+    "DENGE": 1,
+    "GOZ_UCUNCU_KAPAK": 1,
+    "IYILESMIYOR": 1
+   },
+   "baglam": {
+    "YENI_ALINDI": 0.45,
+    "STRES": 0.3
+   },
+   "ayirici": [
+    "panlokopeni",
+    "felv_fiv",
+    "bagirsak_parazitleri",
+    "kalp_yetmezligi",
+    "kitle_meme_tumoru"
+   ],
+   "aciklama": "Yaygın ve genelde zararsız kedi koronavirüsünün, özellikle kalabalık ortamdan gelen genç kedilerde mutasyonla ölümcül bir hastalığa dönüşmesi. 'Yaş' tipte karın (ya da göğüs) sıvıyla şişerken kedi zayıflar; 'kuru' tipte antibiyotiğe yanıt vermeyen ateş, sarılık, göz iltihabı ve sinir belirtileri görülür. Eskiden ölümcüldü; artık antiviral tedaviyle çoğu kedi iyileşiyor, erken başvuru önemlidir.",
+   "evde": "Belirtileri ve ateş seyrini kaydedin, kan tahlili ve sıvı analizi için en kısa sürede randevu alın; nefes darlığı gelişirse hemen kliniğe.",
+   "kacin": "'Karnı şişti, kurt vardır' diye yalnızca parazit ilacı verip beklemeyin; tedaviyi yarım bırakmayın.",
+   "ornekler": [
+    "6 aylık British kedimizin karnı balon gibi şişti ama kendisi zayıfladı, sırtı kemik gibi, ateşi bir türlü düşmüyor.",
+    "Barınaktan aldığımız genç kedi bir aydır ateşli, iki antibiyotik kürü işe yaramadı, kilo veriyor ve gözleri sarımsı.",
+    "hocam yavru kedinin karnı sisiyor ama zayıflıyor ates dusmuyor yemiyor fip olabilir mi",
+    "Kedimiz 1 yaşında, karnı büyüdü, sırtı eridi, halsiz, iştahsız ve zor nefes almaya başladı.",
+    "Bengal kedimizin gözü bulanıklaştı, ateşi inip çıkıyor, dengesiz yürüyor ve kilo kaybediyor; kalabalık bir çiftlikten aldık.",
+    "Genç kedimin gözünün iç köşesinde beyaz zar var, ateşi haftalardır düşmüyor, karnı şiş ama kendisi bir deri bir kemik."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "felv_fiv",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "FeLV / FIV (kedi lösemi virüsü / kedi bağışıklık yetmezliği virüsü)",
+   "ad_en": "FeLV / FIV infection",
+   "sistem": "Enfeksiyöz / Bağışıklık",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.15,
+    "genc": 0.35,
+    "eriskin": 0.35,
+    "yasli": 0.15
+   },
+   "cinsiyet": {
+    "disi": 0.3,
+    "erkek": 0.7
+   },
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KILO_KAYBI": 3,
+    "TEKRARLAYAN_ENF": 3,
+    "ATES_DIRENCLI": 2,
+    "LENF": 2,
+    "DIS_ETI": 2,
+    "AGIZ_YARA": 2,
+    "HALSIZLIK": 2,
+    "ISTAHSIZLIK": 1,
+    "SOLUK_DISETI": 1,
+    "TUY_KOTU": 1,
+    "ISHAL_KRONIK": 1
+   },
+   "baglam": {
+    "DISARI_CIKAN": 0.6,
+    "ISIRIK_YARASI": 0.3,
+    "YENI_ALINDI": 0.3
+   },
+   "ayirici": [
+    "fip",
+    "dis_hastaligi",
+    "kronik_bobrek",
+    "bagirsak_parazitleri",
+    "kene_hastaliklari"
+   ],
+   "aciklama": "Kavga ve ısırıkla (FIV) ya da yakın temasla (FeLV) bulaşan, bağışıklık sistemini zayıflatan virüsler; dışarı çıkan erkek kedilerde sıktır. Yıllarca sessiz kalabilir; sonra tekrarlayan enfeksiyonlar, iyileşmeyen yaralar, ağır dişeti iltihabı ve ağız yaraları, lenf bezi büyümesi, kansızlık, kilo kaybı ve düşmeyen ateş görülür. Hızlı kan testiyle tanı konur; bulaşmayı önlemek için içeride tutma önemlidir.",
+   "evde": "Hızlı test için randevu alın; kediyi içeride tutun, evdeki diğer kedileri test ettirin, kaliteli beslenme ve düzenli kontrolle uzun yıllar yaşayabilir.",
+   "kacin": "Çiğ et vermeyin (bağışıklık zayıf); enfeksiyonları 'geçer' diye bekletmeyin.",
+   "ornekler": [
+    "Dışarı çıkan erkek kedimiz son bir yılda sürekli hastalanıyor, bir hastalığı bitiyor öteki başlıyor, kilo verdi ve dişetleri çok kötü.",
+    "Sokaktan aldığımız kedinin ağzında yaralar var, dişetleri kıpkırmızı, çenesinin altındaki bezeler şiş ve çok zayıf.",
+    "hocam kedi surekli kavga ediyordu simdi zayıfladı ates dusmuyor yaraları iyilesmiyor lösemi mi",
+    "Kedimiz 5 yaşında, aylardır halsiz, dişetleri soluk, ara ara ishal oluyor ve tüyleri bakımsız; test yapılmadı hiç.",
+    "Bahçeye çıkan kedimizin boynunda ve bacak arkasında bezeler şişti, iştahı azaldı ve gittikçe eriyor.",
+    "Erkek kedim kısırlaştırılmadan önce çok kavga etti, şimdi ağzı kokuyor, dişetleri iltihaplı ve iki ayda iki kez apse oldu."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "kedi_astimi",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Kedi astımı / kronik bronşit",
+   "ad_en": "Feline asthma / chronic bronchitis",
+   "sistem": "Solunum",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.35,
+    "eriskin": 0.45,
+    "yasli": 0.15
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "Siyam",
+     "Himalayan"
+    ]
+   },
+   "belirtiler": {
+    "OKSURUK_ATAK": 3,
+    "HIRILTI": 2,
+    "NEFES_DARLIGI": 2,
+    "OKSURUK": 2,
+    "SOLUNUM_HIZLI_DINLENIRKEN": 1,
+    "EGZERSIZ_INTOLERANS": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "kedi_nezlesi",
+    "hcm_kedi",
+    "yabanci_cisim",
+    "bagirsak_parazitleri"
+   ],
+   "aciklama": "Hava yollarının alerjik daralması; kediler 'tüy yumağı çıkaracak gibi' çömelip boynunu uzatarak öksürük atakları geçirir, hırıltılı ve hızlı nefes alır. Toz, sigara dumanı, parfümlü kum ve polen tetikler. Kontrol edilebilir bir hastalıktır; ancak ağzı açık, mavi dilli nefes darlığı krizi hayati tehlikedir.",
+   "evde": "Tozsuz/kokusuz kum, sigara dumanı ve spreylerden uzak ortam; atakları video kaydedin ve solunum muayenesi için randevu alın. Ağzı açık nefes alıyorsa hemen kliniğe.",
+   "kacin": "'Tüy yumağı' diye malt/yağ vererek geçiştirmeyin; insan astım ilaçlarını danışmadan kullanmayın.",
+   "ornekler": [
+    "Kedim birkaç haftadır çömelip boynunu uzatarak öksürük atakları geçiriyor, tüy yumağı çıkaracak gibi ama hiçbir şey çıkmıyor.",
+    "Siyam kedimiz nefes alırken hırıltı çıkarıyor, arada öksürüyor ve oynarken hemen yoruluyor.",
+    "hocam kedi oksuruyor bogazında bir sey var gibi ıslık gibi nefes alıyor astım mı",
+    "Kedimizin öksürük nöbetleri kum değiştirdiğimizden beri arttı, bugün bir ara ağzı açık nefes aldı.",
+    "3 yaşındaki kedim gece uyanıp boynunu uzatıp öksürüyor, gündüz normal; ayda birkaç kez oluyor.",
+    "Kedim uyurken bile hızlı nefes alıyor, öksürüyor ve nefesi hırıltılı, sigara içilen bir evde yaşıyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "hipertiroidi",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Hipertiroidi (tiroid bezinin aşırı çalışması)",
+   "ad_en": "Feline hyperthyroidism",
+   "sistem": "Endokrin",
+   "yayginlik": 2,
+   "seyir": "kronik",
+   "aciliyet": "yesil",
+   "yas": {
+    "yavru": 0.0,
+    "genc": 0.0,
+    "eriskin": 0.15,
+    "yasli": 0.85
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": []
+   },
+   "belirtiler": {
+    "KILO_KAYBI": 3,
+    "ISTAH_ARTISI": 3,
+    "HIPERAKTIF": 2,
+    "SESLENME": 2,
+    "COK_SU_ICME": 1,
+    "KUSMA": 1,
+    "ISHAL": 1,
+    "TUY_KOTU": 1,
+    "SOLUNUM_HIZLI_DINLENIRKEN": 1,
+    "COK_ISEME": 1
+   },
+   "baglam": {
+    "YASLI": 0.85
+   },
+   "ayirici": [
+    "kronik_bobrek",
+    "diyabet",
+    "kronik_enteropati",
+    "hcm_kedi"
+   ],
+   "aciklama": "Yaşlı kedilerde tiroid bezinin fazla hormon üretmesi. Çok yemesine rağmen zayıflama, aşırı hareketlilik, gece bağırma, kusma-ishal, çok su içme ve bakımsız tüyler tipiktir; kalp hızını artırdığı için kalp hastalığına yol açabilir. Kan testiyle kolayca tanı konur; ilaç, diyet ya da radyoiyotla tedavi edilir.",
+   "evde": "Tiroid testi için randevu alın; kilo takibi yapın. Kusma ve hızlı nefes eklenirse muayeneyi öne alın.",
+   "kacin": "'Yaşlı, iştahı iyi, sorun yok' demeyin — iştah artışıyla zayıflama her zaman anormaldir.",
+   "ornekler": [
+    "14 yaşındaki kedim deli gibi yiyor ama gittikçe zayıflıyor, gece gece bağırıyor ve hiç durmuyor.",
+    "Yaşlı kedimiz son aylarda çok hareketli ve huzursuz, sürekli miyavlıyor, çok su içiyor ve kilo veriyor.",
+    "hocam kedi 12 yasında cok yiyor zayıflıyor ara ara kusuyor tuyleri kotu tiroid mi",
+    "Kedim 15 yaşında, iştahı yerinde hatta arttı ama sırtı bıçak gibi oldu, ara ara ishal oluyor ve uyurken bile hızlı nefes alıyor.",
+    "Yaşlı kedimiz eskisinin iki katı yiyor, kumu daha sık ıslanıyor, tüyleri yağlı ve keçeleşti, kilo aldıramıyoruz.",
+    "13 yaşındaki kedim yaşına göre çok hareketli, sürekli mama istiyor ama zayıf, son zamanlarda kusmaya da başladı."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "flutd",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Alt idrar yolu hastalığı (FLUTD / idiyopatik sistit)",
+   "ad_en": "Feline lower urinary tract disease",
+   "sistem": "Üriner",
+   "yayginlik": 3,
+   "seyir": "akut",
+   "aciliyet": "turuncu",
+   "yas": {
+    "yavru": 0.05,
+    "genc": 0.4,
+    "eriskin": 0.45,
+    "yasli": 0.1
+   },
+   "cinsiyet": null,
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "British Shorthair"
+    ]
+   },
+   "belirtiler": {
+    "ZOR_ISEME": 3,
+    "TUVALET_DISI": 3,
+    "KANLI_IDRAR": 2,
+    "GENITAL_YALAMA": 2,
+    "COK_ISEME": 2,
+    "SESLENME": 1,
+    "HUZURSUZ": 1,
+    "IKINMA_KUM": 1
+   },
+   "baglam": {
+    "STRES": 0.5,
+    "KILO_FAZLA": 0.3,
+    "KURU_MAMA": 0.3
+   },
+   "ayirici": [
+    "uretral_tikaniklik",
+    "kabizlik_megakolon",
+    "kronik_bobrek",
+    "diyabet"
+   ],
+   "aciklama": "Kedilerde mesanenin, çoğu zaman stres ve az su içmeye bağlı, enfeksiyon olmadan iltihaplanması; bazen kristal/taş da olur. Sık sık az az işeme, işerken bağırma, kanlı idrar ve kum dışına (küvet, paspas) işeme tipiktir. Erkek kedilerde aynı belirtiler tıkanıklığa dönüşebilir: hiç idrar yapamıyorsa bu bir acildir.",
+   "evde": "Su alımını artırın (yaş mama, çeşme tipi suluk), kum kabı sayısını artırıp temiz tutun, stresi azaltın; 24 saat içinde idrar tahlili için gidin. İdrar hiç gelmiyorsa hemen.",
+   "kacin": "Ceza vermeyin (stres artırır); antibiyotikle kendi kendinize tedaviye başlamayın.",
+   "ornekler": [
+    "Kedim iki gündür kum kabına sık sık giriyor, az az işiyor, işerken bağırıyor ve kumda kan lekesi gördüm.",
+    "Kedimiz banyo paspasına ve küvete işemeye başladı, sürekli cinsel organını yalıyor; yeni eve taşındık.",
+    "hocam kedi sık sık ciş yapıyor az geliyor pembe renkli tuvalet dısına yapıyor",
+    "British kedimiz kilolu ve sadece kuru mama yiyor, bugün defalarca kuma girdi, damla damla işedi ve huzursuz.",
+    "Kedim işerken miyavlıyor, kumu kullanmayıp evin köşelerine az az çiş yapıyor, çişi kanlı.",
+    "Dişi kedimiz iki haftadır çok sık ama az idrar yapıyor, arka tarafını sürekli yalıyor ve kumu çabuk kokuyor."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "uretral_tikaniklik",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Üretral tıkanıklık (erkek kedide idrar yolu tıkanması)",
+   "ad_en": "Urethral obstruction (blocked cat)",
+   "sistem": "Üriner / Acil",
+   "yayginlik": 2,
+   "seyir": "akut",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.43,
+    "eriskin": 0.45,
+    "yasli": 0.1
+   },
+   "cinsiyet": {
+    "disi": 0.05,
+    "erkek": 0.95
+   },
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "İran Kedisi (Persian)",
+     "British Shorthair"
+    ]
+   },
+   "belirtiler": {
+    "IDRAR_YAPAMAMA": 3,
+    "IKINMA_KUM": 3,
+    "SESLENME": 2,
+    "HALSIZLIK": 2,
+    "KARIN_AGRISI": 2,
+    "KUSMA": 1,
+    "ISTAHSIZLIK": 1,
+    "SAKLANMA": 1,
+    "GENITAL_YALAMA": 1,
+    "HUZURSUZ": 1
+   },
+   "baglam": {
+    "ERKEK": 0.9,
+    "KILO_FAZLA": 0.3,
+    "KURU_MAMA": 0.3,
+    "STRES": 0.2
+   },
+   "ayirici": [
+    "flutd",
+    "kabizlik_megakolon",
+    "kronik_bobrek",
+    "yabanci_cisim"
+   ],
+   "aciklama": "Erkek kedilerde idrar kanalının kristal, tıkaç ya da spazmla tıkanması; idrar yapamayan kedi 24–48 saat içinde böbrek yetmezliği ve potasyum yükselmesiyle ölebilir. Kum kabına girip çıkıp hiçbir şey yapamama, ıkınıp bağırma, karına dokundurtmama, kusma ve halsizlik tipiktir. Sahipler bunu sıklıkla kabızlık sanır; ayrım için hemen klinik gerekir.",
+   "evde": "Hiçbir şey vermeden, hemen 7/24 kliniğe gidin. Karnına bastırmayın.",
+   "kacin": "'Kabız' diye laksatif vermeyin, yağ/lavman denemeyin, sabahı beklemeyin.",
+   "ornekler": [
+    "Erkek kedim sabahtan beri kum kabına girip çıkıyor, ıkınıyor ama hiç çiş yapmıyor, bağırıyor ve karnına dokundurtmuyor.",
+    "Kısırlaştırılmış erkek kedimiz dün akşamdan beri hiç idrar yapmadı, kusuyor, halsiz ve saklanıyor.",
+    "hocam erkek kedi cis yapamıyor kuma giriyor bagırıyor ıkınıyor bir sey cıkmıyor acil mi",
+    "Kedim kabız sandık, kumda saatlerce ıkınıyor ama ne kaka ne çiş var, şimdi yatıyor ve kustu.",
+    "British erkek kedimiz sürekli cinsel organını yalıyor, damla damla bile işeyemiyor, çok huzursuz, karnı gergin ve dokununca bağırıyor.",
+    "Erkek kedim 4 yaşında, iki gündür tuvalete gidiyor ıkınıyor hiçbir şey çıkmıyor, bugün hiç yemedi ve kendinde değil."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Bio-Vet triyaj (CC BY 4.0), Vikipedi (CC BY-SA); veteriner kontrolü gerekir"
+  },
+  {
+   "id": "hcm_kedi",
+   "tur": "kedi",
+   "tur_agirlik": null,
+   "ad_tr": "Hipertrofik kardiyomiyopati (kedi kalp hastalığı) / pıhtı atması",
+   "ad_en": "Hypertrophic cardiomyopathy / aortic thromboembolism",
+   "sistem": "Kalp-dolaşım",
+   "yayginlik": 2,
+   "seyir": "karisik",
+   "aciliyet": "kirmizi",
+   "yas": {
+    "yavru": 0.02,
+    "genc": 0.28,
+    "eriskin": 0.45,
+    "yasli": 0.25
+   },
+   "cinsiyet": {
+    "disi": 0.35,
+    "erkek": 0.65
+   },
+   "irk": {
+    "kopek": [],
+    "kedi": [
+     "Maine Coon",
+     "Ragdoll",
+     "British Shorthair",
+     "Sphynx",
+     "İran Kedisi (Persian)",
+     "Bengal"
+    ]
+   },
+   "belirtiler": {
+    "NEFES_DARLIGI": 3,
+    "SOLUNUM_HIZLI_DINLENIRKEN": 3,
+    "HALSIZLIK": 2,
+    "ISTAHSIZLIK": 1,
+    "ARKA_BACAK_SOGUK_FELC": 1,
+    "BAYILMA": 1,
+    "SAKLANMA": 1,
+    "DIL_MOR": 1,
+    "OKSURUK": 1
+   },
+   "baglam": {},
+   "ayirici": [
+    "kedi_astimi",
+    "fip",
+    "hipertiroidi",
+    "travma",
+    "ivdd"
+   ],
+   "aciklama": "Kedilerde en sık kalp hastalığı; kalp kası kalınlaşır ve çoğu zaman belirti vermeden ilerler. İlk belirti aniden başlayan ağzı açık, karından hızlı nefes alma (akciğere/göğse sıvı) ya da kalpten kopan pıhtının arka bacakları bir anda felç etmesi (çığlık, soğuk patiler) olabilir. Her iki tablo da acildir; erken tanı (ekokardiyografi) ile ilaçla kontrol mümkündür.",
+   "evde": "Kediyi sakin, serin bir taşıyıcıya alın ve hemen kliniğe gidin; yolda ağzını açmaya, kucağa sıkmaya çalışmayın. Uyurken nefes sayısını (dakikada 30'un üstü) takip etmek erken uyarı verir.",
+   "kacin": "'Yorulmuş, dinlensin' demeyin; arka bacak felcini kırık sanıp beklemeyin.",
+   "ornekler": [
+    "Maine Coon'umuz bir saattir ağzı açık, karnından hızlı nefes alıyor ve saklanıyor, daha önce hiç hasta olmamıştı.",
+    "Kedim bir anda çığlık attı, arka bacakları tutmuyor ve patileri buz gibi soğuk, arka ayaklarını sürüklüyor.",
+    "hocam kedi hızlı nefes alıyor agzı acık dili morarıyor gibi yatıyor kalkmıyor acil",
+    "Ragdoll'umuz 4 yaşında, iki gündür uyurken bile göğsü çok hızlı inip kalkıyor, iştahı azaldı ve halsiz.",
+    "Kedim oynarken bir anda yığıldı, birkaç saniye sonra kalktı ama şimdi nefesi hızlı ve keyifsiz.",
+    "British kedimiz aniden arka bacaklarını kullanamaz oldu, acıyla bağırıyor, arka patileri soğuk ve dişetleri soluk."
+   ],
+   "kaynak": "MSD Vet Manual (okuma), Vikipedi (CC BY-SA), Bio-Vet triyaj (CC BY 4.0); veteriner kontrolü gerekir"
+  }
+ ],
+ "belirtiler": {
+  "KUSMA": {
+   "ad": "Kusma",
+   "en": "vomiting",
+   "tur": null,
+   "ifadeler": [
+    "kusuyor",
+    "sürekli kusuyor",
+    "günde birkaç kez kusuyor",
+    "yediğini hemen çıkarıyor",
+    "sarı köpüklü bir şey kustu",
+    "sabahları aç karnına kusuyor",
+    "kusmaya başladı",
+    "öğürüp kusuyor",
+    "su bile içse kusuyor",
+    "mamayı yer yemez kusuyor",
+    "kustu"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "KUSMA_KRONIK": {
+   "ad": "Kronik/aralıklı kusma",
+   "en": "chronic intermittent vomiting",
+   "tur": null,
+   "ifadeler": [
+    "haftalardır ara ara kusuyor",
+    "iki üç günde bir kusuyor",
+    "uzun zamandır zaman zaman kusuyor",
+    "aylardır haftada birkaç kez kusuyor"
+   ],
+   "aciliyet": null
+  },
+  "KAN_KUSMA": {
+   "ad": "Kanlı kusma",
+   "en": "haematemesis",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "kanlı kustu",
+    "kusmuğunda kan var",
+    "kahverengi kan pıhtısı gibi bir şey kustu"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "OGURME_BOS": {
+   "ad": "Boş öğürme",
+   "en": "unproductive retching",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "öğürüyor ama bir şey çıkmıyor",
+    "kusmaya çalışıyor ama kusamıyor",
+    "boş boş öğürüyor",
+    "sürekli öğürüyor, ağzından sadece salya geliyor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "ISHAL": {
+   "ad": "İshal",
+   "en": "diarrhoea",
+   "tur": null,
+   "ifadeler": [
+    "ishal oldu",
+    "ishali var",
+    "sulu dışkı yapıyor",
+    "dışkısı cıvık ve çok kötü kokuyor",
+    "sürekli ishal",
+    "kakası sulu",
+    "günde beş altı kez sulu kaka yapıyor",
+    "ishal olmuş"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "ISHAL_KRONIK": {
+   "ad": "Kronik ishal",
+   "en": "chronic diarrhoea",
+   "tur": null,
+   "ifadeler": [
+    "haftalardır ishali düzelmiyor",
+    "ishali bir geçiyor bir geliyor",
+    "aylardır dışkısı hiç düzgün olmadı",
+    "mama değiştirdik ama ishali geçmedi"
+   ],
+   "aciliyet": null
+  },
+  "ISHAL_MUKUS": {
+   "ad": "Mukuslu dışkı",
+   "en": "mucoid stool",
+   "tur": null,
+   "ifadeler": [
+    "dışkısında sümük gibi bir şey var",
+    "kakasında jöle gibi mukus var",
+    "dışkısı sümüklü"
+   ],
+   "aciliyet": null
+  },
+  "KANLI_ISHAL": {
+   "ad": "Kanlı ishal",
+   "en": "haemorrhagic diarrhoea",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "kanlı ishal yapıyor",
+    "dışkısında kan var",
+    "kakası kanlı ve çok kötü kokuyor",
+    "ishali kan gibi kırmızı",
+    "dışkısında kan pıhtıları var"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "DISKI_SIYAH": {
+   "ad": "Siyah/katran dışkı",
+   "en": "melaena",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "dışkısı katran gibi siyah",
+    "kakası simsiyah ve yapışkan"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "KABIZLIK": {
+   "ad": "Kabızlık",
+   "en": "constipation",
+   "tur": null,
+   "ifadeler": [
+    "kaka yapamıyor",
+    "üç gündür kaka yapmadı",
+    "dışkısı çok sert ve az",
+    "kaka yapmak için çok zorlanıyor",
+    "kakası taş gibi sert, küçük parçalar halinde"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "IKINMA_KUM": {
+   "ad": "Kum kabında ıkınma",
+   "en": "straining in litter box",
+   "tur": "kedi",
+   "ifadeler": [
+    "kum kabında ıkınıyor ama bir şey çıkmıyor",
+    "kum kabına girip girip çıkıyor",
+    "kumda uzun süre ıkınıp bağırıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "ISTAHSIZLIK": {
+   "ad": "İştahsızlık",
+   "en": "anorexia / inappetence",
+   "tur": null,
+   "ifadeler": [
+    "mama yemiyor",
+    "hiçbir şey yemiyor",
+    "iştahı yok",
+    "en sevdiği mamayı bile yemiyor",
+    "yemeğe yaklaşmıyor",
+    "iştahsız",
+    "yemekleri koklayıp bırakıyor",
+    "iki gündür ağzına bir lokma koymadı",
+    "yemek yemiyor",
+    "iştahı iyice kesildi"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "ISTAH_ARTISI": {
+   "ad": "İştah artışı",
+   "en": "polyphagia",
+   "tur": null,
+   "ifadeler": [
+    "iştahı çok arttı",
+    "sürekli aç, mama dilenip duruyor",
+    "her şeyi yiyor ama kilo alamıyor",
+    "eskisinin iki katı yiyor"
+   ],
+   "aciliyet": null
+  },
+  "SU_ICMEME": {
+   "ad": "Su içmeme",
+   "en": "not drinking",
+   "tur": null,
+   "ifadeler": [
+    "su içmiyor",
+    "su kabına hiç gitmiyor",
+    "su bile içmiyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "COK_SU_ICME": {
+   "ad": "Çok su içme",
+   "en": "polydipsia",
+   "tur": null,
+   "ifadeler": [
+    "çok su içiyor",
+    "sürekli su kabının başında",
+    "eskisinden çok daha fazla su içiyor",
+    "su kabını günde üç kez dolduruyoruz",
+    "musluktan, klozetten her yerden su içmeye çalışıyor"
+   ],
+   "aciliyet": null
+  },
+  "KILO_KAYBI": {
+   "ad": "Kilo kaybı",
+   "en": "weight loss",
+   "tur": null,
+   "ifadeler": [
+    "çok zayıfladı",
+    "kemikleri çıktı",
+    "kilo veriyor",
+    "iyi yemesine rağmen kilo veriyor",
+    "sırtı bıçak gibi oldu",
+    "gözle görülür şekilde zayıfladı",
+    "son aylarda eridi"
+   ],
+   "aciliyet": null
+  },
+  "KILO_ALMA": {
+   "ad": "Kilo alma",
+   "en": "weight gain",
+   "tur": null,
+   "ifadeler": [
+    "az yemesine rağmen kilo alıyor",
+    "çok kilo aldı",
+    "iyice şişmanladı"
+   ],
+   "aciliyet": null
+  },
+  "KARIN_SIS": {
+   "ad": "Karın şişliği",
+   "en": "abdominal distension",
+   "tur": null,
+   "ifadeler": [
+    "karnı şiş",
+    "karnı davul gibi",
+    "karnı gergin ve büyük",
+    "karnı bir anda şişti",
+    "karnı balon gibi oldu",
+    "karnı çok büyüdü"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "KARIN_SIS_ZAYIF": {
+   "ad": "Zayıflamayla birlikte karın şişliği",
+   "en": "ascites with weight loss",
+   "tur": null,
+   "ifadeler": [
+    "karnı şişti ama kendisi zayıfladı",
+    "karnı balon gibi ama sırtı kemik",
+    "karnı büyüyor, geri kalanı eriyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "KARIN_AGRISI": {
+   "ad": "Karın ağrısı",
+   "en": "abdominal pain",
+   "tur": null,
+   "ifadeler": [
+    "karnına dokununca bağırıyor",
+    "karnını yere değdirip kalçasını havaya kaldırıyor",
+    "karnı gergin, dokundurtmuyor",
+    "karnı ağrıyor gibi kambur duruyor",
+    "karnına dokunduğumda kaçıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "GAZ": {
+   "ad": "Gaz / karın gurultusu",
+   "en": "flatulence / borborygmi",
+   "tur": null,
+   "ifadeler": [
+    "karnı guruldiyor ve çok gaz çıkarıyor",
+    "karnından sesler geliyor",
+    "çok gazı var"
+   ],
+   "aciliyet": null
+  },
+  "YABANCI_CISIM": {
+   "ad": "Yabancı cisim yutma öyküsü",
+   "en": "foreign body ingestion history",
+   "tur": null,
+   "ifadeler": [
+    "oyuncağının bir parçasını yuttu",
+    "ip yuttu",
+    "çorabı yediğini gördük",
+    "kemik yedi, o günden beri böyle",
+    "iğne iplik yuttu galiba",
+    "mısır koçanı yedi",
+    "saç lastiği yutmuş olabilir",
+    "oyuncağının parçası kayıp, yutmuş olabilir"
+   ],
+   "aciliyet": null
+  },
+  "KURT_GORUNTU": {
+   "ad": "Dışkıda/kusmukta parazit",
+   "en": "worms seen",
+   "tur": null,
+   "ifadeler": [
+    "kakasında pirinç tanesi gibi beyaz şeyler var",
+    "kustuğunda spagetti gibi kurt çıktı",
+    "poposunda pirinç gibi şeyler yapışık",
+    "dışkısında hareket eden beyaz kurtlar gördüm"
+   ],
+   "aciliyet": null
+  },
+  "KARIN_SIS_YAVRU": {
+   "ad": "Yavruda balon karın",
+   "en": "pot belly in juvenile",
+   "tur": null,
+   "ifadeler": [
+    "yavru ama karnı balon gibi şiş",
+    "karnı şiş ama kendi çok zayıf, yavru",
+    "göbeği şiş, sırtı kemik"
+   ],
+   "aciliyet": null
+  },
+  "YUTMA_ZOR": {
+   "ad": "Yutma zorluğu",
+   "en": "dysphagia",
+   "tur": null,
+   "ifadeler": [
+    "yutkunmakta zorlanıyor",
+    "sürekli yutkunuyor",
+    "boğazında bir şey takılı gibi davranıyor"
+   ],
+   "aciliyet": null
+  },
+  "DEHIDRASYON": {
+   "ad": "Susuz kalma belirtileri",
+   "en": "dehydration",
+   "tur": null,
+   "ifadeler": [
+    "gözleri çukura kaçtı",
+    "ensesinden tutunca deri geri inmiyor",
+    "ağzı kuru ve yapışkan",
+    "susuz kalmış gibi görünüyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "HALSIZLIK": {
+   "ad": "Halsizlik",
+   "en": "lethargy",
+   "tur": null,
+   "ifadeler": [
+    "çok halsiz",
+    "sürekli yatıyor",
+    "hiç hareket etmiyor",
+    "keyifsiz",
+    "oyun oynamıyor",
+    "bir köşeye çekildi",
+    "kendinde değil",
+    "eskisi gibi değil",
+    "hep uyuyor",
+    "halsiz ve durgun",
+    "çağırınca gelmiyor, yatıyor",
+    "bitkin"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "SAKLANMA": {
+   "ad": "Saklanma",
+   "en": "hiding",
+   "tur": "kedi",
+   "ifadeler": [
+    "saklanıyor",
+    "dolabın altına girdi çıkmıyor",
+    "yatağın altından çıkmıyor",
+    "ortalıkta hiç görünmüyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "ATES": {
+   "ad": "Ateş",
+   "en": "fever",
+   "tur": null,
+   "ifadeler": [
+    "ateşi var",
+    "vücudu sıcak",
+    "ateşi 40'a çıktı",
+    "ateşi yüksek",
+    "kulakları ve karnı ateş gibi",
+    "ölçtük, ateşi 39.8"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "ATES_DIRENCLI": {
+   "ad": "Düşmeyen ateş",
+   "en": "persistent fever",
+   "tur": null,
+   "ifadeler": [
+    "ateşi düşmüyor, antibiyotik işe yaramadı",
+    "haftalardır ateşi inip çıkıyor",
+    "ateşi bir türlü düşmüyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "TITREME": {
+   "ad": "Titreme",
+   "en": "trembling",
+   "tur": null,
+   "ifadeler": [
+    "titriyor",
+    "sürekli titriyor",
+    "tir tir titriyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "USUME": {
+   "ad": "Üşüme / sıcak arama",
+   "en": "heat seeking",
+   "tur": null,
+   "ifadeler": [
+    "hep sıcak yer arıyor, üşüyor gibi",
+    "kaloriferin dibinden ayrılmıyor",
+    "sürekli battaniyenin altına giriyor"
+   ],
+   "aciliyet": null
+  },
+  "AGRI": {
+   "ad": "Ağrı",
+   "en": "pain",
+   "tur": null,
+   "ifadeler": [
+    "ağrısı var",
+    "dokununca bağırıyor",
+    "sürekli inliyor",
+    "kucağa alınca bağırıyor",
+    "canı yanıyor gibi",
+    "ağlıyor",
+    "acı çekiyor gibi"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "SESLENME": {
+   "ad": "Sürekli seslenme",
+   "en": "vocalisation",
+   "tur": null,
+   "ifadeler": [
+    "sürekli miyavlıyor",
+    "gece gece bağırıyor",
+    "durmadan inliyor",
+    "acı acı bağırıyor"
+   ],
+   "aciliyet": null
+  },
+  "HUZURSUZ": {
+   "ad": "Huzursuzluk",
+   "en": "restlessness",
+   "tur": null,
+   "ifadeler": [
+    "huzursuz, bir yerde duramıyor",
+    "sürekli dolanıyor",
+    "yatıp kalkıyor, rahat edemiyor",
+    "bir türlü yerleşemiyor"
+   ],
+   "aciliyet": null
+  },
+  "DAVRANIS_DEGISIM": {
+   "ad": "Davranış değişikliği",
+   "en": "behaviour change",
+   "tur": null,
+   "ifadeler": [
+    "saldırgan oldu",
+    "eskisi gibi sevilmek istemiyor",
+    "tuhaf davranıyor",
+    "huyu değişti",
+    "bize hırlamaya başladı"
+   ],
+   "aciliyet": null
+  },
+  "GECE_DOLANMA": {
+   "ad": "Gece dolanma / yönelim bozukluğu",
+   "en": "night pacing / disorientation",
+   "tur": "kopek",
+   "ifadeler": [
+    "geceleri uyumuyor, evde dolanıyor",
+    "köşelere sıkışıp kalıyor",
+    "bizi tanımıyor gibi bakıyor",
+    "evin içinde kayboluyor",
+    "duvara bakıp duruyor",
+    "kapının menteşe tarafından çıkmaya çalışıyor"
+   ],
+   "aciliyet": null
+  },
+  "TUVALET_UNUTMA": {
+   "ad": "Tuvalet alışkanlığını unutma",
+   "en": "house soiling (cognitive)",
+   "tur": "kopek",
+   "ifadeler": [
+    "yıllardır evde tuvaletini yapmazdı, şimdi içeriye yapıyor",
+    "tuvaletini unuttu sanki"
+   ],
+   "aciliyet": null
+  },
+  "SOLUK_DISETI": {
+   "ad": "Soluk dişeti",
+   "en": "pale gums",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "dişetleri bembeyaz",
+    "dişetleri soluk",
+    "dişetleri ve dili soluk pembe, neredeyse beyaz"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "SARILIK": {
+   "ad": "Sarılık",
+   "en": "jaundice",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "dişetleri ve gözleri sarardı",
+    "kulaklarının içi sarı",
+    "derisi sarımsı görünüyor",
+    "gözlerinin beyazı sarı"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "DERI_KANAMA_NOKTA": {
+   "ad": "Deride kanama noktaları",
+   "en": "petechiae",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "karnında küçük kırmızı noktalar var",
+    "dişetlerinde kanama var",
+    "derisinde morluklar çıktı"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "BURUN_KANAMA": {
+   "ad": "Burun kanaması",
+   "en": "epistaxis",
+   "tur": null,
+   "ifadeler": [
+    "burnu kanıyor",
+    "burnundan kan geldi",
+    "burnundan ara ara kan geliyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "LENF": {
+   "ad": "Lenf bezi şişliği",
+   "en": "lymphadenopathy",
+   "tur": null,
+   "ifadeler": [
+    "boynunda ve bacak arkasında bezeler şişti",
+    "çenesinin altında iki tarafta şişlik var",
+    "bezeleri şişmiş"
+   ],
+   "aciliyet": null
+  },
+  "BILINC": {
+   "ad": "Bilinç kaybı",
+   "en": "collapse / unresponsive",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "bilinci kapalı",
+    "tepki vermiyor",
+    "kendinden geçti",
+    "bayıldı",
+    "yerde yatıyor, kaldıramıyoruz"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "BAYILMA": {
+   "ad": "Bayılma nöbeti",
+   "en": "syncope",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "koşarken bayıldı",
+    "bir anda yığıldı sonra ayağa kalktı",
+    "heyecanlanınca düşüp bayılıyor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "COK_ISEME": {
+   "ad": "Sık idrar",
+   "en": "polyuria / frequent urination",
+   "tur": null,
+   "ifadeler": [
+    "çok sık idrara çıkıyor",
+    "kumu çok çabuk ıslanıyor",
+    "evin içine işemeye başladı",
+    "gece işemek için kalkıyor",
+    "eskisinden çok daha fazla çiş yapıyor"
+   ],
+   "aciliyet": null
+  },
+  "ZOR_ISEME": {
+   "ad": "Zor / ağrılı idrar",
+   "en": "dysuria / stranguria",
+   "tur": null,
+   "ifadeler": [
+    "işemeye çalışıyor ama çok az geliyor",
+    "işerken bağırıyor",
+    "çişini yaparken acı çekiyor",
+    "sık sık az az işiyor",
+    "damla damla işiyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "IDRAR_YAPAMAMA": {
+   "ad": "İdrar yapamama",
+   "en": "urinary obstruction",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "kum kabına girip çıkıyor ama işeyemiyor",
+    "işemeye çalışıyor ama bir şey çıkmıyor",
+    "sabahtan beri hiç çiş yapmadı",
+    "tuvalete gidiyor, ıkınıyor, hiçbir şey çıkmıyor",
+    "hiç idrar yapamıyor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "KANLI_IDRAR": {
+   "ad": "Kanlı idrar",
+   "en": "haematuria",
+   "tur": null,
+   "ifadeler": [
+    "idrarı kanlı",
+    "çişinde kan var",
+    "pembe renkli işiyor",
+    "kumda kan lekeleri gördüm"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "TUVALET_DISI": {
+   "ad": "Tuvalet dışına idrar",
+   "en": "periuria",
+   "tur": "kedi",
+   "ifadeler": [
+    "kum kabı dışına işiyor",
+    "evin her yerine çiş yapıyor",
+    "banyo paspasına işemeye başladı",
+    "kumunu kullanmıyor"
+   ],
+   "aciliyet": null
+  },
+  "IDRAR_KACIRMA": {
+   "ad": "İdrar kaçırma",
+   "en": "urinary incontinence",
+   "tur": null,
+   "ifadeler": [
+    "çişini tutamıyor",
+    "yattığı yeri ıslatıyor",
+    "farkında olmadan altına kaçırıyor"
+   ],
+   "aciliyet": null
+  },
+  "GENITAL_YALAMA": {
+   "ad": "Genital bölgeyi yalama",
+   "en": "licking genitals",
+   "tur": null,
+   "ifadeler": [
+    "sürekli cinsel organını yalıyor",
+    "arka tarafını durmadan yalıyor",
+    "pipisini sürekli yalıyor"
+   ],
+   "aciliyet": null
+  },
+  "IDRAR_KOKU": {
+   "ad": "Kötü kokulu idrar",
+   "en": "malodorous urine",
+   "tur": null,
+   "ifadeler": [
+    "idrarı çok kötü kokuyor",
+    "çişi ağır kokuyor"
+   ],
+   "aciliyet": null
+  },
+  "OKSURUK": {
+   "ad": "Öksürük",
+   "en": "cough",
+   "tur": null,
+   "ifadeler": [
+    "öksürüyor",
+    "öksürük nöbetleri geliyor",
+    "boğazında bir şey takılmış gibi öksürüyor",
+    "gece öksürüyor",
+    "kuru kuru öksürüyor",
+    "öksürüp sonunda beyaz köpük çıkarıyor",
+    "sürekli öksürüyor"
+   ],
+   "aciliyet": null
+  },
+  "OKSURUK_KAZ": {
+   "ad": "Kaz sesi öksürük",
+   "en": "goose-honk cough",
+   "tur": "kopek",
+   "ifadeler": [
+    "kaz sesi gibi öksürüyor",
+    "heyecanlanınca kaz gibi ses çıkarıp öksürüyor",
+    "tasmasını çekince kaz gibi öksürüyor",
+    "korna gibi bir öksürüğü var"
+   ],
+   "aciliyet": null
+  },
+  "OKSURUK_ATAK": {
+   "ad": "Boyun uzatarak öksürük atağı",
+   "en": "asthmatic cough episodes",
+   "tur": "kedi",
+   "ifadeler": [
+    "boynunu uzatıp çömelerek öksürük atakları geçiriyor",
+    "tüy yumağı çıkaracak gibi yapıyor ama bir şey çıkmıyor",
+    "çömelip boynunu uzatıyor ve öksürüyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "HIRILTI": {
+   "ad": "Hırıltılı solunum",
+   "en": "wheeze",
+   "tur": null,
+   "ifadeler": [
+    "nefes alırken hırıltı sesi geliyor",
+    "nefesi ıslık gibi",
+    "hırıltılı nefes alıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "NEFES_DARLIGI": {
+   "ad": "Nefes darlığı",
+   "en": "dyspnoea",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "zor nefes alıyor",
+    "karnından nefes alıyor",
+    "ağzı açık nefes alıyor",
+    "hızlı hızlı soluyor",
+    "nefes nefese",
+    "nefes almak için boynunu uzatıyor",
+    "nefes alamıyor gibi"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "SOLUNUM_HIZLI_DINLENIRKEN": {
+   "ad": "Dinlenirken hızlı solunum",
+   "en": "resting tachypnoea",
+   "tur": null,
+   "ifadeler": [
+    "dinlenirken bile hızlı nefes alıyor",
+    "uyurken bile göğsü hızlı inip kalkıyor",
+    "hiçbir şey yapmadan yatarken bile soluk soluğa"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "DIL_MOR": {
+   "ad": "Mor dil / dişeti",
+   "en": "cyanosis",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "dili morardı",
+    "dişetleri mavi mor oldu",
+    "dili mosmor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "HAPSIRMA": {
+   "ad": "Hapşırma",
+   "en": "sneezing",
+   "tur": null,
+   "ifadeler": [
+    "hapşırıyor",
+    "sürekli hapşırıyor",
+    "arka arkaya hapşırıyor",
+    "hapşırık nöbetleri geçiriyor"
+   ],
+   "aciliyet": null
+  },
+  "BURUN_AKINTISI": {
+   "ad": "Burun akıntısı",
+   "en": "nasal discharge",
+   "tur": null,
+   "ifadeler": [
+    "burnu akıyor",
+    "burnundan yeşil akıntı geliyor",
+    "burnu tıkalı",
+    "burnundan sarı sümük geliyor",
+    "burnu sürekli ıslak ve akıntılı",
+    "burnu tıkalı olduğundan ağzından nefes alıyor"
+   ],
+   "aciliyet": null
+  },
+  "SES_KISIKLIK": {
+   "ad": "Ses kısıklığı",
+   "en": "hoarse voice",
+   "tur": "kedi",
+   "ifadeler": [
+    "sesi kısıldı",
+    "miyavlaması çıkmıyor",
+    "miyavlarken sesi çatallı çıkıyor"
+   ],
+   "aciliyet": null
+  },
+  "EGZERSIZ_INTOLERANS": {
+   "ad": "Egzersiz intoleransı",
+   "en": "exercise intolerance",
+   "tur": null,
+   "ifadeler": [
+    "yürüyüşe dayanamıyor",
+    "eskisi gibi koşamıyor, hemen yoruluyor",
+    "birkaç adımda nefes nefese kalıyor",
+    "yürüyüşte oturup kalıyor"
+   ],
+   "aciliyet": null
+  },
+  "SALYA": {
+   "ad": "Salya artışı",
+   "en": "hypersalivation",
+   "tur": null,
+   "ifadeler": [
+    "ağzından salya akıyor",
+    "çok salya akıtıyor",
+    "ağzından köpük geliyor",
+    "ağzı sürekli ıslak, salyası akıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "AGIZ_KOKUSU": {
+   "ad": "Ağız kokusu",
+   "en": "halitosis",
+   "tur": null,
+   "ifadeler": [
+    "ağzı çok kötü kokuyor",
+    "nefesi leş gibi kokuyor",
+    "ağız kokusu dayanılmaz oldu"
+   ],
+   "aciliyet": null
+  },
+  "DIS_ETI": {
+   "ad": "Dişeti iltihabı / diş taşı",
+   "en": "gingivitis / tartar",
+   "tur": null,
+   "ifadeler": [
+    "diş etleri kızarık ve kanıyor",
+    "dişleri kahverengi taş dolu",
+    "dişleri sallanıyor",
+    "bir dişi düştü",
+    "diş etleri şiş ve kırmızı"
+   ],
+   "aciliyet": null
+  },
+  "YEME_ZORLUGU": {
+   "ad": "Ağrılı yeme",
+   "en": "painful eating",
+   "tur": null,
+   "ifadeler": [
+    "yemeği ağzından düşürüyor",
+    "tek taraflı çiğniyor",
+    "yemek isterken vazgeçiyor",
+    "sert mamayı yiyemiyor",
+    "yerken bağırıyor",
+    "mamayı ağzına alıp bırakıyor"
+   ],
+   "aciliyet": null
+  },
+  "AGIZ_PENCELEME": {
+   "ad": "Ağzı pençeleme",
+   "en": "pawing at mouth",
+   "tur": null,
+   "ifadeler": [
+    "ağzını pençeliyor",
+    "ağzını sürekli patisiyle ovuşturuyor",
+    "ağzında bir şey varmış gibi pençeliyor"
+   ],
+   "aciliyet": null
+  },
+  "AGIZ_YARA": {
+   "ad": "Ağız içi yaralar",
+   "en": "oral ulcers",
+   "tur": null,
+   "ifadeler": [
+    "ağzında yaralar var",
+    "dilinde yara var",
+    "dilinin ucunda kırmızı yaralar var",
+    "dudağının içi yara olmuş"
+   ],
+   "aciliyet": null
+  },
+  "GOZ_AKINTISI": {
+   "ad": "Göz akıntısı",
+   "en": "ocular discharge",
+   "tur": null,
+   "ifadeler": [
+    "gözleri akıyor",
+    "gözleri çapaklı",
+    "gözünden yeşil akıntı geliyor",
+    "gözleri sulanıyor",
+    "sabahları gözleri çapaktan açılmıyor"
+   ],
+   "aciliyet": null
+  },
+  "GOZ_KIZARIKLIK": {
+   "ad": "Göz kızarıklığı",
+   "en": "red eye",
+   "tur": null,
+   "ifadeler": [
+    "gözü kızarmış",
+    "gözünün beyazı kırmızı",
+    "gözü kanlanmış",
+    "göz kapağı şiş ve kırmızı",
+    "gözünün içi kıpkırmızı"
+   ],
+   "aciliyet": null
+  },
+  "GOZ_KISMA": {
+   "ad": "Göz kısma / ağrılı göz",
+   "en": "blepharospasm",
+   "tur": null,
+   "ifadeler": [
+    "bir gözünü kısıyor",
+    "gözünü açamıyor",
+    "gözünü kapalı tutuyor",
+    "ışıktan kaçıyor",
+    "gözünü pençesiyle ovuşturuyor",
+    "bir gözü sürekli yarı kapalı"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "GOZ_BULANIK": {
+   "ad": "Gözde bulanıklık / leke",
+   "en": "corneal opacity",
+   "tur": null,
+   "ifadeler": [
+    "gözü bulanıklaştı",
+    "gözünde beyaz bir leke var",
+    "gözü buğulu görünüyor",
+    "gözünün üstünde mavi beyaz bir tabaka oluştu"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "GOZ_UCUNCU_KAPAK": {
+   "ad": "Üçüncü göz kapağı görünür",
+   "en": "third eyelid protrusion",
+   "tur": "kedi",
+   "ifadeler": [
+    "gözünün iç köşesinden beyaz bir perde çıktı",
+    "gözlerinin yarısını beyaz bir zar kaplıyor"
+   ],
+   "aciliyet": null
+  },
+  "GOZ_TITREME": {
+   "ad": "Göz titremesi",
+   "en": "nystagmus",
+   "tur": null,
+   "ifadeler": [
+    "gözleri sağa sola hızlı hızlı hareket ediyor",
+    "gözleri titriyor",
+    "göz bebekleri sürekli kayıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "GOZ_CEVRE_TUYSUZ": {
+   "ad": "Göz çevresinde tüysüz/kepekli alan",
+   "en": "periocular alopecia",
+   "tur": "kopek",
+   "ifadeler": [
+    "göz çevresinde gözlük gibi tüysüz alan oluştu",
+    "gözlerinin etrafı kepekli ve tüysüz"
+   ],
+   "aciliyet": null
+  },
+  "KASINMA": {
+   "ad": "Kaşıntı",
+   "en": "pruritus",
+   "tur": null,
+   "ifadeler": [
+    "çok kaşınıyor",
+    "sürekli kaşınıyor",
+    "kanatıncaya kadar kaşınıyor",
+    "kaşınmaktan uyuyamıyor",
+    "kendini ısırıyor",
+    "sürekli yalanıyor",
+    "deli gibi kaşınıyor",
+    "kaşınıp duruyor"
+   ],
+   "aciliyet": null
+  },
+  "PATI_YALAMA": {
+   "ad": "Pati yalama",
+   "en": "paw licking",
+   "tur": "kopek",
+   "ifadeler": [
+    "patilerini sürekli yalıyor ve ısırıyor",
+    "patilerinin arası kırmızı ve ıslak",
+    "ayaklarını yalamaktan tüyleri kızıllaştı"
+   ],
+   "aciliyet": null
+  },
+  "KOLTUK_ALTI_KIZARIK": {
+   "ad": "Koltuk altı / kasık kızarıklığı",
+   "en": "axillary/inguinal erythema",
+   "tur": "kopek",
+   "ifadeler": [
+    "koltuk altı ve kasıkları kırmızı",
+    "karnının altı ve kasıkları kızarık",
+    "bacak aralarında kırmızı lekeler var"
+   ],
+   "aciliyet": null
+  },
+  "TUY_DOKULMESI": {
+   "ad": "Tüy dökülmesi",
+   "en": "alopecia",
+   "tur": null,
+   "ifadeler": [
+    "tüyleri dökülüyor",
+    "yer yer tüysüz alanlar var",
+    "tüyleri avuç avuç geliyor",
+    "sırtında kel bölgeler oluştu",
+    "tüyleri çok seyreldi"
+   ],
+   "aciliyet": null
+  },
+  "KEL_YUVARLAK": {
+   "ad": "Yuvarlak tüysüz lezyon",
+   "en": "circular alopecia",
+   "tur": null,
+   "ifadeler": [
+    "yuvarlak tüysüz bölgeler var",
+    "para büyüklüğünde kel lekeler çıktı",
+    "kulağında ve yüzünde pullu kel alan var",
+    "yuvarlak, kenarları kızarık kel bir yer var"
+   ],
+   "aciliyet": null
+  },
+  "SIMETRIK_TUY_DOKULME": {
+   "ad": "Simetrik tüy dökülmesi",
+   "en": "symmetrical alopecia",
+   "tur": "kopek",
+   "ifadeler": [
+    "iki yanında simetrik tüy dökülmesi var",
+    "kuyruğu fare kuyruğu gibi tüysüz kaldı",
+    "gövdesinin iki yanı aynı şekilde kelleşti"
+   ],
+   "aciliyet": null
+  },
+  "KUYRUK_DIBI": {
+   "ad": "Kuyruk dibi lezyonu",
+   "en": "tail-base dermatitis",
+   "tur": null,
+   "ifadeler": [
+    "kuyruk dibinde tüy dökülmesi ve kabuk var",
+    "sırtının arkası ve kuyruk dibi kel oldu",
+    "kuyruğunun üstünü kemiriyor"
+   ],
+   "aciliyet": null
+  },
+  "KIZARIKLIK_DERI": {
+   "ad": "Deri kızarıklığı",
+   "en": "erythema",
+   "tur": null,
+   "ifadeler": [
+    "derisi kızarık",
+    "karnında kırmızı lekeler var",
+    "derisi kıpkırmızı ve sıcak",
+    "derisinde kırmızı kabarcıklar çıktı"
+   ],
+   "aciliyet": null
+  },
+  "KABUK_YARA": {
+   "ad": "Kabuklu yaralar",
+   "en": "crusts / lesions",
+   "tur": null,
+   "ifadeler": [
+    "derisinde kabuklar var",
+    "vücudunda yaralar var",
+    "kabuklanmış yaralar var",
+    "derisi yara bere içinde"
+   ],
+   "aciliyet": null
+  },
+  "SIVILCE_DERI": {
+   "ad": "İrinli sivilceler",
+   "en": "pustules",
+   "tur": null,
+   "ifadeler": [
+    "derisinde sivilce gibi şeyler var",
+    "karnında irinli sivilcikler çıktı",
+    "derisinde sarı başlı kabarcıklar var"
+   ],
+   "aciliyet": null
+  },
+  "HOT_SPOT": {
+   "ad": "Akut sızıntılı yara",
+   "en": "acute moist dermatitis",
+   "tur": "kopek",
+   "ifadeler": [
+    "bir günde yayılan sızıntılı, kırmızı, yapışkan bir yara oluştu",
+    "yanağında bir gecede kocaman ıslak yara çıktı",
+    "kalçasında tüylerin altında sızan kırmızı bir yara var"
+   ],
+   "aciliyet": null
+  },
+  "KALIN_DERI": {
+   "ad": "Kalınlaşmış kabuklu deri",
+   "en": "lichenified/crusted skin",
+   "tur": null,
+   "ifadeler": [
+    "kulak kenarları kabuklu ve kalınlaşmış",
+    "dirseklerinde kalın kabuklu deri var",
+    "derisi kalınlaşıp koyulaştı",
+    "kulaklarının ucu kabuk bağladı"
+   ],
+   "aciliyet": null
+  },
+  "KOYU_DERI": {
+   "ad": "Deride koyulaşma",
+   "en": "hyperpigmentation",
+   "tur": null,
+   "ifadeler": [
+    "derisi koyulaştı, karardı",
+    "karnının derisi siyahlaştı"
+   ],
+   "aciliyet": null
+  },
+  "KEPEK": {
+   "ad": "Kepek",
+   "en": "scaling",
+   "tur": null,
+   "ifadeler": [
+    "derisi çok kepekli",
+    "tüylerinde beyaz kepekler var",
+    "sırtı kepek içinde"
+   ],
+   "aciliyet": null
+  },
+  "YAG_DERI": {
+   "ad": "Yağlı, kokulu deri",
+   "en": "seborrhoea / malodour",
+   "tur": null,
+   "ifadeler": [
+    "derisi yağlı ve kötü kokuyor",
+    "tüyleri yağlı yağlı ve kokuyor",
+    "derisinden ekşi bir koku geliyor"
+   ],
+   "aciliyet": null
+  },
+  "TUY_KOTU": {
+   "ad": "Mat, bakımsız tüy",
+   "en": "poor coat",
+   "tur": null,
+   "ifadeler": [
+    "tüyleri matlaştı",
+    "tüyleri keçeleşti",
+    "kendine bakmıyor, tüyleri yağlı ve karışık",
+    "tüylerinin parlaklığı gitti"
+   ],
+   "aciliyet": null
+  },
+  "PIRE_GORUNTU": {
+   "ad": "Pire görülmesi",
+   "en": "fleas seen",
+   "tur": null,
+   "ifadeler": [
+    "üstünde pire gördüm",
+    "tüylerinde siyah noktalar var",
+    "pire var",
+    "kuyruk dibinde pire ve pire pisliği var",
+    "tarağa pire geliyor"
+   ],
+   "aciliyet": null
+  },
+  "KENE_GORUNTU": {
+   "ad": "Kene öyküsü",
+   "en": "tick exposure",
+   "tur": "kopek",
+   "ifadeler": [
+    "üstünde kene bulduk",
+    "geçen hafta kene çıkardık",
+    "kırsalda dolaşıyor, üstünden birkaç kene çıktı"
+   ],
+   "aciliyet": null
+  },
+  "KITLE": {
+   "ad": "Kitle / şişlik",
+   "en": "mass",
+   "tur": null,
+   "ifadeler": [
+    "vücudunda bir yumru var",
+    "memesinde sert bir kitle var",
+    "derisinin altında ceviz gibi bir şişlik var",
+    "kitle giderek büyüyor",
+    "karnının altında bir top gibi şişlik var",
+    "memesinin yanında sert bir şey ele geliyor"
+   ],
+   "aciliyet": null
+  },
+  "APSE": {
+   "ad": "Sıcak, ağrılı şişlik / apse",
+   "en": "abscess",
+   "tur": null,
+   "ifadeler": [
+    "boynunda sıcak, şiş bir yer var",
+    "şişlik patladı ve içinden irin aktı",
+    "kuyruk dibinde şiş var, dokununca acıyor",
+    "yanağında yumuşak, sıcak bir şişlik oluştu",
+    "şişliğin üstünde küçük bir delik var, kokulu sıvı geliyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "ISIRIK_YARASI": {
+   "ad": "Isırık yarası / kavga öyküsü",
+   "en": "bite wound / fight",
+   "tur": null,
+   "ifadeler": [
+    "başka bir kediyle kavga etti",
+    "dışarıda kavga edip gelmiş",
+    "boynunda ısırık deliği var",
+    "sokak kedileriyle kavga ediyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "YUZ_SIS": {
+   "ad": "Yüz şişmesi",
+   "en": "facial swelling",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "yüzü bir anda şişti",
+    "gözleri ve ağzı şişti",
+    "dudakları şişti",
+    "yüzünde kabartılar çıktı",
+    "kafası balon gibi şişti"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "YARA_KANAMA": {
+   "ad": "Kanayan yara",
+   "en": "bleeding wound",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "yarası var ve kanıyor",
+    "kanaması durmuyor",
+    "derin bir yara var",
+    "bacağında açık yara var"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "BURUN_KABUK": {
+   "ad": "Burun ve kulak kenarlarında kepekli yaralar",
+   "en": "nasal/pinnal crusting",
+   "tur": "kopek",
+   "ifadeler": [
+    "burnunda ve kulak kenarlarında kepekli yaralar var",
+    "burnunun üstü kabuk bağladı",
+    "kulak kenarları kepekli ve yaralı"
+   ],
+   "aciliyet": null
+  },
+  "TIRNAK_UZAMA": {
+   "ad": "Anormal tırnak uzaması",
+   "en": "onychogryphosis",
+   "tur": "kopek",
+   "ifadeler": [
+    "tırnakları anormal hızlı ve kıvrık uzuyor",
+    "tırnakları uzun ve çarpık"
+   ],
+   "aciliyet": null
+  },
+  "KULAK_KASINMA": {
+   "ad": "Kulak kaşıma / baş sallama",
+   "en": "ear scratching / head shaking",
+   "tur": null,
+   "ifadeler": [
+    "kulağını kaşıyor",
+    "kulaklarını sürekli kaşıyor",
+    "kafasını sallıyor",
+    "başını sürekli sallıyor",
+    "kulağını yere sürtüyor"
+   ],
+   "aciliyet": null
+  },
+  "KULAK_AKINTI": {
+   "ad": "Kulak akıntısı / kokusu",
+   "en": "otic discharge / odour",
+   "tur": null,
+   "ifadeler": [
+    "kulağından kötü kokulu akıntı geliyor",
+    "kulağı kötü kokuyor",
+    "kulağının içi kahverengi kirli",
+    "kulağı kızarık ve sıcak",
+    "kulağının içi sarı akıntılı"
+   ],
+   "aciliyet": null
+  },
+  "KULAK_SIYAH_KIR": {
+   "ad": "Kulakta kahve telvesi gibi kir",
+   "en": "coffee-ground otic debris",
+   "tur": null,
+   "ifadeler": [
+    "kulağının içinde kahve telvesi gibi siyah kir var",
+    "kulakları kuru siyah kirle dolu",
+    "kulağından siyah kırıntılar çıkıyor"
+   ],
+   "aciliyet": null
+  },
+  "KULAK_AGRI": {
+   "ad": "Kulak ağrısı",
+   "en": "otic pain",
+   "tur": null,
+   "ifadeler": [
+    "kulağına dokununca bağırıyor",
+    "kulağını elletmiyor",
+    "kulağına yaklaşınca kaçıyor"
+   ],
+   "aciliyet": null
+  },
+  "BAS_EGIK": {
+   "ad": "Baş eğikliği",
+   "en": "head tilt",
+   "tur": null,
+   "ifadeler": [
+    "başı bir yana eğik duruyor",
+    "başı yan yatık",
+    "kafasını yana eğip öyle geziyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "DENGE": {
+   "ad": "Denge kaybı",
+   "en": "ataxia",
+   "tur": null,
+   "ifadeler": [
+    "dengesini kaybediyor",
+    "sarhoş gibi yürüyor",
+    "yürürken yana düşüyor",
+    "dönerek yürüyor",
+    "ayakta duramıyor",
+    "sendeleyerek yürüyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "NOBET": {
+   "ad": "Nöbet",
+   "en": "seizure",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "nöbet geçirdi",
+    "titreyerek yere düştü ve kasıldı",
+    "bilinci gitti, çırpındı",
+    "ağzından köpük gelerek kasıldı",
+    "birkaç dakika kasılıp kaldı, sonra kendine geldi",
+    "yerde yatıp bacaklarını pedal çevirir gibi oynattı",
+    "sara nöbeti gibi bir şey geçirdi"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "TOPALLIK": {
+   "ad": "Topallık",
+   "en": "lameness",
+   "tur": null,
+   "ifadeler": [
+    "topallıyor",
+    "arka bacağını yere basmıyor",
+    "ön bacağını sakınıyor",
+    "bir bacağını kaldırıp yürüyor",
+    "yürürken aksıyor",
+    "bacağına hiç basmıyor",
+    "üç ayak üzerinde yürüyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "TOPALLIK_ARALIKLI": {
+   "ad": "Aralıklı topallık / kilitlenme",
+   "en": "intermittent skipping lameness",
+   "tur": "kopek",
+   "ifadeler": [
+    "bazen bacağını kaldırıp birkaç adım sekiyor sonra normal yürüyor",
+    "arka bacağı ara ara kilitleniyor",
+    "yürürken bir iki adım zıplıyor, sonra düzeliyor"
+   ],
+   "aciliyet": null
+  },
+  "ZOR_KALKMA": {
+   "ad": "Kalkmada zorluk / tutukluk",
+   "en": "stiffness",
+   "tur": null,
+   "ifadeler": [
+    "yerden zor kalkıyor",
+    "merdiven çıkmak istemiyor",
+    "koltuğa zıplayamıyor",
+    "sabahları tutuk",
+    "yatıp kalkarken zorlanıyor",
+    "eskisi gibi zıplamıyor",
+    "arabaya binmek için yardım istiyor"
+   ],
+   "aciliyet": null
+  },
+  "ARKA_BACAK_GUCSUZ": {
+   "ad": "Arka bacak güçsüzlüğü",
+   "en": "hindlimb weakness",
+   "tur": null,
+   "ifadeler": [
+    "arka bacakları tutmuyor",
+    "arka ayakları üzerinde duramıyor",
+    "arka bacaklarını sürüyor",
+    "arka ayakları kayıyor",
+    "arka tarafı sallanıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "FELC": {
+   "ad": "Felç",
+   "en": "paralysis",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "arka bacakları felç oldu",
+    "arka tarafı tamamen tutmuyor",
+    "arka bacaklarını hiç hareket ettiremiyor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "ARKA_BACAK_SOGUK_FELC": {
+   "ad": "Ani ağrılı arka bacak felci, soğuk patiler",
+   "en": "aortic thromboembolism",
+   "tur": "kedi",
+   "kirmizi": true,
+   "ifadeler": [
+    "bir anda bağırdı ve arka bacakları tutmadı, patileri soğuk",
+    "arka bacakları aniden felç oldu, patileri buz gibi",
+    "birden çığlık attı, arka ayaklarını sürüklüyor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "SIRT_AGRISI": {
+   "ad": "Sırt / boyun ağrısı",
+   "en": "back or neck pain",
+   "tur": null,
+   "ifadeler": [
+    "sırtına dokununca bağırıyor",
+    "kamburunu çıkarıp duruyor",
+    "boynunu oynatmak istemiyor",
+    "sırtı kambur, başı aşağıda",
+    "kucağa alınca acıyla bağırıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "EKLEM_SIS": {
+   "ad": "Eklem şişliği",
+   "en": "joint swelling",
+   "tur": null,
+   "ifadeler": [
+    "dizi şişmiş",
+    "eklemleri şiş",
+    "bacağı şişti",
+    "dizi sıcak ve şiş"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "SIMETRIK_EKLEM": {
+   "ad": "Birden fazla eklemde ağrı",
+   "en": "polyarthropathy",
+   "tur": "kopek",
+   "ifadeler": [
+    "bir gün bir bacağı bir gün öbürü ağrıyor",
+    "bütün eklemleri ağrıyor gibi yürümek istemiyor"
+   ],
+   "aciliyet": null
+  },
+  "HIPERAKTIF": {
+   "ad": "Aşırı hareketlilik",
+   "en": "hyperactivity",
+   "tur": "kedi",
+   "ifadeler": [
+    "yaşına göre çok hareketli ve huzursuz",
+    "yaşlı ama deli gibi dolanıyor",
+    "hiç durmuyor, sürekli miyavlıyor ve geziyor"
+   ],
+   "aciliyet": null
+  },
+  "GOBEK_SARKIK": {
+   "ad": "Sarkık karın",
+   "en": "pot-bellied appearance",
+   "tur": "kopek",
+   "ifadeler": [
+    "karnı sarkık, göbekli oldu",
+    "karnı yere değecek gibi sarktı",
+    "göbeği sarktı ama bacakları incecik"
+   ],
+   "aciliyet": null
+  },
+  "SOLUK_HIZLI_PANTING": {
+   "ad": "Sürekli dil dışarıda soluma",
+   "en": "excessive panting",
+   "tur": "kopek",
+   "ifadeler": [
+    "sürekli dili dışarıda soluyor",
+    "soğukta bile dilini çıkarıp soluyor",
+    "hiç durmadan hızlı hızlı soluyor"
+   ],
+   "aciliyet": null
+  },
+  "POPO_SURTME": {
+   "ad": "Popo sürtme",
+   "en": "scooting",
+   "tur": null,
+   "ifadeler": [
+    "poposunu yere sürtüyor",
+    "kuyruk altını sürekli yalıyor",
+    "poposunda kötü koku var",
+    "poposunun yanı şiş",
+    "halıya poposunu sürtüp duruyor"
+   ],
+   "aciliyet": null
+  },
+  "AKINTI_VAJINAL": {
+   "ad": "Vajinal akıntı",
+   "en": "vaginal discharge",
+   "tur": null,
+   "ifadeler": [
+    "vajinasından kötü kokulu akıntı geliyor",
+    "arka tarafından kanlı irinli akıntı var",
+    "arkasından sarı yeşil akıntı geliyor",
+    "yattığı yerde kötü kokulu leke bırakıyor"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "KIZGINLIK_SONRASI": {
+   "ad": "Kızgınlık sonrası dönem",
+   "en": "recent oestrus",
+   "tur": null,
+   "ifadeler": [
+    "kızgınlığı yeni bitti",
+    "bir ay önce kızgınlık dönemindeydi",
+    "kısırlaştırılmamış, birkaç hafta önce kızgınlıktaydı"
+   ],
+   "aciliyet": null
+  },
+  "DOGUM_UZUN": {
+   "ad": "Uzayan doğum",
+   "en": "dystocia",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "bir saatten fazla ıkınıyor ama yavru gelmiyor",
+    "sancıları var ama doğuramıyor",
+    "yavrular arasında üç saat geçti, hâlâ karnı büyük",
+    "doğum başladı ama bir şey çıkmıyor, çok zorlanıyor",
+    "yavrunun bir kısmı göründü ama ilerlemiyor"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "ZEHIR_TEMAS": {
+   "ad": "Zehirli madde teması",
+   "en": "toxin exposure",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "fare zehri yemiş olabilir",
+    "çikolata yedi",
+    "ilaç kutusunu kemirdi",
+    "temizlik malzemesine bulaşmış patisini yaladı",
+    "üzüm yedi",
+    "antifriz içmiş olabilir",
+    "bahçede ilaçlanmış ot yedi",
+    "ağrı kesici hapımı yutmuş"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "ZEHIR_TEMAS_KEDI": {
+   "ad": "Kediye özgü zehir teması",
+   "en": "cat-specific toxin exposure",
+   "tur": "kedi",
+   "ifadeler": [
+    "zambak yaprağı yedi",
+    "vazodaki zambağı kemirmiş",
+    "köpek pire damlası sürüldü",
+    "parasetamol verdim, sonra kötüleşti"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "SICAK_TEMAS": {
+   "ad": "Sıcak maruziyeti",
+   "en": "heat exposure",
+   "tur": null,
+   "ifadeler": [
+    "sıcakta yürüyüşten döndük",
+    "arabada kaldı",
+    "güneşte çok koştu",
+    "öğle sıcağında dışarıda kaldı",
+    "balkonda güneşin altında kalmış"
+   ],
+   "aciliyet": "turuncu"
+  },
+  "TRAVMA": {
+   "ad": "Travma öyküsü",
+   "en": "trauma history",
+   "tur": null,
+   "kirmizi": true,
+   "ifadeler": [
+    "araba çarptı",
+    "balkondan düştü",
+    "yüksekten düştü",
+    "büyük bir köpek ısırdı",
+    "kapıya sıkıştı",
+    "üstüne bir şey düştü",
+    "motosiklet çarptı"
+   ],
+   "aciliyet": "kirmizi"
+  },
+  "ASISIZ": {
+   "ad": "Aşısız / aşıları eksik",
+   "en": "unvaccinated",
+   "tur": null,
+   "ifadeler": [
+    "aşıları tamamlanmadı",
+    "aşısız",
+    "henüz aşı olmadı",
+    "sadece ilk aşısı yapıldı",
+    "aşıları eksik"
+   ],
+   "aciliyet": null
+  },
+  "YENI_ALINDI": {
+   "ad": "Yeni edinilmiş",
+   "en": "recently acquired",
+   "tur": null,
+   "ifadeler": [
+    "yeni aldık",
+    "iki hafta önce sahiplendik",
+    "petshoptan yeni aldık",
+    "sokaktan yeni aldık",
+    "barınaktan yeni aldık"
+   ],
+   "aciliyet": null
+  },
+  "DISARI_CIKAN": {
+   "ad": "Dışarı çıkan hayvan",
+   "en": "outdoor access",
+   "tur": null,
+   "ifadeler": [
+    "dışarı çıkan bir kedi",
+    "bahçeye çıkıyor",
+    "sokakta geziyor",
+    "bahçeli evde yaşıyor"
+   ],
+   "aciliyet": null
+  },
+  "KISIR_DEGIL_DISI": {
+   "ad": "Kısırlaştırılmamış dişi",
+   "en": "intact female",
+   "tur": null,
+   "ifadeler": [
+    "kısırlaştırılmamış dişi",
+    "kısır değil, dişi",
+    "hiç kısırlaştırmadık"
+   ],
+   "aciliyet": null
+  },
+  "ERKEK": {
+   "ad": "Erkek",
+   "en": "male",
+   "tur": null,
+   "ifadeler": [
+    "erkek",
+    "kısırlaştırılmış erkek"
+   ],
+   "aciliyet": null
+  },
+  "BUYUK_IRK": {
+   "ad": "Büyük ırk",
+   "en": "large breed",
+   "tur": "kopek",
+   "ifadeler": [
+    "büyük ırk",
+    "iri bir köpek",
+    "40 kiloluk bir köpek"
+   ],
+   "aciliyet": null
+  },
+  "YEMEK_SONRASI": {
+   "ad": "Yemek sonrası başlangıç",
+   "en": "onset after meal",
+   "tur": "kopek",
+   "ifadeler": [
+    "yemeğini yedikten hemen sonra başladı",
+    "akşam yemeğinden sonra bir anda oldu",
+    "yemekten sonra koşup oynadı, ardından başladı"
+   ],
+   "aciliyet": null
+  },
+  "COP_YEDI": {
+   "ad": "Çöp / bozuk gıda yeme",
+   "en": "dietary indiscretion",
+   "tur": null,
+   "ifadeler": [
+    "çöpü karıştırmış",
+    "sokakta bir şey yemiş",
+    "masadan yağlı yemek kaptı",
+    "misafirler sofradan bir şeyler vermiş",
+    "bayramda kurban etinden yedi",
+    "mamasını aniden değiştirdik"
+   ],
+   "aciliyet": null
+  },
+  "KILO_FAZLA": {
+   "ad": "Kilolu",
+   "en": "overweight",
+   "tur": null,
+   "ifadeler": [
+    "biraz kilolu",
+    "kilolu bir kedi",
+    "fazla kilolu"
+   ],
+   "aciliyet": null
+  },
+  "STRES": {
+   "ad": "Yakın zamanda stres",
+   "en": "recent stress",
+   "tur": "kedi",
+   "ifadeler": [
+    "yeni eve taşındık",
+    "eve yeni bir kedi geldi",
+    "biz tatile gittik, komşu baktı",
+    "evde tadilat vardı"
+   ],
+   "aciliyet": null
+  },
+  "YASLI": {
+   "ad": "Yaşlı",
+   "en": "senior",
+   "tur": null,
+   "ifadeler": [
+    "yaşlı",
+    "artık yaşlandı"
+   ],
+   "aciliyet": null
+  },
+  "KENE_ILACI_YOK": {
+   "ad": "Parazit koruması yok",
+   "en": "no parasite prevention",
+   "tur": null,
+   "ifadeler": [
+    "pire kene ilacı hiç kullanmadık",
+    "iç dış parazit ilacı yapılmadı",
+    "parazit ilacı en son bir yıl önce yapıldı"
+   ],
+   "aciliyet": null
+  },
+  "KURSAL_SEYAHAT": {
+   "ad": "Kırsal / Ege-Akdeniz bölgesi",
+   "en": "endemic region exposure",
+   "tur": "kopek",
+   "ifadeler": [
+    "yazı Ege'de köyde geçirdi",
+    "Antalya'da bahçeli evde yaşıyor",
+    "çiftlikte büyüdü",
+    "yaz boyunca Bodrum'daydık"
+   ],
+   "aciliyet": null
+  },
+  "ARI_SOKMA": {
+   "ad": "Böcek sokması / yeni ilaç-aşı",
+   "en": "sting or recent drug/vaccine",
+   "tur": null,
+   "ifadeler": [
+    "bahçede arı soktu",
+    "bir böcek soktu galiba",
+    "bugün aşı oldu, birkaç saat sonra başladı",
+    "yeni bir ilaç verildi",
+    "yeni bir mama denedik"
+   ],
+   "aciliyet": null
+  },
+  "HAMILE": {
+   "ad": "Gebelik",
+   "en": "pregnant",
+   "tur": null,
+   "ifadeler": [
+    "hamile",
+    "doğumu yaklaşmış",
+    "çiftleşmesinin üzerinden 63 gün geçti",
+    "gebe, bugün doğum başladı"
+   ],
+   "aciliyet": null
+  },
+  "TEMAS_KOPEK": {
+   "ad": "Başka köpeklerle yakın temas",
+   "en": "contact with other dogs",
+   "tur": "kopek",
+   "ifadeler": [
+    "geçen hafta pansiyona bıraktık",
+    "parkta çok köpekle oynadı",
+    "eve yeni bir köpek geldi",
+    "kuaförden döndükten sonra başladı"
+   ],
+   "aciliyet": null
+  },
+  "TAVSAN_KOSU": {
+   "ad": "Tavşan gibi koşma",
+   "en": "bunny hopping",
+   "tur": "kopek",
+   "ifadeler": [
+    "iki arka bacağını birden atarak tavşan gibi koşuyor",
+    "koşarken arka bacaklarını aynı anda kullanıyor",
+    "arka bacakları birbirine yakın, tavşan gibi zıplıyor"
+   ],
+   "aciliyet": null
+  },
+  "ANI_HAREKET": {
+   "ad": "Ani hareket sonrası başlangıç",
+   "en": "onset after sudden exertion",
+   "tur": null,
+   "ifadeler": [
+    "parkta koşarken aniden başladı",
+    "top oynarken bir anda oldu",
+    "koltuktan atladıktan sonra başladı",
+    "bahçede oynarken çığlık attı, o andan beri"
+   ],
+   "aciliyet": null
+  },
+  "KUCUK_IRK": {
+   "ad": "Küçük ırk",
+   "en": "small breed",
+   "tur": "kopek",
+   "ifadeler": [
+    "küçük ırk",
+    "minik bir köpek",
+    "3 kiloluk bir köpek"
+   ],
+   "aciliyet": null
+  },
+  "INCE_DERI": {
+   "ad": "İncelmiş, kolay yaralanan deri",
+   "en": "thin fragile skin",
+   "tur": "kopek",
+   "ifadeler": [
+    "derisi kağıt gibi inceldi",
+    "derisi çok kolay yaralanıyor ve geç iyileşiyor",
+    "karnındaki damarlar görünüyor"
+   ],
+   "aciliyet": null
+  },
+  "DISKI_AGRILI": {
+   "ad": "Ağrılı dışkılama",
+   "en": "painful defecation",
+   "tur": "kopek",
+   "ifadeler": [
+    "kaka yaparken bağırıyor",
+    "kaka yapmaya çekiniyor",
+    "dışkılarken acı çekiyor"
+   ],
+   "aciliyet": null
+  },
+  "TEKRARLAYAN_ENF": {
+   "ad": "Tekrarlayan enfeksiyonlar",
+   "en": "recurrent infections",
+   "tur": null,
+   "ifadeler": [
+    "sık sık hastalanıyor",
+    "bir hastalığı bitiyor öteki başlıyor",
+    "her ay bir şeyi çıkıyor",
+    "yaraları iyileşmiyor"
+   ],
+   "aciliyet": null
+  },
+  "KURU_MAMA": {
+   "ad": "Yalnızca kuru mama",
+   "en": "dry-food-only diet",
+   "tur": "kedi",
+   "ifadeler": [
+    "sadece kuru mama yiyor",
+    "yaş mama hiç yemiyor",
+    "az su içiyor, hep kuru mama"
+   ],
+   "aciliyet": null
+  },
+  "IYILESMIYOR": {
+   "ad": "Tedaviye yanıtsızlık",
+   "en": "not responding to treatment",
+   "tur": null,
+   "ifadeler": [
+    "antibiyotik verildi ama düzelmedi",
+    "iki kez veterinere gittik, geçmedi",
+    "ilaçlara rağmen aynı"
+   ],
+   "aciliyet": null
+  }
+ }
+}

@@ -1,0 +1,1015 @@
+{
+ "akut_gastroenterit": {
+  "hastalik_adi": "Akut gastroenterit (mide-bağırsak iltihabı)",
+  "ad_en": "Acute gastroenteritis",
+  "tur": "her_ikisi",
+  "sistem": "Sindirim",
+  "yayginlik": 3,
+  "aciliyet": "turuncu",
+  "aciklama": "Bozuk ya da alışılmadık bir gıda, ani mama değişikliği veya hafif bir enfeksiyon sonrası mide ve bağırsakların geçici iltihabı. Çoğu vaka birkaç günde düzelir; ama yavrularda, yaşlılarda ve kanlı ishalde tablo hızla ağırlaşabilir.",
+  "evde": "Taze su sürekli ulaşılabilir olsun; 8–12 saat yemek vermeden bekleyip sonra az ve sık, haşlanmış tavuk-pirinç gibi hafif gıda verilebilir.",
+  "kacin": "İnsan ilaçları (özellikle parasetamol, ibuprofen) kesinlikle verilmez; kusma sürüyorsa zorla yedirilmez.",
+  "ayirici_tanilar": [
+   "bagirsak_parazitleri",
+   "yabanci_cisim",
+   "pankreatit",
+   "zehirlenme",
+   "parvovirus",
+   "panlokopeni"
+  ],
+  "oneri_metni": "Bozuk ya da alışılmadık bir gıda, ani mama değişikliği veya hafif bir enfeksiyon sonrası mide ve bağırsakların geçici iltihabı. Çoğu vaka birkaç günde düzelir; ama yavrularda, yaşlılarda ve kanlı ishalde tablo hızla ağırlaşabilir. Evde: Taze su sürekli ulaşılabilir olsun; 8–12 saat yemek vermeden bekleyip sonra az ve sık, haşlanmış tavuk-pirinç gibi hafif gıda verilebilir. Yapmayın: İnsan ilaçları (özellikle parasetamol, ibuprofen) kesinlikle verilmez; kusma sürüyorsa zorla yedirilmez. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "yabanci_cisim": {
+  "hastalik_adi": "Yabancı cisim yutma / bağırsak tıkanıklığı",
+  "ad_en": "Gastrointestinal foreign body / obstruction",
+  "tur": "her_ikisi",
+  "sistem": "Sindirim",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Oyuncak parçası, ip, çorap, kemik, iğne-iplik gibi bir cismin mide ya da bağırsakta takılması. Tekrarlayan kusma, hiçbir şey yiyememe ve karın ağrısı tipiktir; tıkanıklık bağırsağı saatler içinde kalıcı zedeleyebilir.",
+  "evde": "Yiyecek ve su verilmeden en kısa sürede kliniğe gidilir; yuttuğu cismin benzeri ya da kalan parçası yanınıza alınır.",
+  "kacin": "Ağızdan ya da anüsten sarkan ipi kesinlikle çekmeyin, kesmeyin; kusturmaya çalışmayın.",
+  "ayirici_tanilar": [
+   "akut_gastroenterit",
+   "pankreatit",
+   "gdv",
+   "kabizlik_megakolon",
+   "zehirlenme"
+  ],
+  "oneri_metni": "Oyuncak parçası, ip, çorap, kemik, iğne-iplik gibi bir cismin mide ya da bağırsakta takılması. Tekrarlayan kusma, hiçbir şey yiyememe ve karın ağrısı tipiktir; tıkanıklık bağırsağı saatler içinde kalıcı zedeleyebilir. Evde: Yiyecek ve su verilmeden en kısa sürede kliniğe gidilir; yuttuğu cismin benzeri ya da kalan parçası yanınıza alınır. Yapmayın: Ağızdan ya da anüsten sarkan ipi kesinlikle çekmeyin, kesmeyin; kusturmaya çalışmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "pankreatit": {
+  "hastalik_adi": "Pankreatit (pankreas iltihabı)",
+  "ad_en": "Pancreatitis",
+  "tur": "her_ikisi",
+  "sistem": "Sindirim",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Pankreasın, sıklıkla yağlı bir öğün ya da bilinmeyen bir nedenle aniden iltihaplanması. Tekrarlayan kusma, şiddetli karın ağrısı (kambur duruş, 'namaz pozisyonu') ve iştahsızlık tipiktir; kedilerde belirtiler daha silik olur, çoğu zaman yalnızca iştahsızlık ve halsizlik görülür.",
+  "evde": "Su ulaşılabilir olsun; yağlı ve insan yemeği kesinlikle verilmez. Tanı ve serum tedavisi için gecikmeden kliniğe gidilir.",
+  "kacin": "Ağrı kesici olarak insan ilaçları verilmez; 'kendi geçer' diye beklenmez.",
+  "ayirici_tanilar": [
+   "akut_gastroenterit",
+   "yabanci_cisim",
+   "kronik_bobrek",
+   "zehirlenme",
+   "kronik_enteropati"
+  ],
+  "oneri_metni": "Pankreasın, sıklıkla yağlı bir öğün ya da bilinmeyen bir nedenle aniden iltihaplanması. Tekrarlayan kusma, şiddetli karın ağrısı (kambur duruş, 'namaz pozisyonu') ve iştahsızlık tipiktir; kedilerde belirtiler daha silik olur, çoğu zaman yalnızca iştahsızlık ve halsizlik görülür. Evde: Su ulaşılabilir olsun; yağlı ve insan yemeği kesinlikle verilmez. Tanı ve serum tedavisi için gecikmeden kliniğe gidilir. Yapmayın: Ağrı kesici olarak insan ilaçları verilmez; 'kendi geçer' diye beklenmez. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "bagirsak_parazitleri": {
+  "hastalik_adi": "Bağırsak parazitleri (kurtlar, Giardia, Coccidia)",
+  "ad_en": "Intestinal parasites",
+  "tur": "her_ikisi",
+  "sistem": "Sindirim / Paraziter",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Yuvarlak kurtlar, şerit kurtlar ve Giardia gibi tek hücreliler özellikle yavrularda ishal, şiş karın, kilo alamama ve mat tüylere yol açar. Dışkıda pirinç tanesi gibi parçalar ya da spagetti benzeri kurtlar görülebilir. Bir kısmı insanlara da bulaşabilir.",
+  "evde": "Dışkı örneğini temiz bir kapta kliniğe götürün; kumu/dışkı alanını sık temizleyin, ellerinizi yıkayın. Parazit ilacı veteriner hekimin kiloya göre verdiği dozla yapılır.",
+  "kacin": "Marketten rastgele parazit hapı verip 'ilaçladık' diye bırakmayın; yavru sulu ishalliyse ve halsizse beklemeyin.",
+  "ayirici_tanilar": [
+   "akut_gastroenterit",
+   "kronik_enteropati",
+   "parvovirus",
+   "panlokopeni"
+  ],
+  "oneri_metni": "Yuvarlak kurtlar, şerit kurtlar ve Giardia gibi tek hücreliler özellikle yavrularda ishal, şiş karın, kilo alamama ve mat tüylere yol açar. Dışkıda pirinç tanesi gibi parçalar ya da spagetti benzeri kurtlar görülebilir. Bir kısmı insanlara da bulaşabilir. Evde: Dışkı örneğini temiz bir kapta kliniğe götürün; kumu/dışkı alanını sık temizleyin, ellerinizi yıkayın. Parazit ilacı veteriner hekimin kiloya göre verdiği dozla yapılır. Yapmayın: Marketten rastgele parazit hapı verip 'ilaçladık' diye bırakmayın; yavru sulu ishalliyse ve halsizse beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kronik_enteropati": {
+  "hastalik_adi": "Kronik enteropati / İnflamatuar bağırsak hastalığı",
+  "ad_en": "Chronic enteropathy / IBD",
+  "tur": "her_ikisi",
+  "sistem": "Sindirim",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Haftalarca süren ya da tekrarlayan ishal ve/veya kusma ile kilo kaybı; altında gıda duyarlılığı, bağırsak florası bozukluğu ya da bağışıklık kaynaklı iltihap olabilir. Tanı için basamaklı yaklaşım (parazit dışlama, diyet denemesi, gerekirse biyopsi) gerekir.",
+  "evde": "Belirtileri, mama değişikliklerini ve dışkı kıvamını günlük not edin; veteriner hekimin önerdiği tek protein/hidrolize diyeti en az 6–8 hafta kesintisiz uygulayın.",
+  "kacin": "Sık sık mama değiştirmeyin; sofradan yiyecek vermeyin.",
+  "ayirici_tanilar": [
+   "bagirsak_parazitleri",
+   "atopik_alerjik_dermatit",
+   "pankreatit",
+   "hipertiroidi",
+   "kronik_bobrek"
+  ],
+  "oneri_metni": "Haftalarca süren ya da tekrarlayan ishal ve/veya kusma ile kilo kaybı; altında gıda duyarlılığı, bağırsak florası bozukluğu ya da bağışıklık kaynaklı iltihap olabilir. Tanı için basamaklı yaklaşım (parazit dışlama, diyet denemesi, gerekirse biyopsi) gerekir. Evde: Belirtileri, mama değişikliklerini ve dışkı kıvamını günlük not edin; veteriner hekimin önerdiği tek protein/hidrolize diyeti en az 6–8 hafta kesintisiz uygulayın. Yapmayın: Sık sık mama değiştirmeyin; sofradan yiyecek vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kabizlik_megakolon": {
+  "hastalik_adi": "Kabızlık / megakolon",
+  "ad_en": "Constipation / megacolon",
+  "tur": "her_ikisi",
+  "sistem": "Sindirim",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Dışkının bağırsakta sertleşip birikmesi; kedilerde yetersiz su alımı, tüy yutma, böbrek hastalığı ya da kalın bağırsağın gevşemesi (megakolon) zemin hazırlar. Kum kabında uzun süre ıkınan bir erkek kedide asıl tehlike idrar yolu tıkanıklığıdır; bu ayrımı yalnızca veteriner hekim yapabilir.",
+  "evde": "Yaş mama ve su alımını artırın; kilolu hayvanlarda kilo kontrolü. Ikınıyor ve hiç idrar da yapmıyorsa bu bir acildir.",
+  "kacin": "İnsan laksatifleri, lavman ya da zeytinyağı gibi ev çözümlerini veteriner hekime danışmadan uygulamayın.",
+  "ayirici_tanilar": [
+   "uretral_tikaniklik",
+   "yabanci_cisim",
+   "kronik_bobrek",
+   "anal_kese"
+  ],
+  "oneri_metni": "Dışkının bağırsakta sertleşip birikmesi; kedilerde yetersiz su alımı, tüy yutma, böbrek hastalığı ya da kalın bağırsağın gevşemesi (megakolon) zemin hazırlar. Kum kabında uzun süre ıkınan bir erkek kedide asıl tehlike idrar yolu tıkanıklığıdır; bu ayrımı yalnızca veteriner hekim yapabilir. Evde: Yaş mama ve su alımını artırın; kilolu hayvanlarda kilo kontrolü. Ikınıyor ve hiç idrar da yapmıyorsa bu bir acildir. Yapmayın: İnsan laksatifleri, lavman ya da zeytinyağı gibi ev çözümlerini veteriner hekime danışmadan uygulamayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "zehirlenme": {
+  "hastalik_adi": "Zehirlenme (ilaç, gıda, bitki, kimyasal)",
+  "ad_en": "Toxicosis / poisoning",
+  "tur": "her_ikisi",
+  "sistem": "Acil / Toksikoloji",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Çikolata, üzüm/kuru üzüm, ksilitol (şekersiz sakız), soğan, insan ağrı kesicileri, fare zehri, antifriz, böcek ilaçları ve kedilerde zambak gibi maddeler ölümcül olabilir. Belirtiler maddeye göre değişir: kusma, salya, titreme, nöbet, kanama ya da halsizlik. Erken müdahale (ilk 1–2 saat) sonucu belirler.",
+  "evde": "Hemen kliniğe gidin; şüphelenilen maddenin kutusunu/etiketini ve yaklaşık miktarı yanınıza alın. Maddeyi ne zaman aldığını not edin.",
+  "kacin": "Tuzlu su, süt veya oksijenli suyla kendi başınıza kusturmaya çalışmayın; kedilere asla parasetamol vermeyin.",
+  "ayirici_tanilar": [
+   "akut_gastroenterit",
+   "epilepsi",
+   "pankreatit",
+   "yabanci_cisim",
+   "kene_hastaliklari"
+  ],
+  "oneri_metni": "Çikolata, üzüm/kuru üzüm, ksilitol (şekersiz sakız), soğan, insan ağrı kesicileri, fare zehri, antifriz, böcek ilaçları ve kedilerde zambak gibi maddeler ölümcül olabilir. Belirtiler maddeye göre değişir: kusma, salya, titreme, nöbet, kanama ya da halsizlik. Erken müdahale (ilk 1–2 saat) sonucu belirler. Evde: Hemen kliniğe gidin; şüphelenilen maddenin kutusunu/etiketini ve yaklaşık miktarı yanınıza alın. Maddeyi ne zaman aldığını not edin. Yapmayın: Tuzlu su, süt veya oksijenli suyla kendi başınıza kusturmaya çalışmayın; kedilere asla parasetamol vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "sicak_carpmasi": {
+  "hastalik_adi": "Sıcak çarpması",
+  "ad_en": "Heat stroke",
+  "tur": "her_ikisi",
+  "sistem": "Acil",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Sıcak ve nemli havada egzersiz, arabada ya da güneşte kalma sonucu vücut ısısının tehlikeli düzeye çıkması. Kısa burunlu ırklar, kilolu ve yaşlı hayvanlar çok daha duyarlıdır. Organ hasarı saatler içinde gelişebilir; bu bir acildir.",
+  "evde": "Hemen serin bir yere alın, vücudunu (özellikle karın ve patiler) ılık-serin suyla ıslatın, vantilatörle hava akımı sağlayın ve soğutmaya devam ederek en yakın kliniğe gidin.",
+  "kacin": "Buzlu su veya buz uygulamayın (damarları daraltır); zorla su içirmeyin; 'dinlensin geçer' diye beklemeyin.",
+  "ayirici_tanilar": [
+   "kalp_yetmezligi",
+   "trakeal_kollaps",
+   "zehirlenme",
+   "epilepsi"
+  ],
+  "oneri_metni": "Sıcak ve nemli havada egzersiz, arabada ya da güneşte kalma sonucu vücut ısısının tehlikeli düzeye çıkması. Kısa burunlu ırklar, kilolu ve yaşlı hayvanlar çok daha duyarlıdır. Organ hasarı saatler içinde gelişebilir; bu bir acildir. Evde: Hemen serin bir yere alın, vücudunu (özellikle karın ve patiler) ılık-serin suyla ıslatın, vantilatörle hava akımı sağlayın ve soğutmaya devam ederek en yakın kliniğe gidin. Yapmayın: Buzlu su veya buz uygulamayın (damarları daraltır); zorla su içirmeyin; 'dinlensin geçer' diye beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kronik_bobrek": {
+  "hastalik_adi": "Kronik böbrek hastalığı",
+  "ad_en": "Chronic kidney disease",
+  "tur": "her_ikisi",
+  "sistem": "Üriner",
+  "yayginlik": 3,
+  "aciliyet": "turuncu",
+  "aciklama": "Böbreklerin süzme yeteneğinin aylar-yıllar içinde azalması; özellikle yaşlı kedilerde çok yaygındır. Çok su içip çok idrar yapma, kilo kaybı, iştahsızlık, kusma ve ağız kokusu tipiktir. Erken tanı ve diyetle hastalığın ilerlemesi yavaşlatılabilir.",
+  "evde": "Her yerde taze su bulundurun, yaş mamaya geçişi teşvik edin; kilo ve su tüketimini takip edin. Kan ve idrar tahlili için randevu alın; kusma ve tam iştahsızlık varsa bugün gidin.",
+  "kacin": "Böbreğe zararlı insan ilaçları (ibuprofen, parasetamol) asla verilmez; tuzlu ve fosforu yüksek gıdalardan kaçının.",
+  "ayirici_tanilar": [
+   "diyabet",
+   "hipertiroidi",
+   "kronik_enteropati",
+   "dis_hastaligi",
+   "cushing"
+  ],
+  "oneri_metni": "Böbreklerin süzme yeteneğinin aylar-yıllar içinde azalması; özellikle yaşlı kedilerde çok yaygındır. Çok su içip çok idrar yapma, kilo kaybı, iştahsızlık, kusma ve ağız kokusu tipiktir. Erken tanı ve diyetle hastalığın ilerlemesi yavaşlatılabilir. Evde: Her yerde taze su bulundurun, yaş mamaya geçişi teşvik edin; kilo ve su tüketimini takip edin. Kan ve idrar tahlili için randevu alın; kusma ve tam iştahsızlık varsa bugün gidin. Yapmayın: Böbreğe zararlı insan ilaçları (ibuprofen, parasetamol) asla verilmez; tuzlu ve fosforu yüksek gıdalardan kaçının. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "diyabet": {
+  "hastalik_adi": "Şeker hastalığı (diabetes mellitus)",
+  "ad_en": "Diabetes mellitus",
+  "tur": "her_ikisi",
+  "sistem": "Endokrin",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Vücudun insülini yeterince üretememesi ya da kullanamaması. Çok su içme, çok idrar, iştah artışına rağmen kilo kaybı tipiktir; kedilerde arka bacaklarda topuk üzerine basma, köpeklerde gözlerde hızla gelişen katarakt eşlik edebilir. Tedavi edilmezse ketoasidoz denen ağır bir tabloya dönüşür.",
+  "evde": "Kan ve idrar şekeri ölçümü için en kısa sürede randevu alın; kusma, iştahsızlık ve halsizlik eklendiyse bugün gidin. Kilolu kedilerde kilo kontrolü ve düşük karbonhidratlı yaş mama koruyucudur.",
+  "kacin": "Şekerli, karbonhidratı yüksek atıştırmalıklar vermeyin; tanı sonrası insülini kesinlikle kendi başınıza değiştirmeyin.",
+  "ayirici_tanilar": [
+   "kronik_bobrek",
+   "hipertiroidi",
+   "cushing",
+   "idrar_yolu_enf_kopek",
+   "piyometra"
+  ],
+  "oneri_metni": "Vücudun insülini yeterince üretememesi ya da kullanamaması. Çok su içme, çok idrar, iştah artışına rağmen kilo kaybı tipiktir; kedilerde arka bacaklarda topuk üzerine basma, köpeklerde gözlerde hızla gelişen katarakt eşlik edebilir. Tedavi edilmezse ketoasidoz denen ağır bir tabloya dönüşür. Evde: Kan ve idrar şekeri ölçümü için en kısa sürede randevu alın; kusma, iştahsızlık ve halsizlik eklendiyse bugün gidin. Kilolu kedilerde kilo kontrolü ve düşük karbonhidratlı yaş mama koruyucudur. Yapmayın: Şekerli, karbonhidratı yüksek atıştırmalıklar vermeyin; tanı sonrası insülini kesinlikle kendi başınıza değiştirmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "otitis_eksterna": {
+  "hastalik_adi": "Dış kulak yolu iltihabı (otitis eksterna)",
+  "ad_en": "Otitis externa",
+  "tur": "her_ikisi",
+  "sistem": "Kulak",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Kulak kanalının bakteri ve/veya maya ile iltihaplanması; sarkık kulaklı ırklar, alerjik hayvanlar ve sık yıkanan köpeklerde çok yaygındır. Kaşıntı, baş sallama, kötü kokulu akıntı ve ağrı tipiktir. Tekrarlayan olgularda çoğu zaman altta alerji vardır.",
+  "evde": "Kulağı kurcalamayın; kliniğe gidene kadar temiz ve kuru tutun. Kulak temizleme solüsyonları ancak muayene sonrası, zar sağlamsa kullanılır.",
+  "kacin": "Pamuklu çubukla derin temizlik ve insan kulak damlaları kullanmayın.",
+  "ayirici_tanilar": [
+   "kulak_uyuzu",
+   "atopik_alerjik_dermatit",
+   "vestibuler_sendrom",
+   "yabanci_cisim"
+  ],
+  "oneri_metni": "Kulak kanalının bakteri ve/veya maya ile iltihaplanması; sarkık kulaklı ırklar, alerjik hayvanlar ve sık yıkanan köpeklerde çok yaygındır. Kaşıntı, baş sallama, kötü kokulu akıntı ve ağrı tipiktir. Tekrarlayan olgularda çoğu zaman altta alerji vardır. Evde: Kulağı kurcalamayın; kliniğe gidene kadar temiz ve kuru tutun. Kulak temizleme solüsyonları ancak muayene sonrası, zar sağlamsa kullanılır. Yapmayın: Pamuklu çubukla derin temizlik ve insan kulak damlaları kullanmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kulak_uyuzu": {
+  "hastalik_adi": "Kulak uyuzu (Otodectes)",
+  "ad_en": "Ear mites (Otodectes cynotis)",
+  "tur": "her_ikisi",
+  "sistem": "Kulak / Paraziter",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Kulak kanalında yaşayan ve şiddetli kaşıntıya yol açan küçük bir akar; yavru kedilerde ve sokaktan alınan hayvanlarda çok yaygındır. Kulakta kahve telvesi gibi kuru siyah kir tipiktir. Evdeki diğer kedi ve köpeklere bulaşır.",
+  "evde": "Evdeki tüm kedi ve köpekler birlikte tedavi edilir; veteriner hekimin vereceği damla/spot-on ilaç kullanılır. Kulak kaşımadan kanamış yaralar varsa muayeneyi öne alın.",
+  "kacin": "Kulağa zeytinyağı, alkol ya da insan ilacı damlatmayın; yalnızca bir hayvanı tedavi edip diğerlerini bırakmayın.",
+  "ayirici_tanilar": [
+   "otitis_eksterna",
+   "pire",
+   "uyuz"
+  ],
+  "oneri_metni": "Kulak kanalında yaşayan ve şiddetli kaşıntıya yol açan küçük bir akar; yavru kedilerde ve sokaktan alınan hayvanlarda çok yaygındır. Kulakta kahve telvesi gibi kuru siyah kir tipiktir. Evdeki diğer kedi ve köpeklere bulaşır. Evde: Evdeki tüm kedi ve köpekler birlikte tedavi edilir; veteriner hekimin vereceği damla/spot-on ilaç kullanılır. Kulak kaşımadan kanamış yaralar varsa muayeneyi öne alın. Yapmayın: Kulağa zeytinyağı, alkol ya da insan ilacı damlatmayın; yalnızca bir hayvanı tedavi edip diğerlerini bırakmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "pire": {
+  "hastalik_adi": "Pire istilası / pire alerjisi dermatiti",
+  "ad_en": "Flea infestation / flea allergy dermatitis",
+  "tur": "her_ikisi",
+  "sistem": "Deri / Paraziter",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Pireler kaşıntı ve huzursuzluk yapar; alerjik hayvanlarda tek bir ısırık bile sırt-kuyruk dibinde şiddetli kaşıntı, tüy dökülmesi ve kabuklu küçük kabarcıklara yol açar. Tüylerde 'siyah nokta' şeklinde pire dışkısı görülebilir. Küçük yavrularda yoğun pire kansızlık yapabilir.",
+  "evde": "Evdeki tüm hayvanlara veteriner hekimin önerdiği pire ilacını düzenli uygulayın; yatak, halı ve koltukları yıkayıp süpürün (ortamdaki yumurta ve larvalar). Ürün etiketindeki türe ve kiloya mutlaka uyun.",
+  "kacin": "Köpek pire ilaçlarını kediye uygulamayın (zehirlenme); sadece tasma ya da şampuanla yeterli koruma beklemeyin.",
+  "ayirici_tanilar": [
+   "uyuz",
+   "atopik_alerjik_dermatit",
+   "dermatofitoz",
+   "piyoderma_hot_spot"
+  ],
+  "oneri_metni": "Pireler kaşıntı ve huzursuzluk yapar; alerjik hayvanlarda tek bir ısırık bile sırt-kuyruk dibinde şiddetli kaşıntı, tüy dökülmesi ve kabuklu küçük kabarcıklara yol açar. Tüylerde 'siyah nokta' şeklinde pire dışkısı görülebilir. Küçük yavrularda yoğun pire kansızlık yapabilir. Evde: Evdeki tüm hayvanlara veteriner hekimin önerdiği pire ilacını düzenli uygulayın; yatak, halı ve koltukları yıkayıp süpürün (ortamdaki yumurta ve larvalar). Ürün etiketindeki türe ve kiloya mutlaka uyun. Yapmayın: Köpek pire ilaçlarını kediye uygulamayın (zehirlenme); sadece tasma ya da şampuanla yeterli koruma beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "uyuz": {
+  "hastalik_adi": "Uyuz (Sarcoptes / Notoedres / Demodex)",
+  "ad_en": "Mange (sarcoptic, notoedric, demodectic)",
+  "tur": "her_ikisi",
+  "sistem": "Deri / Paraziter",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Deride yaşayan akarların yol açtığı hastalık. Sarcoptes/Notoedres çok şiddetli kaşıntı, kulak kenarı-dirsek-yüzde kabuklu kalınlaşmış deri yapar ve insana geçici olarak bulaşabilir; Demodex ise özellikle yavrularda yüz ve patilerde az kaşıntılı tüysüz alanlarla seyreder.",
+  "evde": "Yatak ve örtüleri yıkayın; hayvana dokunduktan sonra ellerinizi yıkayın. Veteriner hekim deri kazıntısı ile tanı koyup uygun akarisid ilacı verir; evdeki diğer hayvanlar da tedavi edilir.",
+  "kacin": "Kükürt, mazot gibi halk ilaçları uygulamayın; kortizonlu kremlerle kaşıntıyı baskılamayın.",
+  "ayirici_tanilar": [
+   "pire",
+   "atopik_alerjik_dermatit",
+   "dermatofitoz",
+   "piyoderma_hot_spot",
+   "hipotiroidi"
+  ],
+  "oneri_metni": "Deride yaşayan akarların yol açtığı hastalık. Sarcoptes/Notoedres çok şiddetli kaşıntı, kulak kenarı-dirsek-yüzde kabuklu kalınlaşmış deri yapar ve insana geçici olarak bulaşabilir; Demodex ise özellikle yavrularda yüz ve patilerde az kaşıntılı tüysüz alanlarla seyreder. Evde: Yatak ve örtüleri yıkayın; hayvana dokunduktan sonra ellerinizi yıkayın. Veteriner hekim deri kazıntısı ile tanı koyup uygun akarisid ilacı verir; evdeki diğer hayvanlar da tedavi edilir. Yapmayın: Kükürt, mazot gibi halk ilaçları uygulamayın; kortizonlu kremlerle kaşıntıyı baskılamayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "dermatofitoz": {
+  "hastalik_adi": "Mantar (dermatofitoz / ringworm)",
+  "ad_en": "Dermatophytosis (ringworm)",
+  "tur": "her_ikisi",
+  "sistem": "Deri / Enfeksiyöz",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Deri ve tüyleri tutan bir mantar enfeksiyonu; özellikle yavru kedilerde ve kalabalık ortamdan gelen hayvanlarda görülür. Yuvarlak, kenarları hafif kızarık, kepekli tüysüz alanlar tipiktir; kaşıntı genelde azdır. İnsanlara, özellikle çocuklara bulaşabilir.",
+  "evde": "Hayvana dokunduktan sonra el yıkayın; yatak ve tarakları sıcak suyla yıkayın, ortamı sık süpürün. Tanı (lamba, kültür) ve tedavi (haftalarca sürebilir) veteriner hekimle planlanır.",
+  "kacin": "Kendi kendine kesilen tedavi ve insan mantar kremleriyle idare etmeyin; tedaviyi erken bırakmayın.",
+  "ayirici_tanilar": [
+   "uyuz",
+   "pire",
+   "atopik_alerjik_dermatit",
+   "piyoderma_hot_spot"
+  ],
+  "oneri_metni": "Deri ve tüyleri tutan bir mantar enfeksiyonu; özellikle yavru kedilerde ve kalabalık ortamdan gelen hayvanlarda görülür. Yuvarlak, kenarları hafif kızarık, kepekli tüysüz alanlar tipiktir; kaşıntı genelde azdır. İnsanlara, özellikle çocuklara bulaşabilir. Evde: Hayvana dokunduktan sonra el yıkayın; yatak ve tarakları sıcak suyla yıkayın, ortamı sık süpürün. Tanı (lamba, kültür) ve tedavi (haftalarca sürebilir) veteriner hekimle planlanır. Yapmayın: Kendi kendine kesilen tedavi ve insan mantar kremleriyle idare etmeyin; tedaviyi erken bırakmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "atopik_alerjik_dermatit": {
+  "hastalik_adi": "Alerjik (atopik / gıda) dermatit",
+  "ad_en": "Atopic / food-allergic dermatitis",
+  "tur": "her_ikisi",
+  "sistem": "Deri / Alerji",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Çevresel alerjenlere (polen, ev tozu akarı, küf) ya da gıdadaki bir proteine karşı aşırı duyarlılık. Kaşıntı, pati yalama, koltuk altı-kasık-yüz kızarıklığı ve tekrarlayan kulak iltihabı tipiktir; mevsimsel olabilir ya da yıl boyu sürer. Sık kaşınan deride ikincil bakteri/maya enfeksiyonu gelişir.",
+  "evde": "Pire kontrolünü eksiksiz yapın (alerjiyi tetikler); haftalık nemlendirici şampuanla yıkama ve veteriner hekimin önereceği diyet denemesi (8 hafta, tek protein) yardımcı olur.",
+  "kacin": "İnsan antihistaminiklerini ve kortizonlu kremleri danışmadan kullanmayın; mamayı sık sık değiştirmeyin.",
+  "ayirici_tanilar": [
+   "pire",
+   "uyuz",
+   "otitis_eksterna",
+   "piyoderma_hot_spot",
+   "dermatofitoz"
+  ],
+  "oneri_metni": "Çevresel alerjenlere (polen, ev tozu akarı, küf) ya da gıdadaki bir proteine karşı aşırı duyarlılık. Kaşıntı, pati yalama, koltuk altı-kasık-yüz kızarıklığı ve tekrarlayan kulak iltihabı tipiktir; mevsimsel olabilir ya da yıl boyu sürer. Sık kaşınan deride ikincil bakteri/maya enfeksiyonu gelişir. Evde: Pire kontrolünü eksiksiz yapın (alerjiyi tetikler); haftalık nemlendirici şampuanla yıkama ve veteriner hekimin önereceği diyet denemesi (8 hafta, tek protein) yardımcı olur. Yapmayın: İnsan antihistaminiklerini ve kortizonlu kremleri danışmadan kullanmayın; mamayı sık sık değiştirmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "dis_hastaligi": {
+  "hastalik_adi": "Diş ve dişeti hastalığı (periodontal hastalık, diş taşı)",
+  "ad_en": "Periodontal disease / dental disease",
+  "tur": "her_ikisi",
+  "sistem": "Ağız / Diş",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Diş taşı ve dişeti iltihabı; küçük ırk köpeklerde ve yaşlı hayvanlarda çok yaygındır. Ağız kokusu, kızarık-kanayan dişetleri, tek taraflı çiğneme, yemeği ağzından düşürme ve sallanan dişler görülür. İleri dönemde ağrı nedeniyle iştahsızlık ve kilo kaybı olur; bakteriler kalp ve böbreği de etkileyebilir.",
+  "evde": "Diş fırçalama alışkanlığı ve diş sağlığı için özel mamalar/ödüller koruyucudur. Ağrı belirtileri varsa (yemeği düşürme, salya) muayene için randevu alın; diş taşı temizliği anestezi altında yapılır.",
+  "kacin": "Kemik ve çok sert çiğneme oyuncakları kırık dişe yol açabilir; insan diş macunu kullanmayın.",
+  "ayirici_tanilar": [
+   "kronik_bobrek",
+   "felv_fiv",
+   "kedi_nezlesi",
+   "kitle_meme_tumoru"
+  ],
+  "oneri_metni": "Diş taşı ve dişeti iltihabı; küçük ırk köpeklerde ve yaşlı hayvanlarda çok yaygındır. Ağız kokusu, kızarık-kanayan dişetleri, tek taraflı çiğneme, yemeği ağzından düşürme ve sallanan dişler görülür. İleri dönemde ağrı nedeniyle iştahsızlık ve kilo kaybı olur; bakteriler kalp ve böbreği de etkileyebilir. Evde: Diş fırçalama alışkanlığı ve diş sağlığı için özel mamalar/ödüller koruyucudur. Ağrı belirtileri varsa (yemeği düşürme, salya) muayene için randevu alın; diş taşı temizliği anestezi altında yapılır. Yapmayın: Kemik ve çok sert çiğneme oyuncakları kırık dişe yol açabilir; insan diş macunu kullanmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "konjunktivit": {
+  "hastalik_adi": "Konjunktivit (göz iltihabı)",
+  "ad_en": "Conjunctivitis",
+  "tur": "her_ikisi",
+  "sistem": "Göz",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Göz kapaklarının iç yüzünü ve göz akını örten zarın iltihabı; kedilerde çoğunlukla üst solunum yolu virüsleri ve Chlamydia, köpeklerde alerji, toz, kuru göz veya enfeksiyon nedeniyle olur. Kızarık, sulanan ya da çapaklı göz tipiktir. Gözünü kısıyor veya ışıktan kaçıyorsa kornea zedelenmesi olabilir; bu daha acildir.",
+  "evde": "Çapakları kaynatılıp soğutulmuş su veya serum fizyolojikle ıslatılmış temiz pamukla dıştan silin; gözünü kaşımasını engelleyin. Düzelmiyorsa ya da gözünü kısıyorsa muayene gerekir.",
+  "kacin": "Evde bulunan kortizonlu insan göz damlalarını kesinlikle kullanmayın (ülser varsa gözü kaybettirebilir).",
+  "ayirici_tanilar": [
+   "kornea_ulseri",
+   "kedi_nezlesi",
+   "atopik_alerjik_dermatit",
+   "distemper"
+  ],
+  "oneri_metni": "Göz kapaklarının iç yüzünü ve göz akını örten zarın iltihabı; kedilerde çoğunlukla üst solunum yolu virüsleri ve Chlamydia, köpeklerde alerji, toz, kuru göz veya enfeksiyon nedeniyle olur. Kızarık, sulanan ya da çapaklı göz tipiktir. Gözünü kısıyor veya ışıktan kaçıyorsa kornea zedelenmesi olabilir; bu daha acildir. Evde: Çapakları kaynatılıp soğutulmuş su veya serum fizyolojikle ıslatılmış temiz pamukla dıştan silin; gözünü kaşımasını engelleyin. Düzelmiyorsa ya da gözünü kısıyorsa muayene gerekir. Yapmayın: Evde bulunan kortizonlu insan göz damlalarını kesinlikle kullanmayın (ülser varsa gözü kaybettirebilir). Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kornea_ulseri": {
+  "hastalik_adi": "Kornea ülseri / göz yaralanması",
+  "ad_en": "Corneal ulcer / ocular injury",
+  "tur": "her_ikisi",
+  "sistem": "Göz",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Gözün saydam ön tabakasının (kornea) çizilmesi veya ülserleşmesi; tırmık, yabancı cisim, içe dönük kirpik, kuru göz ya da kedilerde herpes virüsü neden olur. Gözü kısmak, sulanma, ışıktan kaçma ve korneada bulanıklık tipiktir. Derinleşen ülser günler içinde gözün delinmesine yol açabilir; aynı gün muayene gerekir.",
+  "evde": "Gözünü kaşımasını engelleyin (yakalık), gözü ovmayın, mümkün olan en kısa sürede kliniğe gidin.",
+  "kacin": "Kortizonlu damlalar ülseri derinleştirir, kesinlikle kullanmayın; muayenesiz göz damlası uygulamayın.",
+  "ayirici_tanilar": [
+   "konjunktivit",
+   "kedi_nezlesi",
+   "travma"
+  ],
+  "oneri_metni": "Gözün saydam ön tabakasının (kornea) çizilmesi veya ülserleşmesi; tırmık, yabancı cisim, içe dönük kirpik, kuru göz ya da kedilerde herpes virüsü neden olur. Gözü kısmak, sulanma, ışıktan kaçma ve korneada bulanıklık tipiktir. Derinleşen ülser günler içinde gözün delinmesine yol açabilir; aynı gün muayene gerekir. Evde: Gözünü kaşımasını engelleyin (yakalık), gözü ovmayın, mümkün olan en kısa sürede kliniğe gidin. Yapmayın: Kortizonlu damlalar ülseri derinleştirir, kesinlikle kullanmayın; muayenesiz göz damlası uygulamayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "epilepsi": {
+  "hastalik_adi": "Epilepsi / nöbet",
+  "ad_en": "Epilepsy / seizures",
+  "tur": "her_ikisi",
+  "sistem": "Nöroloji",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Beyindeki anormal elektriksel aktivite nedeniyle kasılma, bilinç kaybı, salya ve idrar kaçırma ile seyreden nöbetler. Köpeklerde 1–5 yaş arasında başlayan idiyopatik epilepsi en sık nedendir; zehirlenme, düşük şeker, karaciğer-böbrek hastalığı veya beyin tümörü de nöbet yapabilir. 5 dakikadan uzun süren ya da arka arkaya gelen nöbetler hayati tehlikedir.",
+  "evde": "Nöbet sırasında çevreden sert eşyaları uzaklaştırın, ışığı kısın, dokunmayın ve süreyi tutun; mümkünse video çekin. Nöbet bitince veteriner hekimi arayın; 5 dakikayı geçen veya tekrar eden nöbette hemen kliniğe.",
+  "kacin": "Ağzına elinizi sokmayın, dilini tutmaya çalışmayın; nöbet sırasında su/ilaç vermeyin.",
+  "ayirici_tanilar": [
+   "zehirlenme",
+   "vestibuler_sendrom",
+   "hcm_kedi",
+   "kalp_yetmezligi",
+   "distemper"
+  ],
+  "oneri_metni": "Beyindeki anormal elektriksel aktivite nedeniyle kasılma, bilinç kaybı, salya ve idrar kaçırma ile seyreden nöbetler. Köpeklerde 1–5 yaş arasında başlayan idiyopatik epilepsi en sık nedendir; zehirlenme, düşük şeker, karaciğer-böbrek hastalığı veya beyin tümörü de nöbet yapabilir. 5 dakikadan uzun süren ya da arka arkaya gelen nöbetler hayati tehlikedir. Evde: Nöbet sırasında çevreden sert eşyaları uzaklaştırın, ışığı kısın, dokunmayın ve süreyi tutun; mümkünse video çekin. Nöbet bitince veteriner hekimi arayın; 5 dakikayı geçen veya tekrar eden nöbette hemen kliniğe. Yapmayın: Ağzına elinizi sokmayın, dilini tutmaya çalışmayın; nöbet sırasında su/ilaç vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "osteoartrit": {
+  "hastalik_adi": "Osteoartrit (yaşa bağlı eklem kireçlenmesi)",
+  "ad_en": "Osteoarthritis",
+  "tur": "her_ikisi",
+  "sistem": "Kas-iskelet",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Eklem kıkırdağının yaşla ve aşırı yükle aşınması. Sabah tutukluğu, yerden zor kalkma, merdiven ve zıplamadan kaçınma, kedilerde ise kendine bakmayı bırakma (keçeleşmiş tüyler) ve yüksek yerlere çıkmama tipiktir. Ağrı sürekli olduğundan huy değişikliği görülebilir; kilo kontrolü ve ağrı tedavisi yaşam kalitesini belirgin artırır.",
+  "evde": "Kilo kontrolü, kaymayan zemin, yumuşak yatak, düzenli kısa yürüyüşler ve eklem destekleri yardımcı olur. Ağrı kesici planı veteriner hekimle yapılır.",
+  "kacin": "İnsan ağrı kesicileri (ibuprofen, parasetamol) kedi ve köpekte zehirlidir, asla vermeyin.",
+  "ayirici_tanilar": [
+   "kalca_displazisi",
+   "capraz_bag",
+   "ivdd",
+   "kene_hastaliklari"
+  ],
+  "oneri_metni": "Eklem kıkırdağının yaşla ve aşırı yükle aşınması. Sabah tutukluğu, yerden zor kalkma, merdiven ve zıplamadan kaçınma, kedilerde ise kendine bakmayı bırakma (keçeleşmiş tüyler) ve yüksek yerlere çıkmama tipiktir. Ağrı sürekli olduğundan huy değişikliği görülebilir; kilo kontrolü ve ağrı tedavisi yaşam kalitesini belirgin artırır. Evde: Kilo kontrolü, kaymayan zemin, yumuşak yatak, düzenli kısa yürüyüşler ve eklem destekleri yardımcı olur. Ağrı kesici planı veteriner hekimle yapılır. Yapmayın: İnsan ağrı kesicileri (ibuprofen, parasetamol) kedi ve köpekte zehirlidir, asla vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kitle_meme_tumoru": {
+  "hastalik_adi": "Deri altı kitle / meme tümörü",
+  "ad_en": "Cutaneous mass / mammary tumour",
+  "tur": "her_ikisi",
+  "sistem": "Onkoloji",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Deri altında ele gelen yumrular yağ bezesi gibi iyi huylu olabilir; ama kısırlaştırılmamış dişilerde meme kitlelerinin kedilerde çoğu, köpeklerde yaklaşık yarısı kötü huyludur. Hızla büyüyen, sert, deriye yapışık ya da ülserleşen kitleler daha endişe vericidir. Erken alınan kitleler çoğu zaman tam tedavi edilir.",
+  "evde": "Kitlenin yerini, boyutunu ve tarihini not edin (fotoğraf/çizim); büyüyorsa ya da kanıyorsa muayeneyi öne alın. İnce iğne örneklemesi çoğu zaman kliniğe ilk gidişte yapılabilir.",
+  "kacin": "'Yaşlı, ameliyat olmasın' diye bekletmeyin; kitleyi sıkmayın, patlatmaya çalışmayın.",
+  "ayirici_tanilar": [
+   "apse",
+   "piyoderma_hot_spot",
+   "felv_fiv",
+   "kene_hastaliklari"
+  ],
+  "oneri_metni": "Deri altında ele gelen yumrular yağ bezesi gibi iyi huylu olabilir; ama kısırlaştırılmamış dişilerde meme kitlelerinin kedilerde çoğu, köpeklerde yaklaşık yarısı kötü huyludur. Hızla büyüyen, sert, deriye yapışık ya da ülserleşen kitleler daha endişe vericidir. Erken alınan kitleler çoğu zaman tam tedavi edilir. Evde: Kitlenin yerini, boyutunu ve tarihini not edin (fotoğraf/çizim); büyüyorsa ya da kanıyorsa muayeneyi öne alın. İnce iğne örneklemesi çoğu zaman kliniğe ilk gidişte yapılabilir. Yapmayın: 'Yaşlı, ameliyat olmasın' diye bekletmeyin; kitleyi sıkmayın, patlatmaya çalışmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "travma": {
+  "hastalik_adi": "Travma (araç çarpması, yüksekten düşme, ısırık)",
+  "ad_en": "Trauma",
+  "tur": "her_ikisi",
+  "sistem": "Acil",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Araç çarpması, balkondan düşme (kedilerde çok sık), köpek ısırığı ve ezilmeler dıştan hafif görünse bile iç kanama, akciğer hasarı, mesane yırtığı ya da kırıklara yol açabilir. Kaza sonrası 'iyi görünen' hayvan bile saatler içinde ağırlaşabilir; mutlaka aynı gün muayene edilmelidir.",
+  "evde": "Sakin ve sıcak tutun, hareketini kısıtlayın (sert bir zeminde/kutuda taşıyın), kanayan yere temiz bezle baskı uygulayın ve hemen kliniğe gidin.",
+  "kacin": "Ağrı kesici vermeyin, yemek-su vermeyin (anestezi gerekebilir), kırık olabilecek uzuvları düzeltmeye çalışmayın.",
+  "ayirici_tanilar": [
+   "capraz_bag",
+   "ivdd",
+   "apse",
+   "kornea_ulseri"
+  ],
+  "oneri_metni": "Araç çarpması, balkondan düşme (kedilerde çok sık), köpek ısırığı ve ezilmeler dıştan hafif görünse bile iç kanama, akciğer hasarı, mesane yırtığı ya da kırıklara yol açabilir. Kaza sonrası 'iyi görünen' hayvan bile saatler içinde ağırlaşabilir; mutlaka aynı gün muayene edilmelidir. Evde: Sakin ve sıcak tutun, hareketini kısıtlayın (sert bir zeminde/kutuda taşıyın), kanayan yere temiz bezle baskı uygulayın ve hemen kliniğe gidin. Yapmayın: Ağrı kesici vermeyin, yemek-su vermeyin (anestezi gerekebilir), kırık olabilecek uzuvları düzeltmeye çalışmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "akut_alerjik_reaksiyon": {
+  "hastalik_adi": "Akut alerjik reaksiyon (arı sokması, ürtiker, anjiyoödem)",
+  "ad_en": "Acute allergic reaction / angioedema",
+  "tur": "her_ikisi",
+  "sistem": "Acil / Alerji",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Böcek sokması, aşı, ilaç ya da yeni bir gıdaya karşı dakikalar-saatler içinde gelişen alerjik yanıt: yüz-göz-dudak şişmesi, vücutta kabartılar ve kaşıntı. Genellikle ilaçla hızla geriler; ancak nefes darlığı, kusma, halsizlik ya da soluk dişetleri gelişirse anafilaksi söz konusudur ve dakikalar önemlidir.",
+  "evde": "Sokan iğne görünüyorsa kart kenarıyla kazıyarak çıkarın, soğuk kompres uygulayın ve hemen veteriner hekimi arayın; nefes darlığı ya da kusma varsa en yakın kliniğe gidin.",
+  "kacin": "Kendi antihistaminiğinizi dozunu bilmeden vermeyin; şişlik geçiyor diye yalnız bırakmayın (ikinci dalga olabilir).",
+  "ayirici_tanilar": [
+   "apse",
+   "zehirlenme",
+   "dis_hastaligi",
+   "atopik_alerjik_dermatit"
+  ],
+  "oneri_metni": "Böcek sokması, aşı, ilaç ya da yeni bir gıdaya karşı dakikalar-saatler içinde gelişen alerjik yanıt: yüz-göz-dudak şişmesi, vücutta kabartılar ve kaşıntı. Genellikle ilaçla hızla geriler; ancak nefes darlığı, kusma, halsizlik ya da soluk dişetleri gelişirse anafilaksi söz konusudur ve dakikalar önemlidir. Evde: Sokan iğne görünüyorsa kart kenarıyla kazıyarak çıkarın, soğuk kompres uygulayın ve hemen veteriner hekimi arayın; nefes darlığı ya da kusma varsa en yakın kliniğe gidin. Yapmayın: Kendi antihistaminiğinizi dozunu bilmeden vermeyin; şişlik geçiyor diye yalnız bırakmayın (ikinci dalga olabilir). Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "piyometra": {
+  "hastalik_adi": "Piyometra (rahim iltihabı)",
+  "ad_en": "Pyometra",
+  "tur": "her_ikisi",
+  "sistem": "Üreme",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Kısırlaştırılmamış dişilerde, genellikle kızgınlıktan 1–2 ay sonra rahmin irinle dolması. Kötü kokulu akıntı, çok su içme, iştahsızlık ve halsizlik tipiktir; 'kapalı' tipte akıntı olmaz ve karın şişer. Rahim yırtılır ya da sepsis gelişirse ölümcüldür; tedavi çoğunlukla acil ameliyattır.",
+  "evde": "Beklemeyin; aynı gün, mümkünse hemen kliniğe gidin. Akıntının rengini/kokusunu ve son kızgınlık tarihini not edin.",
+  "kacin": "Evde antibiyotikle geçiştirmeyi denemeyin; 'kızgınlık akıntısı' diye izlemeyin.",
+  "ayirici_tanilar": [
+   "idrar_yolu_enf_kopek",
+   "diyabet",
+   "kronik_bobrek",
+   "distosi"
+  ],
+  "oneri_metni": "Kısırlaştırılmamış dişilerde, genellikle kızgınlıktan 1–2 ay sonra rahmin irinle dolması. Kötü kokulu akıntı, çok su içme, iştahsızlık ve halsizlik tipiktir; 'kapalı' tipte akıntı olmaz ve karın şişer. Rahim yırtılır ya da sepsis gelişirse ölümcüldür; tedavi çoğunlukla acil ameliyattır. Evde: Beklemeyin; aynı gün, mümkünse hemen kliniğe gidin. Akıntının rengini/kokusunu ve son kızgınlık tarihini not edin. Yapmayın: Evde antibiyotikle geçiştirmeyi denemeyin; 'kızgınlık akıntısı' diye izlemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "distosi": {
+  "hastalik_adi": "Güç doğum (distosi)",
+  "ad_en": "Dystocia",
+  "tur": "her_ikisi",
+  "sistem": "Üreme / Acil",
+  "yayginlik": 1,
+  "aciliyet": "kirmizi",
+  "aciklama": "Doğumun ilerlememesi: 20–30 dakikadır şiddetli ıkınma olmasına rağmen yavru gelmemesi, yavrular arasında 2 saatten uzun ara, yeşil-siyah akıntının yavru doğmadan gelmesi, ya da annenin bitkin düşmesi. Kısa burunlu ırklarda ve ilk doğumlarda sıktır; anne ve yavruların hayatı için acil müdahale (çoğu kez sezaryen) gerekir.",
+  "evde": "Zaman çizelgesini not edin (ıkınma başlangıcı, doğan yavru sayısı ve saatleri) ve hemen kliniği arayarak yola çıkın.",
+  "kacin": "Yavruyu çekmeye çalışmayın; doğumu hızlandırmak için ilaç vermeyin.",
+  "ayirici_tanilar": [
+   "piyometra",
+   "kabizlik_megakolon"
+  ],
+  "oneri_metni": "Doğumun ilerlememesi: 20–30 dakikadır şiddetli ıkınma olmasına rağmen yavru gelmemesi, yavrular arasında 2 saatten uzun ara, yeşil-siyah akıntının yavru doğmadan gelmesi, ya da annenin bitkin düşmesi. Kısa burunlu ırklarda ve ilk doğumlarda sıktır; anne ve yavruların hayatı için acil müdahale (çoğu kez sezaryen) gerekir. Evde: Zaman çizelgesini not edin (ıkınma başlangıcı, doğan yavru sayısı ve saatleri) ve hemen kliniği arayarak yola çıkın. Yapmayın: Yavruyu çekmeye çalışmayın; doğumu hızlandırmak için ilaç vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "apse": {
+  "hastalik_adi": "Apse (ısırık / kavga apsesi)",
+  "ad_en": "Abscess (cat bite abscess)",
+  "tur": "her_ikisi",
+  "sistem": "Deri / Enfeksiyöz",
+  "yayginlik": 3,
+  "aciliyet": "turuncu",
+  "aciklama": "Isırık ya da tırmık sonrası derinin altında irin birikmesi; dışarı çıkan erkek kedilerde çok sıktır. Kavgadan 2–4 gün sonra sıcak, ağrılı bir şişlik, ateş ve halsizlik gelişir; şişlik patlayıp kokulu irin akabilir. Isırık yaraları FIV/FeLV gibi virüsleri de bulaştırabilir.",
+  "evde": "Bölgeyi ılık suyla nazikçe temizleyin, hayvanı içeride tutun ve aynı gün kliniğe gidin (drenaj ve antibiyotik gerekir).",
+  "kacin": "Apseyi sıkıp patlatmaya çalışmayın; insan antibiyotiği vermeyin.",
+  "ayirici_tanilar": [
+   "kitle_meme_tumoru",
+   "akut_alerjik_reaksiyon",
+   "travma",
+   "felv_fiv"
+  ],
+  "oneri_metni": "Isırık ya da tırmık sonrası derinin altında irin birikmesi; dışarı çıkan erkek kedilerde çok sıktır. Kavgadan 2–4 gün sonra sıcak, ağrılı bir şişlik, ateş ve halsizlik gelişir; şişlik patlayıp kokulu irin akabilir. Isırık yaraları FIV/FeLV gibi virüsleri de bulaştırabilir. Evde: Bölgeyi ılık suyla nazikçe temizleyin, hayvanı içeride tutun ve aynı gün kliniğe gidin (drenaj ve antibiyotik gerekir). Yapmayın: Apseyi sıkıp patlatmaya çalışmayın; insan antibiyotiği vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "parvovirus": {
+  "hastalik_adi": "Parvovirüs enfeksiyonu",
+  "ad_en": "Canine parvovirus",
+  "tur": "kopek",
+  "sistem": "Sindirim / Enfeksiyöz",
+  "yayginlik": 3,
+  "aciliyet": "kirmizi",
+  "aciklama": "Aşısız yavru köpeklerde çok bulaşıcı ve sık ölümcül bir virüs. Şiddetli kusma, kötü kokulu kanlı ishal, tam iştahsızlık ve hızlı susuz kalma tipiktir. Belirtiler başladıktan sonraki ilk 24–48 saat içinde serum ve yoğun destek tedavisine başlanması hayatta kalma şansını belirler.",
+  "evde": "Hemen kliniğe gidin; yavruyu diğer köpeklerden ayırın, temas ettiği yüzeyleri çamaşır suyuyla temizleyin (virüs aylarca dayanır).",
+  "kacin": "Evde antibiyotik/ishal ilacıyla beklemeyin; yavruyu diğer köpeklerle ya da parka çıkarmayın.",
+  "ayirici_tanilar": [
+   "akut_gastroenterit",
+   "bagirsak_parazitleri",
+   "yabanci_cisim",
+   "distemper",
+   "zehirlenme"
+  ],
+  "oneri_metni": "Aşısız yavru köpeklerde çok bulaşıcı ve sık ölümcül bir virüs. Şiddetli kusma, kötü kokulu kanlı ishal, tam iştahsızlık ve hızlı susuz kalma tipiktir. Belirtiler başladıktan sonraki ilk 24–48 saat içinde serum ve yoğun destek tedavisine başlanması hayatta kalma şansını belirler. Evde: Hemen kliniğe gidin; yavruyu diğer köpeklerden ayırın, temas ettiği yüzeyleri çamaşır suyuyla temizleyin (virüs aylarca dayanır). Yapmayın: Evde antibiyotik/ishal ilacıyla beklemeyin; yavruyu diğer köpeklerle ya da parka çıkarmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "distemper": {
+  "hastalik_adi": "Gençlik hastalığı (distemper)",
+  "ad_en": "Canine distemper",
+  "tur": "kopek",
+  "sistem": "Enfeksiyöz / Solunum / Nöroloji",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Aşısız yavru ve genç köpeklerde görülen, solunum, sindirim ve sinir sistemini tutan ağır bir viral hastalık. Yeşil-sarı burun ve göz akıntısı, ateş, öksürük ve ishalle başlar; haftalar sonra kas seğirmeleri, nöbetler ve pati tabanlarında sertleşme gelişebilir. Sinir belirtileri kalıcı olabilir.",
+  "evde": "Hemen kliniğe gidin; köpeği diğer köpeklerden ayırın. Aşılı köpeklerde çok nadirdir; koruma yalnızca aşıyla mümkündür.",
+  "kacin": "'Nezle' diye evde bekletmeyin; aşısız yavruları parka ve sokağa çıkarmayın.",
+  "ayirici_tanilar": [
+   "kulube_oksurugu",
+   "parvovirus",
+   "epilepsi",
+   "konjunktivit",
+   "zehirlenme"
+  ],
+  "oneri_metni": "Aşısız yavru ve genç köpeklerde görülen, solunum, sindirim ve sinir sistemini tutan ağır bir viral hastalık. Yeşil-sarı burun ve göz akıntısı, ateş, öksürük ve ishalle başlar; haftalar sonra kas seğirmeleri, nöbetler ve pati tabanlarında sertleşme gelişebilir. Sinir belirtileri kalıcı olabilir. Evde: Hemen kliniğe gidin; köpeği diğer köpeklerden ayırın. Aşılı köpeklerde çok nadirdir; koruma yalnızca aşıyla mümkündür. Yapmayın: 'Nezle' diye evde bekletmeyin; aşısız yavruları parka ve sokağa çıkarmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kulube_oksurugu": {
+  "hastalik_adi": "Kulübe öksürüğü (bulaşıcı solunum yolu enfeksiyonu)",
+  "ad_en": "Kennel cough (CIRDC)",
+  "tur": "kopek",
+  "sistem": "Solunum / Enfeksiyöz",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Pansiyon, park, kuaför gibi kalabalık ortamlarda hızla bulaşan bakteri-virüs karışımı bir üst solunum yolu enfeksiyonu. 'Boğazına bir şey takılmış gibi' kuru, sert öksürük nöbetleri ve sonunda öğürerek beyaz köpük çıkarma tipiktir; iştah ve genel durum genelde iyidir. Çoğu köpekte 1–3 haftada kendiliğinden geçer; ancak yavru, yaşlı ve iştahsız hayvanlarda zatürreye ilerleyebilir.",
+  "evde": "Dinlendirin, tasma yerine göğüs tasması kullanın, ortamı nemli tutun, diğer köpeklerle teması kesin. Yemiyorsa, ateşi varsa ya da nefes hızlandıysa muayene gerekir.",
+  "kacin": "İnsan öksürük şurubu vermeyin; 'geçer' diye parka çıkarmaya devam etmeyin (bulaşır).",
+  "ayirici_tanilar": [
+   "trakeal_kollaps",
+   "kalp_yetmezligi",
+   "distemper",
+   "yabanci_cisim"
+  ],
+  "oneri_metni": "Pansiyon, park, kuaför gibi kalabalık ortamlarda hızla bulaşan bakteri-virüs karışımı bir üst solunum yolu enfeksiyonu. 'Boğazına bir şey takılmış gibi' kuru, sert öksürük nöbetleri ve sonunda öğürerek beyaz köpük çıkarma tipiktir; iştah ve genel durum genelde iyidir. Çoğu köpekte 1–3 haftada kendiliğinden geçer; ancak yavru, yaşlı ve iştahsız hayvanlarda zatürreye ilerleyebilir. Evde: Dinlendirin, tasma yerine göğüs tasması kullanın, ortamı nemli tutun, diğer köpeklerle teması kesin. Yemiyorsa, ateşi varsa ya da nefes hızlandıysa muayene gerekir. Yapmayın: İnsan öksürük şurubu vermeyin; 'geçer' diye parka çıkarmaya devam etmeyin (bulaşır). Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kene_hastaliklari": {
+  "hastalik_adi": "Kene kaynaklı hastalıklar (Ehrlichia, Babesia, Anaplasma)",
+  "ad_en": "Tick-borne diseases (ehrlichiosis, babesiosis, anaplasmosis)",
+  "tur": "kopek",
+  "sistem": "Enfeksiyöz / Kan",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Kenelerle bulaşan kan parazitleri ve bakterileri: ateş, halsizlik, iştahsızlık, soluk dişetleri (kansızlık), burun kanaması, deride kanama noktaları, eklem ağrısı ve koyu renkli idrar görülebilir. Türkiye'de özellikle ilkbahar-sonbaharda ve kırsala giden köpeklerde sıktır; tedavi edilmezse kronikleşip kemik iliğini tutabilir.",
+  "evde": "Üstündeki keneleri cımbızla deriye yakın tutarak döndürmeden çekin; kan sayımı ve test için aynı gün randevu alın. Düzenli kene koruması şarttır.",
+  "kacin": "Keneyi elle ezmeyin, üzerine alkol/yağ dökmeyin; soluk dişeti ve kanama varsa beklemeyin.",
+  "ayirici_tanilar": [
+   "leishmaniasis",
+   "zehirlenme",
+   "osteoartrit",
+   "kronik_bobrek",
+   "kitle_meme_tumoru"
+  ],
+  "oneri_metni": "Kenelerle bulaşan kan parazitleri ve bakterileri: ateş, halsizlik, iştahsızlık, soluk dişetleri (kansızlık), burun kanaması, deride kanama noktaları, eklem ağrısı ve koyu renkli idrar görülebilir. Türkiye'de özellikle ilkbahar-sonbaharda ve kırsala giden köpeklerde sıktır; tedavi edilmezse kronikleşip kemik iliğini tutabilir. Evde: Üstündeki keneleri cımbızla deriye yakın tutarak döndürmeden çekin; kan sayımı ve test için aynı gün randevu alın. Düzenli kene koruması şarttır. Yapmayın: Keneyi elle ezmeyin, üzerine alkol/yağ dökmeyin; soluk dişeti ve kanama varsa beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "leishmaniasis": {
+  "hastalik_adi": "Leishmaniasis (kum sineği ile bulaşan parazit hastalığı)",
+  "ad_en": "Canine leishmaniosis",
+  "tur": "kopek",
+  "sistem": "Enfeksiyöz / Deri / Böbrek",
+  "yayginlik": 1,
+  "aciliyet": "yesil",
+  "aciklama": "Ege ve Akdeniz kıyılarında yaygın kum sinekleriyle bulaşan, aylar-yıllar içinde ilerleyen bir parazit hastalığı. Zayıflama, burun ve kulak kenarlarında kepekli yaralar, göz çevresinde 'gözlük' şeklinde tüy kaybı, anormal uzayan tırnaklar, lenf bezi büyümesi ve burun kanaması görülür; ileri dönemde böbrekleri tutar. Tedavi uzun süreli, kontrol mümkündür.",
+  "evde": "Kan testi için randevu alın; sinek kovucu tasma/damla ile koruma sağlayın, akşam-gece dışarıda bırakmayın. Belirtiler yavaş ilerler ama tedavi ne kadar erken başlarsa böbrekler o kadar korunur.",
+  "kacin": "Deri yaralarını mantar/alerji diye kremle geçiştirmeyin; endemik bölgede yaşayan köpekleri yıllık taramadan geçirmeyi ihmal etmeyin.",
+  "ayirici_tanilar": [
+   "kene_hastaliklari",
+   "uyuz",
+   "atopik_alerjik_dermatit",
+   "kronik_bobrek",
+   "hipotiroidi"
+  ],
+  "oneri_metni": "Ege ve Akdeniz kıyılarında yaygın kum sinekleriyle bulaşan, aylar-yıllar içinde ilerleyen bir parazit hastalığı. Zayıflama, burun ve kulak kenarlarında kepekli yaralar, göz çevresinde 'gözlük' şeklinde tüy kaybı, anormal uzayan tırnaklar, lenf bezi büyümesi ve burun kanaması görülür; ileri dönemde böbrekleri tutar. Tedavi uzun süreli, kontrol mümkündür. Evde: Kan testi için randevu alın; sinek kovucu tasma/damla ile koruma sağlayın, akşam-gece dışarıda bırakmayın. Belirtiler yavaş ilerler ama tedavi ne kadar erken başlarsa böbrekler o kadar korunur. Yapmayın: Deri yaralarını mantar/alerji diye kremle geçiştirmeyin; endemik bölgede yaşayan köpekleri yıllık taramadan geçirmeyi ihmal etmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "gdv": {
+  "hastalik_adi": "Mide genişlemesi ve dönmesi (GDV / mide torsiyonu)",
+  "ad_en": "Gastric dilatation-volvulus",
+  "tur": "kopek",
+  "sistem": "Acil / Sindirim",
+  "yayginlik": 1,
+  "aciliyet": "kirmizi",
+  "aciklama": "Büyük ve derin göğüslü ırklarda midenin gazla şişip kendi etrafında dönmesi. Yemekten ya da egzersizden sonra aniden başlayan huzursuzluk, boş boş öğürme, salya ve hızla şişen davul gibi karın tipiktir. Saatler içinde şok ve ölüm gelişir; tek tedavi acil ameliyattır.",
+  "evde": "Hiçbir şey vermeyin, hemen en yakın 7/24 kliniğe gidin ve yoldayken arayıp haber verin.",
+  "kacin": "Kusturmaya çalışmayın, gaz ilacı vermeyin, 'sabahı bekleyelim' demeyin.",
+  "ayirici_tanilar": [
+   "yabanci_cisim",
+   "akut_gastroenterit",
+   "pankreatit",
+   "zehirlenme"
+  ],
+  "oneri_metni": "Büyük ve derin göğüslü ırklarda midenin gazla şişip kendi etrafında dönmesi. Yemekten ya da egzersizden sonra aniden başlayan huzursuzluk, boş boş öğürme, salya ve hızla şişen davul gibi karın tipiktir. Saatler içinde şok ve ölüm gelişir; tek tedavi acil ameliyattır. Evde: Hiçbir şey vermeyin, hemen en yakın 7/24 kliniğe gidin ve yoldayken arayıp haber verin. Yapmayın: Kusturmaya çalışmayın, gaz ilacı vermeyin, 'sabahı bekleyelim' demeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kalca_displazisi": {
+  "hastalik_adi": "Kalça displazisi",
+  "ad_en": "Hip dysplasia",
+  "tur": "kopek",
+  "sistem": "Kas-iskelet",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Kalça ekleminin kalıtsal olarak gevşek ve uyumsuz gelişmesi; büyük ırklarda sıktır. 5–12 aylık yavrularda tavşan gibi zıplayarak koşma, yerden zor kalkma, arka bacaklarda sallantılı yürüyüş ve egzersizden kaçınma; ileri yaşta kireçlenmeye bağlı ağrı ve topallık görülür. Kilo kontrolü ve erken tanı ile ilerleme yavaşlatılır, ağır olgularda ameliyat seçenekleri vardır.",
+  "evde": "Kilo kontrolü, kaymayan zemin, kontrollü egzersiz (yüzme iyidir, zıplama ve ani koşu kötüdür) ve eklem destekleri. Röntgenle tanı için randevu alın.",
+  "kacin": "Yavruyu aşırı beslemeyip hızlı büyütmeyin; merdiven ve zıplama alışkanlığından kaçının; insan ağrı kesicisi vermeyin.",
+  "ayirici_tanilar": [
+   "osteoartrit",
+   "capraz_bag",
+   "ivdd",
+   "kene_hastaliklari"
+  ],
+  "oneri_metni": "Kalça ekleminin kalıtsal olarak gevşek ve uyumsuz gelişmesi; büyük ırklarda sıktır. 5–12 aylık yavrularda tavşan gibi zıplayarak koşma, yerden zor kalkma, arka bacaklarda sallantılı yürüyüş ve egzersizden kaçınma; ileri yaşta kireçlenmeye bağlı ağrı ve topallık görülür. Kilo kontrolü ve erken tanı ile ilerleme yavaşlatılır, ağır olgularda ameliyat seçenekleri vardır. Evde: Kilo kontrolü, kaymayan zemin, kontrollü egzersiz (yüzme iyidir, zıplama ve ani koşu kötüdür) ve eklem destekleri. Röntgenle tanı için randevu alın. Yapmayın: Yavruyu aşırı beslemeyip hızlı büyütmeyin; merdiven ve zıplama alışkanlığından kaçının; insan ağrı kesicisi vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "capraz_bag": {
+  "hastalik_adi": "Ön çapraz bağ kopması",
+  "ad_en": "Cranial cruciate ligament rupture",
+  "tur": "kopek",
+  "sistem": "Kas-iskelet",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Diz eklemini stabilize eden ön çapraz bağın koşma, zıplama ya da dönme sırasında kopması (ya da yavaş yıpranıp kopması). Aniden arka bacağa basmama, oturunca bacağı dışa uzatma ve dizde şişlik tipiktir; kilolu ve büyük ırk köpeklerde çok sıktır. Çoğu olguda ameliyat gerekir; erken tedavi menisküs hasarını ve kireçlenmeyi azaltır.",
+  "evde": "Hareketi kısıtlayın (tasmalı kısa tuvalet yürüyüşü dışında dinlenme), zıplamayı engelleyin ve ortopedik muayene için 24 saat içinde randevu alın.",
+  "kacin": "Dinlenince düzelir diye haftalarca beklemeyin; insan ağrı kesicisi vermeyin.",
+  "ayirici_tanilar": [
+   "kalca_displazisi",
+   "osteoartrit",
+   "patella_luksasyonu",
+   "travma",
+   "ivdd"
+  ],
+  "oneri_metni": "Diz eklemini stabilize eden ön çapraz bağın koşma, zıplama ya da dönme sırasında kopması (ya da yavaş yıpranıp kopması). Aniden arka bacağa basmama, oturunca bacağı dışa uzatma ve dizde şişlik tipiktir; kilolu ve büyük ırk köpeklerde çok sıktır. Çoğu olguda ameliyat gerekir; erken tedavi menisküs hasarını ve kireçlenmeyi azaltır. Evde: Hareketi kısıtlayın (tasmalı kısa tuvalet yürüyüşü dışında dinlenme), zıplamayı engelleyin ve ortopedik muayene için 24 saat içinde randevu alın. Yapmayın: Dinlenince düzelir diye haftalarca beklemeyin; insan ağrı kesicisi vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "ivdd": {
+  "hastalik_adi": "Bel fıtığı (intervertebral disk hastalığı)",
+  "ad_en": "Intervertebral disc disease",
+  "tur": "kopek",
+  "sistem": "Nöroloji / Kas-iskelet",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Omurlar arasındaki diskin omuriliğe baskı yapması; Dachshund, Fransız Bulldog, Pekinez gibi uzun gövdeli ve kısa bacaklı ırklarda çok sıktır. Kambur duruş, sırta dokununca bağırma, boynu oynatmama, titreme, arka bacaklarda güçsüzlük ve dengesizlikle başlar; ilerlerse felç ve idrar kaçırma gelişir. Felç başladıktan sonraki ilk 24–48 saat ameliyat şansı açısından belirleyicidir.",
+  "evde": "Hareketi tamamen kısıtlayın (kafes istirahati), kucağa alırken gövdeyi düz tutun, 24 saat içinde muayene; arka bacaklar tutmuyorsa hemen kliniğe.",
+  "kacin": "Ağrı kesici verip yürütmeye devam etmeyin; zıplamasına, merdiven inip çıkmasına izin vermeyin.",
+  "ayirici_tanilar": [
+   "capraz_bag",
+   "kalca_displazisi",
+   "osteoartrit",
+   "travma",
+   "vestibuler_sendrom"
+  ],
+  "oneri_metni": "Omurlar arasındaki diskin omuriliğe baskı yapması; Dachshund, Fransız Bulldog, Pekinez gibi uzun gövdeli ve kısa bacaklı ırklarda çok sıktır. Kambur duruş, sırta dokununca bağırma, boynu oynatmama, titreme, arka bacaklarda güçsüzlük ve dengesizlikle başlar; ilerlerse felç ve idrar kaçırma gelişir. Felç başladıktan sonraki ilk 24–48 saat ameliyat şansı açısından belirleyicidir. Evde: Hareketi tamamen kısıtlayın (kafes istirahati), kucağa alırken gövdeyi düz tutun, 24 saat içinde muayene; arka bacaklar tutmuyorsa hemen kliniğe. Yapmayın: Ağrı kesici verip yürütmeye devam etmeyin; zıplamasına, merdiven inip çıkmasına izin vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "patella_luksasyonu": {
+  "hastalik_adi": "Patella (diz kapağı) çıkığı",
+  "ad_en": "Patellar luxation",
+  "tur": "kopek",
+  "sistem": "Kas-iskelet",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Diz kapağının yerinden kayması; küçük ırk köpeklerde çok yaygın, çoğu zaman kalıtsaldır. Yürürken birkaç adım arka bacağı havada tutup sekme, sonra bacağı sallayıp normal yürümeye devam etme tipiktir. Hafif dereceler yalnızca izlenir; sık çıkan ve ağrı yapan olgularda ameliyat gerekir.",
+  "evde": "Kilo kontrolü ve kaymayan zemin; sıklığı ve süresi artıyorsa ortopedik muayene için randevu alın.",
+  "kacin": "Sürekli havada tuttuğu bacağı zorla indirmeyin; bacağı 'yerine oturtmaya' çalışmayın.",
+  "ayirici_tanilar": [
+   "capraz_bag",
+   "kalca_displazisi",
+   "osteoartrit",
+   "travma"
+  ],
+  "oneri_metni": "Diz kapağının yerinden kayması; küçük ırk köpeklerde çok yaygın, çoğu zaman kalıtsaldır. Yürürken birkaç adım arka bacağı havada tutup sekme, sonra bacağı sallayıp normal yürümeye devam etme tipiktir. Hafif dereceler yalnızca izlenir; sık çıkan ve ağrı yapan olgularda ameliyat gerekir. Evde: Kilo kontrolü ve kaymayan zemin; sıklığı ve süresi artıyorsa ortopedik muayene için randevu alın. Yapmayın: Sürekli havada tuttuğu bacağı zorla indirmeyin; bacağı 'yerine oturtmaya' çalışmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "hipotiroidi": {
+  "hastalik_adi": "Hipotiroidi (tiroid yetmezliği)",
+  "ad_en": "Hypothyroidism",
+  "tur": "kopek",
+  "sistem": "Endokrin",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Tiroid bezinin yeterli hormon üretmemesi; orta yaşlı, orta-büyük ırk köpeklerde sıktır. Az yemesine rağmen kilo alma, halsizlik, üşüme, gövdenin iki yanında simetrik tüy dökülmesi, 'fare kuyruğu', kepekli-koyulaşmış deri ve tekrarlayan deri enfeksiyonları tipiktir. Kan testiyle tanı konur; günlük hapla tamamen kontrol altına alınır.",
+  "evde": "Tiroid hormon testleri için randevu alın; kilo ve deri değişimlerini fotoğrafla takip edin.",
+  "kacin": "Tüy dökülmesini yalnızca şampuanla tedavi etmeye çalışmayın; tanı sonrası ilacı aksatmayın.",
+  "ayirici_tanilar": [
+   "cushing",
+   "atopik_alerjik_dermatit",
+   "uyuz",
+   "osteoartrit",
+   "leishmaniasis"
+  ],
+  "oneri_metni": "Tiroid bezinin yeterli hormon üretmemesi; orta yaşlı, orta-büyük ırk köpeklerde sıktır. Az yemesine rağmen kilo alma, halsizlik, üşüme, gövdenin iki yanında simetrik tüy dökülmesi, 'fare kuyruğu', kepekli-koyulaşmış deri ve tekrarlayan deri enfeksiyonları tipiktir. Kan testiyle tanı konur; günlük hapla tamamen kontrol altına alınır. Evde: Tiroid hormon testleri için randevu alın; kilo ve deri değişimlerini fotoğrafla takip edin. Yapmayın: Tüy dökülmesini yalnızca şampuanla tedavi etmeye çalışmayın; tanı sonrası ilacı aksatmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "cushing": {
+  "hastalik_adi": "Cushing sendromu (hiperadrenokortisizm)",
+  "ad_en": "Hyperadrenocorticism (Cushing's)",
+  "tur": "kopek",
+  "sistem": "Endokrin",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Böbrek üstü bezlerinin aşırı kortizol üretmesi; yaşlı küçük ırk köpeklerde sıktır. Çok su içme ve idrar, doymak bilmeyen iştah, sarkık göbek, ince bacaklar, gövdede simetrik tüy dökülmesi, incelmiş deri ve soğukta bile dil dışarıda soluma tipiktir. Kan testleriyle tanı konur, ilaçla kontrol altına alınır.",
+  "evde": "Su tüketimini ölçün (24 saatte kg başına 100 ml üstü anormaldir), belirtileri listeleyip iç hastalıkları muayenesi için randevu alın.",
+  "kacin": "Su kısıtlaması yapmayın; deri belirtilerini kortizonlu kremle tedavi etmeyin (tabloyu ağırlaştırır).",
+  "ayirici_tanilar": [
+   "diyabet",
+   "kronik_bobrek",
+   "hipotiroidi",
+   "piyometra",
+   "idrar_yolu_enf_kopek"
+  ],
+  "oneri_metni": "Böbrek üstü bezlerinin aşırı kortizol üretmesi; yaşlı küçük ırk köpeklerde sıktır. Çok su içme ve idrar, doymak bilmeyen iştah, sarkık göbek, ince bacaklar, gövdede simetrik tüy dökülmesi, incelmiş deri ve soğukta bile dil dışarıda soluma tipiktir. Kan testleriyle tanı konur, ilaçla kontrol altına alınır. Evde: Su tüketimini ölçün (24 saatte kg başına 100 ml üstü anormaldir), belirtileri listeleyip iç hastalıkları muayenesi için randevu alın. Yapmayın: Su kısıtlaması yapmayın; deri belirtilerini kortizonlu kremle tedavi etmeyin (tabloyu ağırlaştırır). Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "anal_kese": {
+  "hastalik_adi": "Anal kese tıkanıklığı / apsesi",
+  "ad_en": "Anal sac impaction / abscess",
+  "tur": "kopek",
+  "sistem": "Deri / Sindirim",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Anüsün iki yanındaki koku keselerinin boşalamayıp dolması; küçük ırklarda ve yumuşak dışkılı köpeklerde sıktır. Poposunu yere sürtme, kuyruk altını yalama, kötü koku ve dışkılarken ağrı görülür; kese iltihaplanırsa anüsün yanında sıcak bir şişlik oluşup patlayabilir. Kliniğe basit bir işlemle boşaltılır.",
+  "evde": "Lifli mama ile dışkı kıvamını artırın; şişlik, kanama ya da ağrı varsa aynı gün muayene.",
+  "kacin": "Keseleri evde sıkmaya çalışmayın (yırtılabilir); solucan sanıp yalnızca parazit ilacı vermeyin.",
+  "ayirici_tanilar": [
+   "bagirsak_parazitleri",
+   "atopik_alerjik_dermatit",
+   "kabizlik_megakolon",
+   "kitle_meme_tumoru"
+  ],
+  "oneri_metni": "Anüsün iki yanındaki koku keselerinin boşalamayıp dolması; küçük ırklarda ve yumuşak dışkılı köpeklerde sıktır. Poposunu yere sürtme, kuyruk altını yalama, kötü koku ve dışkılarken ağrı görülür; kese iltihaplanırsa anüsün yanında sıcak bir şişlik oluşup patlayabilir. Kliniğe basit bir işlemle boşaltılır. Evde: Lifli mama ile dışkı kıvamını artırın; şişlik, kanama ya da ağrı varsa aynı gün muayene. Yapmayın: Keseleri evde sıkmaya çalışmayın (yırtılabilir); solucan sanıp yalnızca parazit ilacı vermeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "trakeal_kollaps": {
+  "hastalik_adi": "Trakeal kollaps (soluk borusu çökmesi)",
+  "ad_en": "Tracheal collapse",
+  "tur": "kopek",
+  "sistem": "Solunum",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Küçük ırk köpeklerde soluk borusu kıkırdaklarının zayıflayıp nefes sırasında çökmesi. Heyecan, tasma çekilmesi, sıcak ve kilo alımıyla artan 'kaz sesi' gibi kuru öksürük tipiktir. Kilo kontrolü, göğüs tasması ve ilaçla çoğu köpek rahat yaşar; nadiren morarma ve nefes darlığı krizleri olur, bu durumda acildir.",
+  "evde": "Boyun tasması yerine göğüs tasması, kilo kontrolü, sigara dumanı ve sıcaktan uzak tutma; öksürük artıyorsa muayene.",
+  "kacin": "Tasmayı çekmeyin, heyecanlandırmayın; dil morarırsa beklemeyin.",
+  "ayirici_tanilar": [
+   "kulube_oksurugu",
+   "kalp_yetmezligi",
+   "akut_alerjik_reaksiyon"
+  ],
+  "oneri_metni": "Küçük ırk köpeklerde soluk borusu kıkırdaklarının zayıflayıp nefes sırasında çökmesi. Heyecan, tasma çekilmesi, sıcak ve kilo alımıyla artan 'kaz sesi' gibi kuru öksürük tipiktir. Kilo kontrolü, göğüs tasması ve ilaçla çoğu köpek rahat yaşar; nadiren morarma ve nefes darlığı krizleri olur, bu durumda acildir. Evde: Boyun tasması yerine göğüs tasması, kilo kontrolü, sigara dumanı ve sıcaktan uzak tutma; öksürük artıyorsa muayene. Yapmayın: Tasmayı çekmeyin, heyecanlandırmayın; dil morarırsa beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kalp_yetmezligi": {
+  "hastalik_adi": "Kalp kapak hastalığı / konjestif kalp yetmezliği",
+  "ad_en": "Mitral valve disease / congestive heart failure",
+  "tur": "kopek",
+  "sistem": "Kalp-dolaşım",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Yaşlı küçük ırk köpeklerde kalp kapaklarının, büyük ırklarda kalp kasının bozulması. Gece ve dinlenirken artan öksürük, yürüyüşte çabuk yorulma, dinlenirken hızlı nefes (dakikada 30'un üstü), bayılma nöbetleri ve karın şişliği görülür. Erken tanı ve ilaçla yıllarca kaliteli yaşam mümkündür; nefes darlığı krizi acildir.",
+  "evde": "Uyurken dakikadaki nefes sayısını sayın (30'un üstü uyarıdır), tuzu azaltın, yorucu egzersizden kaçının; kalp muayenesi için randevu alın. Ağzı açık zor nefes alıyorsa hemen kliniğe.",
+  "kacin": "Öksürük şurubu vermeyin; sıcakta yürütmeyin.",
+  "ayirici_tanilar": [
+   "trakeal_kollaps",
+   "kulube_oksurugu",
+   "sicak_carpmasi",
+   "epilepsi"
+  ],
+  "oneri_metni": "Yaşlı küçük ırk köpeklerde kalp kapaklarının, büyük ırklarda kalp kasının bozulması. Gece ve dinlenirken artan öksürük, yürüyüşte çabuk yorulma, dinlenirken hızlı nefes (dakikada 30'un üstü), bayılma nöbetleri ve karın şişliği görülür. Erken tanı ve ilaçla yıllarca kaliteli yaşam mümkündür; nefes darlığı krizi acildir. Evde: Uyurken dakikadaki nefes sayısını sayın (30'un üstü uyarıdır), tuzu azaltın, yorucu egzersizden kaçının; kalp muayenesi için randevu alın. Ağzı açık zor nefes alıyorsa hemen kliniğe. Yapmayın: Öksürük şurubu vermeyin; sıcakta yürütmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "piyoderma_hot_spot": {
+  "hastalik_adi": "Bakteriyel deri enfeksiyonu (piyoderma) / hot spot",
+  "ad_en": "Pyoderma / acute moist dermatitis",
+  "tur": "kopek",
+  "sistem": "Deri",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Derideki bakterilerin, çoğu zaman alerji, pire, nem ya da yüzeysel bir tahriş zemininde çoğalması. Karın ve kasıklarda irinli sivilcikler, kabuklar ve halka şeklinde soyulmalar (yüzeysel piyoderma) ya da saatler içinde büyüyen, sızıntılı, çok ağrılı kırmızı bir yara (hot spot) görülür. Tıraş, temizlik ve antibiyotik/antiseptik tedaviyle düzelir; tekrarlıyorsa altta yatan neden aranır.",
+  "evde": "Yaranın çevresindeki tüyleri kırpın, antiseptik solüsyonla temizleyin, yalamasını yakalıkla engelleyin ve muayene için randevu alın.",
+  "kacin": "Kortizonlu insan kremlerini ve alkolü sürmeyin; yarayı bandajla kapatıp nemli bırakmayın.",
+  "ayirici_tanilar": [
+   "atopik_alerjik_dermatit",
+   "pire",
+   "uyuz",
+   "dermatofitoz",
+   "otitis_eksterna"
+  ],
+  "oneri_metni": "Derideki bakterilerin, çoğu zaman alerji, pire, nem ya da yüzeysel bir tahriş zemininde çoğalması. Karın ve kasıklarda irinli sivilcikler, kabuklar ve halka şeklinde soyulmalar (yüzeysel piyoderma) ya da saatler içinde büyüyen, sızıntılı, çok ağrılı kırmızı bir yara (hot spot) görülür. Tıraş, temizlik ve antibiyotik/antiseptik tedaviyle düzelir; tekrarlıyorsa altta yatan neden aranır. Evde: Yaranın çevresindeki tüyleri kırpın, antiseptik solüsyonla temizleyin, yalamasını yakalıkla engelleyin ve muayene için randevu alın. Yapmayın: Kortizonlu insan kremlerini ve alkolü sürmeyin; yarayı bandajla kapatıp nemli bırakmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "idrar_yolu_enf_kopek": {
+  "hastalik_adi": "İdrar yolu enfeksiyonu / mesane taşı (köpek)",
+  "ad_en": "Urinary tract infection / urolithiasis (dog)",
+  "tur": "kopek",
+  "sistem": "Üriner",
+  "yayginlik": 3,
+  "aciliyet": "turuncu",
+  "aciklama": "Mesanenin bakteriyel enfeksiyonu ya da mesane taşları; dişi köpeklerde daha sıktır. Sık sık az az işeme, işerken zorlanma, kanlı ya da kötü kokulu idrar ve evde kaçırma görülür. Erkek köpekte taş idrar yolunu tıkarsa hiç idrar yapamaz; bu bir acildir. Tekrarlayan enfeksiyonlarda şeker, Cushing ya da taş aranır.",
+  "evde": "Bol su içirin, sık tuvalete çıkarın; idrar örneğini (mümkünse sabah ilk idrar, temiz kapta) kliniğe götürün. Hiç idrar yapamıyorsa hemen gidin.",
+  "kacin": "Evde kalan antibiyotiklerle tedaviye başlamayın (kültürü bozar); kızılcık vb. takviyelerle acil durumu geçiştirmeyin.",
+  "ayirici_tanilar": [
+   "piyometra",
+   "diyabet",
+   "cushing",
+   "kronik_bobrek",
+   "kitle_meme_tumoru"
+  ],
+  "oneri_metni": "Mesanenin bakteriyel enfeksiyonu ya da mesane taşları; dişi köpeklerde daha sıktır. Sık sık az az işeme, işerken zorlanma, kanlı ya da kötü kokulu idrar ve evde kaçırma görülür. Erkek köpekte taş idrar yolunu tıkarsa hiç idrar yapamaz; bu bir acildir. Tekrarlayan enfeksiyonlarda şeker, Cushing ya da taş aranır. Evde: Bol su içirin, sık tuvalete çıkarın; idrar örneğini (mümkünse sabah ilk idrar, temiz kapta) kliniğe götürün. Hiç idrar yapamıyorsa hemen gidin. Yapmayın: Evde kalan antibiyotiklerle tedaviye başlamayın (kültürü bozar); kızılcık vb. takviyelerle acil durumu geçiştirmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "vestibuler_sendrom": {
+  "hastalik_adi": "Vestibüler sendrom (yaşlı köpek 'inme'si)",
+  "ad_en": "Idiopathic vestibular syndrome",
+  "tur": "kopek",
+  "sistem": "Nöroloji",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Yaşlı köpeklerde denge organının aniden bozulması: başın bir yana eğilmesi, sarhoş gibi yürüme, yana düşme, gözlerin hızlı hızlı sağa-sola kayması ve bulantı. İnme sanılır ama çoğu olgu 'idiyopatik'tir ve 2–3 haftada büyük ölçüde düzelir. Yine de iç kulak iltihabı, tümör ya da gerçek inme dışlanmalı; aynı gün muayene gerekir.",
+  "evde": "Düşmesini engelleyin (yumuşak, sınırlı alan), su ve mamayı önüne getirin, ışığı kısın; kliniğe giderken taşıyıcı kullanın.",
+  "kacin": "Merdivene, balkona bırakmayın; 'inme, artık bitti' diye ötanazi kararını aceleye getirmeyin.",
+  "ayirici_tanilar": [
+   "otitis_eksterna",
+   "epilepsi",
+   "zehirlenme",
+   "ivdd",
+   "kalp_yetmezligi"
+  ],
+  "oneri_metni": "Yaşlı köpeklerde denge organının aniden bozulması: başın bir yana eğilmesi, sarhoş gibi yürüme, yana düşme, gözlerin hızlı hızlı sağa-sola kayması ve bulantı. İnme sanılır ama çoğu olgu 'idiyopatik'tir ve 2–3 haftada büyük ölçüde düzelir. Yine de iç kulak iltihabı, tümör ya da gerçek inme dışlanmalı; aynı gün muayene gerekir. Evde: Düşmesini engelleyin (yumuşak, sınırlı alan), su ve mamayı önüne getirin, ışığı kısın; kliniğe giderken taşıyıcı kullanın. Yapmayın: Merdivene, balkona bırakmayın; 'inme, artık bitti' diye ötanazi kararını aceleye getirmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "bilissel_islev_bozuklugu": {
+  "hastalik_adi": "Bilişsel işlev bozukluğu (köpek bunaması)",
+  "ad_en": "Canine cognitive dysfunction",
+  "tur": "kopek",
+  "sistem": "Nöroloji / Davranış",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Yaşlı köpeklerde beynin yaşlanmasına bağlı, insandaki bunamaya benzer tablo: gece uyumayıp dolanma, köşelere sıkışma, tanıdık kişileri tanımama, tuvalet alışkanlığını kaybetme, sebepsiz havlama ve gündüz uyuklama. Tanı, benzer belirti yapan ağrı, böbrek, idrar yolu ve beyin tümörü dışlanarak konur; diyet, ilaç ve zihinsel uyarı ile yavaşlatılabilir.",
+  "evde": "Gece ışığı, düzenli rutin, kısa gündüz yürüyüşleri ve zihin oyunları; belirti günlüğü tutup geriatrik muayene için randevu alın.",
+  "kacin": "Evde tuvaletini yaptı diye cezalandırmayın; yaşlılık deyip ağrı ya da başka hastalığı gözden kaçırmayın.",
+  "ayirici_tanilar": [
+   "osteoartrit",
+   "kronik_bobrek",
+   "vestibuler_sendrom",
+   "idrar_yolu_enf_kopek",
+   "kitle_meme_tumoru"
+  ],
+  "oneri_metni": "Yaşlı köpeklerde beynin yaşlanmasına bağlı, insandaki bunamaya benzer tablo: gece uyumayıp dolanma, köşelere sıkışma, tanıdık kişileri tanımama, tuvalet alışkanlığını kaybetme, sebepsiz havlama ve gündüz uyuklama. Tanı, benzer belirti yapan ağrı, böbrek, idrar yolu ve beyin tümörü dışlanarak konur; diyet, ilaç ve zihinsel uyarı ile yavaşlatılabilir. Evde: Gece ışığı, düzenli rutin, kısa gündüz yürüyüşleri ve zihin oyunları; belirti günlüğü tutup geriatrik muayene için randevu alın. Yapmayın: Evde tuvaletini yaptı diye cezalandırmayın; yaşlılık deyip ağrı ya da başka hastalığı gözden kaçırmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "panlokopeni": {
+  "hastalik_adi": "Panlökopeni (kedi tifosu, kedi parvovirüsü)",
+  "ad_en": "Feline panleukopenia",
+  "tur": "kedi",
+  "sistem": "Sindirim / Enfeksiyöz",
+  "yayginlik": 3,
+  "aciliyet": "kirmizi",
+  "aciklama": "Aşısız yavru kedilerde çok bulaşıcı ve sık ölümcül bir virüs (köpek parvovirüsünün akrabası). Ani ateş, şiddetli halsizlik, kusma, sonra ishal (bazen kanlı), tam iştahsızlık ve 'su kabının başında oturup içememe' tipiktir. Bağışıklık hücrelerini yok ettiği için saatler içinde ağırlaşır; yoğun destek tedavisi hayat kurtarır.",
+  "evde": "Hemen kliniğe gidin; kediyi diğer kedilerden ayırın, kum kabı ve kapları çamaşır suyuyla dezenfekte edin (virüs ortamda aylarca kalır).",
+  "kacin": "Evde antibiyotik/ishal ilacıyla beklemeyin; yeni bir yavruyu aşı tamamlanmadan bu eve almayın.",
+  "ayirici_tanilar": [
+   "akut_gastroenterit",
+   "bagirsak_parazitleri",
+   "zehirlenme",
+   "yabanci_cisim",
+   "fip"
+  ],
+  "oneri_metni": "Aşısız yavru kedilerde çok bulaşıcı ve sık ölümcül bir virüs (köpek parvovirüsünün akrabası). Ani ateş, şiddetli halsizlik, kusma, sonra ishal (bazen kanlı), tam iştahsızlık ve 'su kabının başında oturup içememe' tipiktir. Bağışıklık hücrelerini yok ettiği için saatler içinde ağırlaşır; yoğun destek tedavisi hayat kurtarır. Evde: Hemen kliniğe gidin; kediyi diğer kedilerden ayırın, kum kabı ve kapları çamaşır suyuyla dezenfekte edin (virüs ortamda aylarca kalır). Yapmayın: Evde antibiyotik/ishal ilacıyla beklemeyin; yeni bir yavruyu aşı tamamlanmadan bu eve almayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kedi_nezlesi": {
+  "hastalik_adi": "Kedi nezlesi (üst solunum yolu enfeksiyonu: herpes/calicivirüs)",
+  "ad_en": "Feline upper respiratory infection (cat flu)",
+  "tur": "kedi",
+  "sistem": "Solunum / Enfeksiyöz",
+  "yayginlik": 3,
+  "aciliyet": "yesil",
+  "aciklama": "Herpes ve calicivirüsün (bazen Chlamydia ve Bordetella ile birlikte) yol açtığı çok bulaşıcı üst solunum yolu enfeksiyonu. Hapşırık, burun ve göz akıntısı, kızarık gözler, ateş ve koku alamadığı için iştahsızlık görülür; calicivirüste dil ve ağızda yaralar, herpeste kornea ülseri gelişebilir. Çoğu 7–14 günde iyileşir; yavru ve iştahsız kedilerde destek gerekir. Herpes ömür boyu kalıp stresle tekrarlar.",
+  "evde": "Burun ve gözü ılık ıslak pamukla temizleyin, kokusu güçlü, ısıtılmış yaş mama sunun, buharlı banyoda 10 dakika tutun, sıcak ve stressiz ortam sağlayın. 24 saatten uzun yemiyorsa, gözünü kısıyorsa ya da zor nefes alıyorsa muayene.",
+  "kacin": "İnsan soğuk algınlığı ilaçları vermeyin (parasetamol kedide ölümcül); göz damlalarını muayenesiz kullanmayın.",
+  "ayirici_tanilar": [
+   "konjunktivit",
+   "kornea_ulseri",
+   "kedi_astimi",
+   "panlokopeni",
+   "dis_hastaligi"
+  ],
+  "oneri_metni": "Herpes ve calicivirüsün (bazen Chlamydia ve Bordetella ile birlikte) yol açtığı çok bulaşıcı üst solunum yolu enfeksiyonu. Hapşırık, burun ve göz akıntısı, kızarık gözler, ateş ve koku alamadığı için iştahsızlık görülür; calicivirüste dil ve ağızda yaralar, herpeste kornea ülseri gelişebilir. Çoğu 7–14 günde iyileşir; yavru ve iştahsız kedilerde destek gerekir. Herpes ömür boyu kalıp stresle tekrarlar. Evde: Burun ve gözü ılık ıslak pamukla temizleyin, kokusu güçlü, ısıtılmış yaş mama sunun, buharlı banyoda 10 dakika tutun, sıcak ve stressiz ortam sağlayın. 24 saatten uzun yemiyorsa, gözünü kısıyorsa ya da zor nefes alıyorsa muayene. Yapmayın: İnsan soğuk algınlığı ilaçları vermeyin (parasetamol kedide ölümcül); göz damlalarını muayenesiz kullanmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "fip": {
+  "hastalik_adi": "FIP (kedi enfeksiyöz peritoniti)",
+  "ad_en": "Feline infectious peritonitis",
+  "tur": "kedi",
+  "sistem": "Enfeksiyöz / Sistemik",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Yaygın ve genelde zararsız kedi koronavirüsünün, özellikle kalabalık ortamdan gelen genç kedilerde mutasyonla ölümcül bir hastalığa dönüşmesi. 'Yaş' tipte karın (ya da göğüs) sıvıyla şişerken kedi zayıflar; 'kuru' tipte antibiyotiğe yanıt vermeyen ateş, sarılık, göz iltihabı ve sinir belirtileri görülür. Eskiden ölümcüldü; artık antiviral tedaviyle çoğu kedi iyileşiyor, erken başvuru önemlidir.",
+  "evde": "Belirtileri ve ateş seyrini kaydedin, kan tahlili ve sıvı analizi için en kısa sürede randevu alın; nefes darlığı gelişirse hemen kliniğe.",
+  "kacin": "'Karnı şişti, kurt vardır' diye yalnızca parazit ilacı verip beklemeyin; tedaviyi yarım bırakmayın.",
+  "ayirici_tanilar": [
+   "panlokopeni",
+   "felv_fiv",
+   "bagirsak_parazitleri",
+   "kalp_yetmezligi",
+   "kitle_meme_tumoru"
+  ],
+  "oneri_metni": "Yaygın ve genelde zararsız kedi koronavirüsünün, özellikle kalabalık ortamdan gelen genç kedilerde mutasyonla ölümcül bir hastalığa dönüşmesi. 'Yaş' tipte karın (ya da göğüs) sıvıyla şişerken kedi zayıflar; 'kuru' tipte antibiyotiğe yanıt vermeyen ateş, sarılık, göz iltihabı ve sinir belirtileri görülür. Eskiden ölümcüldü; artık antiviral tedaviyle çoğu kedi iyileşiyor, erken başvuru önemlidir. Evde: Belirtileri ve ateş seyrini kaydedin, kan tahlili ve sıvı analizi için en kısa sürede randevu alın; nefes darlığı gelişirse hemen kliniğe. Yapmayın: 'Karnı şişti, kurt vardır' diye yalnızca parazit ilacı verip beklemeyin; tedaviyi yarım bırakmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "felv_fiv": {
+  "hastalik_adi": "FeLV / FIV (kedi lösemi virüsü / kedi bağışıklık yetmezliği virüsü)",
+  "ad_en": "FeLV / FIV infection",
+  "tur": "kedi",
+  "sistem": "Enfeksiyöz / Bağışıklık",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Kavga ve ısırıkla (FIV) ya da yakın temasla (FeLV) bulaşan, bağışıklık sistemini zayıflatan virüsler; dışarı çıkan erkek kedilerde sıktır. Yıllarca sessiz kalabilir; sonra tekrarlayan enfeksiyonlar, iyileşmeyen yaralar, ağır dişeti iltihabı ve ağız yaraları, lenf bezi büyümesi, kansızlık, kilo kaybı ve düşmeyen ateş görülür. Hızlı kan testiyle tanı konur; bulaşmayı önlemek için içeride tutma önemlidir.",
+  "evde": "Hızlı test için randevu alın; kediyi içeride tutun, evdeki diğer kedileri test ettirin, kaliteli beslenme ve düzenli kontrolle uzun yıllar yaşayabilir.",
+  "kacin": "Çiğ et vermeyin (bağışıklık zayıf); enfeksiyonları 'geçer' diye bekletmeyin.",
+  "ayirici_tanilar": [
+   "fip",
+   "dis_hastaligi",
+   "kronik_bobrek",
+   "bagirsak_parazitleri",
+   "kene_hastaliklari"
+  ],
+  "oneri_metni": "Kavga ve ısırıkla (FIV) ya da yakın temasla (FeLV) bulaşan, bağışıklık sistemini zayıflatan virüsler; dışarı çıkan erkek kedilerde sıktır. Yıllarca sessiz kalabilir; sonra tekrarlayan enfeksiyonlar, iyileşmeyen yaralar, ağır dişeti iltihabı ve ağız yaraları, lenf bezi büyümesi, kansızlık, kilo kaybı ve düşmeyen ateş görülür. Hızlı kan testiyle tanı konur; bulaşmayı önlemek için içeride tutma önemlidir. Evde: Hızlı test için randevu alın; kediyi içeride tutun, evdeki diğer kedileri test ettirin, kaliteli beslenme ve düzenli kontrolle uzun yıllar yaşayabilir. Yapmayın: Çiğ et vermeyin (bağışıklık zayıf); enfeksiyonları 'geçer' diye bekletmeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "kedi_astimi": {
+  "hastalik_adi": "Kedi astımı / kronik bronşit",
+  "ad_en": "Feline asthma / chronic bronchitis",
+  "tur": "kedi",
+  "sistem": "Solunum",
+  "yayginlik": 2,
+  "aciliyet": "turuncu",
+  "aciklama": "Hava yollarının alerjik daralması; kediler 'tüy yumağı çıkaracak gibi' çömelip boynunu uzatarak öksürük atakları geçirir, hırıltılı ve hızlı nefes alır. Toz, sigara dumanı, parfümlü kum ve polen tetikler. Kontrol edilebilir bir hastalıktır; ancak ağzı açık, mavi dilli nefes darlığı krizi hayati tehlikedir.",
+  "evde": "Tozsuz/kokusuz kum, sigara dumanı ve spreylerden uzak ortam; atakları video kaydedin ve solunum muayenesi için randevu alın. Ağzı açık nefes alıyorsa hemen kliniğe.",
+  "kacin": "'Tüy yumağı' diye malt/yağ vererek geçiştirmeyin; insan astım ilaçlarını danışmadan kullanmayın.",
+  "ayirici_tanilar": [
+   "kedi_nezlesi",
+   "hcm_kedi",
+   "yabanci_cisim",
+   "bagirsak_parazitleri"
+  ],
+  "oneri_metni": "Hava yollarının alerjik daralması; kediler 'tüy yumağı çıkaracak gibi' çömelip boynunu uzatarak öksürük atakları geçirir, hırıltılı ve hızlı nefes alır. Toz, sigara dumanı, parfümlü kum ve polen tetikler. Kontrol edilebilir bir hastalıktır; ancak ağzı açık, mavi dilli nefes darlığı krizi hayati tehlikedir. Evde: Tozsuz/kokusuz kum, sigara dumanı ve spreylerden uzak ortam; atakları video kaydedin ve solunum muayenesi için randevu alın. Ağzı açık nefes alıyorsa hemen kliniğe. Yapmayın: 'Tüy yumağı' diye malt/yağ vererek geçiştirmeyin; insan astım ilaçlarını danışmadan kullanmayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "hipertiroidi": {
+  "hastalik_adi": "Hipertiroidi (tiroid bezinin aşırı çalışması)",
+  "ad_en": "Feline hyperthyroidism",
+  "tur": "kedi",
+  "sistem": "Endokrin",
+  "yayginlik": 2,
+  "aciliyet": "yesil",
+  "aciklama": "Yaşlı kedilerde tiroid bezinin fazla hormon üretmesi. Çok yemesine rağmen zayıflama, aşırı hareketlilik, gece bağırma, kusma-ishal, çok su içme ve bakımsız tüyler tipiktir; kalp hızını artırdığı için kalp hastalığına yol açabilir. Kan testiyle kolayca tanı konur; ilaç, diyet ya da radyoiyotla tedavi edilir.",
+  "evde": "Tiroid testi için randevu alın; kilo takibi yapın. Kusma ve hızlı nefes eklenirse muayeneyi öne alın.",
+  "kacin": "'Yaşlı, iştahı iyi, sorun yok' demeyin — iştah artışıyla zayıflama her zaman anormaldir.",
+  "ayirici_tanilar": [
+   "kronik_bobrek",
+   "diyabet",
+   "kronik_enteropati",
+   "hcm_kedi"
+  ],
+  "oneri_metni": "Yaşlı kedilerde tiroid bezinin fazla hormon üretmesi. Çok yemesine rağmen zayıflama, aşırı hareketlilik, gece bağırma, kusma-ishal, çok su içme ve bakımsız tüyler tipiktir; kalp hızını artırdığı için kalp hastalığına yol açabilir. Kan testiyle kolayca tanı konur; ilaç, diyet ya da radyoiyotla tedavi edilir. Evde: Tiroid testi için randevu alın; kilo takibi yapın. Kusma ve hızlı nefes eklenirse muayeneyi öne alın. Yapmayın: 'Yaşlı, iştahı iyi, sorun yok' demeyin — iştah artışıyla zayıflama her zaman anormaldir. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "flutd": {
+  "hastalik_adi": "Alt idrar yolu hastalığı (FLUTD / idiyopatik sistit)",
+  "ad_en": "Feline lower urinary tract disease",
+  "tur": "kedi",
+  "sistem": "Üriner",
+  "yayginlik": 3,
+  "aciliyet": "turuncu",
+  "aciklama": "Kedilerde mesanenin, çoğu zaman stres ve az su içmeye bağlı, enfeksiyon olmadan iltihaplanması; bazen kristal/taş da olur. Sık sık az az işeme, işerken bağırma, kanlı idrar ve kum dışına (küvet, paspas) işeme tipiktir. Erkek kedilerde aynı belirtiler tıkanıklığa dönüşebilir: hiç idrar yapamıyorsa bu bir acildir.",
+  "evde": "Su alımını artırın (yaş mama, çeşme tipi suluk), kum kabı sayısını artırıp temiz tutun, stresi azaltın; 24 saat içinde idrar tahlili için gidin. İdrar hiç gelmiyorsa hemen.",
+  "kacin": "Ceza vermeyin (stres artırır); antibiyotikle kendi kendinize tedaviye başlamayın.",
+  "ayirici_tanilar": [
+   "uretral_tikaniklik",
+   "kabizlik_megakolon",
+   "kronik_bobrek",
+   "diyabet"
+  ],
+  "oneri_metni": "Kedilerde mesanenin, çoğu zaman stres ve az su içmeye bağlı, enfeksiyon olmadan iltihaplanması; bazen kristal/taş da olur. Sık sık az az işeme, işerken bağırma, kanlı idrar ve kum dışına (küvet, paspas) işeme tipiktir. Erkek kedilerde aynı belirtiler tıkanıklığa dönüşebilir: hiç idrar yapamıyorsa bu bir acildir. Evde: Su alımını artırın (yaş mama, çeşme tipi suluk), kum kabı sayısını artırıp temiz tutun, stresi azaltın; 24 saat içinde idrar tahlili için gidin. İdrar hiç gelmiyorsa hemen. Yapmayın: Ceza vermeyin (stres artırır); antibiyotikle kendi kendinize tedaviye başlamayın. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "uretral_tikaniklik": {
+  "hastalik_adi": "Üretral tıkanıklık (erkek kedide idrar yolu tıkanması)",
+  "ad_en": "Urethral obstruction (blocked cat)",
+  "tur": "kedi",
+  "sistem": "Üriner / Acil",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Erkek kedilerde idrar kanalının kristal, tıkaç ya da spazmla tıkanması; idrar yapamayan kedi 24–48 saat içinde böbrek yetmezliği ve potasyum yükselmesiyle ölebilir. Kum kabına girip çıkıp hiçbir şey yapamama, ıkınıp bağırma, karına dokundurtmama, kusma ve halsizlik tipiktir. Sahipler bunu sıklıkla kabızlık sanır; ayrım için hemen klinik gerekir.",
+  "evde": "Hiçbir şey vermeden, hemen 7/24 kliniğe gidin. Karnına bastırmayın.",
+  "kacin": "'Kabız' diye laksatif vermeyin, yağ/lavman denemeyin, sabahı beklemeyin.",
+  "ayirici_tanilar": [
+   "flutd",
+   "kabizlik_megakolon",
+   "kronik_bobrek",
+   "yabanci_cisim"
+  ],
+  "oneri_metni": "Erkek kedilerde idrar kanalının kristal, tıkaç ya da spazmla tıkanması; idrar yapamayan kedi 24–48 saat içinde böbrek yetmezliği ve potasyum yükselmesiyle ölebilir. Kum kabına girip çıkıp hiçbir şey yapamama, ıkınıp bağırma, karına dokundurtmama, kusma ve halsizlik tipiktir. Sahipler bunu sıklıkla kabızlık sanır; ayrım için hemen klinik gerekir. Evde: Hiçbir şey vermeden, hemen 7/24 kliniğe gidin. Karnına bastırmayın. Yapmayın: 'Kabız' diye laksatif vermeyin, yağ/lavman denemeyin, sabahı beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ },
+ "hcm_kedi": {
+  "hastalik_adi": "Hipertrofik kardiyomiyopati (kedi kalp hastalığı) / pıhtı atması",
+  "ad_en": "Hypertrophic cardiomyopathy / aortic thromboembolism",
+  "tur": "kedi",
+  "sistem": "Kalp-dolaşım",
+  "yayginlik": 2,
+  "aciliyet": "kirmizi",
+  "aciklama": "Kedilerde en sık kalp hastalığı; kalp kası kalınlaşır ve çoğu zaman belirti vermeden ilerler. İlk belirti aniden başlayan ağzı açık, karından hızlı nefes alma (akciğere/göğse sıvı) ya da kalpten kopan pıhtının arka bacakları bir anda felç etmesi (çığlık, soğuk patiler) olabilir. Her iki tablo da acildir; erken tanı (ekokardiyografi) ile ilaçla kontrol mümkündür.",
+  "evde": "Kediyi sakin, serin bir taşıyıcıya alın ve hemen kliniğe gidin; yolda ağzını açmaya, kucağa sıkmaya çalışmayın. Uyurken nefes sayısını (dakikada 30'un üstü) takip etmek erken uyarı verir.",
+  "kacin": "'Yorulmuş, dinlensin' demeyin; arka bacak felcini kırık sanıp beklemeyin.",
+  "ayirici_tanilar": [
+   "kedi_astimi",
+   "fip",
+   "hipertiroidi",
+   "travma",
+   "ivdd"
+  ],
+  "oneri_metni": "Kedilerde en sık kalp hastalığı; kalp kası kalınlaşır ve çoğu zaman belirti vermeden ilerler. İlk belirti aniden başlayan ağzı açık, karından hızlı nefes alma (akciğere/göğse sıvı) ya da kalpten kopan pıhtının arka bacakları bir anda felç etmesi (çığlık, soğuk patiler) olabilir. Her iki tablo da acildir; erken tanı (ekokardiyografi) ile ilaçla kontrol mümkündür. Evde: Kediyi sakin, serin bir taşıyıcıya alın ve hemen kliniğe gidin; yolda ağzını açmaya, kucağa sıkmaya çalışmayın. Uyurken nefes sayısını (dakikada 30'un üstü) takip etmek erken uyarı verir. Yapmayın: 'Yorulmuş, dinlensin' demeyin; arka bacak felcini kırık sanıp beklemeyin. Kesin tanı ve tedavi için veteriner hekime başvurun."
+ }
+}

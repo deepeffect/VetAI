@@ -147,6 +147,15 @@ export default function App() {
     void durumuYenile();
   }, [durumuYenile]);
 
+  // Backend'e ulaşılamıyorsa (ör. sunucu hâlâ açılıyor ya da sonradan
+  // başlatıldı) birkaç saniyede bir yeniden dene; bağlanınca durur.
+  // Böylece "Backend kapalı" uyarısı sayfa yenilenmeden kendiliğinden kalkar.
+  useEffect(() => {
+    if (!baglantiHatasi) return;
+    const zamanlayici = window.setInterval(() => void durumuYenile(), 3000);
+    return () => window.clearInterval(zamanlayici);
+  }, [baglantiHatasi, durumuYenile]);
+
   // Kullanıcı yukarı kaydırıp eski mesajları okuyorsa yeni yanıt geldiğinde
   // onu zorla aşağı çekmiyoruz; yalnızca zaten en alttaysa takip ediyoruz.
   useEffect(() => {

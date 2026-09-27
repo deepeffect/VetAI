@@ -56,6 +56,21 @@ export default function AnalysisResult({ sonuc }: Props) {
         </div>
       )}
 
+      {/* --- 24 saat içinde görülmeli (turuncu) --------------------------- */}
+      {!sonuc.acil && sonuc.aciliyet === "turuncu" && (
+        <div className="flex gap-3 rounded-xl border border-warn-line bg-warn-soft p-4">
+          <InfoIcon className="mt-0.5 h-5 w-5 shrink-0 text-warn-ink" />
+          <div>
+            <p className="text-[13.5px] font-semibold text-warn-ink">Bugün içinde veterinere görünün</p>
+            <p className="mt-1 text-[13.5px] leading-relaxed text-warn-ink/90">
+              {sonuc.aciliyet_bayraklari.length > 0
+                ? `${sonuc.aciliyet_bayraklari.join(", ")} bulguları 24 saat içinde muayene gerektirir.`
+                : "Bu tablo genellikle 24 saat içinde muayene gerektirir."}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* --- Tespit edilen bulgular ---------------------------------------- */}
       {sonuc.bulgular.length > 0 && (
         <div className="flex flex-wrap items-center gap-1.5">
@@ -108,7 +123,7 @@ export default function AnalysisResult({ sonuc }: Props) {
               </span>
             }
           >
-            Model olasılıkları
+            {sonuc.kararsiz ? "Olası tablolar (model kararsız)" : "Model olasılıkları"}
           </BolumBasligi>
           <div className="space-y-2">
             {sonuc.tahminler.map((t, i) => (

@@ -70,6 +70,10 @@ export default function StatusPanel({ saglik, istatistik, baglantiHatasi }: Prop
         <code className="mt-2.5 block rounded-lg border border-danger-line bg-card/60 px-2.5 py-2 font-mono text-[11.5px] text-ink">
           uvicorn main:app --reload
         </code>
+        <p className="mt-2.5 text-[11.5px] leading-relaxed text-danger-ink/80">
+          Sunucu açılırken modeli eğitir (birkaç saniye sürer). Bağlantı her 3
+          saniyede bir yeniden deneniyor; sayfayı yenilemenize gerek yok.
+        </p>
       </section>
     );
   }
