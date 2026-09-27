@@ -210,8 +210,9 @@ async def lifespan(app: FastAPI):
     durum = ml_model.egit()
     if durum.egitildi:
         logger.info(
-            "ML modeli hazir: %s ornek, %s sinif, %s ozellik, capraz dogrulama=%s",
-            durum.ornek_sayisi, durum.sinif_sayisi, durum.ozellik_sayisi, durum.dogruluk,
+            "ML modeli hazir: %s ornek, %s sinif, %s ozellik "
+            "(capraz dogrulama arka planda hesaplaniyor)",
+            durum.ornek_sayisi, durum.sinif_sayisi, durum.ozellik_sayisi,
         )
     else:
         logger.warning(

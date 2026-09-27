@@ -17,6 +17,8 @@ Canli ogrenme guvenligi:
 
 from __future__ import annotations
 
+import dataclasses
+import logging
 import threading
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -118,8 +120,15 @@ class SemptomSiniflandirici:
         finally:
             session.close()
 
-    def egit(self) -> ModelDurumu:
-        """Veritabanindaki guncel veriyle modeli bastan egitir."""
+    def egit(self, cv_arka_planda: bool = True) -> ModelDurumu:
+        """Veritabanindaki guncel veriyle modeli bastan egitir.
+
+        Capraz dogrulama 55 sinif / ~2.500 ornekte egitimin kendisinden iki kat
+        uzun surer (~11 sn). Sunucu acilisini ve canli ogrenme sonrasi yeniden
+        egitimi bekletmemek icin varsayilan olarak arka planda hesaplanir;
+        sonuc gelene kadar `durum.dogruluk` None kalir. Olcum betigi gibi
+        sonucu hemen isteyen cagiranlar `cv_arka_planda=False` verir.
+        """
         metinler, etiketler, agirliklar, oneriler = self._veriyi_yukle()
 
         if len(set(etiketler)) < 2:
@@ -162,7 +171,7 @@ class SemptomSiniflandirici:
 
         pipeline.fit(metinler, etiketler, clf__sample_weight=np.asarray(agirliklar))
 
-        dogruluk = self._capraz_dogrula(pipeline, metinler, etiketler)
+        dogruluk = None if cv_arka_planda else self._capraz_dogrula(pipeline, metinler, etiketler)
         vectorizer: TfidfVectorizer = pipeline.named_steps["tfidf"]
 
         with self._lock:
@@ -177,7 +186,24 @@ class SemptomSiniflandirici:
                 egitim_zamani=datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 siniflar=sorted(pipeline.named_steps["clf"].classes_.tolist()),
             )
-        return self.durum
+            durum = self.durum
+
+        if cv_arka_planda:
+            threading.Thread(
+                target=self._cv_arka_plan,
+                args=(pipeline, metinler, etiketler),
+                name="vetai-cv",
+                daemon=True,
+            ).start()
+        return durum
+
+    def _cv_arka_plan(self, pipeline, metinler, etiketler) -> None:
+        """Capraz dogrulamayi hesaplar; bu arada daha yeni bir egitim olduysa sonucu atar."""
+        dogruluk = self._capraz_dogrula(pipeline, metinler, etiketler)
+        with self._lock:
+            if self._pipeline is pipeline:
+                self.durum = dataclasses.replace(self.durum, dogruluk=dogruluk)
+        logging.getLogger("vetai.ml").info("Capraz dogrulama tamamlandi: %s", dogruluk)
 
     @staticmethod
     def _capraz_dogrula(pipeline: Pipeline, metinler: list[str], etiketler: list[str]) -> Optional[float]:
@@ -303,8 +329,8 @@ def _temel_aciliyetler(idler: dict[str, str]) -> dict[str, str]:
 siniflandirici = SemptomSiniflandirici()
 
 
-def egit() -> ModelDurumu:
-    return siniflandirici.egit()
+def egit(cv_arka_planda: bool = True) -> ModelDurumu:
+    return siniflandirici.egit(cv_arka_planda=cv_arka_planda)
 
 
 def tahmin_et(metin: str, top_k: int = 3, tur: Optional[str] = None) -> List[Tahmin]:

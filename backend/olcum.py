@@ -93,7 +93,7 @@ def main() -> None:
     ap.add_argument("--hizli", action="store_true")
     a = ap.parse_args()
 
-    durum = ml_model.egit()
+    durum = ml_model.egit(cv_arka_planda=False)
     if not durum.egitildi:
         raise SystemExit("Model eğitilemedi; önce: python init_db.py --reset")
     print(f"Model: {durum.ornek_sayisi} örnek, {durum.sinif_sayisi} sınıf, "
