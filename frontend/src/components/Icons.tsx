@@ -144,3 +144,42 @@ export function MoonIcon({ className = base }: Props) {
     </svg>
   );
 }
+
+export function CopyIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <rect x="9" y="9" width="11" height="11" rx="2.2" />
+      <path d="M5.5 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v.5" />
+    </svg>
+  );
+}
+
+export function CheckIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <path d="m5 12.5 4.2 4.2L19 7" />
+    </svg>
+  );
+}
+
+export function RefreshIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <path d="M20 11.5A8 8 0 0 0 6.3 6.3L4 8.5" />
+      <path d="M4 3.5v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 13.7 5.2l2.3-2.2" />
+      <path d="M20 20.5v-5h-5" />
+    </svg>
+  );
+}
+
+export function TrashIcon({ className = base }: Props) {
+  return (
+    <svg {...cizgi} className={className}>
+      <path d="M4 6.5h16" />
+      <path d="M9.5 6.5V4.8a1.3 1.3 0 0 1 1.3-1.3h2.4a1.3 1.3 0 0 1 1.3 1.3v1.7" />
+      <path d="M6.3 6.5 7 19a1.6 1.6 0 0 0 1.6 1.5h6.8A1.6 1.6 0 0 0 17 19l.7-12.5" />
+      <path d="M10 10.5v6M14 10.5v6" />
+    </svg>
+  );
+}

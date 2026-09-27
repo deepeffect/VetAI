@@ -75,6 +75,24 @@ export interface IstatistikYaniti {
   model: ModelBilgisi;
 }
 
+/* ------------------------------------------------------------ sohbet tipleri */
+
+/** Frontend ile backend (chat_service.ChatMessage) arasında ortak mesaj biçimi. */
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  createdAt?: string;
+}
+
+export interface SohbetYaniti {
+  message: ChatMessage;
+  /** Son mesaj bir şikâyetse o tura ait ML analizi; değilse null. */
+  analiz: AnalizYaniti | null;
+  ai_aktif: boolean;
+  ai_model: string;
+}
+
 /* --------------------------------------------------------------- istekler */
 
 /** Ana analiz çağrısı: şikâyet metnini backend'e gönderir. */
@@ -83,6 +101,23 @@ export async function analizEt(metin: string, tur?: Tur): Promise<AnalizYaniti> 
     metin,
     tur: tur && tur !== "genel" ? tur : null,
   });
+  return data;
+}
+
+/**
+ * Sohbet çağrısı: konuşma geçmişini (son eleman kullanıcı mesajı) gönderir.
+ * Backend geçmişi kendi sınırına göre kırpar; burada yalnızca taşınır.
+ */
+export async function sohbetEt(
+  messages: ChatMessage[],
+  tur?: Tur,
+  signal?: AbortSignal
+): Promise<SohbetYaniti> {
+  const { data } = await http.post<SohbetYaniti>(
+    "/api/chat",
+    { messages, tur: tur && tur !== "genel" ? tur : null },
+    { signal }
+  );
   return data;
 }
 
@@ -98,19 +133,42 @@ export async function istatistikAl(): Promise<IstatistikYaniti> {
   return data;
 }
 
+const GENEL_HATA = "Yanıt oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.";
+
+/** FastAPI'nin `{"detail": "..."}` gövdesinden okunabilir metni çıkarır. */
+function sunucuDetayi(data: unknown): string | null {
+  if (data && typeof data === "object" && "detail" in data) {
+    const detay = (data as { detail: unknown }).detail;
+    if (typeof detay === "string" && detay.trim()) return detay;
+  }
+  return null;
+}
+
 /** Axios hatasını kullanıcıya gösterilebilir Türkçe metne çevirir. */
 export function hataMesaji(error: unknown): string {
   if (axios.isAxiosError(error)) {
+    if (error.code === "ERR_CANCELED") {
+      return "İstek iptal edildi.";
+    }
     if (error.code === "ECONNABORTED") {
       return "Sunucu yanıt vermedi (zaman aşımı). Backend'in çalıştığından emin misiniz?";
     }
     if (!error.response) {
       return "Backend'e ulaşılamadı. Terminalde 'uvicorn main:app --reload' komutunun çalıştığından emin olun.";
     }
-    if (error.response.status === 422) {
-      return "Gönderilen metin geçersiz. Lütfen 1-2000 karakter arasında bir şikâyet yazın.";
+    const { status, data } = error.response;
+    if (status === 422) {
+      return (
+        sunucuDetayi(data) ??
+        "Gönderilen metin geçersiz. Lütfen 1-2000 karakter arasında bir mesaj yazın."
+      );
     }
-    return `Sunucu hatası (${error.response.status}). Terminaldeki backend kaydına bakın.`;
+    // Backend Gemini hatalarını (anahtar yok, model yanlış, kota, zaman aşımı)
+    // 429 / 502 / 503 / 504 ile ve açıklayıcı bir detail alanıyla döndürür.
+    if ([429, 502, 503, 504].includes(status)) {
+      return sunucuDetayi(data) ?? GENEL_HATA;
+    }
+    return `Sunucu hatası (${status}). Terminaldeki backend kaydına bakın.`;
   }
-  return "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.";
+  return GENEL_HATA;
 }

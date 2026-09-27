@@ -19,17 +19,21 @@ from __future__ import annotations
 import logging
 import os
 import re
+import uuid
+from datetime import datetime, timezone
 from contextlib import asynccontextmanager
 from typing import List, Literal, Optional
 
 from dotenv import load_dotenv
-from fastapi import BackgroundTasks, Depends, FastAPI
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
+import chat_service
 import gemini_api
 import ml_model
+from chat_service import ChatMessage
 from database import (
     KAYNAK_AUTO,
     KAYNAK_PENDING,
@@ -168,6 +172,22 @@ class AnalizYaniti(BaseModel):
     model_bilgi: Optional[ModelBilgisi] = None
 
 
+class SohbetIstegi(BaseModel):
+    """/api/chat girdisi: konusma gecmisi (son eleman kullanici mesaji)."""
+
+    messages: List[ChatMessage] = Field(..., min_length=1, max_length=200)
+    tur: Optional[Literal["kedi", "kopek", "genel"]] = None
+
+
+class SohbetYaniti(BaseModel):
+    """/api/chat ciktisi: asistan mesaji + varsa o tura ait ML analizi."""
+
+    message: ChatMessage
+    analiz: Optional[AnalizYaniti] = None
+    ai_aktif: bool = False
+    ai_model: str = ""
+
+
 class SaglikYaniti(BaseModel):
     durum: str
     veritabani: bool
@@ -222,7 +242,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="VetAI API",
     description="Evcil hayvan semptom on-degerlendirme servisi "
-                "(TF-IDF + Logistic Regression + Gemini 2.5 Flash)",
+                "(TF-IDF + Logistic Regression + Gemini)",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -354,7 +374,7 @@ def kok():
         "servis": "VetAI API",
         "surum": "1.0.0",
         "dokumantasyon": "/docs",
-        "uc_noktalar": ["/api/analyze", "/api/health", "/api/stats", "/api/symptoms", "/api/retrain"],
+        "uc_noktalar": ["/api/analyze", "/api/chat", "/api/health", "/api/stats", "/api/symptoms", "/api/retrain"],
     }
 
 
@@ -374,14 +394,20 @@ def saglik(db: Session = Depends(get_db)):
     )
 
 
-@app.post("/api/analyze", response_model=AnalizYaniti, tags=["analiz"])
-def analiz_et(
-    istek: AnalizIstegi,
+def _analizi_calistir(
+    ham: str,
+    tur_secimi: Optional[str],
+    db: Session,
     arka_plan: BackgroundTasks,
-    db: Session = Depends(get_db),
-):
-    """Ana uc nokta: sikayet metnini analiz eder."""
-    ham = istek.metin.strip()
+    *,
+    gemini_yorumu: bool = True,
+) -> AnalizYaniti:
+    """Guardrail + NLP + ML zinciri. /api/analyze ve /api/chat ortak kullanir.
+
+    `gemini_yorumu=False` verilirse Gemini cagrilmaz ve `ai_yorum` bos kalir;
+    sohbet akisi bu tahminleri konusma baglamiyla birlikte TEK bir Gemini
+    cagrisina verir (ayni tur icin iki kez LLM cagirmamak icin).
+    """
     normalized = normalize(ham)
     uyarilar: List[str] = []
 
@@ -412,7 +438,7 @@ def analiz_et(
 
     tokens = tokenize(ham)
     bulgular = extract_keywords(ham)
-    tur = istek.tur or detect_tur(ham)
+    tur = (tur_secimi if tur_secimi in ("kedi", "kopek") else None) or detect_tur(ham)
     alan_icinde, semptom_var = alan_ici_mi(tokens)
 
     # ---------------- GUARDRAIL 3: insan sagligi -----------------------
@@ -430,7 +456,11 @@ def analiz_et(
     # ---------------- GUARDRAIL 4: kapsam disi (2+2 vb.) ---------------
     if not alan_icinde:
         logger.info("Kapsam disi istek: %r", ham[:80])
-        gemini_yanit = gemini_api.kapsam_disi_yanit(ham)
+        gemini_yanit = (
+            gemini_api.kapsam_disi_yanit(ham)
+            if gemini_yorumu
+            else gemini_api.GeminiYanit("", gemini_api.MODEL_ADI, False)
+        )
         return AnalizYaniti(
             durum="kapsam_disi",
             mesaj="Bu soru evcil hayvan sağlığı kapsamında değil.",
@@ -506,15 +536,19 @@ def analiz_et(
         )
 
     # ---------------- 9: GEMINI YORUMU ---------------------------------
-    gemini_yanit = gemini_api.yorumla(
-        ham, tur, tahminler, acil=acil, acil_gerekce=acil_gerekce, bulgular=bulgular
-    )
-    ai_yorum = gemini_yanit.metin or _sablon_yorum(tahminler, acil, acil_gerekce)
-    if not gemini_yanit.basarili:
-        uyarilar.append(
-            "Gemini katmanı şu anda devre dışı; aşağıdaki metin veritabanındaki "
-            "kayıtlardan üretilmiştir."
+    if gemini_yorumu:
+        gemini_yanit = gemini_api.yorumla(
+            ham, tur, tahminler, acil=acil, acil_gerekce=acil_gerekce, bulgular=bulgular
         )
+        ai_yorum = gemini_yanit.metin or _sablon_yorum(tahminler, acil, acil_gerekce)
+        if not gemini_yanit.basarili:
+            uyarilar.append(
+                "Gemini katmanı şu anda devre dışı; aşağıdaki metin veritabanındaki "
+                "kayıtlardan üretilmiştir."
+            )
+    else:
+        gemini_yanit = gemini_api.GeminiYanit("", gemini_api.MODEL_ADI, False)
+        ai_yorum = ""
 
     # ---------------- 10: CANLI OGRENME --------------------------------
     ogrenildi = _ogren(db, ham, tur, en_iyi, tokens)
@@ -545,6 +579,126 @@ def analiz_et(
         uyarilar=uyarilar,
         ogrenildi=ogrenildi,
         model_bilgi=_model_bilgisi(),
+    )
+
+
+@app.post("/api/analyze", response_model=AnalizYaniti, tags=["analiz"])
+def analiz_et(
+    istek: AnalizIstegi,
+    arka_plan: BackgroundTasks,
+    db: Session = Depends(get_db),
+):
+    """Tek atimlik analiz: sikayet metnini gecmis olmadan degerlendirir."""
+    return _analizi_calistir(istek.metin.strip(), istek.tur, db, arka_plan)
+
+
+# hata_kodu -> HTTP durumu (frontend bu kodlara gore mesaj gosterir)
+_HATA_HTTP = {
+    "anahtar_yok": 503,
+    "yetkisiz": 503,
+    "model_bulunamadi": 503,
+    "gecersiz_istek": 502,
+    "kota": 429,
+    "zaman_asimi": 504,
+    "sunucu": 502,
+    "bilinmeyen": 502,
+}
+
+
+@app.post("/api/chat", response_model=SohbetYaniti, tags=["sohbet"])
+def sohbet(
+    istek: SohbetIstegi,
+    arka_plan: BackgroundTasks,
+    db: Session = Depends(get_db),
+):
+    """Konusma gecmisiyle calisan sohbet ucu.
+
+    Akis:  son kullanici mesaji -> guardrail + ML analizi (Gemini'siz)
+           -> chat_service (sistem talimati + son N mesaj + analiz baglami)
+           -> Gemini -> asistan mesaji (+ varsa analiz karti verisi)
+    """
+    son = istek.messages[-1]
+    if son.role != "user":
+        raise HTTPException(status_code=422, detail="Son mesaj kullanıcıya ait olmalı.")
+    ham = son.content.strip()
+    if not ham:
+        raise HTTPException(status_code=422, detail="Mesaj boş olamaz.")
+    if len(ham) > 2000:
+        raise HTTPException(status_code=422, detail="Mesaj 2000 karakterden uzun olamaz.")
+
+    def _mesaj(icerik: str) -> ChatMessage:
+        return ChatMessage(
+            id=f"a-{uuid.uuid4().hex[:12]}",
+            role="assistant",
+            content=icerik,
+            createdAt=datetime.now(timezone.utc).isoformat(),
+        )
+
+    # 1) Guardrail + ML (LLM cagrisi olmadan)
+    analiz = _analizi_calistir(ham, istek.tur, db, arka_plan, gemini_yorumu=False)
+
+    # Sert reddetmeler (talimat ele gecirme, insan sagligi) LLM'e gitmez.
+    if analiz.durum == "reddedildi" or (
+        analiz.durum == "kapsam_disi" and analiz.mesaj.startswith("İnsan sağlığı")
+    ):
+        return SohbetYaniti(message=_mesaj(analiz.ai_yorum), analiz=None)
+
+    # 2) Yalnizca gercek bir ML tahmini varsa analiz baglami ve karti uretilir.
+    tahmin_var = analiz.durum in ("ok", "acil") and bool(analiz.tahminler)
+    baglam = None
+    if tahmin_var:
+        baglam = gemini_api.analiz_baglami(
+            ham,
+            analiz.tur,
+            analiz.tahminler,
+            acil=analiz.acil,
+            acil_gerekce=analiz.acil_gerekce,
+            bulgular=analiz.bulgular,
+        )
+
+    # 3) LLM
+    try:
+        sonuc = chat_service.yanit_uret(istek.messages, baglam)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    yanit = sonuc.yanit
+
+    if yanit.basarili:
+        if tahmin_var:
+            analiz.ai_yorum = yanit.metin
+            analiz.ai_aktif = True
+            analiz.ai_model = yanit.model
+        return SohbetYaniti(
+            message=_mesaj(yanit.metin),
+            analiz=analiz if tahmin_var else None,
+            ai_aktif=True,
+            ai_model=yanit.model,
+        )
+
+    # 4) Gemini basarisiz: guvenlik engeli / bos yanit -> kontrollu mesaj
+    if yanit.hata_kodu in ("engellendi", "bos"):
+        return SohbetYaniti(
+            message=_mesaj(
+                "Bu isteğe yanıt üretemedim. Lütfen ifadeyi değiştirip tekrar deneyin; "
+                "evcil hayvanınızın belirtilerini yazarsanız yardımcı olabilirim."
+            ),
+            analiz=None,
+        )
+
+    # 5) Gemini basarisiz ama ML tahmini var -> sablon metinle sur (graceful degradation)
+    if tahmin_var:
+        logger.warning("Sohbet: Gemini devre dışı (%s), şablon metin kullanılıyor.", yanit.hata_kodu)
+        analiz.ai_yorum = _sablon_yorum(analiz.tahminler, analiz.acil, analiz.acil_gerekce)
+        analiz.uyarilar.append(
+            "Gemini katmanı şu anda devre dışı; aşağıdaki metin veritabanındaki "
+            "kayıtlardan üretilmiştir."
+        )
+        return SohbetYaniti(message=_mesaj(analiz.ai_yorum), analiz=analiz)
+
+    # 6) Ne LLM ne ML: kontrollu HTTP hatasi (UI bunu hata balonu olarak gosterir)
+    raise HTTPException(
+        status_code=_HATA_HTTP.get(yanit.hata_kodu or "bilinmeyen", 502),
+        detail=yanit.hata or "Yanıt oluşturulurken bir hata oluştu.",
     )
 
 
