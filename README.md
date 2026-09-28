@@ -83,8 +83,10 @@ ML modeli hazir: 2475 ornek, 55 sinif, ~9900 ozellik, capraz dogrulama=0.87
 Gemini katmani: AKTIF
 ```
 
-`--reset` bayrağı, eski 20 sınıflı veritabanından geçişte **zorunludur**;
-tabloyu silip yeni şemayla (`hastalik_id`, `aciliyet` kolonları) kurar.
+`init_db.py` adımı artık zorunlu değil: sunucu açılışta veritabanı yoksa kurar,
+eski sürümden kalmışsa eksik kolonları (`hastalik_id`, `aciliyet`) ekleyip v1
+öncesi kayıtları temizler. `--reset` yalnızca tabloyu bilerek sıfırdan kurmak
+istediğinizde gerekir. Ayrıntı: [`Backend.md`](Backend.md).
 
 ### 2. Frontend (React + Vite)
 
@@ -100,6 +102,14 @@ npm run dev                          # http://localhost:5173
 
 ```powershell
 npm run dev:all                      # start.ps1: iki ayrı pencerede backend + frontend
+.\start.ps1 -Kontrol                 # pencere açmadan ön kontrol (port, .env, node_modules)
+```
+
+Sunucu ayaktayken uçların hepsini tek komutla denemek için:
+
+```powershell
+cd backend
+python duman_testi.py                # API duman testi (guardrail, sohbet, 422, retrain)
 ```
 
 ### Gemini API anahtarı
@@ -222,10 +232,15 @@ en yakın göstergedir.
 | `ml_model.py` | TF-IDF (1–2 gram) + Logistic Regression, tür token'ı ve tür filtresi, marj tabanlı kararsızlık, yorumlanabilirlik (`aciklayici_kelimeler`) |
 | `nlp_engine.py` | Türkçe normalizasyon, eş anlamlı haritalama, stop-words, kural tabanlı stemmer, olumsuzluk işaretleme (tokenizer) |
 | `bilgi/` | Veri setinden türetilen guardrail, aciliyet ve sözlük modülleri (yukarıda) |
-| `database.py` | SQLAlchemy modeli, SQLite bağlantısı, `symptoms` tablosu, kaynak ağırlıkları |
-| `init_db.py` | Veri setini CSV'den yükler (`--reset` ile sıfırdan) |
+| `database.py` | SQLAlchemy modeli, SQLite bağlantısı, `symptoms` tablosu, kaynak ağırlıkları, eski şemaya eksik kolon ekleme |
+| `init_db.py` | Veri setini CSV'den yükler (`--reset` ile sıfırdan), v1 öncesi kayıtları temizler |
+| `konsol.py` | Konsol çıktısını UTF-8'e alır (Windows'ta Türkçe karakter çökmesini önler) |
 | `olcum.py` | val + dış test üzerinde uçtan uca ölçüm |
+| `duman_testi.py` | Çalışan sunucuya karşı uçtan uca API duman testi |
 | `migrate_turkce.py` | Eski veritabanı için tek seferlik Türkçe yazım bakım aracı (yeni şemada gerekmez) |
+
+Açılış davranışı (şema onarımı, otomatik veri kurulumu), Gemini model uyumu ve
+sorun giderme için [`Backend.md`](Backend.md).
 
 | Metot | Yol | Açıklama |
 |---|---|---|

@@ -20,6 +20,8 @@ from sqlalchemy import (
     String,
     Text,
     create_engine,
+    inspect,
+    text,
 )
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
@@ -82,9 +84,44 @@ class Symptom(Base):
         return f"<Symptom {self.id} {self.tur}/{self.hastalik} ({self.kaynak})>"
 
 
+def eksik_kolonlari_tamamla() -> list[str]:
+    """Var olan tablolara sonradan eklenen nullable kolonlari ALTER ile ekler.
+
+    `Base.metadata.create_all` yalnizca olmayan tabloyu olusturur; var olan bir
+    tabloyu guncellemez. Bu yuzden eski surumden kalan bir vetai.db dosyasinda
+    yeni kolonlar (ornegin hastalik_id, aciliyet) eksik kalir ve tabloya yapilan
+    her sorgu "no such column" hatasiyla patlar. Bu fonksiyon o farki kapatir.
+
+    Geriye eklenen kolon adlarini dondurur (ornegin ["symptoms.hastalik_id"]).
+    """
+    denetci = inspect(engine)
+    eklenenler: list[str] = []
+    for tablo in Base.metadata.sorted_tables:
+        if not denetci.has_table(tablo.name):
+            continue
+        mevcut = {k["name"] for k in denetci.get_columns(tablo.name)}
+        for kolon in tablo.columns:
+            if kolon.name in mevcut:
+                continue
+            if not kolon.nullable:
+                # NOT NULL kolon ALTER ile guvenle eklenemez; tam yeniden kurulum
+                # gerekir (python init_db.py --reset).
+                continue
+            tip = kolon.type.compile(engine.dialect)
+            with engine.begin() as baglanti:
+                baglanti.execute(
+                    text(f"ALTER TABLE {tablo.name} ADD COLUMN {kolon.name} {tip}")
+                )
+            eklenenler.append(f"{tablo.name}.{kolon.name}")
+    return eklenenler
+
+
 def init_database() -> None:
-    """Tablolari (yoksa) olusturur."""
+    """Tablolari (yoksa) olusturur ve eski semadaki eksik kolonlari tamamlar."""
     Base.metadata.create_all(bind=engine)
+    eksikler = eksik_kolonlari_tamamla()
+    if eksikler:
+        print(f"[database] Eski şemaya eklenen kolonlar: {', '.join(eksikler)}")
 
 
 def get_session() -> Session:

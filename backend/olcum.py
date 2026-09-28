@@ -21,10 +21,10 @@ import csv
 import json
 import logging
 import os
-import sys
 
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+from konsol import utf8_cikti_ayarla
+
+utf8_cikti_ayarla()
 
 logging.disable(logging.WARNING)
 

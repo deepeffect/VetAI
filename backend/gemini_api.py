@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 from dataclasses import dataclass
 from typing import List, Literal, Optional, Sequence
 
@@ -185,15 +186,89 @@ def _hata_siniflandir(exc: Exception) -> tuple[HataKodu, str]:
     return "bilinmeyen", "Gemini çağrısı beklenmeyen bir hatayla sonuçlandı."
 
 
+#: `thinking_level` yerine token butcesi bekleyen 2.5 serisi icin karsiliklar.
+_DUSUNME_BUTCESI = {"MINIMAL": 0, "LOW": 1024, "MEDIUM": 4096, "HIGH": 8192}
+
+
+def _model_surumu(ad: str) -> tuple[int, int]:
+    """Model adindan (ornegin "gemini-2.5-flash") surum ikilisini cikarir."""
+    eslesme = re.search(r"gemini-(\d+)(?:\.(\d+))?", ad)
+    if not eslesme:
+        return (0, 0)
+    return (int(eslesme.group(1)), int(eslesme.group(2) or 0))
+
+
+#: Dusukten yuksege dusunme seviyeleri; geri cekilme sirasi da budur.
+_SEVIYE_SIRASI = ("MINIMAL", "LOW", "MEDIUM", "HIGH")
+
+#: "Dusunme alani hic gonderilmesin" anlamina gelen ozel etiket.
+_DUSUNME_YOK = "yok"
+
+#: Ilk basarili cagridan sonra hatirlanan secim; sonraki cagrilar bosa istek
+#: harcamasin diye dogrudan bununla baslar (kota kucuk oldugu icin onemli).
+_secili_dusunme: Optional[str] = None
+
+
+def _dusunme_yapilandirmasi(types, etiket: str):
+    """Model ailesine uygun ThinkingConfig'i uretir (uymayan modelde None).
+
+    Gemini 3.x `thinking_level` ("MINIMAL", "LOW", ...) bekler; 2.5 serisi ise
+    token cinsinden `thinking_budget`. Yanlis alan gonderildiginde istek
+    400 INVALID_ARGUMENT ile geri doner ve yapay zeka katmani tamamen devre
+    disi kalir. 2.5 Pro dusunmeyi tamamen kapatmaya izin vermedigi icin en
+    dusuk butce 128'dir.
+    """
+    if etiket == _DUSUNME_YOK:
+        return None
+    surum = _model_surumu(MODEL_ADI)
+    if surum >= (3, 0):
+        return types.ThinkingConfig(thinking_level=etiket)
+    if surum >= (2, 5):
+        butce = _DUSUNME_BUTCESI.get(etiket, 0)
+        if butce == 0 and "pro" in MODEL_ADI:
+            butce = 128
+        return types.ThinkingConfig(thinking_budget=butce)
+    # 2.0 ve oncesi dusunme ayarini hic desteklemez; alan gonderilmez.
+    return None
+
+
+def _dusunme_etiketleri(thinking_level: str) -> list[str]:
+    """Sirayla denenecek dusunme secimleri.
+
+    Ayni aile icindeki modeller bile ayni seviyeleri kabul etmiyor: ornegin
+    gemini-3.8-flash "MINIMAL" seviyesini reddedip "LOW" ile calisiyor. Bu
+    yuzden istenen seviye tutmazsa bir ust seviye, o da tutmazsa alanin hic
+    gonderilmedigi hal denenir. Ilk basarili secim hatirlanir.
+    """
+    if _secili_dusunme:
+        return [_secili_dusunme]
+
+    istenen = thinking_level.upper()
+    etiketler = [istenen]
+    if _model_surumu(MODEL_ADI) >= (3, 0) and istenen in _SEVIYE_SIRASI:
+        sonraki = _SEVIYE_SIRASI.index(istenen) + 1
+        if sonraki < len(_SEVIYE_SIRASI):
+            etiketler.append(_SEVIYE_SIRASI[sonraki])
+    etiketler.append(_DUSUNME_YOK)
+    return etiketler
+
+
+def _dusunme_hatasi_mi(exc: Exception) -> bool:
+    """Hata, dusunme ayarinin bu modelce kabul edilmediginden mi kaynaklaniyor?"""
+    metin = str(exc).lower()
+    return "thinking" in metin and ("not supported" in metin or "invalid" in metin)
+
+
 def _uret(contents, *, system_instruction: Optional[str], max_output_tokens: int,
           thinking_level: str = "MINIMAL") -> GeminiYanit:
     """Tek bir generate_content cagrisi; yaniti dogrular ve hatayi siniflandirir.
 
-    Gemini 3.x modellerinde `thinking_budget` yerine `thinking_level` kullanilir;
-    ikisi ayni istekte gonderilmez. Sicaklik (temperature) varsayilan 1.0'da
-    birakilir: Google, 3.x serisinde dusurulmesinin dongu/kalite sorunlarina
-    yol acabilecegini belirtiyor.
+    Dusunme ayari model ailesine gore secilir (bkz. `_dusunme_yapilandirmasi`).
+    Sicaklik (temperature) varsayilan 1.0'da birakilir: Google, 3.x serisinde
+    dusurulmesinin dongu/kalite sorunlarina yol acabilecegini belirtiyor.
     """
+    global _secili_dusunme
+
     client = _get_client()
     if client is None:
         return GeminiYanit("", MODEL_ADI, False,
@@ -201,22 +276,41 @@ def _uret(contents, *, system_instruction: Optional[str], max_output_tokens: int
 
     try:
         from google.genai import types
+    except Exception as exc:  # pragma: no cover - SDK kurulu degilse
+        logger.error("google-genai SDK yüklenemedi: %s", exc)
+        return GeminiYanit("", MODEL_ADI, False,
+                           "Gemini istemcisi yüklenemedi.", "bilinmeyen")
 
-        yanit = client.models.generate_content(
-            model=MODEL_ADI,
-            contents=contents,
-            config=types.GenerateContentConfig(
-                system_instruction=system_instruction,
-                max_output_tokens=max_output_tokens,
-                thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
-                # Arac (tool) kullanmiyoruz; otomatik fonksiyon cagrisini kapatiyoruz.
-                automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
-            ),
-        )
-    except Exception as exc:
-        kod, mesaj = _hata_siniflandir(exc)
-        logger.error("Gemini çağrısı başarısız (%s): %s", kod, exc)
-        return GeminiYanit("", MODEL_ADI, False, mesaj, kod)
+    etiketler = _dusunme_etiketleri(thinking_level)
+    yanit = None
+    for sira, etiket in enumerate(etiketler):
+        try:
+            yanit = client.models.generate_content(
+                model=MODEL_ADI,
+                contents=contents,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    max_output_tokens=max_output_tokens,
+                    thinking_config=_dusunme_yapilandirmasi(types, etiket),
+                    # Arac (tool) kullanmiyoruz; otomatik fonksiyon cagrisini kapatiyoruz.
+                    automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+                ),
+            )
+        except Exception as exc:
+            if _dusunme_hatasi_mi(exc) and sira + 1 < len(etiketler):
+                logger.info(
+                    "Model '%s' düşünme seviyesi '%s' kabul etmedi, '%s' deneniyor.",
+                    MODEL_ADI, etiket, etiketler[sira + 1],
+                )
+                continue
+            kod, mesaj = _hata_siniflandir(exc)
+            logger.error("Gemini çağrısı başarısız (%s): %s", kod, exc)
+            return GeminiYanit("", MODEL_ADI, False, mesaj, kod)
+
+        if _secili_dusunme != etiket:
+            logger.info("Düşünme ayarı '%s' olarak belirlendi (model=%s).", etiket, MODEL_ADI)
+            _secili_dusunme = etiket
+        break
 
     # --- Yanit dogrulama --------------------------------------------------
     geri_bildirim = getattr(yanit, "prompt_feedback", None)

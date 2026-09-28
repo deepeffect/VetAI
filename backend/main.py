@@ -32,7 +32,9 @@ from sqlalchemy.orm import Session
 
 import chat_service
 import gemini_api
+import init_db
 import ml_model
+from konsol import utf8_cikti_ayarla
 from bilgi import acil_kaliplar, kokler
 from bilgi.esanlam_sozlugu import KOD_KANONIK
 from chat_service import ChatMessage
@@ -53,6 +55,7 @@ from nlp_engine import (
 )
 
 load_dotenv()
+utf8_cikti_ayarla()
 
 logging.basicConfig(
     level=logging.INFO,
@@ -207,6 +210,15 @@ class KayitCikti(BaseModel):
 async def lifespan(app: FastAPI):
     logger.info("VetAI baslatiliyor...")
     init_database()
+    # Bos ya da eski surumden kalan bir veritabani sunucuyu durdurmasin:
+    # sema tamamlanir, v1 oncesi kayitlar temizlenir, veri yoksa yuklenir.
+    try:
+        init_db.seed(sessiz=True)
+    except Exception:
+        logger.exception(
+            "Başlangıç verisi yüklenemedi. Terminalde şunu çalıştırın: "
+            "python init_db.py --reset"
+        )
     durum = ml_model.egit()
     if durum.egitildi:
         logger.info(
@@ -216,7 +228,8 @@ async def lifespan(app: FastAPI):
         )
     else:
         logger.warning(
-            "ML modeli egitilemedi (yeterli veri yok). Once: python init_db.py"
+            "ML modeli eğitilemedi (yeterli veri yok). "
+            "Terminalde şunu çalıştırın: python init_db.py --reset"
         )
     logger.info(
         "Gemini katmani: %s", "AKTIF" if gemini_api.kullanilabilir_mi() else "DEVRE DISI (API anahtari yok)"

@@ -26,8 +26,10 @@ import csv
 import json
 import os
 
+from konsol import utf8_cikti_ayarla
 from database import (
     Base,
+    KAYNAK_PENDING,
     KAYNAK_SEED,
     KAYNAK_SENTETIK,
     Symptom,
@@ -54,7 +56,26 @@ def egitim_satirlari() -> list[dict]:
         return [r for r in csv.DictReader(f) if r["bolum"] == "train"]
 
 
-def seed(reset: bool = False) -> None:
+def _eskimis_kayitlari_temizle(session) -> int:
+    """v1 öncesi (20 sınıflı) eğitim kayıtlarını siler ve sayılarını döndürür.
+
+    Eski sürümde `hastalik_id` kolonu yoktu; o dönemden kalan satırların
+    hastalık adları bugünkü bilgi tabanında (data/oneriler.json) karşılıksız
+    olduğu için modeli bozarlar. Kullanıcı sorgularından gelen `pending`
+    satırlar eğitime girmediğinden korunur.
+    """
+    sorgu = session.query(Symptom).filter(
+        Symptom.kaynak != KAYNAK_PENDING, Symptom.hastalik_id.is_(None)
+    )
+    sayi = sorgu.count()
+    if sayi:
+        sorgu.delete(synchronize_session=False)
+        session.commit()
+    return sayi
+
+
+def seed(reset: bool = False, sessiz: bool = False) -> None:
+    """Veri setini yükler. `sessiz=True` ise yapacak iş yokken çıktı üretmez."""
     if reset:
         print("[init_db] Tablolar siliniyor (--reset)...")
         Base.metadata.drop_all(bind=engine)
@@ -63,14 +84,22 @@ def seed(reset: bool = False) -> None:
 
     session = get_session()
     try:
+        eskiyen = _eskimis_kayitlari_temizle(session)
+        if eskiyen:
+            print(
+                f"[init_db] v1 öncesi {eskiyen} kayıt silindi "
+                "(eski veri setinin hastalıkları bugünkü bilgi tabanında yok)."
+            )
+
         mevcut = (
             session.query(Symptom)
             .filter(Symptom.kaynak.in_([KAYNAK_SEED, KAYNAK_SENTETIK]))
             .count()
         )
         if mevcut:
-            print(f"[init_db] Zaten {mevcut} seed kaydı var, ekleme yapılmadı.")
-            print("[init_db] Sıfırdan yüklemek için: python init_db.py --reset")
+            if not sessiz:
+                print(f"[init_db] Zaten {mevcut} seed kaydı var, ekleme yapılmadı.")
+                print("[init_db] Sıfırdan yüklemek için: python init_db.py --reset")
             return
 
         oneriler = oneriler_yukle()
@@ -106,6 +135,7 @@ def seed(reset: bool = False) -> None:
 
 
 if __name__ == "__main__":
+    utf8_cikti_ayarla()
     parser = argparse.ArgumentParser(description="VetAI veritabanı kurulumu")
     parser.add_argument("--reset", action="store_true", help="Tabloyu sıfırla ve baştan yükle")
     args = parser.parse_args()

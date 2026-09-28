@@ -10,6 +10,7 @@
     "setup": "npm --prefix frontend install",
     "backend": "cd backend && uvicorn main:app --reload",
     "backend:init": "cd backend && python init_db.py",
+    "test:api": "cd backend && python duman_testi.py",
     "dev:all": "powershell -ExecutionPolicy Bypass -File start.ps1"
   },
   "license": "ISC"
