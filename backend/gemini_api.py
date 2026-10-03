@@ -16,6 +16,7 @@ Model adi, zaman asimi ve API anahtari yalnizca ortam degiskenlerinden okunur
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 import re
@@ -147,7 +148,7 @@ def kullanilabilir_mi() -> bool:
 # ORTAK CAGRI + HATA SINIFLANDIRMA
 # --------------------------------------------------------------------------
 
-def _hata_siniflandir(exc: Exception) -> tuple[HataKodu, str]:
+def _hata_siniflandir(exc: Exception, model: str = MODEL_ADI) -> tuple[HataKodu, str]:
     """SDK istisnasini (kod, kullaniciya donuk mesaj) ciftine cevirir."""
     try:
         from google.genai import errors as genai_errors
@@ -169,13 +170,13 @@ def _hata_siniflandir(exc: Exception) -> tuple[HataKodu, str]:
     if kod in (401, 403):
         return "yetkisiz", "Gemini API anahtarı geçersiz ya da bu model için yetkisi yok."
     if kod == 404:
-        return "model_bulunamadi", f"Gemini modeli bulunamadı: '{MODEL_ADI}'. GEMINI_MODEL değerini kontrol edin."
+        return "model_bulunamadi", f"Gemini modeli bulunamadı: '{model}'. GEMINI_MODEL değerini kontrol edin."
     if kod == 429:
         return "kota", "Gemini istek sınırı aşıldı. Lütfen biraz sonra tekrar deneyin."
     if kod == 400:
         # Bilinmeyen model adlari da bazen 400 ile doner
         if "model" in metin.lower() and ("not found" in metin.lower() or "not supported" in metin.lower()):
-            return "model_bulunamadi", f"Gemini modeli bulunamadı: '{MODEL_ADI}'. GEMINI_MODEL değerini kontrol edin."
+            return "model_bulunamadi", f"Gemini modeli bulunamadı: '{model}'. GEMINI_MODEL değerini kontrol edin."
         if "api key" in metin.lower():
             return "yetkisiz", "Gemini API anahtarı geçersiz."
         return "gecersiz_istek", "Gemini isteği reddetti (geçersiz istek)."
@@ -206,10 +207,11 @@ _DUSUNME_YOK = "yok"
 
 #: Ilk basarili cagridan sonra hatirlanan secim; sonraki cagrilar bosa istek
 #: harcamasin diye dogrudan bununla baslar (kota kucuk oldugu icin onemli).
-_secili_dusunme: Optional[str] = None
+#: Anahtar (model, istenen seviye): anlam katmani ayri bir model kullanabilir.
+_secili_dusunme: dict[tuple[str, str], str] = {}
 
 
-def _dusunme_yapilandirmasi(types, etiket: str):
+def _dusunme_yapilandirmasi(types, etiket: str, model: str = MODEL_ADI):
     """Model ailesine uygun ThinkingConfig'i uretir (uymayan modelde None).
 
     Gemini 3.x `thinking_level` ("MINIMAL", "LOW", ...) bekler; 2.5 serisi ise
@@ -220,19 +222,19 @@ def _dusunme_yapilandirmasi(types, etiket: str):
     """
     if etiket == _DUSUNME_YOK:
         return None
-    surum = _model_surumu(MODEL_ADI)
+    surum = _model_surumu(model)
     if surum >= (3, 0):
         return types.ThinkingConfig(thinking_level=etiket)
     if surum >= (2, 5):
         butce = _DUSUNME_BUTCESI.get(etiket, 0)
-        if butce == 0 and "pro" in MODEL_ADI:
+        if butce == 0 and "pro" in model:
             butce = 128
         return types.ThinkingConfig(thinking_budget=butce)
     # 2.0 ve oncesi dusunme ayarini hic desteklemez; alan gonderilmez.
     return None
 
 
-def _dusunme_etiketleri(thinking_level: str) -> list[str]:
+def _dusunme_etiketleri(thinking_level: str, model: str = MODEL_ADI) -> list[str]:
     """Sirayla denenecek dusunme secimleri.
 
     Ayni aile icindeki modeller bile ayni seviyeleri kabul etmiyor: ornegin
@@ -240,12 +242,12 @@ def _dusunme_etiketleri(thinking_level: str) -> list[str]:
     yuzden istenen seviye tutmazsa bir ust seviye, o da tutmazsa alanin hic
     gonderilmedigi hal denenir. Ilk basarili secim hatirlanir.
     """
-    if _secili_dusunme:
-        return [_secili_dusunme]
-
     istenen = thinking_level.upper()
+    if (model, istenen) in _secili_dusunme:
+        return [_secili_dusunme[(model, istenen)]]
+
     etiketler = [istenen]
-    if _model_surumu(MODEL_ADI) >= (3, 0) and istenen in _SEVIYE_SIRASI:
+    if _model_surumu(model) >= (3, 0) and istenen in _SEVIYE_SIRASI:
         sonraki = _SEVIYE_SIRASI.index(istenen) + 1
         if sonraki < len(_SEVIYE_SIRASI):
             etiketler.append(_SEVIYE_SIRASI[sonraki])
@@ -260,56 +262,69 @@ def _dusunme_hatasi_mi(exc: Exception) -> bool:
 
 
 def _uret(contents, *, system_instruction: Optional[str], max_output_tokens: int,
-          thinking_level: str = "MINIMAL") -> GeminiYanit:
+          thinking_level: str = "MINIMAL", model: Optional[str] = None,
+          response_schema: Optional[dict] = None, timeout_ms: Optional[int] = None) -> GeminiYanit:
     """Tek bir generate_content cagrisi; yaniti dogrular ve hatayi siniflandirir.
 
     Dusunme ayari model ailesine gore secilir (bkz. `_dusunme_yapilandirmasi`).
     Sicaklik (temperature) varsayilan 1.0'da birakilir: Google, 3.x serisinde
     dusurulmesinin dongu/kalite sorunlarina yol acabilecegini belirtiyor.
+
+    `response_schema` verilirse yanit JSON olarak istenir (yapilandirilmis cikti);
+    `timeout_ms` verilirse istemcinin genel zaman asimi bu cagri icin degisir.
     """
-    global _secili_dusunme
+    model = model or MODEL_ADI
 
     client = _get_client()
     if client is None:
-        return GeminiYanit("", MODEL_ADI, False,
+        return GeminiYanit("", model, False,
                            "Gemini API anahtarı tanımlı değil.", "anahtar_yok")
 
     try:
         from google.genai import types
     except Exception as exc:  # pragma: no cover - SDK kurulu degilse
         logger.error("google-genai SDK yüklenemedi: %s", exc)
-        return GeminiYanit("", MODEL_ADI, False,
+        return GeminiYanit("", model, False,
                            "Gemini istemcisi yüklenemedi.", "bilinmeyen")
 
-    etiketler = _dusunme_etiketleri(thinking_level)
+    ek_ayar: dict = {}
+    if response_schema is not None:
+        ek_ayar["response_mime_type"] = "application/json"
+        ek_ayar["response_schema"] = response_schema
+    if timeout_ms is not None:
+        ek_ayar["http_options"] = types.HttpOptions(timeout=timeout_ms)
+
+    istenen = thinking_level.upper()
+    etiketler = _dusunme_etiketleri(thinking_level, model)
     yanit = None
     for sira, etiket in enumerate(etiketler):
         try:
             yanit = client.models.generate_content(
-                model=MODEL_ADI,
+                model=model,
                 contents=contents,
                 config=types.GenerateContentConfig(
                     system_instruction=system_instruction,
                     max_output_tokens=max_output_tokens,
-                    thinking_config=_dusunme_yapilandirmasi(types, etiket),
+                    thinking_config=_dusunme_yapilandirmasi(types, etiket, model),
                     # Arac (tool) kullanmiyoruz; otomatik fonksiyon cagrisini kapatiyoruz.
                     automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+                    **ek_ayar,
                 ),
             )
         except Exception as exc:
             if _dusunme_hatasi_mi(exc) and sira + 1 < len(etiketler):
                 logger.info(
                     "Model '%s' düşünme seviyesi '%s' kabul etmedi, '%s' deneniyor.",
-                    MODEL_ADI, etiket, etiketler[sira + 1],
+                    model, etiket, etiketler[sira + 1],
                 )
                 continue
-            kod, mesaj = _hata_siniflandir(exc)
+            kod, mesaj = _hata_siniflandir(exc, model)
             logger.error("Gemini çağrısı başarısız (%s): %s", kod, exc)
-            return GeminiYanit("", MODEL_ADI, False, mesaj, kod)
+            return GeminiYanit("", model, False, mesaj, kod)
 
-        if _secili_dusunme != etiket:
-            logger.info("Düşünme ayarı '%s' olarak belirlendi (model=%s).", etiket, MODEL_ADI)
-            _secili_dusunme = etiket
+        if _secili_dusunme.get((model, istenen)) != etiket:
+            logger.info("Düşünme ayarı '%s' olarak belirlendi (model=%s).", etiket, model)
+            _secili_dusunme[(model, istenen)] = etiket
         break
 
     # --- Yanit dogrulama --------------------------------------------------
@@ -317,7 +332,7 @@ def _uret(contents, *, system_instruction: Optional[str], max_output_tokens: int
     if geri_bildirim is not None and getattr(geri_bildirim, "block_reason", None):
         neden = str(geri_bildirim.block_reason)
         logger.warning("Gemini istemi engelledi: %s", neden)
-        return GeminiYanit("", MODEL_ADI, False,
+        return GeminiYanit("", model, False,
                            "Bu istek güvenlik filtresi tarafından engellendi.", "engellendi", neden)
 
     adaylar = getattr(yanit, "candidates", None) or []
@@ -333,14 +348,53 @@ def _uret(contents, *, system_instruction: Optional[str], max_output_tokens: int
 
     if not metin:
         if bitis in {"SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII", "RECITATION"}:
-            return GeminiYanit("", MODEL_ADI, False,
+            return GeminiYanit("", model, False,
                                "Yanıt güvenlik filtresi tarafından engellendi.", "engellendi", bitis)
         logger.warning("Gemini boş yanıt döndürdü (finish_reason=%s).", bitis)
-        return GeminiYanit("", MODEL_ADI, False, "Model boş yanıt döndürdü.", "bos", bitis)
+        return GeminiYanit("", model, False, "Model boş yanıt döndürdü.", "bos", bitis)
 
     if bitis == "MAX_TOKENS":
         logger.info("Gemini yanıtı çıktı sınırında kesildi.")
-    return GeminiYanit(metin, MODEL_ADI, True, bitis_nedeni=bitis)
+    return GeminiYanit(metin, model, True, bitis_nedeni=bitis)
+
+
+def yapilandirilmis_uret(
+    istem: str,
+    *,
+    sema: dict,
+    system_instruction: str,
+    model: Optional[str] = None,
+    max_output_tokens: int = 1024,
+    thinking_level: str = "MINIMAL",
+    timeout_ms: Optional[int] = None,
+) -> tuple[Optional[dict], GeminiYanit]:
+    """JSON şemalı tek çağrı. Dönüş: (ayrıştırılmış sözlük | None, ham yanıt).
+
+    Yanıt JSON olarak çözülemezse sözlük None olur ve `hata_kodu` "bos" yapılır;
+    çağıran bunu "katman devre dışı" gibi ele alır.
+    """
+    yanit = _uret(
+        istem,
+        system_instruction=system_instruction,
+        max_output_tokens=max_output_tokens,
+        thinking_level=thinking_level,
+        model=model,
+        response_schema=sema,
+        timeout_ms=timeout_ms,
+    )
+    if not yanit.basarili:
+        return None, yanit
+    # Bazı modeller şema istense de ```json ... ``` çiti ekleyebiliyor.
+    metin = re.sub(r"^```(?:json)?\s*|\s*```$", "", yanit.metin.strip())
+    try:
+        veri = json.loads(metin)
+    except ValueError:
+        logger.warning("Gemini JSON yanıtı çözülemedi: %r", metin[:200])
+        return None, GeminiYanit("", yanit.model, False, "Yanıt JSON değil.", "bos", yanit.bitis_nedeni)
+    if not isinstance(veri, dict):
+        return None, GeminiYanit("", yanit.model, False, "Yanıt JSON nesnesi değil.", "bos",
+                                 yanit.bitis_nedeni)
+    return veri, yanit
 
 
 # --------------------------------------------------------------------------
@@ -364,11 +418,15 @@ def analiz_baglami(
     acil: bool = False,
     acil_gerekce: str = "",
     bulgular: Optional[List[str]] = None,
+    anlam_ozeti: str = "",
+    anlam_notu: str = "",
 ) -> str:
     """ML ciktisini Gemini'ye verilecek baglam metnine cevirir.
 
     Hem tek atimlik `yorumla` hem de sohbet akisindaki 'guncel tur baglami'
     ayni bicimi kullanir; boylece iki yol arasinda istem farki olusmaz.
+    Anlam katmani calistiysa tahminler ML + anlam kontrolu birlesimidir ve
+    yaniltici kelime notu (ör. "sıcak çarptı" araç kazası değildir) eklenir.
     """
     tur_etiketi = {"kedi": "Kedi", "kopek": "Köpek"}.get(tur, "Belirtilmemiş (kedi/köpek)")
     acil_blok = (
@@ -376,12 +434,25 @@ def analiz_baglami(
         if acil
         else "ACİL DURUM İŞARETİ: Hayır."
     )
+    anlam_blok = ""
+    if anlam_ozeti or anlam_notu:
+        anlam_blok = "\nAnlam çözümlemesi (şikâyetin anlamca okunuşu):"
+        if anlam_ozeti:
+            anlam_blok += f"\n- {anlam_ozeti}"
+        if anlam_notu:
+            anlam_blok += f"\n- Dikkat: {anlam_notu}"
+        anlam_blok += "\n"
+    kaynak = (
+        "Tahminler (makine öğrenmesi + anlam kontrolü birleşimi)"
+        if anlam_ozeti or anlam_notu
+        else "Makine öğrenmesi modelinin (TF-IDF + Logistic Regression) tahminleri"
+    )
     return f"""Hayvan türü: {tur_etiketi}
 Sahibin yazdığı şikâyet: "{kullanici_metni}"
 NLP ile ayıklanan bulgular: {', '.join(bulgular or []) or 'yok'}
 {acil_blok}
-
-Makine öğrenmesi modelinin (TF-IDF + Logistic Regression) tahminleri:
+{anlam_blok}
+{kaynak}:
 {_tahmin_metni(tahminler)}"""
 
 
@@ -393,11 +464,14 @@ def yorumla(
     acil: bool = False,
     acil_gerekce: str = "",
     bulgular: Optional[List[str]] = None,
+    anlam_ozeti: str = "",
+    anlam_notu: str = "",
 ) -> GeminiYanit:
     """ML ciktisini kullaniciya donuk bir on-degerlendirme metnine cevirir."""
     istem = (
         analiz_baglami(kullanici_metni, tur, tahminler, acil=acil,
-                       acil_gerekce=acil_gerekce, bulgular=bulgular)
+                       acil_gerekce=acil_gerekce, bulgular=bulgular,
+                       anlam_ozeti=anlam_ozeti, anlam_notu=anlam_notu)
         + "\n\nYukarıdaki tahminlere dayanarak sahibe yönelik ön değerlendirme metnini yaz."
     )
     return _uret(istem, system_instruction=SISTEM_TALIMATI, max_output_tokens=700)

@@ -120,9 +120,11 @@ def calistir(kok: str) -> int:
     ]:
         _, y = cagir(kok, "/api/analyze", {"metin": metin, "tur": None})
         ilk = y["tahminler"][0] if y.get("tahminler") else None
+        # "acil" da başarılı bir analizdir: tahmin edilen hastalığın temel aciliyeti
+        # kırmızıysa (ör. panlökopeni) durum "acil" döner.
         s.dogrula(
             f"analyze: {metin[:30]}...",
-            y.get("durum") == "ok" and ilk is not None,
+            y.get("durum") in ("ok", "acil") and ilk is not None,
             f"(1. tahmin={ilk['hastalik'][:38]} %{ilk['yuzde']})" if ilk else "",
         )
         s.dogrula("  tür tespiti", y.get("tur") == beklenen_tur,
@@ -156,7 +158,10 @@ def calistir(kok: str) -> int:
             {"id": "m3", "role": "user", "content": "Peki bu durum köpeklerde de aynı mı?"},
         ]
         durum, y2 = cagir(kok, "/api/chat", {"messages": gecmis, "tur": None})
-        if durum == 429:
+        if not gemini_acik:
+            # Şikâyet içermeyen takip soruları yalnızca Gemini ile yanıtlanır (README).
+            print("  [ATLANDI] 2. tur (takip sorusu) — Gemini kapalıyken yanıtlanamaz")
+        elif durum == 429:
             s.uyar("sohbet 2. tur", "Gemini kotası dolu; uç 429 döndürdü (beklenen davranış)")
         else:
             s.dogrula("2. tur (takip sorusu)", durum == 200 and bool(y2["message"]["content"]),

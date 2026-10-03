@@ -1,0 +1,143 @@
+id,tip,hastalik_id,tur,metin,not
+AT001,halk_dili,akut_gastroenterit,kopek,"Bizimkinin dünden beri midesi bulanık, iki kez çıkardı, sonra da kakası cıvıklaştı ama oynuyor.",
+AT002,halk_dili,akut_gastroenterit,kedi,"Kedim yeni mamaya geçtiğimizden beri bir kustu bir sulu yaptı, keyfi de biraz yerinde değil.",
+AT003,halk_dili,yabanci_cisim,kopek,"Kızımın tokasını yutmuş olabilir, akşamdan beri ne verirsem geri çıkarıyor, tuvaleti de yok.",
+AT004,halk_dili,yabanci_cisim,kedi,"Kedimin dilinin altına ip dolanmış gibi, öğürüp duruyor, sabahtan beri ağzına bir şey koymadı.",
+AT005,halk_dili,pankreatit,kopek,"Kavurmadan sonra köpeğim öne eğilip poposunu kaldırarak duruyor, kustu, karnına elletmiyor.",
+AT006,halk_dili,pankreatit,kedi,"Kedim iki gündür yemekten kesildi, kulak içleri sarımsı gibi, karnını elleyince kızıyor.",
+AT007,halk_dili,bagirsak_parazitleri,kedi,"Yavru kedinin poposunda kurumuş pirinç gibi taneler var, karnı da top gibi şiş.",
+AT008,halk_dili,bagirsak_parazitleri,kopek,"Köpeğim kızak çekip duruyor, dışkısında beyaz ipliğe benzer kıpırdayan şeyler gördüm.",
+AT009,halk_dili,kronik_enteropati,kedi,"Kedimin aylardır tuvaleti düzgün değil, haftada birkaç kez de kusuyor, gittikçe zayıfladı.",
+AT010,halk_dili,kronik_enteropati,kopek,"Üç aydır köpeğimin kakası sümüklü, karnı gurulduyor, mamaları değiştirmek de fayda etmedi.",
+AT011,halk_dili,kabizlik_megakolon,kedi,"Kedim kumda oturup oturup kalkıyor, keçi pisliği gibi minik sert parçalar çıkıyor, üç gündür doğru dürüst yapmadı.",
+AT012,halk_dili,kabizlik_megakolon,kopek,Köpeğim kemik yedikten sonra tuvalete çıkınca ıkınıp duruyor ama hiçbir şey gelmiyor.,
+AT013,halk_dili,zehirlenme,kopek,"Köpeğim mutfakta bıraktığım üzüm tabağını silip süpürmüş, şimdi kusmaya başladı.",
+AT014,halk_dili,zehirlenme,kedi,"Kedim vazodaki zambağa sürtünüp polenini yalamış, ağzından salyalar akıyor, kustu.",
+AT015,halk_dili,sicak_carpmasi,kopek,"Öğlen parkta top attık, köpeğime güneş geçti herhalde, dili kıpkırmızı sarkmış, sallanarak yürüyor.",
+AT016,halk_dili,sicak_carpmasi,kedi,"Kedim kapalı arabada kaldı biraz, çıkardığımızda ağzı açık hızlı hızlı soluyordu, halsiz.",
+AT017,halk_dili,kronik_bobrek,kedi,"Yaşlı kedim su kabından ayrılmıyor, kumu bataklık, ağzı da idrar gibi kokuyor, zayıfladı.",
+AT018,halk_dili,kronik_bobrek,kopek,"Yaşlı köpeğimin susuzluğu bitmiyor, gece çişe kalkıyor, sırtı kemik kemik oldu.",
+AT019,halk_dili,diyabet,kedi,"Şişko kedim son zamanlarda ha bire su içiyor ha bire işiyor, yemeğe saldırıyor ama inceldi.",
+AT020,halk_dili,diyabet,kopek,"Köpeğim çok yiyor ama zayıfladı, su kabını bitiriyor, çişi de bol.",
+AT021,halk_dili,otitis_eksterna,kopek,"Köpeğim başını silkeleyip duruyor, kulağının içi kırmızı ve maya gibi kokuyor, elletmiyor.",
+AT022,halk_dili,otitis_eksterna,kedi,"Kedimin kulak içi ıslak ve kokulu, başını hep silkiyor, dokununca kaçıyor.",
+AT023,halk_dili,kulak_uyuzu,kedi,"Yavru kedinin kulakları kahve telvesi gibi kuru kirle dolu, durmadan kaşıyor.",
+AT024,halk_dili,kulak_uyuzu,kopek,"Köpeğimin kulağında siyah kuru kırıntılar var, evdeki kediyle ikisi de kulak kaşıyor.",
+AT025,halk_dili,pire,kedi,"Kedimin tüylerinin arasında zıplayan minik böcekler var, kuyruk dibinde siyah kum gibi pislikler.",
+AT026,halk_dili,pire,kopek,"Köpeğim belinin arkasını kemirip duruyor, tarakta siyah noktalar çıktı, pire mi.",
+AT027,halk_dili,uyuz,kopek,"Köpeğim deli gibi kaşınıyor, kulak uçları ve dirsekleri kabuk kabuk, bizi de kaşındırdı.",
+AT028,halk_dili,uyuz,kedi,"Kedimin yüzü ve kulak kenarları kalın kabukla kaplandı, kaşımaktan kanatıyor.",
+AT029,halk_dili,dermatofitoz,kedi,"Kedimin kafasında madeni para kadar yuvarlak kel yerler var, kenarları kepekli.",
+AT030,halk_dili,dermatofitoz,kopek,"Köpeğimin bacağında halka gibi tüysüz pullu bir leke çıktı, büyüyor.",
+AT031,halk_dili,atopik_alerjik_dermatit,kopek,"Köpeğim pati aralarını kemiriyor, koltuk altları pembe, her bahar böyle.",
+AT032,halk_dili,atopik_alerjik_dermatit,kedi,"Kedim karnını yalaya yalaya tüysüz bıraktı, mama değişince başladı.",
+AT033,halk_dili,dis_hastaligi,kopek,"Köpeğimin ağzından lağım gibi koku geliyor, dişleri kahverengi taş tutmuş.",
+AT034,halk_dili,dis_hastaligi,kedi,"Kedim mamayı ağzına alıp bırakıyor, tek tarafla çiğniyor, dişeti kanıyor.",
+AT035,halk_dili,konjunktivit,kedi,"Kedimin gözü yapış yapış çapaklı, içi kızarık, sürekli yaşarıyor.",
+AT036,halk_dili,konjunktivit,kopek,"Köpeğimin göz kapağının içi kırmızı, gözünden sarı çapak akıyor.",
+AT037,halk_dili,kornea_ulseri,kedi,"Kedim kavgadan sonra gözünü açamıyor, gözünün ortasında beyaz bir leke belirdi.",
+AT038,halk_dili,kornea_ulseri,kopek,"Köpeğim gözünü kırpıştırıp patisiyle ovuyor, gözü buğulandı ve sulanıyor.",
+AT039,halk_dili,epilepsi,kopek,"Köpeğim kaskatı kesilip yan yattı, bacaklarını pedal çevirir gibi oynattı, ağzı köpürdü.",
+AT040,halk_dili,epilepsi,kedi,"Kedim bir anda kriz geçirdi, titreyip kasıldı, sonra şaşkın şaşkın dolaştı.",
+AT041,halk_dili,osteoartrit,kopek,"Yaşlı köpeğim sabah yataktan zor kalkıyor, ilk adımlarda aksıyor, merdivenden kaçıyor.",
+AT042,halk_dili,osteoartrit,kedi,"Yaşlı kedim artık pencere kenarına atlayamıyor, kum kabına girerken zorlanıyor.",
+AT043,halk_dili,kitle_meme_tumoru,kopek,Kısırlaştırmadığımız köpeğimin memelerinde fındık gibi sert yumrular var.,
+AT044,halk_dili,kitle_meme_tumoru,kedi,"Kedimin karnında, meme tarafında nohut kadar sertlik var, büyüyor.",
+AT045,halk_dili,travma,kopek,"Köpeğime motor çarptı, arka bacağını hiç yere koymuyor, inliyor.",
+AT046,halk_dili,travma,kedi,"Kedim balkondan aşağı uçtu, burnu kanıyor, hızlı nefes alıyor.",
+AT047,halk_dili,akut_alerjik_reaksiyon,kopek,"Köpeğimi bahçede arı soktu, suratı balon gibi oldu, gözleri kapandı.",
+AT048,halk_dili,akut_alerjik_reaksiyon,kedi,Kedime yeni ilaç verdikten sonra yüzü şişti ve her yeri kabardı.,
+AT049,halk_dili,piyometra,kopek,"Kızgınlıktan birkaç hafta sonra köpeğimin arkasından irinli pis kokulu akıntı geliyor, su kabını bitiriyor.",
+AT050,halk_dili,piyometra,kedi,"Kısır olmayan kedimin kuyruk altından koyu akıntı geliyor, karnı büyüdü, halsiz.",
+AT051,halk_dili,distosi,kedi,"Kedim saatlerdir ıkınıyor, yavrunun ayağı göründü ama gelmiyor.",
+AT052,halk_dili,distosi,kopek,"Köpeğimin suyu geleli üç saat oldu, hâlâ yavru çıkmadı, inliyor.",
+AT053,halk_dili,apse,kedi,"Kedim kavgadan sonra boynunda sıcak bir şişlik çıktı, bugün patladı, irin aktı.",
+AT054,halk_dili,apse,kopek,"Köpeğimin yanağında çıban gibi sıcak bir şişlik oluştu, dokununca bağırıyor.",
+AT055,halk_dili,parvovirus,kopek,"Aşısız yavru köpeğim hem kusuyor hem kan gibi kırmızı sulu yapıyor, kokusu korkunç.",
+AT056,halk_dili,parvovirus,kopek,"Petshoptan aldığımız yavru söndü, ağzına bir şey koymuyor, kusuyor, kakası kanlı.",
+AT057,halk_dili,distemper,kopek,"Aşısız yavru köpeğimin gözünden burnundan yeşil akıntı geliyor, şimdi de çenesi titremeye başladı.",
+AT058,halk_dili,distemper,kopek,"Sokaktan aldığımız köpeğin patileri nasır gibi sertleşti, öksürüyor, burnu kabuklu.",
+AT059,halk_dili,kulube_oksurugu,kopek,"Pansiyondan aldığımızdan beri köpeğim kah kuh yapıyor, sonunda öğürüyor ama keyfi yerinde.",
+AT060,halk_dili,kulube_oksurugu,kopek,"Köpeğim boğazında kılçık varmış gibi kesik kesik öksürüyor, köpek parkına gitmiştik.",
+AT061,halk_dili,kene_hastaliklari,kopek,"Köpeğimin kulağından kene çıkardık, şimdi ateşli, dişetleri bembeyaz, yemiyor.",
+AT062,halk_dili,kene_hastaliklari,kopek,"Köyden döndük, köpeğimin çişi çay rengi, halsiz ve titriyor.",
+AT063,halk_dili,leishmaniasis,kopek,"Köpeğimin göz çevresi gözlük gibi açıldı, tırnakları uzayıp kıvrıldı, zayıflıyor.",
+AT064,halk_dili,leishmaniasis,kopek,Fethiye'de yaşayan köpeğimin burnunda ve kulak uçlarında kapanmayan yaralar var.,
+AT065,halk_dili,gdv,kopek,"Akşam yemeğinden sonra koştu, şimdi karnı davul gibi, öğürüyor ama bir şey çıkmıyor.",
+AT066,halk_dili,gdv,kopek,"Büyük köpeğimin midesi şişti, salya akıtıyor, bir oturup bir kalkıyor.",
+AT067,halk_dili,kalca_displazisi,kopek,"Genç köpeğim koşarken arka ayaklarını tavşan gibi birlikte atıyor, kalçası sallanıyor.",
+AT068,halk_dili,kalca_displazisi,kopek,Büyük ırk köpeğim oturduğu yerden kalkarken arka tarafı çöküyor.,
+AT069,halk_dili,capraz_bag,kopek,"Köpeğim top kovalarken birden acıyla bağırdı, arka bacağını havada tutuyor, dizi şişti.",
+AT070,halk_dili,capraz_bag,kopek,"Kilolu köpeğim parkta kaydı, şimdi üç ayakla yürüyor, dizine dokununca ağlıyor.",
+AT071,halk_dili,ivdd,kopek,"Sosis köpeğimin beli kamburlaştı, arka ayakları tutmuyor, sürünüyor.",
+AT072,halk_dili,ivdd,kopek,"Köpeğim koltuktan atladıktan sonra beline dokundurtmuyor, arka bacakları titriyor.",
+AT073,halk_dili,patella_luksasyonu,kopek,"Küçük köpeğim arada bir seke seke gidiyor, sonra bacağını gerip normal yürüyor.",
+AT074,halk_dili,patella_luksasyonu,kopek,"Pomeranian'ım koşarken bir arka ayağını havaya kaldırıyor, birkaç adım sonra basıyor.",
+AT075,halk_dili,hipotiroidi,kopek,"Köpeğim az yemesine rağmen topa döndü, hep üşüyor, iki yanında tüyleri döküldü.",
+AT076,halk_dili,hipotiroidi,kopek,"Köpeğimin kuyruğu fare kuyruğu gibi tüysüz kaldı, derisi koyulaştı, çok uyuşuk.",
+AT077,halk_dili,cushing,kopek,"Yaşlı köpeğim su kabını bitiriyor, göbeği sarktı, sürekli soluyor, hep aç.",
+AT078,halk_dili,cushing,kopek,"Köpeğimin karnı fıçı gibi oldu, tüyleri inceldi, derisi kağıt gibi.",
+AT079,halk_dili,anal_kese,kopek,"Köpeğim halıda kızak çekiyor, popo tarafı balık gibi kokuyor.",
+AT080,halk_dili,anal_kese,kopek,"Köpeğimin kuyruğunun altında kızarık bir şişlik var, otururken ağlıyor.",
+AT081,halk_dili,trakeal_kollaps,kopek,"Yorkie'm tasma çekince kaz gibi öksürüyor, heyecanlanınca daha kötü.",
+AT082,halk_dili,trakeal_kollaps,kopek,"Küçük köpeğim su içince korna gibi bir sesle öksürüyor, nefesi daralıyor.",
+AT083,halk_dili,kalp_yetmezligi,kopek,"Yaşlı köpeğim gece öksürüyor, uyurken bile göğsü hızlı hızlı inip kalkıyor.",
+AT084,halk_dili,kalp_yetmezligi,kopek,"Köpeğim yürüyüşte oturup kalıyor, öksürüyor, geçen hafta bir kez bayıldı.",
+AT085,halk_dili,piyoderma_hot_spot,kopek,"Köpeğimin boynunda bir gecede ıslak ıslak kırmızı bir yara açıldı, kokuyor.",
+AT086,halk_dili,piyoderma_hot_spot,kopek,"Köpeğimin karnında sarı başlı irinli sivilceler var, kaşıyor.",
+AT087,halk_dili,idrar_yolu_enf_kopek,kopek,"Köpeğim her ağacın dibinde çömeliyor ama damla damla çiş geliyor, çişi pembe.",
+AT088,halk_dili,idrar_yolu_enf_kopek,kopek,"Dişi köpeğimin çişi bulanık ve keskin kokulu, evin içine kaçırıyor.",
+AT089,halk_dili,vestibuler_sendrom,kopek,"Yaşlı köpeğimin başı yana yatık kaldı, gözleri fıldır fıldır, sarhoş gibi yürüyor.",
+AT090,halk_dili,vestibuler_sendrom,kopek,"Köpeğim birden kendi etrafında dönüp devrilmeye başladı, inme sandık.",
+AT091,halk_dili,bilissel_islev_bozuklugu,kopek,"Yaşlı köpeğim gece evin içinde amaçsızca dolaşıp uluyor, köşelerde sıkışıyor.",
+AT092,halk_dili,bilissel_islev_bozuklugu,kopek,"On beş yaşındaki köpeğim bizi tanımıyor gibi, tuvalet eğitimini unuttu.",
+AT093,halk_dili,panlokopeni,kedi,"Aşısız yavru kedim su kabının başına çöküp kalıyor, kusuyor, ishal oldu.",
+AT094,halk_dili,panlokopeni,kedi,"Sokaktan aldığımız yavru bir günde söndü, sarı sarı kusuyor, hiç kalkmıyor.",
+AT095,halk_dili,kedi_nezlesi,kedi,"Kedim aksırıp duruyor, burnu tıkalı, gözleri çapaklı, koku alamadığı için yemiyor.",
+AT096,halk_dili,kedi_nezlesi,kedi,"Yavru kedimin burnundan sarı sümük geliyor, gözleri yapış yapış.",
+AT097,halk_dili,fip,kedi,"Genç kedimin karnı su dolu gibi şişiyor ama kendisi eriyor, ateşi düşmüyor.",
+AT098,halk_dili,fip,kedi,"Kedimin ateşi haftalardır inmiyor, gözlerinin akı sarardı, yemiyor.",
+AT099,halk_dili,felv_fiv,kedi,"Kedim bir hastalanıp bir iyileşiyor, ağzının içi yara dolu, zayıflıyor.",
+AT100,halk_dili,felv_fiv,kedi,"Sokakta kavgacı erkek kedimin boynundaki bezeler şişti, sık sık nezle oluyor.",
+AT101,halk_dili,kedi_astimi,kedi,"Kedim çömelip boynunu uzatıyor, tüy yumağı çıkaracakmış gibi öksürüyor ama bir şey çıkmıyor.",
+AT102,halk_dili,kedi_astimi,kedi,"Kedimin göğsünden ıslık gibi ses geliyor, ağzı açık soluyor.",
+AT103,halk_dili,hipertiroidi,kedi,"Yaşlı kedim aç kurt gibi yiyor ama kemikleri sayılıyor, gece bağırıp dolaşıyor.",
+AT104,halk_dili,hipertiroidi,kedi,"Kedimin kalbi küt küt atıyor, çok yiyor ama zayıflıyor, kusuyor.",
+AT105,halk_dili,flutd,kedi,"Kedim kuma beş dakikada bir gidip birkaç damla yapıyor, kumda pembe lekeler var.",
+AT106,halk_dili,flutd,kedi,"Kedim taşındığımızdan beri küvete çiş yapıyor, çişi kanlı.",
+AT107,halk_dili,uretral_tikaniklik,kedi,"Erkek kedim kuma girip çıkıyor, ağlayarak ıkınıyor, bir damla çiş bile yok.",
+AT108,halk_dili,uretral_tikaniklik,kedi,"Erkek kedimin çişi tıkandı galiba, karnı sert, kusmaya başladı.",
+AT109,halk_dili,hcm_kedi,kedi,"Kedim uyurken bile hızlı hızlı soluyor, ağzı açık nefes alıyor.",
+AT110,halk_dili,hcm_kedi,kedi,"Kedimin arka bacakları birden tuttu, patileri buz gibi, acıyla bağırıyor.",
+AT111,tuzak,sicak_carpmasi,kopek,Köpeğime sıcak çarptı.,"""çarptı"" araç çarpması değil"
+AT112,tuzak,sicak_carpmasi,kedi,"Kedime güneş çarptı galiba, yerde yatıyor, ağzı açık soluyor.","""çarptı"" araç çarpması değil"
+AT113,tuzak,sicak_carpmasi,kopek,"Köpeğimin başına güneş vurdu, sendeleyerek yürüyor.","""vurdu"" darbe değil"
+AT114,tuzak,sicak_carpmasi,kopek,"Hararet bastı galiba, köpeğim dilini sarkıtıp soluyor.","""hararet"" ateş değil"
+AT115,tuzak,sicak_carpmasi,kopek,"Köpeğimi arabada unuttuk, sıcaktan fenalaştı.","""araba"" kaza değil"
+AT116,tuzak,travma,kopek,"Köpeğime araba çarptı, bacağı kanıyor.",kontrol: gerçek araç çarpması
+AT117,tuzak,travma,kedi,"Kedim 3. kattan düştü, ağzından kan geliyor.",kontrol: gerçek düşme
+AT118,tuzak,hcm_kedi,kedi,"Kedimin kalbi çok hızlı çarpıyor, nefes nefese kalıyor.","""çarpıyor"" kalp çarpıntısı"
+AT119,tuzak,otitis_eksterna,kopek,"Kusura bakmayın rahatsız ediyorum, köpeğimin kulağı leş gibi kokuyor ve kafasını sallıyor.","""kusura"" kusma değil"
+AT120,tuzak,zehirlenme,kopek,"Köpeğim kazara ilacımı yuttu, şimdi titriyor.","""kazara"" kaza değil"
+AT121,tuzak,akut_gastroenterit,kedi,"Nöbetçi veteriner var mı, kedim akşamdan beri kusuyor ve ishal.","""nöbetçi"" nöbet değil"
+AT122,tuzak,kronik_bobrek,kedi,"Yaşlı kedimin iştahı düştü, çok su içiyor, ağzı kötü kokuyor.","""düştü"" düşme değil"
+AT123,tuzak,hipertiroidi,kedi,"Yaşlı kedimin kilosu düştü ama çok yiyor, kalbi hızlı atıyor.","""düştü"" düşme değil"
+AT124,tuzak,dis_hastaligi,kedi,"Yaşlı kedimin dişi düştü, ağzı kokuyor, yemekte zorlanıyor.","""düştü"" düşme değil"
+AT125,tuzak,kulube_oksurugu,kopek,"Kurt köpeğim pansiyondan geldi, kah kuh diye öksürüyor.","""kurt"" ırk adı"
+AT126,tuzak,zehirlenme,kopek,"Köpeğim fare zehri yemiş olabilir, kahve telvesi gibi kustu.","""kahve telvesi"" kulak kiri değil"
+AT127,tuzak,zehirlenme,kopek,"Köpeğim çöpten kahve telvesi yemiş, titriyor, kalbi hızlı.","""kahve telvesi"" kulak kiri değil"
+AT128,tuzak,dis_hastaligi,kopek,"Köpeğimin nefesi çok kötü kokuyor, dişleri sararmış.","""nefes"" nefes darlığı değil"
+AT129,tuzak,kedi_nezlesi,kedi,"Kedim soğuk algınlığına yakalandı galiba, hapşırıyor.","""soğuk"" sıcak çarpması kalıbı değil"
+AT130,tuzak,kulube_oksurugu,kopek,"Köpeğim öksürüyor, sonunda da öğürüyor, ama yemesi içmesi normal.","""öğürüyor"" kusma değil"
+AT131,tuzak,epilepsi,kopek,"Köpeğim titreyerek yere düştü ve kasıldı, ağzından köpük geldi.","""yere düştü"" travma değil"
+AT132,tuzak,epilepsi,kopek,"Köpeğim elektrik çarpmış gibi titreyip kasıldı, sonra kendine geldi.","""elektrik çarpmış gibi"" benzetme"
+AT133,tuzak,akut_alerjik_reaksiyon,kopek,"Köpeğimi bahçede böcek ısırdı, yüzü ve dudakları şişti.","""ısırdı"" kavga ısırığı değil"
+AT134,tuzak,pire,kedi,"Kedimi pire ısırdı, sürekli kaşınıyor, kuyruk dibinde siyah noktalar var.","""ısırdı"" kavga ısırığı değil"
+AT135,tuzak,kene_hastaliklari,kopek,"Köpeğimi kene ısırdı, şimdi ateşli ve dişetleri soluk.","""ısırdı"" kavga ısırığı değil"
+AT136,tuzak,kedi_astimi,kedi,"Kedim öksürük nöbetine giriyor, boynunu uzatıp çömeliyor.","""nöbet"" epilepsi değil"
+AT137,tuzak,kedi_astimi,kedi,"Kedimin astım krizi tuttu, ağzı açık hırıldıyor.","""kriz"" epilepsi değil"
+AT138,tuzak,vestibuler_sendrom,kopek,"Yaşlı köpeğim duvarlara çarpıyor, başı yana eğik, gözleri kayıyor.","""çarpıyor"" travma değil"
+AT139,tuzak,yabanci_cisim,kopek,"Köpeğimin boğazına kemik sıkıştı, öğürüyor, salyası akıyor.","""sıkıştı"" kapıya sıkışma değil"
+AT140,tuzak,uretral_tikaniklik,kedi,"Erkek kedim sancılanıyor, kuma girip çıkıyor, çiş yapamıyor.","""sancı"" doğum değil"
+AT141,tuzak,akut_gastroenterit,kedi,"Kedimin doğum günü için yaş mama açtık, sonra iki kez kustu ve ishal oldu.","""doğum günü"" doğum değil"
+AT142,tuzak,konjunktivit,kedi,"Kedimin gözü ağlıyor gibi sulanıyor, çapaklı.","""ağlıyor"" ağrı değil"

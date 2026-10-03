@@ -37,6 +37,37 @@ function BolumBasligi({
   );
 }
 
+/**
+ * Anlam kontrolü kutusu: Gemini şikâyeti anlamca okuduysa ne anladığını,
+ * yanıltıcı bir kelime varsa açıklamasını ve kelime tabanlı modelin tek
+ * başına başka bir tabloyu öne çıkardığını gösterir.
+ */
+function AnlamKontrolu({ sonuc }: { sonuc: AnalizYaniti }) {
+  if (!sonuc.anlam_aktif || (!sonuc.anlam_ozeti && !sonuc.anlam_notu)) return null;
+  const ilk = sonuc.tahminler[0]?.hastalik;
+  const siralamaDegisti = Boolean(sonuc.ml_ilk_tahmin && ilk && sonuc.ml_ilk_tahmin !== ilk);
+  return (
+    <div className="rounded-xl border border-accent-line bg-accent-soft px-4 py-3">
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-accent-ink">
+        <SparkIcon className="h-3.5 w-3.5" />
+        Anlam kontrolü
+      </p>
+      {sonuc.anlam_ozeti && (
+        <p className="mt-1.5 text-[13px] leading-relaxed text-ink">{sonuc.anlam_ozeti}</p>
+      )}
+      {sonuc.anlam_notu && (
+        <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-soft">{sonuc.anlam_notu}</p>
+      )}
+      {siralamaDegisti && (
+        <p className="mt-1.5 text-[12px] leading-relaxed text-ink-muted">
+          Kelime tabanlı model tek başına “{sonuc.ml_ilk_tahmin}” tablosunu öne çıkarıyordu;
+          sıralama ifadenin anlamına göre düzeltildi.
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function AnalysisResult({ sonuc }: Props) {
   return (
     <div className="space-y-5">
@@ -94,6 +125,9 @@ export default function AnalysisResult({ sonuc }: Props) {
         </div>
       )}
 
+      {/* --- Anlam kontrolü (Gemini'nin şikâyeti nasıl okuduğu) ------------- */}
+      <AnlamKontrolu sonuc={sonuc} />
+
       {/* --- Değerlendirme metni (yanıtın ana gövdesi) ---------------------- */}
       {sonuc.ai_yorum && (
         <div>
@@ -119,7 +153,9 @@ export default function AnalysisResult({ sonuc }: Props) {
           <BolumBasligi
             ek={
               <span className="text-[11px] text-ink-muted">
-                TF-IDF + Logistic Regression
+                {sonuc.anlam_aktif
+                  ? "TF-IDF + Logistic Regression + anlam kontrolü"
+                  : "TF-IDF + Logistic Regression"}
               </span>
             }
           >

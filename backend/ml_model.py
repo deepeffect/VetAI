@@ -50,6 +50,17 @@ def metin_hazirla(metin: str, tur: Optional[str]) -> str:
     return f"{token} {metin}" if token else metin
 
 
+#: Metindeki tur kelimeleri ("kedim", "kopegime" -> kedi/kopek) ML ozelligi olarak
+#: kullanilmaz: tur bilgisi zaten tur token'i ve tur filtresiyle modelde. Kelimenin
+#: kendisi yalnizca o ture ozgu hastaliklara (hipertiroidi, parvovirus ...) yapay bir
+#: itme yapiyordu: "Kopegim kusuyor" -> parvovirus, "Kedimde kanli ishal" -> hipertiroidi.
+_TUR_KELIMELERI = frozenset({"kedi", "kopek"})
+
+
+def ml_tokenize(metin: str) -> List[str]:
+    return [t for t in tokenize(metin) if t not in _TUR_KELIMELERI]
+
+
 @dataclass
 class Tahmin:
     hastalik: str
@@ -58,6 +69,19 @@ class Tahmin:
     aciklayici_kelimeler: List[str] = field(default_factory=list)
     hastalik_id: str = ""            # bilgi tabani anahtari (aciliyet/tur filtresi icin)
     aciliyet: str = ""               # hastaligin temel aciliyeti: kirmizi/turuncu/yesil
+    ml_olasilik: Optional[float] = None   # anlam katmani olasiligi degistirdiyse ML'in kendi degeri
+    anlam_gerekcesi: str = ""        # anlam katmaninin (Gemini) kisa gerekcesi
+
+
+@dataclass
+class Dagilim:
+    """Tur filtresi uygulanmis tam olasilik dagilimi (tum siniflar)."""
+
+    metin: str                       # aciklayici kelimeler icin ham metin
+    siniflar: List[str]              # hastalik adlari, clf.classes_ sirasiyla
+    idler: List[str]                 # ayni sirada hastalik_id
+    olasiliklar: np.ndarray          # toplami 1
+    ml_bos: bool = False             # metin sozluge hic dusmediyse True (duz dagilim)
 
 
 @dataclass
@@ -148,7 +172,7 @@ class SemptomSiniflandirici:
                 (
                     "tfidf",
                     TfidfVectorizer(
-                        tokenizer=tokenize,      # kendi Turkce tokenizer'imiz
+                        tokenizer=ml_tokenize,   # kendi Turkce tokenizer'imiz (tur kelimesiz)
                         preprocessor=None,
                         lowercase=False,         # normalizasyonu tokenizer yapiyor
                         token_pattern=None,      # tokenizer verildiginde kapatilmali
@@ -228,6 +252,93 @@ class SemptomSiniflandirici:
         return self._pipeline is not None
 
     # --------------------------------------------------------------- tahmin
+    def tur_uygun_mu(self, hastalik_id: str, tur: Optional[str]) -> bool:
+        """Hastalik bu turde gorulebilir mi? (tur belirsizse her hastalik uygundur)"""
+        if tur not in ("kedi", "kopek"):
+            return True
+        with self._lock:
+            ad = next((a for a, h in self._id_haritasi.items() if h == hastalik_id), None)
+            hastalik_turu = self._tur_haritasi.get(ad or "", "genel")
+        return hastalik_turu in ("genel", tur)
+
+    def dagilim(self, metin: str, tur: Optional[str] = None, *, bos_ise_duz: bool = False) -> Optional[Dagilim]:
+        """Tum siniflar uzerinde olasilik dagilimi (tur filtresi uygulanmis).
+
+        Hicbir token sozluge dusmediyse model yalnizca sinif onceligini yansitir;
+        bu durumda None doner. `bos_ise_duz=True` verilirse (anlam katmani
+        adaylari yeniden siralayacaksa) tura uygun siniflar uzerinde duz bir
+        dagilim doner ve `ml_bos=True` isaretlenir.
+        """
+        with self._lock:
+            pipeline = self._pipeline
+            idler = dict(self._id_haritasi)
+            turler = dict(self._tur_haritasi)
+        if pipeline is None:
+            return None
+
+        siniflar = [str(s) for s in pipeline.named_steps["clf"].classes_]
+        ml_bos = not pipeline.named_steps["tfidf"].transform([metin]).nnz  # tur token'i sayilmaz
+        if ml_bos and not bos_ise_duz:
+            return None
+        if ml_bos:
+            olasiliklar = np.ones(len(siniflar), dtype=float)
+        else:
+            olasiliklar = np.asarray(pipeline.predict_proba([metin_hazirla(metin, tur)])[0], dtype=float)
+
+        if tur in ("kedi", "kopek"):
+            for j, sinif in enumerate(siniflar):
+                if turler.get(sinif, "genel") not in ("genel", tur):
+                    olasiliklar[j] = 0.0
+        toplam = olasiliklar.sum()
+        if toplam > 0:
+            olasiliklar = olasiliklar / toplam
+        return Dagilim(
+            metin=metin,
+            siniflar=siniflar,
+            idler=[idler.get(s, "") for s in siniflar],
+            olasiliklar=olasiliklar,
+            ml_bos=ml_bos,
+        )
+
+    def tahminlere_cevir(
+        self,
+        dag: Dagilim,
+        top_k: int = 3,
+        *,
+        olasiliklar: Optional[np.ndarray] = None,
+        gerekceler: Optional[dict[str, str]] = None,
+    ) -> List[Tahmin]:
+        """Dagilimdan ilk `top_k` tahmini uretir.
+
+        `olasiliklar` verilirse (anlam katmaninin duzelttigi dagilim) siralama
+        onunla yapilir; ML'in kendi olasiligi `ml_olasilik` alaninda kalir.
+        """
+        with self._lock:
+            oneriler = dict(self._oneri_haritasi)
+            aciliyetler = dict(self._aciliyet_haritasi)
+        p = dag.olasiliklar if olasiliklar is None else olasiliklar
+        gerekceler = gerekceler or {}
+        en_iyi = np.argsort(p)[::-1][:top_k]
+        return [
+            Tahmin(
+                hastalik=dag.siniflar[i],
+                olasilik=float(round(p[i], 4)),
+                oneri=oneriler.get(dag.siniflar[i], ""),
+                aciklayici_kelimeler=(
+                    [] if dag.ml_bos else self.aciklayici_kelimeler(dag.metin, dag.siniflar[i])
+                ),
+                hastalik_id=dag.idler[i],
+                aciliyet=aciliyetler.get(dag.siniflar[i], ""),
+                ml_olasilik=(
+                    None if olasiliklar is None or dag.ml_bos
+                    else float(round(dag.olasiliklar[i], 4))
+                ),
+                anlam_gerekcesi=gerekceler.get(dag.idler[i], ""),
+            )
+            for i in en_iyi
+            if p[i] > 0
+        ]
+
     def tahmin_et(self, metin: str, top_k: int = 3, tur: Optional[str] = None) -> List[Tahmin]:
         """Metin icin en olasi `top_k` hastaligi olasiliklariyla dondurur.
 
@@ -235,46 +346,8 @@ class SemptomSiniflandirici:
         gorulmeyen hastaliklarin olasiligi sifirlanip dagilim yeniden
         normalize edilir (tur filtresi).
         """
-        with self._lock:
-            pipeline = self._pipeline
-            oneriler = dict(self._oneri_haritasi)
-            idler = dict(self._id_haritasi)
-            turler = dict(self._tur_haritasi)
-            aciliyetler = dict(self._aciliyet_haritasi)
-
-        if pipeline is None:
-            return []
-
-        hazir = metin_hazirla(metin, tur)
-        # Hicbir token sozluge dusmediyse model sadece sinif onceligini yansitir;
-        # bu durumda tahmin uretmek yaniltici olur. (Tur token'i sayilmaz.)
-        if not pipeline.named_steps["tfidf"].transform([metin]).nnz:
-            return []
-
-        olasiliklar = np.asarray(pipeline.predict_proba([hazir])[0], dtype=float)
-        siniflar = pipeline.named_steps["clf"].classes_
-
-        if tur in ("kedi", "kopek"):
-            for j, sinif in enumerate(siniflar):
-                if turler.get(str(sinif), "genel") not in ("genel", tur):
-                    olasiliklar[j] = 0.0
-            toplam = olasiliklar.sum()
-            if toplam > 0:
-                olasiliklar = olasiliklar / toplam
-
-        en_iyi = np.argsort(olasiliklar)[::-1][:top_k]
-        return [
-            Tahmin(
-                hastalik=str(siniflar[i]),
-                olasilik=float(round(olasiliklar[i], 4)),
-                oneri=oneriler.get(str(siniflar[i]), ""),
-                aciklayici_kelimeler=self.aciklayici_kelimeler(metin, str(siniflar[i])),
-                hastalik_id=idler.get(str(siniflar[i]), ""),
-                aciliyet=aciliyetler.get(str(siniflar[i]), ""),
-            )
-            for i in en_iyi
-            if olasiliklar[i] > 0
-        ]
+        dag = self.dagilim(metin, tur)
+        return self.tahminlere_cevir(dag, top_k) if dag is not None else []
 
     def aciklayici_kelimeler(self, metin: str, hastalik: str, limit: int = 4) -> List[str]:
         """Bu tahmini en cok destekleyen kelimeler (yorumlanabilirlik).
@@ -335,6 +408,14 @@ def egit(cv_arka_planda: bool = True) -> ModelDurumu:
 
 def tahmin_et(metin: str, top_k: int = 3, tur: Optional[str] = None) -> List[Tahmin]:
     return siniflandirici.tahmin_et(metin, top_k=top_k, tur=tur)
+
+
+def dagilim(metin: str, tur: Optional[str] = None, *, bos_ise_duz: bool = False) -> Optional[Dagilim]:
+    return siniflandirici.dagilim(metin, tur, bos_ise_duz=bos_ise_duz)
+
+
+def tahminlere_cevir(dag: Dagilim, top_k: int = 3, **kw) -> List[Tahmin]:
+    return siniflandirici.tahminlere_cevir(dag, top_k, **kw)
 
 
 def kararsiz_mi(tahminler: List[Tahmin]) -> bool:

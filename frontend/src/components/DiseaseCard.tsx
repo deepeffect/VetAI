@@ -57,6 +57,23 @@ export default function DiseaseCard({ tahmin, sira }: Props) {
 
       {acik && (
         <div className="animate-fade space-y-3.5 border-t border-line px-4 py-3.5">
+          {tahmin.anlam_gerekcesi && (
+            <div>
+              <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-muted">
+                Anlam kontrolünün gerekçesi
+              </p>
+              <p className="text-[13px] leading-relaxed text-ink-soft">
+                {tahmin.anlam_gerekcesi}
+                {tahmin.ml_yuzde != null && (
+                  <span className="text-ink-muted">
+                    {" "}
+                    (kelime tabanlı model tek başına: %{tahmin.ml_yuzde.toLocaleString("tr-TR")})
+                  </span>
+                )}
+              </p>
+            </div>
+          )}
+
           {tahmin.aciklayici_kelimeler.length > 0 && (
             <div>
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-muted">

@@ -8,9 +8,14 @@ Modeli veritabanındaki güncel veriyle eğitir (init_db.py çalıştırılmış
 sonra her cümle için projenin GERÇEK yolunu (kokler guardrail -> tür filtresi ->
 ML -> aciliyet birleştirme) uygular ve tablo basar.
 
+Ayrıca anlam testi seti (data/vetai_anlam_testi_v1.csv): halk diliyle yazılmış
+110 cümle + yanıltıcı kelime içeren 32 "tuzak" cümle. Eğitime girmez.
+
 Kullanim:
-    python olcum.py            # tüm ölçümler
-    python olcum.py --hizli    # yalnızca ML doğruluğu
+    python olcum.py               # tüm ölçümler (Gemini çağırmaz)
+    python olcum.py --hizli       # yalnızca ML doğruluğu
+    python olcum.py --anlam 20    # + anlam katmanı (Gemini) ile 20 tuzak/halk dili cümlesi
+                                  #   (her cümle 1 Gemini isteği harcar)
 """
 
 from __future__ import annotations
@@ -88,9 +93,40 @@ def olc(kume: list[dict], ad: str, id_ad: dict[str, str], hizli: bool) -> None:
             print(f"  kırmızı yakalama    : {acil_ok}/{acil_n}   yeşil→kırmızı yanlış: {acil_fp}/{yesil_n}")
 
 
+def olc_anlam(kume: list[dict], ad: str) -> None:
+    """Aynı cümlelerde yalnızca ML ile ML + anlam katmanını (Gemini) karşılaştırır."""
+    import anlam_katmani
+
+    if not anlam_katmani.etkin_mi():
+        print(f"\n== {ad}: anlam katmanı kullanılamıyor (GEMINI_API_KEY / ANLAM_KATMANI) ==")
+        return
+    ml1 = an1 = an3 = cagri = 0
+    for r in kume:
+        tur = r["tur"]
+        dag = ml_model.dagilim(r["metin"], tur, bos_ise_duz=True)
+        ml = ml_model.tahminlere_cevir(dag, 3) if dag is not None and not dag.ml_bos else []
+        ml1 += bool(ml) and ml[0].hastalik_id == r["hastalik_id"]
+        kodlar, _ = kokler.belirti_bul_gevsek(r["metin"])
+        sonuc = anlam_katmani.degerlendir(r["metin"], tur, kok_kodlari=kodlar, dag=dag)
+        cagri += sonuc is not None
+        son = anlam_katmani.uygula(dag, sonuc, 3) if sonuc is not None and sonuc.adaylar and dag else ml
+        ids = [t.hastalik_id for t in son]
+        an1 += bool(ids) and ids[0] == r["hastalik_id"]
+        an3 += r["hastalik_id"] in ids
+        if not ids or ids[0] != r["hastalik_id"]:
+            print(f"    [hata] {r['metin'][:70]!r} -> {ids[:1]} (beklenen {r['hastalik_id']})")
+    n = len(kume)
+    print(f"\n== {ad} (n={n}, başarılı Gemini çağrısı={cagri}) ==")
+    print(f"  yalnızca ML top-1      : {ml1 / n:.3f}")
+    print(f"  ML + anlam top-1       : {an1 / n:.3f}")
+    print(f"  ML + anlam top-3       : {an3 / n:.3f}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--hizli", action="store_true")
+    ap.add_argument("--anlam", type=int, default=0, metavar="N",
+                    help="anlam katmanını (Gemini) N cümlede ölç; her cümle 1 istek harcar")
     a = ap.parse_args()
 
     durum = ml_model.egit(cv_arka_planda=False)
@@ -107,6 +143,15 @@ def main() -> None:
     olc(val, "val (üretilmiş + el yazımı)", id_ad, a.hizli)
     olc([r for r in val if r["kaynak_tipi"] == "el_yazimi"], "val — yalnızca el yazımı", id_ad, a.hizli)
     olc(oku("vetai_dis_test_seti_v1.csv"), "dış test (şablon dışı)", id_ad, a.hizli)
+    anlam_seti = oku("vetai_anlam_testi_v1.csv")
+    olc([r for r in anlam_seti if r["tip"] == "halk_dili"], "anlam testi — halk dili", id_ad, a.hizli)
+    olc([r for r in anlam_seti if r["tip"] == "tuzak"], "anlam testi — tuzak cümleler", id_ad, a.hizli)
+
+    if a.anlam > 0:
+        # Önce tüm tuzaklar, kalan kota halk dili cümlelerine (her hastalıktan sırayla).
+        tuzak = [r for r in anlam_seti if r["tip"] == "tuzak"]
+        halk = [r for r in anlam_seti if r["tip"] == "halk_dili"][::2]
+        olc_anlam((tuzak + halk)[: a.anlam], "anlam katmanı (Gemini) — canlı ölçüm")
 
     if not a.hizli:
         alakasiz = [

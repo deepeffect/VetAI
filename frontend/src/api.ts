@@ -26,6 +26,10 @@ export interface Tahmin {
   yuzde: number;
   oneri: string;
   aciklayici_kelimeler: string[];
+  /** Anlam kontrolü sıralamayı değiştirdiyse kelime tabanlı modelin kendi yüzdesi. */
+  ml_yuzde?: number | null;
+  /** Anlam kontrolünün (Gemini) bu tablo için kısa gerekçesi. */
+  anlam_gerekcesi?: string;
 }
 
 export interface ModelBilgisi {
@@ -57,6 +61,15 @@ export interface AnalizYaniti {
   uyarilar: string[];
   ogrenildi: boolean;
   model_bilgi: ModelBilgisi | null;
+  /** Gemini şikâyeti anlamca okuyup kelime tabanlı sıralamayı düzelttiyse true. */
+  anlam_aktif?: boolean;
+  anlam_model?: string;
+  /** Şikâyetin tıbbi özeti (anlam kontrolü). */
+  anlam_ozeti?: string;
+  /** Yanıltıcı kelime açıklaması, ör. "çarptı" burada sıcak çarpması anlamında. */
+  anlam_notu?: string;
+  /** Kelime tabanlı modelin tek başına ilk sıradaki tahmini. */
+  ml_ilk_tahmin?: string;
 }
 
 export interface SaglikYaniti {
@@ -65,6 +78,8 @@ export interface SaglikYaniti {
   model: ModelBilgisi;
   gemini_aktif: boolean;
   gemini_model: string;
+  anlam_katmani?: boolean;
+  anlam_model?: string;
 }
 
 export interface HastalikDagilimi {

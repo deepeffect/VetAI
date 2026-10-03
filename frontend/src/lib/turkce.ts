@@ -14,6 +14,21 @@
 
 /** Kanonik NLP token'ı -> ekranda görünecek Türkçe etiket. */
 export const BULGU_ETIKETLERI: Record<string, string> = {
+  // Anlam ayrımı tablosunun (backend/bilgi/anlam_ayrimi.py) ürettiği token'lar
+  sicak_carpmasi: "Sıcak çarpması",
+  travma_oykusu: "Travma öyküsü",
+  elektrik_carpmasi: "Elektrik çarpması",
+  kablo_kemirme: "Kablo kemirme",
+  kalp_carpintisi: "Kalp çarpıntısı",
+  arabada_kaldi: "Arabada kalma",
+  ari_sokmasi: "Arı / böcek sokması",
+  ilac_zehir_yutma: "İlaç / zehir yutma",
+  kahve_yedi: "Kahve yeme",
+  kurt_irki: "Kurt ırkı",
+  kus_avi: "Kuş avı",
+  ates_dustu: "Ateş düştü",
+  kulak_uyuzu: "Kulak uyuzu",
+  nezle: "Nezle",
   agiz_kokusu: "Ağız kokusu",
   apse: "Apse",
   asiri_salya: "Aşırı salya",

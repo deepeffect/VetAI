@@ -9,6 +9,8 @@ Istek akisi (/api/analyze):
       |       - kapsam disi / insan sagligi
       |       - acil durum tespiti
       |-> 3. ML tahmini           (ml_model: TF-IDF + Logistic Regression)
+      |-> 3b. Anlam katmani       (anlam_katmani: Gemini sikayeti anlamca okur,
+      |                            ML siralamasini duzeltir; "sicak carpti" != "araba carpti")
       |-> 4. Gemini yorumu        (gemini_api)
       |-> 5. Canli ogrenme        (yeni semptom SQLite'a yazilir)
       -> JSON
@@ -30,6 +32,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
+import anlam_katmani
 import chat_service
 import gemini_api
 import init_db
@@ -130,6 +133,8 @@ class TahminCikti(BaseModel):
     yuzde: float
     oneri: str
     aciklayici_kelimeler: List[str] = []
+    ml_yuzde: Optional[float] = None   # anlam katmani siralamayi degistirdiyse ML'in kendi yuzdesi
+    anlam_gerekcesi: str = ""          # anlam katmaninin (Gemini) kisa gerekcesi
 
 
 class ModelBilgisi(BaseModel):
@@ -158,6 +163,12 @@ class AnalizYaniti(BaseModel):
     uyarilar: List[str] = []
     ogrenildi: bool = False
     model_bilgi: Optional[ModelBilgisi] = None
+    # Anlam katmani (Gemini sikayeti anlamca okuyup ML siralamasini duzeltti mi?)
+    anlam_aktif: bool = False
+    anlam_model: str = ""
+    anlam_ozeti: str = ""
+    anlam_notu: str = ""
+    ml_ilk_tahmin: str = ""            # kelime tabanli ML'in tek basina ilk sirasi
 
 
 class SohbetIstegi(BaseModel):
@@ -182,6 +193,8 @@ class SaglikYaniti(BaseModel):
     model: ModelBilgisi
     gemini_aktif: bool
     gemini_model: str
+    anlam_katmani: bool = False
+    anlam_model: str = ""
 
 
 class IstatistikYaniti(BaseModel):
@@ -233,6 +246,12 @@ async def lifespan(app: FastAPI):
         )
     logger.info(
         "Gemini katmani: %s", "AKTIF" if gemini_api.kullanilabilir_mi() else "DEVRE DISI (API anahtari yok)"
+    )
+    anlam_durumu = anlam_katmani.durum()
+    logger.info(
+        "Anlam katmani: %s",
+        f"AKTIF (model={anlam_durumu['model']})" if anlam_durumu["etkin"]
+        else "DEVRE DISI (yalnizca ML + anlam ayrimi tablosu)",
     )
     yield
     logger.info("VetAI kapatiliyor.")
@@ -394,6 +413,8 @@ def saglik(db: Session = Depends(get_db)):
         model=_model_bilgisi(),
         gemini_aktif=gemini_api.kullanilabilir_mi(),
         gemini_model=gemini_api.MODEL_ADI,
+        anlam_katmani=anlam_katmani.durum()["etkin"],
+        anlam_model=anlam_katmani.MODEL_ADI,
     )
 
 
@@ -404,12 +425,15 @@ def _analizi_calistir(
     arka_plan: BackgroundTasks,
     *,
     gemini_yorumu: bool = True,
+    onceki_mesajlar: Optional[List[str]] = None,
 ) -> AnalizYaniti:
-    """Guardrail + NLP + ML zinciri. /api/analyze ve /api/chat ortak kullanir.
+    """Guardrail + NLP + ML + anlam katmani zinciri. /api/analyze ve /api/chat ortak kullanir.
 
-    `gemini_yorumu=False` verilirse Gemini cagrilmaz ve `ai_yorum` bos kalir;
-    sohbet akisi bu tahminleri konusma baglamiyla birlikte TEK bir Gemini
-    cagrisina verir (ayni tur icin iki kez LLM cagirmamak icin).
+    `gemini_yorumu=False` verilirse yorum metni icin Gemini cagrilmaz ve
+    `ai_yorum` bos kalir; sohbet akisi tahminleri konusma baglamiyla birlikte
+    tek bir sohbet cagrisina verir. Anlam katmani (siniflandirmayi duzelten
+    kucuk JSON cagrisi) bundan bagimsizdir ve Gemini erisilebilirse her
+    sikayette calisir. `onceki_mesajlar` anlam katmanina baglam olarak gider.
     """
     normalized = normalize(ham)
     uyarilar: List[str] = []
@@ -500,8 +524,46 @@ def _analizi_calistir(
             "yerine geçmez; vakit kaybetmeden bir kliniğe başvurun.",
         )
 
-    # ---------------- 7: hayvan var ama belirti yok --------------------
-    if karar != "devam":
+    # ---------------- 7: ML dagilimi + ANLAM KATMANI ------------------
+    # Kelime tabanli ML dagilimi once hesaplanir (anlam katmanina ipucu olarak
+    # gider), sonra Gemini sikayeti anlamca okur. Kok tabanli guardrail belirti
+    # bulamadiysa da ("kah kuh yapiyor" gibi halk dili) anlam katmanina sorulur.
+    if not ml_model.siniflandirici.egitildi_mi():
+        ml_model.egit()
+    tur_ml = tur if tur in ("kedi", "kopek") else None
+    dag = ml_model.dagilim(ham, tur_ml, bos_ise_duz=True)
+    ml_tahminleri = ml_model.tahminlere_cevir(dag, 3) if dag is not None and not dag.ml_bos else []
+
+    anlam = anlam_katmani.degerlendir(
+        ham, tur, onceki=onceki_mesajlar, kok_kodlari=belirti_kodlari, dag=dag
+    )
+    if anlam is not None and anlam.belirtiler:
+        # Anlam katmani olumsuzlamayi ve deyimleri anlar; rozetleri o belirler.
+        bulgular = anlam.bulgu_adlari()
+    anlam_alanlari = dict(
+        anlam_aktif=anlam is not None,
+        anlam_model=anlam.model if anlam is not None else "",
+        anlam_ozeti=anlam.ozet if anlam is not None else "",
+        anlam_notu=anlam.anlam_notu if anlam is not None else "",
+    )
+
+    # Anlam katmani bunun bir saglik sikayeti olmadigini soylediyse (ör. "sıcak
+    # çarpması belirtileri nelerdir?") analiz karti uretilmez; sohbet serbest yanitlar.
+    if anlam is not None and not anlam.saglik_sikayeti and not anlam.adaylar and not acil:
+        return AnalizYaniti(
+            durum="belirsiz",
+            mesaj="Şikâyet olarak değerlendirilmedi.",
+            tur=tur,
+            ai_yorum="Bu mesajı bir sağlık şikâyeti olarak değerlendirmedim. Hayvanınızda "
+                     "gözlemlediğiniz belirtileri ve ne zamandır sürdüğünü yazarsanız ön "
+                     "değerlendirme yapabilirim.",
+            uyarilar=uyarilar,
+            model_bilgi=_model_bilgisi(),
+            **anlam_alanlari,
+        )
+
+    # ---------------- 7b: hayvan var ama belirti yok -------------------
+    if karar != "devam" and not (anlam is not None and anlam.analize_uygun):
         return AnalizYaniti(
             durum="acil" if acil else "belirsiz",
             mesaj="Belirti bulunamadı.",
@@ -517,13 +579,15 @@ def _analizi_calistir(
                      "öksürük gibi gözlemlediğiniz durumları ve ne kadar süredir "
                      "devam ettiğini yazarsanız daha iyi değerlendirebilirim.",
             model_bilgi=_model_bilgisi(),
+            **anlam_alanlari,
         )
 
-    # ---------------- 8: ML TAHMINI ------------------------------------
-    if not ml_model.siniflandirici.egitildi_mi():
-        ml_model.egit()
-
-    tahminler = ml_model.tahmin_et(ham, top_k=3, tur=tur if tur in ("kedi", "kopek") else None)
+    # ---------------- 8: TAHMIN (ML + anlam duzeltmesi) ----------------
+    if anlam is not None and anlam.adaylar and dag is not None:
+        tahminler = anlam_katmani.uygula(dag, anlam, top_k=3)
+    else:
+        tahminler = ml_tahminleri
+    anlam_alanlari["ml_ilk_tahmin"] = ml_tahminleri[0].hastalik if ml_tahminleri else ""
 
     if not tahminler:
         return AnalizYaniti(
@@ -540,6 +604,7 @@ def _analizi_calistir(
                      "eşleştiremedim. Belirtileri biraz daha ayrıntılı anlatabilir "
                      "misiniz? Her durumda bir veteriner hekime danışmanızı öneririm.",
             model_bilgi=_model_bilgisi(),
+            **anlam_alanlari,
         )
 
     en_iyi = tahminler[0]
@@ -556,7 +621,12 @@ def _analizi_calistir(
     aciliyet, bayraklar = aciliyet_belirle(ham, en_iyi.aciliyet)
     acil = aciliyet == "kirmizi"
     if acil and not onceki_acil:
-        acil_gerekce = ", ".join(bayraklar) or f"{en_iyi.hastalik} tablosu acil kabul edilir"
+        # Metinde kırmızı bayrak olsaydı 6. adımda acil işaretlenirdi; buradaki kırmızı
+        # düzey tahmin edilen hastalıktan gelir. Turuncu bayraklar ("Kusma") gerekçe
+        # sayılmaz, yalnızca bağlam olarak eklenir.
+        acil_gerekce = f"{en_iyi.hastalik} tablosu acil kabul edilir"
+        if bayraklar:
+            acil_gerekce += f" (bulgular: {', '.join(bayraklar)})"
         uyarilar.insert(
             0,
             f"Acil durum şüphesi ({acil_gerekce}). Bu analiz veteriner muayenesinin "
@@ -568,7 +638,8 @@ def _analizi_calistir(
     # ---------------- 9: GEMINI YORUMU ---------------------------------
     if gemini_yorumu:
         gemini_yanit = gemini_api.yorumla(
-            ham, tur, tahminler, acil=acil, acil_gerekce=acil_gerekce, bulgular=bulgular
+            ham, tur, tahminler, acil=acil, acil_gerekce=acil_gerekce, bulgular=bulgular,
+            anlam_ozeti=anlam_alanlari["anlam_ozeti"], anlam_notu=anlam_alanlari["anlam_notu"],
         )
         ai_yorum = gemini_yanit.metin or _sablon_yorum(tahminler, acil, acil_gerekce)
         if not gemini_yanit.basarili:
@@ -598,6 +669,8 @@ def _analizi_calistir(
                 yuzde=round(t.olasilik * 100, 1),
                 oneri=t.oneri,
                 aciklayici_kelimeler=t.aciklayici_kelimeler,
+                ml_yuzde=round(t.ml_olasilik * 100, 1) if t.ml_olasilik is not None else None,
+                anlam_gerekcesi=t.anlam_gerekcesi,
             )
             for t in tahminler
         ],
@@ -612,6 +685,7 @@ def _analizi_calistir(
         uyarilar=uyarilar,
         ogrenildi=ogrenildi,
         model_bilgi=_model_bilgisi(),
+        **anlam_alanlari,
     )
 
 
@@ -667,8 +741,11 @@ def sohbet(
             createdAt=datetime.now(timezone.utc).isoformat(),
         )
 
-    # 1) Guardrail + ML (LLM cagrisi olmadan)
-    analiz = _analizi_calistir(ham, istek.tur, db, arka_plan, gemini_yorumu=False)
+    # 1) Guardrail + ML + anlam katmani (yorum metni icin LLM cagrisi olmadan)
+    onceki = [m.content for m in istek.messages[:-1] if m.role == "user"][-2:]
+    analiz = _analizi_calistir(
+        ham, istek.tur, db, arka_plan, gemini_yorumu=False, onceki_mesajlar=onceki
+    )
 
     # Sert reddetmeler (talimat ele gecirme, insan sagligi) LLM'e gitmez.
     if analiz.durum == "reddedildi" or (
@@ -687,6 +764,8 @@ def sohbet(
             acil=analiz.acil,
             acil_gerekce=analiz.acil_gerekce,
             bulgular=analiz.bulgular,
+            anlam_ozeti=analiz.anlam_ozeti,
+            anlam_notu=analiz.anlam_notu,
         )
 
     # 3) LLM

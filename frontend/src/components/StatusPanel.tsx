@@ -115,6 +115,11 @@ export default function StatusPanel({ saglik, istatistik, baglantiHatasi }: Prop
           renk={saglik?.gemini_aktif ? "text-accent-ink" : "text-ink-muted"}
         />
         <Satir etiket="Model" deger={saglik?.gemini_model ?? "—"} />
+        <Satir
+          etiket="Anlam kontrolü"
+          deger={saglik?.anlam_katmani ? "Aktif" : "Devre dışı"}
+          renk={saglik?.anlam_katmani ? "text-accent-ink" : "text-ink-muted"}
+        />
         {saglik && !saglik.gemini_aktif && (
           <p className="mt-2.5 text-[12px] leading-relaxed text-ink-muted">
             backend/.env dosyasına GEMINI_API_KEY ekleyip sunucuyu yeniden başlatın.

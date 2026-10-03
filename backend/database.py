@@ -72,6 +72,7 @@ class Symptom(Base):
     hastalik_id = Column(String(64), nullable=True, index=True) # bilgi tabani anahtari (ör. "parvovirus")
     oneri = Column(Text, nullable=False, default="")           # kullaniciya gosterilecek tavsiye
     aciliyet = Column(String(16), nullable=True)               # kirmizi / turuncu / yesil (veri setinden)
+    kaynak_id = Column(String(32), nullable=True, index=True)  # veri dosyasındaki satır kimliği (ör. "HD0001")
 
     # --- ek meta alanlar (canli ogrenme icin) ---
     kaynak = Column(String(16), nullable=False, default=KAYNAK_SEED, index=True)

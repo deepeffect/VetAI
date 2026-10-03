@@ -9,13 +9,26 @@ kendi pipeline'imiz var:
 
 Ayrica basit bir olumsuzluk isaretleyici vardir: "atesi yok" -> "yok_ates".
 Tibbi metinde olumsuzluk anlami tersine cevirdigi icin bu kritik.
+
+Anlam ayrimi (bilgi/anlam_ayrimi.py): es anlamli haritalamadan ONCE deyimler ve
+es sesli ifadeler cozulur. "sicak carpti" -> "sicak_carpmasi", "araba carpti"
+-> "travma_oykusu", "kusura bakmayin" -> (silinir). Boylece ortak "carp" koku
+iki farkli hastaligi birbirine karistirmaz.
+
+Halk dili (data/halk_dili_sozlugu.json, "ml_ifadeleri"): "kah kuh" -> "oksuruk",
+"kizak cekiyor" -> "poposunu yere surtuyor" gibi gunluk anlatimlar, modelin
+egitim verisinden tanidigi kanonik ifadelere cevrilir.
 """
 
 from __future__ import annotations
 
+import json
+import os
 import re
 import unicodedata
 from typing import Iterable, List
+
+from bilgi import anlam_ayrimi
 
 # --------------------------------------------------------------------------
 # 1) NORMALIZASYON
@@ -127,14 +140,29 @@ PHRASE_SYNONYMS: dict[str, str] = {
     "kulagini kasiyor": "kulak_kasintisi",
     "kulagindan koku": "kulak_iltihabi",
     "kafasini salliyor": "kulak_iltihabi",
-    # --- zehirlenme / travma ---
+    # --- zehirlenme ---
+    # (travma ifadeleri "araba carpti", "yuksekten dustu" artik anlam_ayrimi
+    #  tablosunda "travma_oykusu" olarak cozuluyor; "sicak carpti" ile karismasin diye)
     "cikolata yedi": "cikolata_zehirlenmesi",
     "zehirli madde": "zehirlenme",
     "fare zehiri": "zehirlenme",
     "deterjan icti": "zehirlenme",
-    "araba carpti": "travma",
-    "yuksekten dustu": "travma",
 }
+
+
+def _halk_dili_ifadeleri() -> dict[str, str]:
+    """data/halk_dili_sozlugu.json -> "ml_ifadeleri" (yoksa bos sozluk)."""
+    yol = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "halk_dili_sozlugu.json")
+    try:
+        with open(yol, encoding="utf-8") as f:
+            return dict(json.load(f).get("ml_ifadeleri", {}))
+    except (OSError, ValueError):
+        return {}
+
+
+# Halk dili ifadeleri sozlukteki kaliplarin uzerine yazmaz, yalnizca eksikleri ekler.
+for _ifade, _karsilik in _halk_dili_ifadeleri().items():
+    PHRASE_SYNONYMS.setdefault(_ifade, _karsilik)
 
 WORD_SYNONYMS: dict[str, str] = {
     # kusma
@@ -269,6 +297,43 @@ def stem(token: str) -> str:
     return token
 
 
+# Tek gecisli govdeleme "oksurdu" -> "oksur", "hiriltdiyor" -> "hirild" gibi
+# kanonik tokena ulasmayan govdeler birakir. Bu onekler belirti fiilinin her
+# cekimini tek tokena toplar. Kisa ve belirsiz onekler bilerek yok:
+# "kus" (kus = kuş), "cis" (cisim), "kasi" (kaşı = göz kaşı) eklenmedi.
+ONEK_ESANLAM: tuple[tuple[str, str], ...] = (
+    ("oksur", "oksuruk"),
+    ("hapsir", "hapsirma"), ("hapsur", "hapsirma"), ("aksir", "hapsirma"),
+    ("hiril", "hirilti"),
+    ("titre", "titreme"), ("titri", "titreme"),
+    ("topal", "topallama"),
+    ("kasin", "kasinti"),
+    ("halsiz", "halsizlik"),
+    ("istahsiz", "istahsizlik"),
+    ("kusuy", "kusma"), ("kustu", "kusma"), ("kusmu", "kusma"), ("kusac", "kusma"),
+    ("kusar", "kusma"), ("kusma", "kusma"),
+    ("idrar", "idrar_sikayeti"),
+)
+
+
+def onek_esanlam(raw: str) -> str | None:
+    """Kelime bilinen bir belirti fiilinin cekimiyse kanonik tokeni dondurur.
+
+    Tur kelimelerinin tum cekimleri ("kedimin", "kopegime") tek tokena iner;
+    ml_model'in eklediği tur tokenlari ("kedix", "kopekx") ise oldugu gibi kalir.
+    """
+    if raw in ("kedix", "kopekx"):
+        return raw
+    if raw.startswith("kedi"):
+        return "kedi"
+    if raw.startswith(("kopek", "kopeg")):
+        return "kopek"
+    for onek, karsilik in ONEK_ESANLAM:
+        if raw.startswith(onek):
+            return karsilik
+    return None
+
+
 # --------------------------------------------------------------------------
 # 5) ANA PIPELINE
 # --------------------------------------------------------------------------
@@ -277,6 +342,7 @@ def stem(token: str) -> str:
 def tokenize(text: str, *, use_negation: bool = True) -> List[str]:
     """Ham metin -> temiz, govdelenmis, es anlamli eslenmis token listesi."""
     text = normalize(text)
+    text = anlam_ayrimi.yeniden_yaz(text)   # deyim / es sesli ifade ayrimi
     text = apply_phrase_synonyms(text)
 
     tokens: List[str] = []
@@ -291,6 +357,8 @@ def tokenize(text: str, *, use_negation: bool = True) -> List[str]:
             continue
 
         word = WORD_SYNONYMS.get(raw)
+        if word is None and "_" not in raw:
+            word = onek_esanlam(raw)
         if word is None:
             word = stem(raw)
             word = WORD_SYNONYMS.get(word, word)
@@ -307,9 +375,9 @@ def preprocess(text: str) -> str:
 
 
 # Sozlukteki tum kanonik bulgu etiketleri (tur adlari haric).
-KANONIK_BULGULAR: set[str] = (
-    set(PHRASE_SYNONYMS.values()) | set(WORD_SYNONYMS.values())
-) - {"kedi", "kopek", "yavru"}
+KANONIK_BULGULAR: set[str] = {
+    v for v in set(PHRASE_SYNONYMS.values()) | set(WORD_SYNONYMS.values()) if " " not in v
+} - {"kedi", "kopek", "yavru"}
 
 
 def extract_keywords(text: str, limit: int = 8) -> List[str]:

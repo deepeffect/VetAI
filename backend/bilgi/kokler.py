@@ -16,8 +16,24 @@ Guardrail önerisi:
     - belirtiler boş, baglam dolu → "Belirtileri biraz daha açar mısınız?" diye sor (kapsam dışı deme).
     - ikisi de boş → kapsam dışı / genel yönlendirme.
 Aciliyet için bu modül DEĞİL, acil_kaliplar.aciliyet_tespit kullanılmalı (bu modül bilerek geniş eşler).
+
+VetAI eklemeleri (anlam ayrımı ve halk dili, Ekim 2026):
+    - Kökler aranmadan önce anlam_ayrimi kalıpları uygulanır: "sıcak çarptı",
+      "kusura bakmayın", "nöbetçi veteriner", "iştahı düştü" gibi ifadelerin
+      aralığı maskelenir (yanlış kök tetiklenmez) ve kalıbın doğru kodu eklenir.
+    - data/halk_dili_sozlugu.json içindeki "belirti_kokleri" bu tabloya eklenir
+      ("kah kuh" -> OKSURUK, "kızak çekiyor" -> POPO_SURTME ...).
+    - ASCII katlanmış eşleşme, kullanıcının Türkçe yazdığı farklı bir kelimeyi
+      yakalamaz ("kaşık" kökü "kasık" değildir).
 """
+import json
+import os
 import re
+
+try:
+    from . import anlam_ayrimi
+except ImportError:  # modül tek başına çalıştırılırsa
+    import anlam_ayrimi
 
 BAGLAM_KODLARI = {"ASISIZ", "YENI_ALINDI", "DISARI_CIKAN", "KISIR_DEGIL_DISI", "ERKEK", "BUYUK_IRK", "YEMEK_SONRASI",
                   "COP_YEDI", "KILO_FAZLA", "STRES", "YASLI", "KENE_ILACI_YOK", "KURSAL_SEYAHAT", "ARI_SOKMA", "HAMILE",
@@ -156,11 +172,17 @@ KOKLER = {
     "POPO_SURTME": ["poposunu", "popo", "kuyruk altı", "sürtüyor", "anüs", "makat", "sürtüp", "sürükleyip"],
     "AKINTI_VAJINAL": ["vajina", "akıntı geliyor", "arka tarafından ak", "arkasından ak", "kanlı irinli", "kötü kokulu akıntı", "vulva", "kokulu bir leke", "kokulu leke", "akıntı var", "irinli akıntı", "kokulu akıntı", "arkasından sarı", "arkasından kötü"],
     "KIZGINLIK_SONRASI": ["kızgınlık", "kızgınlığı", "kızgınlıktan"],
-    "DOGUM_UZUN": ["doğum", "ıkınıyor ama yavru", "yavru gelmiyor", "sancı", "doğuram", "yavrular arasında", "doğuruyor", "yavru doğ", "ıkınıyor ama hiçbir şey gelm", "doğurdu"],
+    # VetAI: tek başına "sancı" kökü çıkarıldı; "sancılanıyor" (karın/idrar sancısı)
+    # erkek kedide bile güç doğum kodu üretiyordu. Doğum sancısı aşağıdaki
+    # özel köklerle ve halk dili sözlüğüyle yakalanır.
+    "DOGUM_UZUN": ["doğum", "ıkınıyor ama yavru", "yavru gelmiyor", "doğum sancı", "doğuram", "yavrular arasında", "doğuruyor", "yavru doğ", "ıkınıyor ama hiçbir şey gelm", "doğurdu"],
     "ZEHIR_TEMAS": ["zehir", "zehri", "çikolata", "ilaç kutusu", "hapımı", "hap yut", "üzüm", "antifriz", "temizlik malzeme", "ilaçlanmış", "ksilitol", "sakız", "soğan", "ağrı kesici verdi", "ağrı kesici yut", "ilaç yut", "deterjan", "çamaşır suyu", "fare zehr", "fare ilac", "ilacımı", "ilaç içmiş", "yemiş olabilir", "kemirdi", "kemirmiş", "içmiş olabilir"],
     "ZEHIR_TEMAS_KEDI": ["zambak", "parasetamol", "köpek pire", "lilyum", "parol", "köpek ilacı"],
     "SICAK_TEMAS": ["sıcakta", "güneş", "arabada kaldı", "sıcak hava", "öğle sıcağı", "sahilde", "sıcaktan", "35 derece", "derece vardı", "güneşin altında", "arabada 20 dakika", "balkonda kapalı kal"],
-    "TRAVMA": ["araba çarp", "çarptı", "balkondan", "yüksekten", "kapıya sıkış", "üstüne bir şey düş", "üstüne düş", "ezildi", "kaza", "motosiklet", "vurdu", "sıkıştı", "kattan düş", "merdivenden düş", "düşmüş", "düşerek", "yere düş", "aşağı düş"],
+    # VetAI: "düşmüş" / "düşerek" kökleri çıkarıldı ("iştahı düşmüş", "ateşi düşmüş"
+    # travma sayılıyordu). Bir yerden düşme anlam_ayrimi.yuksekten_dusme kalıbıyla,
+    # "sıcak çarptı" / "kazara" gibi yanıltıcı ifadeler maskelemeyle çözülür.
+    "TRAVMA": ["araba çarp", "çarptı", "balkondan", "yüksekten", "kapıya sıkış", "üstüne bir şey düş", "üstüne düş", "ezildi", "kaza", "motosiklet", "vurdu", "sıkıştı", "kattan düş", "merdivenden düş", "yere düş", "aşağı düş"],
     # bağlam
     "ASISIZ": ["aşısız", "aşısı yok", "aşıları eksik", "aşı olmadı", "aşıları tamamlan", "aşıları yapılm", "asisiz", "aşı yapılmadı", "aşısı yapılm", "sadece ilk aşı", "ilk karma aşı", "aşıları hiç", "henüz aşı", "aşı olmamış"],
     "YENI_ALINDI": ["yeni aldık", "sahiplendik", "petshoptan", "barınaktan", "sokaktan aldı", "yeni geldi", "sahiplendiğimiz", "aldığımız", "önce geldi", "önce aldık", "getirdik", "üreticiden"],
@@ -202,6 +224,30 @@ def _katla(s):
     return s.translate(_ASCII)
 
 
+# VetAI eklemesi: halk dili sözlüğündeki ek kökler (data/halk_dili_sozlugu.json).
+HALK_DILI_JSON = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "halk_dili_sozlugu.json"
+)
+
+
+def _halk_dili_koklerini_ekle(tablo):
+    """Sözlükteki belirti köklerini KOKLER tablosuna ekler; yeni kodları döndürür."""
+    try:
+        with open(HALK_DILI_JSON, encoding="utf-8") as f:
+            sozluk = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    for kod, kokler_ in sozluk.get("belirti_kokleri", {}).items():
+        mevcut = tablo.setdefault(kod, [])
+        for kok in kokler_:
+            if kok not in mevcut:
+                mevcut.append(kok)
+    return dict(sozluk.get("yeni_kodlar", {}))
+
+
+#: Bilgi tabanında olmayan, halk dili sözlüğüyle gelen kodlar -> kanonik ad
+YENI_KODLAR = _halk_dili_koklerini_ekle(KOKLER)
+
 _KOK_TABLO = []  # (kod, kök_tr, kök_ascii)
 for _kod, _ks in KOKLER.items():
     for _k in _ks:
@@ -215,7 +261,10 @@ KISA_KOK = 4
 # VetAI eklemesi: eşleşen belirtiden sonra aynı cümlecikte olumsuzlama varsa
 # ("ateşi yok", "kusması olmadı") kod düşürülür. Paket negasyonu bilerek
 # ele almıyordu; burada yalnızca guardrail/rozet için basit bir kural var.
-_OLUMSUZ = re.compile(r"\b(yok|değil|degil|olmadı|olmadi|yapmadı|yapmadi|görmedim|gormedim|kalmadı|kalmadi)\b")
+_OLUMSUZ = re.compile(
+    r"\b(yok|değil|degil|olmadı|olmadi|yapmadı|yapmadi|görmedim|gormedim|kalmadı|kalmadi|"
+    r"geçti|gecti|düzeldi|duzeldi|iyileşti|iyilesti)\b"
+)
 _CUMLECIK_SONU = re.compile(r"[.,;!?]| ama | fakat | ancak | ve ")
 
 
@@ -235,6 +284,19 @@ def _bul(m, kok):
     return m.find(kok)
 
 
+_TR_OZEL = set("çğıöşü")
+
+
+def _yazim_celisir(parca, k_tr):
+    """Kullanıcı bu aralıkta kökten FARKLI bir Türkçe harf yazmış mı?
+
+    "kaşık" metni "kasık" kökünün ASCII biçimine ("kasik") uyar ama kullanıcı
+    açıkça "ş" yazmıştır; bu başka bir kelimedir. Buna karşılık "kasıntı"
+    (ş harfi eksik yazılmış) "kaşıntı" kökü için geçerlidir.
+    """
+    return any(u != k and u in _TR_OZEL for u, k in zip(parca, k_tr))
+
+
 def _bul_iki(m, ma, k_tr, k_as):
     """Önce Türkçe yazım, sonra ASCII katlanmış yazım.
 
@@ -246,15 +308,22 @@ def _bul_iki(m, ma, k_tr, k_as):
         return idx
     if len(k_as) <= KISA_KOK and m != ma:
         return -1
-    return _bul(ma, k_as)
+    idx = _bul(ma, k_as)
+    if idx >= 0 and _yazim_celisir(m[idx: idx + len(k_tr)], k_tr):
+        return -1
+    return idx
 
 
 def belirti_bul_gevsek(metin, *, olumsuzlama=True):
     """Metindeki belirti kodlarını geniş eşlemeyle bulur.
     Döndürür: (belirti_kodlari, baglam_kodlari)  — her ikisi de liste, sıralı, tekrarsız."""
     m = " " + re.sub(r"\s+", " ", tr_lower(metin)) + " "
+    # VetAI: deyim / eş sesli ifadeler önce çözülür; aralıkları maskelenir ki
+    # "sıcak çarptı" içindeki "çarptı" TRAVMA, "kusura" içindeki "kus" KUSMA üretmesin.
+    anlam = anlam_ayrimi.eslesmeler(m)
+    m = anlam_ayrimi.maskele(m, anlam)
     ma = _katla(m)
-    bulunan = []
+    bulunan = list(anlam_ayrimi.kodlar(anlam))
     dusurulen = set()
     for kod, k_tr, k_as in _KOK_TABLO:
         if kod in bulunan or kod in dusurulen:

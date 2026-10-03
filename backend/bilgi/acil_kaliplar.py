@@ -8,6 +8,11 @@ Bio-Vet pet-symptom-triage (CC BY 4.0) kurallarıyla uyumlu.
 """
 import re
 
+try:  # VetAI eklemesi: deyim / eş sesli ifade kalıplarının aciliyet bayrakları
+    from . import anlam_ayrimi
+except ImportError:  # modül tek başına çalıştırılırsa
+    import anlam_ayrimi
+
 ACIL_KALIPLAR_KIRMIZI = [
     ("OGURME_BOS", "Boş öğürme", re.compile(r"(?:[öo][ğg][üu]r[üu]y[oö]r[\s,]+ama[\s,]+b[iı]r[\s,]+[şs]ey[\s,]+[çc][ıi]km[ıi]y[oö]r|k[uü][sş]maya[\s,]+[çc]al[ıi][şs][ıi]y[oö]r[\s,]+ama[\s,]+k[uü][sş]am[ıi]y[oö]r|b[oö][şs][\s,]+b[oö][şs][\s,]+[öo][ğg][üu]r[üu]y[oö]r|[sş][üu]rekl[iı][\s,]+[öo][ğg][üu]r[üu]y[oö]r[\s,.;:!?()'\"/]*[\s,]+a[ğg]z[ıi]ndan[\s,]+[sş]ade[cç]e[\s,]+[sş]alya[\s,]+[gğ]el[iı]y[oö]r)", re.I)),
     ("SOLUK_DISETI", "Soluk dişeti", re.compile(r"(?:d[iı][şs]etler[iı][\s,]+bembeyaz|d[iı][şs]etler[iı][\s,]+[sş][oö]l[uü]k|d[iı][şs]etler[iı][\s,]+ve[\s,]+d[iı]l[iı][\s,]+[sş][oö]l[uü]k[\s,]+pembe[\s,.;:!?()'\"/]*[\s,]+neredey[sş]e[\s,]+beyaz)", re.I)),
@@ -84,10 +89,19 @@ def aciliyet_tespit(metin, hastalik_temel=None):
     hastalik_temel verilirse (tahmin edilen hastalığın temel aciliyeti) en yüksek olan alınır."""
     m = tr_lower(metin)
     bulunan, seviye = [], SEVIYE.get(hastalik_temel, 0)
+    # VetAI: "sıcak çarptı", "elektrik çarptı" gibi kalıpların bayrakları
+    # (regex listesinde karşılığı yok; kod aynıysa tekrar eklenmez).
+    anlam = anlam_ayrimi.aciliyet_bayraklari(anlam_ayrimi.eslesmeler(m))
     for kod, kanonik, rx in ACIL_KALIPLAR_KIRMIZI:
         if rx.search(m):
             bulunan.append((kod, kanonik)); seviye = max(seviye, 2)
+    for kod, kanonik, sev in anlam:
+        if sev == "kirmizi" and kod not in {k for k, _ in bulunan}:
+            bulunan.append((kod, kanonik)); seviye = max(seviye, 2)
     for kod, kanonik, rx in ACIL_KALIPLAR_TURUNCU:
         if rx.search(m):
+            bulunan.append((kod, kanonik)); seviye = max(seviye, 1)
+    for kod, kanonik, sev in anlam:
+        if sev == "turuncu" and kod not in {k for k, _ in bulunan}:
             bulunan.append((kod, kanonik)); seviye = max(seviye, 1)
     return ("kirmizi", "turuncu", "yesil")[2 - seviye], bulunan

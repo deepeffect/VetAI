@@ -1,0 +1,1328 @@
+{
+ "surum": "1.1",
+ "tarih": "2026-10-03",
+ "aciklama": "Halk dili sözlüğü: hayvan sahiplerinin belirtileri tıbbi terim yerine günlük dille anlatma biçimleri. belirti_kokleri -> bilgi/kokler.py (guardrail ve bulgu rozetleri), ml_ifadeleri -> nlp_engine.py (TF-IDF tokenizer), hastalik_ipuclari -> anlam_katmani.py (Gemini anlam çözümleme istemi). Sentetik/derlenmiş içeriktir; veteriner hekim onayından geçmemiştir (bkz. data/UYARI_OKUYUN.txt).",
+ "yeni_kodlar": {
+  "KALP_CARPINTI": "Kalp çarpıntısı",
+  "NEZLE": "Nezle / soğuk algınlığı"
+ },
+ "belirti_kokleri": {
+  "KUSMA": [
+   "istifra",
+   "midesi bulan",
+   "midesini boşalt",
+   "geri çıkarıyor",
+   "geri çıkardı",
+   "kusacak gibi",
+   "sarı su çıkar",
+   "sarı köpük",
+   "köpüklü bir şey çıkar",
+   "yediklerini çıkar",
+   "yediğini geri",
+   "mamasını geri çıkar"
+  ],
+  "OKSURUK": [
+   "kah kuh",
+   "kah kah",
+   "kuh kuh",
+   "öhö",
+   "öhü",
+   "ıhı ıhı",
+   "hık hık",
+   "gık gık",
+   "kesik kesik ses",
+   "boğazını temizl",
+   "boğazına bir şey kaçmış gibi",
+   "boğazına bir şey takılmış gibi",
+   "boğazında bir şey varmış gibi",
+   "kuru kuru ses",
+   "öksürük krizi",
+   "boğazı gıcık"
+  ],
+  "HIRILTI": [
+   "fokur fokur",
+   "göğsünden ses",
+   "göğsü ses",
+   "nefesinden ses",
+   "nefes alırken ses",
+   "vızıl",
+   "cızırtı",
+   "horul horul nefes",
+   "göğsü hışır",
+   "göğsü hırıl"
+  ],
+  "NEFES_DARLIGI": [
+   "boğulur gibi",
+   "boğuluyor",
+   "nefesi daral",
+   "nefesi kesil",
+   "soluğu kesil",
+   "nefesi yetm",
+   "göğsü inip kalk",
+   "kaburgaları inip kalk",
+   "burun kanatları",
+   "havayı yutmaya",
+   "nefes alırken zorlan",
+   "nefessiz"
+  ],
+  "HAPSIRMA": [
+   "aksır",
+   "hapşu"
+  ],
+  "BURUN_AKINTISI": [
+   "sümkür",
+   "burnundan su gel",
+   "burnu ıslak ıslak",
+   "burnu kapalı",
+   "burnunu çek",
+   "burnu sulu",
+   "burnundan sıvı"
+  ],
+  "ISHAL": [
+   "sulu sulu",
+   "su gibi kaka",
+   "kakası su gibi",
+   "kakası yumuşa",
+   "lapa gibi",
+   "kakası bozuk",
+   "midesi bozul",
+   "midesi bozuk",
+   "bağırsakları bozul",
+   "tuvaleti bozuk",
+   "kakası şekilsiz",
+   "pisliği sulu",
+   "dışkısı yumuşa",
+   "fışkırır gibi",
+   "yetiştiremiyor"
+  ],
+  "KANLI_ISHAL": [
+   "kakası kırmızı",
+   "kakasında kırmızı",
+   "pisliğinde kan",
+   "kakasında kan pıhtı",
+   "kanlı sulu",
+   "dışkısı kırmızı"
+  ],
+  "ISTAHSIZLIK": [
+   "ağzına bir şey koymuyor",
+   "yemekten kesil",
+   "yemeden kesil",
+   "yemeden içmeden",
+   "mamaya dokunm",
+   "mamasına dokunm",
+   "mamayı koklayıp",
+   "yemekle arası",
+   "boğazından bir şey geçm",
+   "ağzını sürm",
+   "mama kabı dolu",
+   "kabı olduğu gibi",
+   "mamasını bıraktı",
+   "yemeğini bıraktı",
+   "yemeğe isteksiz",
+   "yemek istemiyor",
+   "mama istemiyor",
+   "hiçbir şey yemek istem"
+  ],
+  "SU_ICMEME": [
+   "suya dokunm",
+   "su kabına yanaşm",
+   "suyu içmiyor"
+  ],
+  "COK_SU_ICME": [
+   "suyu bitir",
+   "su kabını bitir",
+   "su kabı hemen bit",
+   "devamlı su",
+   "suya saldır",
+   "susuzluğu geçm",
+   "hep susamış",
+   "sürekli susamış",
+   "musluktan su",
+   "su kabını boşalt"
+  ],
+  "COK_ISEME": [
+   "durmadan çiş",
+   "sürekli çişe",
+   "çişi çok",
+   "su gibi işiyor",
+   "kum hemen ıslan",
+   "sık sık çiş",
+   "boyuna çiş",
+   "çişe çıkmak ist",
+   "kumu çok ıslak"
+  ],
+  "IDRAR_YAPAMAMA": [
+   "idrarını yapam",
+   "çişini yapam",
+   "çişi tıkan",
+   "idrarı tıkan",
+   "damla gelmiyor",
+   "idrarı kesil",
+   "çişi kesil",
+   "işeyem",
+   "çiş yapamad",
+   "idrar yapamad"
+  ],
+  "ZOR_ISEME": [
+   "çiş yaparken ağl",
+   "çiş yaparken zorlan",
+   "çişini zor",
+   "sancıyla iş",
+   "kıvranarak iş",
+   "ıkına ıkına",
+   "çiş yaparken inl",
+   "çiş yaparken bağır"
+  ],
+  "KANLI_IDRAR": [
+   "çişi kırmızı",
+   "kırmızı çiş",
+   "kumu kırmızı",
+   "çişi kan",
+   "idrarı pembe",
+   "çişinde kırmızı",
+   "pembe çiş"
+  ],
+  "HALSIZLIK": [
+   "miskin",
+   "ölü gibi",
+   "cansız",
+   "keyfi yok",
+   "neşesi kaçtı",
+   "neşesiz",
+   "sönük",
+   " uyukl",
+   "yerinden kalkm",
+   "kuyruğunu sallam",
+   "kendini bıraktı",
+   "bitap",
+   "yorgun argın",
+   "pısırık",
+   "halsizleşti",
+   "hiç oynamıyor"
+  ],
+  "ATES": [
+   "alev gibi",
+   "alev alev",
+   "kor gibi",
+   "her yeri yanıyor",
+   "vücudu yanıyor",
+   "ateşler içinde",
+   "kulakları yanıyor",
+   "burnu kuru ve sıcak",
+   "fırın gibi"
+  ],
+  "TITREME": [
+   "zangır",
+   "tir tir",
+   "ürper",
+   "tirtir"
+  ],
+  "AGRI": [
+   "sızlan",
+   "dokundurtm",
+   "dokunduğumda bağır",
+   "dokununca bağır",
+   "dokununca ağl",
+   "canı acı",
+   "kıvran",
+   "sancı",
+   "inim inim",
+   "ağrısı var",
+   "ağrıdan"
+  ],
+  "KARIN_AGRISI": [
+   "kıvran",
+   "karnına dokundurtm",
+   "karnını yere bastır",
+   "dua eder gibi",
+   "secde",
+   "karnına bastırınca",
+   "karnı sancı",
+   "karın sancı",
+   "karnı acı"
+  ],
+  "DENGE": [
+   "sallana sallana",
+   "düşe kalka",
+   "bocal",
+   "kendi etrafında dön",
+   "etrafında dönüp",
+   "fırıldak gibi",
+   "sarhoş",
+   "zigzag",
+   "ayakta zor dur",
+   "devrilip duruyor"
+  ],
+  "BAYILMA": [
+   "olduğu yere çök",
+   "çöktü kaldı",
+   "yere yığıl",
+   "bayılıp"
+  ],
+  "BILINC": [
+   "tepkisiz",
+   "baygın",
+   "uyandıram",
+   "kendine gelmiyor",
+   "bilinci bulanık"
+  ],
+  "TOPALLIK": [
+   "seke seke",
+   "ayağını yere değdirm",
+   "ayağını yere koym",
+   "bacağını yere koym",
+   "üç ayakla",
+   "üç ayağı",
+   "patisini kaldır",
+   "patisine bas",
+   "ayağını kaldırıp",
+   "aksak",
+   "yürüyüşü bozul",
+   "kötü basıyor",
+   "ayağına basam",
+   "ayağını sürü",
+   "bacağını sürü",
+   "ayağını çekiyor",
+   "aksayarak"
+  ],
+  "ZOR_KALKMA": [
+   "kalkarken ağl",
+   "zorla kalk",
+   "yattığı yerden zor",
+   "yatağa çıkam",
+   "arabaya binem",
+   "araca binem",
+   "kalkarken inl",
+   "kanepeye çıkam",
+   "koltuğa çıkam",
+   "zor doğrul",
+   "ağır ağır kalk"
+  ],
+  "KASINMA": [
+   "kendini kemir",
+   "kemiriyor kendini",
+   "kendini yiyor",
+   "derisini yiyor",
+   "kendini tırmal",
+   "kendini yoluyor",
+   "tüylerini yol",
+   "sürtünüyor",
+   "duvara sürtün",
+   "halıya sürtün",
+   "durmadan yalan",
+   "kendini parçal"
+  ],
+  "TUY_DOKULMESI": [
+   "tüy bırak",
+   "tutam tutam",
+   "yer yer açıl",
+   "derisi göründü",
+   "derisi görünü",
+   "kıl dökü",
+   "tüyleri seyrek",
+   "tüyleri yolun",
+   "çıplak kaldı",
+   "yamalı",
+   "tüyü dökül",
+   "her yer tüy"
+  ],
+  "KIZARIKLIK_DERI": [
+   "pembe pembe",
+   "kırmızı kırmızı",
+   "isilik",
+   " pişik",
+   "kurdeşen",
+   "kabarık kabarık",
+   "döküntü",
+   "derisi pembe"
+  ],
+  "YUZ_SIS": [
+   "yüzü balon",
+   "gözleri şişti kapandı",
+   "ağzı burnu şiş",
+   "yüzü davul",
+   "yüzü kabardı",
+   "suratı balon",
+   "dudakları kalınlaştı",
+   "gözleri şişip kapan"
+  ],
+  "KITLE": [
+   "et beni",
+   "siğil",
+   "boncuk gibi şiş",
+   "et parçası",
+   "nohut gibi",
+   "mercimek gibi",
+   "ben büyüdü",
+   "bezelye gibi"
+  ],
+  "APSE": [
+   "çıban",
+   "irinlendi",
+   "iltihap topla",
+   "şişip patla",
+   "akıntılı şiş"
+  ],
+  "ISIRIK_YARASI": [
+   "dalaş",
+   "boğuş",
+   "dövüş",
+   "pençe yedi",
+   "tırmalan",
+   "kapıştı",
+   "kavgaya tutuş"
+  ],
+  "KULAK_KASINMA": [
+   "kulağını sürt",
+   "kulağını pençele",
+   "kulağını tırmal",
+   "kulağını halıya",
+   "kafasını silk",
+   "başını silk",
+   "kulaklarını yere"
+  ],
+  "KULAK_AKINTI": [
+   "kulağından irin",
+   "kulağı ıslak",
+   "kulağından sıvı",
+   "kulağı leş",
+   "kulağı pis kok",
+   "kulağında kahverengi"
+  ],
+  "GOZ_AKINTISI": [
+   "gözü yaşar",
+   "gözleri yaşar",
+   "gözü sulu",
+   "gözleri sulu",
+   "gözü cıvık",
+   "gözünde iltihap",
+   "göz iltihab",
+   "gözünde mikrop",
+   "gözü yapış",
+   "gözleri yapış"
+  ],
+  "GOZ_KISMA": [
+   "gözünü kırpıştır",
+   "göz kırpıyor",
+   "sürekli göz kırp",
+   "gözünü sıkıyor",
+   "gözünü yum"
+  ],
+  "GOZ_BULANIK": [
+   "perde indi",
+   "gözüne perde",
+   "gözü süt gibi",
+   "süt beyazı",
+   "gözü matlaş",
+   "gözü donuk",
+   "gözü sisli",
+   "gözü puslu"
+  ],
+  "SALYA": [
+   "ağzından su ak",
+   "salyası sün",
+   "ağzından ip gibi",
+   "tükürük",
+   "ağzı köpür",
+   "köpürüyor",
+   "salyaları",
+   "ağzı sulu"
+  ],
+  "AGIZ_KOKUSU": [
+   "ağzı lağım",
+   "ağzından pis koku",
+   "ağzı berbat",
+   "nefesi leş",
+   "ağzı pis kok",
+   "ağzından koku"
+  ],
+  "DIS_ETI": [
+   "dişleri çürü",
+   "dişi çürü",
+   "diş çürü",
+   "dişleri karar",
+   "dişlerinde kahverengi",
+   "dişlerinde sarı",
+   "dişeti kanı",
+   "diş etleri kanı",
+   "dişi kırıl",
+   "dişleri dökül"
+  ],
+  "YEME_ZORLUGU": [
+   "ağzından düşüyor",
+   "lokmayı düşür",
+   "maması ağzından",
+   "yerken başını yana",
+   "tek tarafla çiğn",
+   "çiğnemekte zorlan",
+   "yemeği ağzında tut"
+  ],
+  "KILO_KAYBI": [
+   " eriyor",
+   "eriyip gid",
+   "kemikleri sayıl",
+   "kaburgaları sayıl",
+   "kaburgaları çık",
+   "kaburgaları görün",
+   "omurgası çık",
+   "omurgası görün",
+   "sıska",
+   "çöp gibi kaldı",
+   "deri kemik",
+   "kalça kemikleri çık"
+  ],
+  "KARIN_SIS": [
+   "karnı top gibi",
+   "karnı kocaman",
+   "karnı gerildi",
+   "midesi şiş",
+   "karnı kabar",
+   "göbeği kabar",
+   "karnı bombe",
+   "karnı şişkin"
+  ],
+  "YABANCI_CISIM": [
+   "kılçık",
+   "şiş çubuğu",
+   "kürdan",
+   "lastik yuttu",
+   "ip yemiş",
+   "çorap yedi",
+   "oyuncak yuttu",
+   "kemik kaçtı",
+   "tavuk kemiği",
+   "pil yut",
+   "bozuk para"
+  ],
+  "ZEHIR_TEMAS": [
+   "böcek ilacı",
+   "haşere ilacı",
+   "tarım ilacı",
+   "gübre",
+   "kimyasal",
+   "sarımsak",
+   "avokado",
+   "alkol içti",
+   "bira içti",
+   "ilaç içti",
+   "zehirli bitki",
+   "mantar yedi",
+   "kafein",
+   "izmarit",
+   "uyuşturucu",
+   "esrar",
+   "salyangoz ilacı",
+   "kireç çözücü",
+   "mayalı hamur"
+  ],
+  "SICAK_TEMAS": [
+   "güneşte kaldı",
+   "güneş altında",
+   "gölgesiz",
+   "sıcak arabada",
+   "sıcakta kaldı",
+   "boğucu sıcak",
+   "kavurucu",
+   "sıcağa dayanam",
+   "sıcaktan bunal",
+   "sıcaklarda",
+   "yaz sıcağı",
+   "hararet"
+  ],
+  "TRAVMA": [
+   "kaza geçir",
+   "çarpıştı",
+   "araba ezdi",
+   "tekme",
+   "darbe",
+   "dövdü",
+   "sopa",
+   "taş attı",
+   "taşla",
+   "vuruldu",
+   "yaralandı",
+   "kafasını çarp",
+   "başını çarp",
+   "kafasını vurdu"
+  ],
+  "DOGUM_UZUN": [
+   "sancısı var ama",
+   "sancıları var ama",
+   "doğum yapamıyor",
+   "yavruyu çıkaram",
+   "yavru takıldı",
+   "yavrusu takıldı",
+   "suyu geldi ama",
+   "suyu geldi yavru"
+  ],
+  "AKINTI_VAJINAL": [
+   "çiş yerinden akıntı",
+   "kuyruk altından akıntı",
+   "pis kokulu akıntı",
+   "kanlı akıntı"
+  ],
+  "GENITAL_YALAMA": [
+   "altını yal",
+   "çiş yerini yal",
+   "popo altını yal",
+   "kuyruk altını yal"
+  ],
+  "POPO_SURTME": [
+   "kızak",
+   "kıçını",
+   "arkasını yere sürt",
+   "halıda sürün",
+   "yerde sürün",
+   "arkasını sürt"
+  ],
+  "SESLENME": [
+   "ağlar gibi miyavl",
+   "acı acı miyavl",
+   "durmadan miyavl",
+   "gece boyu miyavl",
+   "ağlıyor gibi ses",
+   "inleyerek"
+  ],
+  "HUZURSUZ": [
+   "oturamıyor",
+   "rahat değil",
+   "tedirgin",
+   "kıpır kıpır",
+   "bir oturup bir kalk",
+   "dört dönüyor",
+   "yer beğenmiyor"
+  ],
+  "DAVRANIS_DEGISIM": [
+   "ısırmaya kalk",
+   "tuhaflaştı",
+   "garip davran",
+   "garipleşti",
+   "agresif",
+   "hırçın",
+   "sevdirmiyor",
+   "huysuzlan"
+  ],
+  "DEHIDRASYON": [
+   "derisi geri gitm",
+   "derisini çekince",
+   "derisini çektiğimde",
+   "gözleri içeri kaç",
+   "gözleri çöktü",
+   "ağzı yapış",
+   "dişetleri yapış",
+   "dili kuru",
+   "susuz kaldı"
+  ],
+  "SOLUK_DISETI": [
+   "kağıt gibi beyaz",
+   "dişetleri beyazla",
+   "dili beyaz",
+   "dişetleri sold",
+   "kansız",
+   "dişetleri pembe değil"
+  ],
+  "SARILIK": [
+   "gözlerinin akı sarı",
+   "gözünün akı sarı",
+   "kulaklarının içi sarı",
+   "sapsarı",
+   "derisi sarı",
+   "limon gibi"
+  ],
+  "LENF": [
+   "gudde",
+   "boynunda bezeler",
+   "boynunda şişlikler",
+   "bezeleri büyü"
+  ],
+  "FELC": [
+   "arkası tutmuyor",
+   "bacakları kesildi",
+   "arka bacaklarını kullanam",
+   "arka tarafını sürü"
+  ],
+  "ARKA_BACAK_GUCSUZ": [
+   "arka ayakları titr",
+   "arkası sallan",
+   "kalçası sallan",
+   "arka tarafı yalpal",
+   "arka bacakları çök"
+  ],
+  "SIRT_AGRISI": [
+   "belini bük",
+   "sırtını kambur",
+   "boynunu çeviremiyor",
+   "başını kaldıram",
+   "başını yukarı kaldır",
+   "boynu ağrı",
+   "boynunu eğip"
+  ],
+  "EKLEM_SIS": [
+   "eklemi şiş",
+   "bileği şiş",
+   "dizi büyü",
+   "dizinde şişlik"
+  ],
+  "ISTAH_ARTISI": [
+   "obur",
+   "sürekli yemek ist",
+   "aç kurt gibi",
+   "her şeye saldır",
+   "durmadan yiyor",
+   "tabağını yalayıp",
+   "sürekli acık"
+  ],
+  "KILO_ALMA": [
+   "tombullaş",
+   "topa döndü",
+   "şişmanlıyor",
+   "kilolandı"
+  ],
+  "GOBEK_SARKIK": [
+   "göbek yaptı",
+   "fıçı gibi",
+   "karnı sarktı"
+  ],
+  "SOLUK_HIZLI_PANTING": [
+   "dilini sarkıt",
+   "dili sarkık",
+   "dili sarkmış",
+   "hah hah",
+   "dili dışarda",
+   "hızlı hızlı soluk"
+  ],
+  "HOT_SPOT": [
+   "akan yara",
+   "sulanan yara",
+   "kokulu yara",
+   "ıslak ıslak",
+   "yara gibi ıslak"
+  ],
+  "KEPEK": [
+   "pul pul",
+   "kepeklen"
+  ],
+  "KALIN_DERI": [
+   "derisi kalınlaş",
+   "fil derisi",
+   "derisi sertleş"
+  ],
+  "SIVILCE_DERI": [
+   "irin kesesi",
+   "kabarcıklı"
+  ],
+  "PIRE_GORUNTU": [
+   "pireli",
+   "pirelen",
+   "küçük siyah böcek",
+   "zıplayan böcek",
+   "sıçrayan böcek"
+  ],
+  "KENE_GORUNTU": [
+   "kene yapış",
+   "üstünde kene",
+   "keneli"
+  ],
+  "KURT_GORUNTU": [
+   "kakasında kurt",
+   "dışkısında kurt",
+   "makatında kurt",
+   "kıpırdayan beyaz",
+   "pirinç gibi beyaz",
+   "erişte gibi",
+   "şerit gibi"
+  ],
+  "YUTMA_ZOR": [
+   "boğazından geçm",
+   "yutmakta güçlük"
+  ],
+  "GAZ": [
+   "osur",
+   "yel çıkar",
+   "kokulu gaz",
+   "karnından ses"
+  ],
+  "KABIZLIK": [
+   "kakasını yapam",
+   "tuvaletini yapam",
+   "pislik yapam",
+   "pisliğini yapam",
+   "keçi kakası",
+   "kakası kuru",
+   "kakasını yapmıyor",
+   "kaka yapmayalı"
+  ],
+  "IKINMA_KUM": [
+   "kum kabında oturup",
+   "kumda oturuyor",
+   "kumda bekl",
+   "kuma gidip gel",
+   "kum kabına gidip gel",
+   "kumda zorlan",
+   "kumda ıkın"
+  ],
+  "TUVALET_DISI": [
+   "halıya çiş",
+   "yatağa çiş",
+   "kanepeye çiş",
+   "lavaboya çiş",
+   "kumdan başka yere"
+  ],
+  "IDRAR_KACIRMA": [
+   "yatağını ıslat",
+   "damlatıyor",
+   "uyurken çiş",
+   "çişini damlat"
+  ],
+  "EGZERSIZ_INTOLERANS": [
+   "biraz koşunca",
+   "yürüyüşte duruyor",
+   "oyun oynayınca yorul",
+   "eskisi gibi koşam",
+   "kısa yürüyüşte",
+   "parkta hemen otur",
+   "yürümek istemiyor"
+  ],
+  "SES_KISIKLIK": [
+   "havlaması değişti",
+   "havlayam",
+   "sesi boğuk",
+   "sesi kesildi",
+   "miyavlayam",
+   "sesi çatallaştı"
+  ],
+  "DIL_MOR": [
+   "dili lacivert",
+   "dudakları mor",
+   "morarmış"
+  ],
+  "DERI_KANAMA_NOKTA": [
+   "çürük gibi leke",
+   "mor leke",
+   "mor noktalar",
+   "kırmızı benek",
+   "morarmalar"
+  ],
+  "OKSURUK_KAZ": [
+   "ördek gibi",
+   "kaz gibi ötüyor",
+   "kornaya benzer",
+   "korna gibi"
+  ],
+  "OKSURUK_ATAK": [
+   "yere yatıp öksür",
+   "çömelip öksür",
+   "boynunu uzatarak"
+  ],
+  "SAKLANMA": [
+   "ortadan kayboldu",
+   "gizlen",
+   "koltuğun altından çıkm",
+   "yatağın altından çıkm"
+  ],
+  "GOZ_TITREME": [
+   "gözleri oynuyor",
+   "fıldır fıldır",
+   "gözbebekleri oynuyor"
+  ],
+  "BAS_EGIK": [
+   "kafası yamuk",
+   "başı yamuk",
+   "boynu eğri",
+   "başını yana yatır",
+   "başı eğri"
+  ],
+  "GECE_DOLANMA": [
+   "gece gezin",
+   "gece boyu dolaş",
+   "evde kayboluyor",
+   "yolunu kaybed",
+   "kapının yanlış tarafında"
+  ],
+  "TUVALET_UNUTMA": [
+   "tuvalet eğitimini unut",
+   "evin içine kaka",
+   "içeriye kaka"
+  ],
+  "KOLTUK_ALTI_KIZARIK": [
+   "koltuk altları kızar",
+   "kasıkları kızar",
+   "bacak arası kızar"
+  ],
+  "PATI_YALAMA": [
+   "patilerini kemir",
+   "ayaklarını kemir",
+   "parmak aralarını yal",
+   "patileri kızar"
+  ],
+  "HIPERAKTIF": [
+   "deli dolu",
+   "durmadan koşturuyor",
+   "aşırı hareketli"
+  ],
+  "ATES_DIRENCLI": [
+   "ateşi inmiyor",
+   "ateşi hiç düşmüyor"
+  ],
+  "KALP_CARPINTI": [
+   "kalbi hızlı",
+   "kalbi küt küt",
+   "kalp atışı hızl",
+   "kalbi çok hızlı",
+   "kalbi güm güm",
+   "kalbi pır pır",
+   "kalp atışları düzensiz",
+   "çarpıntı"
+  ],
+  "NEZLE": [
+   "nezle",
+   "soğuk algınlığı",
+   "grip oldu",
+   "gribe yakalan"
+  ]
+ },
+ "ml_ifadeleri": {
+  "kah kuh": "oksuruk",
+  "kah kah": "oksuruk",
+  "kuh kuh": "oksuruk",
+  "oho oho": "oksuruk",
+  "ohu ohu": "oksuruk",
+  "hik hik": "oksuruk",
+  "gik gik": "oksuruk",
+  "ihi ihi": "oksuruk",
+  "bogazini temizler gibi": "oksuruk",
+  "bogazina bir sey kacmis gibi": "oksuruk",
+  "bogazina bir sey takilmis gibi": "oksuruk",
+  "bogazinda bir sey varmis gibi": "oksuruk",
+  "hiril hiril": "hirilti",
+  "fokur fokur": "hirilti",
+  "gogsunden ses": "hirilti",
+  "nefesi daraliyor": "nefes_darligi",
+  "nefesi daraldi": "nefes_darligi",
+  "bogulur gibi": "nefes_darligi",
+  "nefesi kesiliyor": "nefes_darligi",
+  "nefesi yetmiyor": "nefes_darligi",
+  "burnundan su geliyor": "burun_akintisi",
+  "sumkuruyor": "burun_akintisi",
+  "burnu tikali": "burun_akintisi",
+  "burnu tikandi": "burun_akintisi",
+  "aksiriyor": "hapsirma",
+  "aksirdi": "hapsirma",
+  "aksirik": "hapsirma",
+  "sulu sulu": "ishal",
+  "su gibi kaka": "ishal",
+  "kakasi su gibi": "ishal",
+  "kakasi yumusak": "ishal",
+  "kakasi bozuk": "ishal",
+  "midesi bozuk": "ishal",
+  "midesi bozuldu": "ishal",
+  "kakasi sekilsiz": "ishal",
+  "lapa gibi": "ishal",
+  "kakasi kirmizi": "kanli_ishal",
+  "kakasinda kirmizi": "kanli_ishal",
+  "pisliginde kan": "kanli_ishal",
+  "agzina bir sey koymuyor": "istahsizlik",
+  "yemekten kesildi": "istahsizlik",
+  "yemeden kesildi": "istahsizlik",
+  "yemeden icmeden kesildi": "istahsizlik",
+  "mamaya dokunmuyor": "istahsizlik",
+  "mamasina dokunmuyor": "istahsizlik",
+  "agzini surmuyor": "istahsizlik",
+  "yemek istemiyor": "istahsizlik",
+  "mama istemiyor": "istahsizlik",
+  "midesi bulaniyor": "kusma",
+  "geri cikariyor": "kusma",
+  "geri cikardi": "kusma",
+  "kusacak gibi": "kusma",
+  "kivraniyor": "karin_agrisi",
+  "dua eder gibi": "karnini yere degdirip kalcasini havaya kaldiriyor",
+  "karni top gibi": "karin_sisligi",
+  "karni kocaman": "karin_sisligi",
+  "karni gerildi": "karin_sisligi",
+  "kizak cekiyor": "poposunu yere surtuyor",
+  "kicini yere surtuyor": "poposunu yere surtuyor",
+  "idrarini yapamiyor": "idrar_tikanikligi",
+  "cisini yapamiyor": "idrar_tikanikligi",
+  "idrarini yapamadi": "idrar_tikanikligi",
+  "cisini yapamadi": "idrar_tikanikligi",
+  "cisi gelmiyor": "idrar_tikanikligi",
+  "cis gelmiyor": "idrar_tikanikligi",
+  "cisi tikandi": "idrar_tikanikligi",
+  "idrari tikandi": "idrar_tikanikligi",
+  "cisi kirmizi": "kanli_idrar",
+  "kirmizi cis": "kanli_idrar",
+  "cisinde kan": "kanli_idrar",
+  "pembe cis": "kanli_idrar",
+  "su kabini bitiriyor": "asiri_susama",
+  "suyu bitiriyor": "asiri_susama",
+  "devamli su iciyor": "asiri_susama",
+  "hep susamis": "asiri_susama",
+  "ates gibi yaniyor": "ates",
+  "alev alev": "ates",
+  "alev gibi": "ates",
+  "her yeri yaniyor": "ates",
+  "vucudu yaniyor": "ates",
+  "kulaklari yaniyor": "ates",
+  "zangir zangir": "titreme",
+  "tir tir": "titreme",
+  "sallana sallana": "denge_kaybi",
+  "duse kalka": "denge_kaybi",
+  "kendi etrafinda donuyor": "denge_kaybi",
+  "seke seke": "topallama",
+  "uc ayakla": "topallama",
+  "ayagini yere basmiyor": "topallama",
+  "ayagini yere koymuyor": "topallama",
+  "bacagini yere koymuyor": "topallama",
+  "patisine basmiyor": "topallama",
+  "kemikleri sayiliyor": "kilo_kaybi",
+  "kaburgalari sayiliyor": "kilo_kaybi",
+  "kaburgalari cikti": "kilo_kaybi",
+  "bir deri bir kemik": "kilo_kaybi",
+  "deri kemik": "kilo_kaybi",
+  "eriyip gidiyor": "kilo_kaybi",
+  "kafasini silkiyor": "kulak_iltihabi",
+  "basini silkiyor": "kulak_iltihabi",
+  "agzi lagim gibi": "agiz_kokusu",
+  "agzi les gibi": "agiz_kokusu",
+  "agzindan pis koku": "agiz_kokusu",
+  "disleri curuk": "dis_eti_iltihabi",
+  "disleri curumus": "dis_eti_iltihabi",
+  "kendini yiyor": "kasinti",
+  "kendini kemiriyor": "kasinti",
+  "derisini yiyor": "kasinti",
+  "tutam tutam": "tuy_dokulmesi",
+  "tuy birakiyor": "tuy_dokulmesi",
+  "gozu capakli": "goz_akintisi",
+  "gozleri capakli": "goz_akintisi",
+  "dili sarkmis": "dili disarida",
+  "dilini sarkitmis": "dili disarida",
+  "dili sarkik": "dili disarida"
+ },
+ "hastalik_ipuclari": {
+  "akut_gastroenterit": [
+   "midesi bozuldu",
+   "hem kusuyor hem sulu sulu yapıyor",
+   "çöpü karıştırdı / sofradan yedi",
+   "mama değişince başladı",
+   "karnı guruldiyor"
+  ],
+  "yabanci_cisim": [
+   "oyuncağını / çorabını yuttu",
+   "ne yese geri çıkarıyor",
+   "kakasını yapamıyor, karnı ağrıyor",
+   "ipin ucu ağzından sarkıyor",
+   "kemik kaçtı"
+  ],
+  "pankreatit": [
+   "yağlı şey yedi (kavurma, kurban eti)",
+   "dua eder gibi duruyor (ön tarafı yerde, popo havada)",
+   "kusuyor, karnına dokundurtmuyor",
+   "kilolu, bayram sonrası başladı"
+  ],
+  "bagirsak_parazitleri": [
+   "kakasında pirinç tanesi / erişte gibi kurtlar",
+   "yavrunun karnı davul gibi",
+   "kızak çekiyor (poposunu yerde sürtüyor)",
+   "iç parazit ilacı yapılmadı",
+   "yiyor ama gelişmiyor"
+  ],
+  "kronik_enteropati": [
+   "aylardır kakası düzelmiyor",
+   "ara ara kusuyor, kilo veriyor",
+   "mama değiştirdik geçmedi",
+   "kakası sümüklü / jöle gibi"
+  ],
+  "kabizlik_megakolon": [
+   "günlerdir kakasını yapamıyor",
+   "kumda ıkınıp duruyor ama bir şey çıkmıyor",
+   "keçi kakası gibi sert, kuru",
+   "kakası taş gibi"
+  ],
+  "zehirlenme": [
+   "çikolata / üzüm / soğan yedi",
+   "ilacımı ya da fare zehrini yemiş",
+   "çamaşır suyu, böcek ilacı yaladı",
+   "birden titreme, salya, kusma başladı",
+   "zambak yaprağı kemirdi (kedi)"
+  ],
+  "sicak_carpmasi": [
+   "sıcak çarptı / güneş çarptı / güneş geçti",
+   "kapalı arabada kaldı",
+   "öğle sıcağında yürüyüş, dili sarkmış hızlı hızlı soluyor",
+   "sıcaktan yığıldı, sarhoş gibi yürüyor",
+   "hararet bastı, ateş gibi yanıyor"
+  ],
+  "kronik_bobrek": [
+   "su kabını bitiriyor, sürekli çiş",
+   "yaşlı, zayıflıyor, ağzı amonyak gibi kokuyor",
+   "kumu çok ıslak",
+   "iştahı azaldı, ara ara kusuyor"
+  ],
+  "diyabet": [
+   "çok su içip çok işiyor",
+   "çok yiyor ama zayıflıyor",
+   "topuklarına basarak yürüyor (kedi)",
+   "kilolu, şeker hastası olabilir mi"
+  ],
+  "otitis_eksterna": [
+   "kafasını silkip duruyor",
+   "kulağı leş gibi / maya gibi kokuyor",
+   "kulağına dokundurtmuyor",
+   "kulağını halıya sürtüyor"
+  ],
+  "kulak_uyuzu": [
+   "kulağında kahve telvesi gibi siyah kir",
+   "kulaklarını kanatırcasına kaşıyor",
+   "yavru / yeni sahiplendik, evdekiler de kaşınıyor"
+  ],
+  "pire": [
+   "üstünde zıplayan küçük siyah böcekler",
+   "kuyruk dibinde siyah kum gibi noktalar",
+   "kuyruk dibini kemiriyor",
+   "pire ilacı yapılmadı"
+  ],
+  "uyuz": [
+   "delicesine kaşınıyor, kendini yiyor",
+   "kulak kenarları, dirsekleri kabuk bağladı",
+   "derisi kalınlaştı, fil derisi gibi",
+   "evdekiler de kaşınıyor"
+  ],
+  "dermatofitoz": [
+   "para büyüklüğünde yuvarlak kel lekeler",
+   "pul pul, kepekli yuvarlak alanlar",
+   "yavru kedi, ailede de kaşıntılı halka var"
+  ],
+  "atopik_alerjik_dermatit": [
+   "patilerini durmadan yalıyor, arası kızarık",
+   "koltuk altı, kasıkları pembe pembe",
+   "her yıl baharda başlıyor",
+   "kulakları da kaşınıyor"
+  ],
+  "dis_hastaligi": [
+   "ağzı lağım gibi kokuyor",
+   "dişleri kahverengi, taş bağlamış",
+   "maması ağzından düşüyor, tek taraftan çiğniyor",
+   "dişeti kanıyor"
+  ],
+  "konjunktivit": [
+   "gözü çapaklı, yapış yapış",
+   "gözünün içi kıpkırmızı",
+   "gözü yaşarıyor / ağlıyor gibi",
+   "gözünü kısıyor"
+  ],
+  "kornea_ulseri": [
+   "gözünü hiç açamıyor, kırpıştırıyor",
+   "gözünde beyaz / mavi bir leke",
+   "kavgada gözü yaralandı",
+   "gözünü patisiyle ovuşturuyor"
+  ],
+  "epilepsi": [
+   "kasılıp çırpındı, ağzından köpük geldi",
+   "kriz geçirdi, sonra şaşkın dolaştı",
+   "bacaklarını pedal çevirir gibi oynattı",
+   "altına kaçırdı, kendinden geçti"
+  ],
+  "osteoartrit": [
+   "yaşlı, sabahları kalkarken zorlanıyor",
+   "merdiven çıkamıyor, koltuğa atlayamıyor",
+   "yürüyüşleri kısalttı",
+   "soğukta daha çok aksıyor"
+  ],
+  "kitle_meme_tumoru": [
+   "memesinde nohut gibi sertlik",
+   "derisinin altında büyüyen yumru",
+   "et beni gibi bir şey çıktı",
+   "kısırlaştırılmamış yaşlı dişi"
+  ],
+  "travma": [
+   "araba / motosiklet çarptı",
+   "balkondan / yüksekten düştü",
+   "büyük bir köpek ısırdı",
+   "kapıya sıkıştı",
+   "elektrik çarptı"
+  ],
+  "akut_alerjik_reaksiyon": [
+   "arı soktu, yüzü balon gibi şişti",
+   "gözleri, dudakları şişti",
+   "her yeri kabarık kabarık (kurdeşen)",
+   "aşıdan / yeni ilaçtan sonra"
+  ],
+  "piyometra": [
+   "kızgınlıktan birkaç hafta sonra başladı",
+   "arkasından pis kokulu akıntı",
+   "çok su içiyor, halsiz, karnı büyüyor",
+   "kısırlaştırılmamış dişi"
+  ],
+  "distosi": [
+   "doğum sancısı var ama yavru çıkmıyor",
+   "yavru yarısına kadar gelip takıldı",
+   "saatlerdir ıkınıyor",
+   "suyu geldi ama yavru yok"
+  ],
+  "apse": [
+   "kavgadan sonra sıcak, yumuşak şişlik",
+   "şişlik patladı, irin aktı",
+   "çıban gibi",
+   "ateşli ve halsiz"
+  ],
+  "parvovirus": [
+   "aşısız yavru köpek",
+   "kanlı, çok kötü kokulu ishal",
+   "hem kusuyor hem kanlı yapıyor, hiç kalkmıyor",
+   "barınaktan / petshoptan yeni aldık"
+  ],
+  "distemper": [
+   "gözünden burnundan yeşil akıntı",
+   "aşısız yavru, öksürüyor, ateşli",
+   "sonra titreme, seğirme başladı",
+   "burnu / pati yastıkları sertleşti"
+  ],
+  "kulube_oksurugu": [
+   "kaz gibi / kah kuh öksürük, sonunda öğürüyor",
+   "boğazına bir şey kaçmış gibi öksürüyor",
+   "pansiyon / köpek parkı / kuaför sonrası",
+   "keyfi yerinde ama öksürüyor"
+  ],
+  "kene_hastaliklari": [
+   "üstünden kene çıkardık",
+   "ateşli, halsiz, dişetleri soluk",
+   "çişi koyu kahverengi / kırmızı",
+   "köye / kırsala götürdük"
+  ],
+  "leishmaniasis": [
+   "göz çevresi gözlük gibi tüysüz",
+   "tırnakları anormal uzadı",
+   "burnunda, kulak kenarında kabuk",
+   "Ege / Akdeniz'de yaşıyor, zayıflıyor"
+  ],
+  "gdv": [
+   "karnı davul gibi şişti",
+   "boş boş öğürüyor, bir şey çıkmıyor",
+   "yemekten sonra koşturdu",
+   "büyük ırk, huzursuz, salya akıtıyor"
+  ],
+  "kalca_displazisi": [
+   "tavşan gibi iki arka bacağıyla zıplıyor",
+   "kalçası sallanarak yürüyor",
+   "büyük ırk genç köpek, kalkarken zorlanıyor"
+  ],
+  "capraz_bag": [
+   "koşarken birden arka bacağını kaldırdı",
+   "dizi şişti, yere basmıyor",
+   "oynarken ani topallama"
+  ],
+  "ivdd": [
+   "sırtına dokununca bağırıyor, kamburlaştı",
+   "arka bacakları tutmuyor, sürünüyor",
+   "küçük ırk (Daksund), atladıktan sonra",
+   "başını kaldıramıyor"
+  ],
+  "patella_luksasyonu": [
+   "arada bir seke seke 3 adım yürüyor, sonra düzeliyor",
+   "arka bacağını havaya kaldırıp koşuyor",
+   "küçük ırk, diz kapağı kayıyor"
+  ],
+  "hipotiroidi": [
+   "kilo alıyor ama az yiyor",
+   "hep üşüyor, sıcak yer arıyor",
+   "iki yanında simetrik tüy dökülmesi, fare kuyruğu",
+   "uyuşuk, derisi koyulaştı"
+  ],
+  "cushing": [
+   "çok su içip çok işiyor, göbeği sarktı",
+   "hep acıkıyor",
+   "sıcak olmadığı hâlde soluyor",
+   "tüyleri inceldi, derisi incecik"
+  ],
+  "anal_kese": [
+   "kızak çekiyor (poposunu yerde sürtüyor)",
+   "kuyruk altını yalıyor, balık gibi kokuyor",
+   "kuyruğunun altında şişlik"
+  ],
+  "trakeal_kollaps": [
+   "kaz gibi / korna gibi öksürük",
+   "heyecanlanınca, tasma çekince öksürüyor",
+   "küçük ırk (Pomeranian, Yorkshire)"
+  ],
+  "kalp_yetmezligi": [
+   "geceleri öksürüyor",
+   "uyurken bile hızlı nefes alıyor",
+   "çabuk yoruluyor, yürüyüşte oturuyor",
+   "kalbi küt küt atıyor, bayıldı"
+  ],
+  "piyoderma_hot_spot": [
+   "bir gecede ıslak, kırmızı, kokulu yara açıldı",
+   "sivilce gibi irinli kabarcıklar",
+   "kabuk kabuk yaralar"
+  ],
+  "idrar_yolu_enf_kopek": [
+   "sık sık az az çiş yapıyor",
+   "çişi kanlı / pembe",
+   "çişi çok kötü kokuyor",
+   "evin içine kaçırıyor"
+  ],
+  "vestibuler_sendrom": [
+   "başı bir yana eğik",
+   "gözleri sağa sola fıldır fıldır",
+   "sarhoş gibi, kendi etrafında dönüyor",
+   "yaşlı köpek, inme geçirdi sandık"
+  ],
+  "bilissel_islev_bozuklugu": [
+   "gece dolaşıp uluyor",
+   "köşede sıkışıp kalıyor, kapının yanlış tarafında bekliyor",
+   "tuvalet eğitimini unuttu",
+   "bizi tanımıyor gibi"
+  ],
+  "panlokopeni": [
+   "aşısız yavru kedi",
+   "kusuyor, ishal, hiç kalkmıyor",
+   "su kabının başında oturuyor ama içmiyor",
+   "ateşli, çok halsiz"
+  ],
+  "kedi_nezlesi": [
+   "hapşırıp duruyor, burnu akıyor",
+   "gözleri çapaklı, sulanıyor",
+   "soğuk algınlığı / nezle gibi",
+   "burnu tıkalı olduğu için yemiyor"
+  ],
+  "fip": [
+   "karnı şişiyor ama kendisi eriyor",
+   "ateşi düşmüyor, antibiyotik işe yaramadı",
+   "genç kedi, barınaktan / çok kedili evden",
+   "gözlerinin akı sarardı"
+  ],
+  "felv_fiv": [
+   "sürekli hastalanıyor, bir iyileşip bir kötüleşiyor",
+   "dişetleri, ağzı yaralı",
+   "sokakta kavgacı erkek kedi",
+   "zayıflıyor, bezeleri şiş"
+  ],
+  "kedi_astimi": [
+   "boynunu uzatıp çömelerek öksürüyor",
+   "tüy yumağı çıkarır gibi yapıyor ama bir şey çıkmıyor",
+   "göğsü hırıl hırıl, ağzı açık soluyor"
+  ],
+  "hipertiroidi": [
+   "yaşlı kedi, çok yiyor ama eriyor",
+   "geceleri bağırıp dolaşıyor",
+   "kalbi küt küt atıyor",
+   "su içmesi arttı, kusuyor"
+  ],
+  "flutd": [
+   "kuma sık sık gidip az az yapıyor",
+   "çişinde kan, kumda pembe lekeler",
+   "kumdan başka yerlere, küvete çiş yapıyor",
+   "taşınma / stres sonrası"
+  ],
+  "uretral_tikaniklik": [
+   "erkek kedi, kuma girip çıkıyor ama çiş gelmiyor",
+   "çişini yapamıyor, ağlayarak ıkınıyor",
+   "karnına dokununca bağırıyor, kusuyor"
+  ],
+  "hcm_kedi": [
+   "uyurken bile hızlı nefes alıyor, ağzı açık soluyor",
+   "arka bacakları birden tuttu, patileri buz gibi",
+   "kalbi hızlı çarpıyor, bayıldı"
+  ]
+ }
+}
