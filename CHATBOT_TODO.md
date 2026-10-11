@@ -48,7 +48,7 @@ Dosya: `backend/chat_service.py` → `SOHBET_TALIMATI`
 
 ## 3. Veri seti — yapıldı / kaldı
 
-Yeni veri seti ekleme yol haritası ve ön koşullar: `VERI_SETI_TODO.md` (2026-10-11).
+Veri seti v1 paketinin kalan işleri ve görev dağılımı: `VERI_SETI_TODO.md` (2026-10-11).
 
 - [x] Veri seti v1 `backend/data/` altına alındı, `init_db.py` CSV'den yüklüyor
 - [x] Kök tabanlı guardrail (`bilgi/kokler.py`), kapsama %43 → %99,5
