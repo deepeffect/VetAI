@@ -395,6 +395,7 @@ destekleyen ifadeler" gösterilir.
 - **RAG yok.** İleride bilgi tabanı (`vetai_bilgi_tabani.json`) bir retriever ile
   `chat_service.baglam_olustur()` içine bağlanabilir; UI ve API katmanı değişmez.
 - Açık maddelerin güncel listesi: [`CHATBOT_TODO.md`](CHATBOT_TODO.md).
+- Veri seti yol haritası (yeni veri seti ekleme, gerçek cümle toplama, lisanslar): [`VERI_SETI_TODO.md`](VERI_SETI_TODO.md).
 
 ---
 
