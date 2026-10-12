@@ -75,8 +75,9 @@ hastalık eklenemez, `oneriler.json` yeniden üretilemez.
 
 Paketin kendi uyarısı: tıbbi içerik veteriner onayından geçmedi, en kritik ve en ucuz adım bu.
 
-- [ ] `veri/vetai_bilgi_tabani.csv` (55 satır, pakette var, repoda yok) → `backend/data/`;
+- [x] `veri/vetai_bilgi_tabani.csv` (55 satır, pakette var, repoda yok) → `backend/data/`;
       veteriner incelemesi için tablo bu
+      → Yapıldı (Esat, 12.10): backend/data/vetai_bilgi_tabani.csv
 - [ ] Bir veteriner hekim ya da son sınıf öğrencisi 55 satırı gözden geçirsin:
       `kardinal_belirtiler`, `aciliyet`, `evde`, `kacin`. Düzeltmeler doğrudan
       `kb_hastaliklar_1.py` / `kb_hastaliklar_2.py` içine, sonra `kb.py` + `entegrasyon_uret.py`
@@ -85,9 +86,10 @@ Paketin kendi uyarısı: tıbbi içerik veteriner onayından geçmedi, en kritik
 - [ ] Yeni hastalık adayları: Addison, lenfoma, kalp kurdu. Her biri için `kb_hastaliklar_2.py`
       kaydı + 6 el yazımı örnek + gerekiyorsa `kb_belirtiler.py`'ye kod. **Kuduz** sınıf
       değil, uygulama katmanında halk sağlığı uyarısı
-- [ ] Kaggle alt kümesi (`animal_disease_prediction_kedi_kopek.csv`, 147 satır) ile çapraz
+- [x] Kaggle alt kümesi (`animal_disease_prediction_kedi_kopek.csv`, 147 satır) ile çapraz
       kontrol: orada olup bizde olmayan hastalıklar (leptospirosis, hepatit, kalp kurdu…)
       listelensin; cümle üretiminde **kullanılmaz** (İngilizce, tablo verisi)
+      → Yapıldı (Esat, 12.10): docs/kaggle_capraz_kontrol.md — bizde olmayan: leptospiroz (7 satır, yeni aday), köpek hepatiti (4), kalp kurdu (2, zaten aday), köpek gribi/bronşit (3, kısmen kulübe öksürüğü), alerjik rinit (1)
 - [ ] Türkçe kaynaklarla `aciklama` / `evde` metinlerini zenginleştir: Türkçe Vikipedi
       (CC BY-SA), Ankara Üniv. Açık Ders VET 427 / 422 (CC BY-NC-SA); kopyalama değil özetleme
 
